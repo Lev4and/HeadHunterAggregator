@@ -1,0 +1,15 @@
+name: 'Auto set label "awaiting review"'
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  add-label:
+    name: "Auto set label 'awaiting review'"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add label 'awaiting review' to pull-request
+        uses: andymckay/labeler@master
+        with:
+          add-labels: "awaiting review"
