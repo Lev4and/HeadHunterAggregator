@@ -1,0 +1,74 @@
+csharp:
+  - "*/**/*.cs"
+
+design:
+  - "*/**/*.scss"
+  - "*/**/*.css"
+
+css:
+  - "*/**/*.css"
+
+scss:
+  - "*/**/*.scss"
+
+api:
+  - "*/**/api/**/*"
+
+javascript:
+  - "*/**/*.js"
+
+head hunter:
+  - "*/**/api/headHunter/**/*"
+
+shell:
+  - "*/**/*.sh"
+
+typescript:
+  - "*/**/*.ts"
+
+vue:
+  - "*/**/*.vue"
+
+vuex:
+  - "*/**/src/store/**/*"
+
+vue-router:
+  - "*/**/src/router/**/*"
+
+mocha:
+  - "*/**/tests/unit/**/*"
+
+cypress:
+  - "*/**/tests/e2e/**/*"
+
+tests:
+  - "*/**/tests/**/*"
+
+docker:
+  - "*/**/Dockerfile"
+  - "docker-compose.yml"
+
+production:
+  - "*/**/*.sh"
+  - ".env.dist"
+  - "nginx.conf"
+  - "*/**/Dockerfile"
+  - "docker-compose.yml"
+
+frontend:
+  - "*/**/*.js"
+  - "*/**/*.ts"
+  - "*/**/*.vue"
+  - "*/**/*.css"
+  - "*/**/*.scss"
+
+github:
+  - ".github/**/*"
+
+npm:
+  - "*/**/package.json"
+  - "*/**/package-lock.json"
+
+package:
+  - "*/**/package.json"
+  - "*/**/package-lock.json"
