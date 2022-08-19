@@ -1,0 +1,60 @@
+version: '3.4'
+
+services:
+  headhunter.authorizationwebapplication:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "5000:80"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+
+  headhunter.authorizationwebapplication.seq:
+    ports:
+      - "5341:80"
+
+  headhunter.resourcewebapplication:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "5001:80"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+  
+  headhunter.resourcewebapplication.seq:
+    ports:
+      - "5342:80"
+
+  headhunter.vuejsapp:
+    ports:
+      - "5002:8080"
+
+  headhunter.postgres:
+    ports:
+      - "5432:5432"
+
+  headhunter.portainer:
+    ports:
+      - "9000:9000"
+
+  headhunter.node.exporter:
+    ports:
+      - "9100:9100"
+
+  headhunter.prometheus:
+    ports:
+      - "9090:9090"
+
+  headhunter.grafana:
+    ports:
+      - "3456:3000"
+
+  proxy:
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "80:80"
