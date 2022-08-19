@@ -8,6 +8,7 @@
 	<AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
 	<UserSecretsId>4901069a-aa64-462c-a211-50159d991d05</UserSecretsId>
 	<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+	<DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
