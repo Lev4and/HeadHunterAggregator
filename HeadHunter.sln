@@ -8,6 +8,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeadHunter.ResourceWebAppli
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{661F9FBA-56AA-40DC-924B-B03F9A483FB8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadHunter.Models", "HeadHunter.Models\HeadHunter.Models.csproj", "{EF0E5FDA-9DB9-4118-BADF-B92EAD9D5DBB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{661F9FBA-56AA-40DC-924B-B03F9A483FB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{661F9FBA-56AA-40DC-924B-B03F9A483FB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{661F9FBA-56AA-40DC-924B-B03F9A483FB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF0E5FDA-9DB9-4118-BADF-B92EAD9D5DBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF0E5FDA-9DB9-4118-BADF-B92EAD9D5DBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF0E5FDA-9DB9-4118-BADF-B92EAD9D5DBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF0E5FDA-9DB9-4118-BADF-B92EAD9D5DBB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

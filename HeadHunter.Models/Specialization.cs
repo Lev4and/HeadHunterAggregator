@@ -1,0 +1,25 @@
+﻿using Newtonsoft.Json;
+
+namespace HeadHunter.Models
+{
+    public class Specialization
+    {
+        [JsonProperty("profarea_id")]
+        public string ProfareaId { get; set; }
+
+        [JsonProperty("profarea_name")]
+        public string ProfareaName { get; set; }
+
+        [JsonProperty("id")]
+        public string Id { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("laboring")]
+        public bool Laboring { get; set; }
+
+        [JsonProperty("specializations")]
+        public Specialization[] Specializations { get; set; }
+    }
+}
