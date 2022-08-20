@@ -1,4 +1,6 @@
-﻿namespace HeadHunter.Models
+﻿using Newtonsoft.Json;
+
+namespace HeadHunter.Models
 {
     public class NegotiationsState
     {
