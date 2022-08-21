@@ -13,6 +13,9 @@ namespace HeadHunter.Models
         [JsonProperty("id")]
         public string Id { get; set; }
 
+        [JsonProperty("text")]
+        public string Text { get; set; }
+
         [JsonProperty("name")]
         public string Name { get; set; }
 

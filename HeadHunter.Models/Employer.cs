@@ -54,5 +54,8 @@ namespace HeadHunter.Models
 
         [JsonProperty("vacancies_url")]
         public string VacanciesUrl { get; set; }
+
+        [JsonProperty("text")]
+        public string Text { get; set; }
     }
 }
