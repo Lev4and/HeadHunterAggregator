@@ -2,7 +2,7 @@
 
 namespace HeadHunter.Models
 {
-    public class ProfessionalRole
+    public class VacancyPosition
     {
         [JsonProperty("id")]
         public string Id { get; set; }
@@ -10,7 +10,7 @@ namespace HeadHunter.Models
         [JsonProperty("text")]
         public string Text { get; set; }
 
-        [JsonProperty("name")]
-        public string Name { get; set; }
+        [JsonProperty("professional_roles")]
+        public ProfessionalRole[] ProfessionalRoles { get; set; }
     }
 }

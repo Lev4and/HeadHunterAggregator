@@ -77,7 +77,7 @@ namespace HeadHunter.Models
         public bool ResponseLetterRequired { get; set; }
 
         [JsonProperty("type")]
-        public Type Type { get; set; }
+        public VacancyType Type { get; set; }
 
         [JsonProperty("has_test")]
         public bool HasTest { get; set; }

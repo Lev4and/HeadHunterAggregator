@@ -17,10 +17,10 @@ namespace HeadHunter.Models
         public string Description { get; set; }
 
         [JsonProperty("lat")]
-        public double Lat { get; set; }
+        public double? Lat { get; set; }
 
         [JsonProperty("lng")]
-        public double Lng { get; set; }
+        public double? Lng { get; set; }
 
         [JsonProperty("metro_stations")]
         public List<MetroStation> MetroStations { get; set; }
