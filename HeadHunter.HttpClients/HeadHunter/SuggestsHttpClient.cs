@@ -18,7 +18,12 @@ namespace HeadHunter.HttpClients.HeadHunter
                 throw new ArgumentNullException(nameof(searchString));
             }
 
-            return await Get<ItemsResponseModel<Area>>($"/{HeadHunterRoutes.SuggestsAreaLeavesQuery}?text={searchString}");
+            if (searchString.Length <= 2)
+            {
+                throw new ArgumentOutOfRangeException(nameof(searchString));
+            }
+
+            return await Get<ItemsResponseModel<Area>>($"{HeadHunterRoutes.SuggestsAreaLeavesQuery}?text={searchString}");
         }
 
         public async Task<ResponseModel<ItemsResponseModel<Employer>>> GetSuggestsCompaniesLeavesAsync(string searchString)
@@ -28,7 +33,12 @@ namespace HeadHunter.HttpClients.HeadHunter
                 throw new ArgumentNullException(nameof(searchString));
             }
 
-            return await Get<ItemsResponseModel<Employer>>($"/{HeadHunterRoutes.SuggestsCompaniesQuery}?text={searchString}");
+            if (searchString.Length <= 2)
+            {
+                throw new ArgumentOutOfRangeException(nameof(searchString));
+            }
+
+            return await Get<ItemsResponseModel<Employer>>($"{HeadHunterRoutes.SuggestsCompaniesQuery}?text={searchString}");
         }
 
         public async Task<ResponseModel<ItemsResponseModel<University>>> GetSuggestsUniversitiesAsync(string searchString)
@@ -38,7 +48,12 @@ namespace HeadHunter.HttpClients.HeadHunter
                 throw new ArgumentNullException(nameof(searchString));
             }
 
-            return await Get<ItemsResponseModel<University>>($"/{HeadHunterRoutes.SuggestsUniversitiesQuery}?text={searchString}");
+            if (searchString.Length <= 2)
+            {
+                throw new ArgumentOutOfRangeException(nameof(searchString));
+            }
+
+            return await Get<ItemsResponseModel<University>>($"{HeadHunterRoutes.SuggestsUniversitiesQuery}?text={searchString}");
         }
 
         public async Task<ResponseModel<ItemsResponseModel<Specialization>>> GetSuggestsSpecializationsAsync(string searchString)
@@ -48,7 +63,12 @@ namespace HeadHunter.HttpClients.HeadHunter
                 throw new ArgumentNullException(nameof(searchString));
             }
 
-            return await Get<ItemsResponseModel<Specialization>>($"/{HeadHunterRoutes.SuggestsSpecializationsQuery}?text={searchString}");
+            if (searchString.Length <= 2)
+            {
+                throw new ArgumentOutOfRangeException(nameof(searchString));
+            }
+
+            return await Get<ItemsResponseModel<Specialization>>($"{HeadHunterRoutes.SuggestsSpecializationsQuery}?text={searchString}");
         }
 
         public async Task<ResponseModel<ItemsResponseModel<ProfessionalRole>>> GetSuggestsProfessionalRolesAsync(string searchString)
@@ -58,7 +78,12 @@ namespace HeadHunter.HttpClients.HeadHunter
                 throw new ArgumentNullException(nameof(searchString));
             }
 
-            return await Get<ItemsResponseModel<ProfessionalRole>>($"/{HeadHunterRoutes.SuggestsProfessionalRolesQuery}?text={searchString}");
+            if (searchString.Length <= 2)
+            {
+                throw new ArgumentOutOfRangeException(nameof(searchString));
+            }
+
+            return await Get<ItemsResponseModel<ProfessionalRole>>($"{HeadHunterRoutes.SuggestsProfessionalRolesQuery}?text={searchString}");
         }
 
         public async Task<ResponseModel<ItemsResponseModel<KeySkill>>> GetSuggestsKeySkillsAsync(string searchString)
@@ -68,17 +93,27 @@ namespace HeadHunter.HttpClients.HeadHunter
                 throw new ArgumentNullException(nameof(searchString));
             }
 
-            return await Get<ItemsResponseModel<KeySkill>>($"/{HeadHunterRoutes.SuggestsKeySkillsQuery}?text={searchString}");
+            if (searchString.Length <= 2)
+            {
+                throw new ArgumentOutOfRangeException(nameof(searchString));
+            }
+
+            return await Get<ItemsResponseModel<KeySkill>>($"{HeadHunterRoutes.SuggestsKeySkillsQuery}?text={searchString}");
         }
 
-        public async Task<ResponseModel<ItemsResponseModel<VacancyPosition>>> GetVacancyPositionsAsync(string searchString)
+        public async Task<ResponseModel<ItemsResponseModel<VacancyPosition>>> GetSuggestsVacancyPositionsAsync(string searchString)
         {
             if (string.IsNullOrEmpty(searchString))
             {
                 throw new ArgumentNullException(nameof(searchString));
             }
 
-            return await Get<ItemsResponseModel<VacancyPosition>>($"/{HeadHunterRoutes.SuggestsVacancyPositionsQuery}?text={searchString}");
+            if (searchString.Length <= 2)
+            {
+                throw new ArgumentOutOfRangeException(nameof(searchString));
+            }
+
+            return await Get<ItemsResponseModel<VacancyPosition>>($"{HeadHunterRoutes.SuggestsVacancyPositionsQuery}?text={searchString}");
         }
 
         public async Task<ResponseModel<ItemsResponseModel<KeyWord>>> GetSuggestsVacancyKeyWordsAsync(string searchString)
@@ -88,7 +123,12 @@ namespace HeadHunter.HttpClients.HeadHunter
                 throw new ArgumentNullException(nameof(searchString));
             }
 
-            return await Get<ItemsResponseModel<KeyWord>>($"/{HeadHunterRoutes.SuggestsVacancyKeyWordsQuery}?text={searchString}");
+            if (searchString.Length <= 2)
+            {
+                throw new ArgumentOutOfRangeException(nameof(searchString));
+            }
+
+            return await Get<ItemsResponseModel<KeyWord>>($"{HeadHunterRoutes.SuggestsVacancyKeyWordsQuery}?text={searchString}");
         }
     }
 }

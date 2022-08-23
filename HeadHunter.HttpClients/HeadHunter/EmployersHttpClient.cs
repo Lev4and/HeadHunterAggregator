@@ -18,7 +18,7 @@ namespace HeadHunter.HttpClients.HeadHunter
                 throw new ArgumentOutOfRangeException(nameof(id));
             }
 
-            return await Get<Employer>($"/{id}");
+            return await Get<Employer>($"{id}");
         }
     }
 }

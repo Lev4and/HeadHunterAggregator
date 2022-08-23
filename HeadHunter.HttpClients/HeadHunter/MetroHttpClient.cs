@@ -22,7 +22,7 @@ namespace HeadHunter.HttpClients.HeadHunter
                 throw new ArgumentOutOfRangeException(nameof(cityId));
             }
 
-            return await Get<City>($"/{cityId}");
+            return await Get<City>($"{cityId}");
         }
     }
 }

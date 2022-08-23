@@ -43,7 +43,7 @@ namespace HeadHunter.HttpClients.HeadHunter
                 throw new ArgumentOutOfRangeException(nameof(universityId));
             }
 
-            return await Get<Faculty[]>($"/{universityId}/{HeadHunterRoutes.UniversitiesFacultiesQuery}");
+            return await Get<Faculty[]>($"{universityId}/{HeadHunterRoutes.UniversitiesFacultiesQuery}");
         }
     }
 }

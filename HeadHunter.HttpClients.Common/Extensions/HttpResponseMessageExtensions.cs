@@ -1,5 +1,4 @@
 ﻿using HeadHunter.Model.Common;
-using Newtonsoft.Json;
 
 namespace HeadHunter.HttpClients.Common.Extensions
 {
@@ -16,7 +15,7 @@ namespace HeadHunter.HttpClients.Common.Extensions
         public static async Task<ResponseModel<T>> GetResponseModel<T>(this HttpResponseMessage response)
         {
             var stringContent = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<T>(stringContent);
+            var result = stringContent.Deserialize<T>();
             var code = response.StatusCode;
 
             return new ResponseModel<T>(result, new ResponseStatus(code));

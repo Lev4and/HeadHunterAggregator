@@ -12,7 +12,7 @@ namespace HeadHunter.HttpClients.HeadHunter
 
         public async Task<ResponseModel<Country[]>> GetAllCountriesAsync()
         {
-            return await Get<Country[]>($"/{HeadHunterRoutes.AreasCountriesQuery}");
+            return await Get<Country[]>(HeadHunterRoutes.AreasCountriesQuery);
         }
 
         public async Task<ResponseModel<Area[]>> GetAllAreasAsync()
@@ -27,7 +27,7 @@ namespace HeadHunter.HttpClients.HeadHunter
                 throw new ArgumentOutOfRangeException(nameof(id));
             }
 
-            return await Get<Area>($"/{id}");
+            return await Get<Area>($"{id}");
         }
     }
 }

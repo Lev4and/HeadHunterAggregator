@@ -25,8 +25,4 @@
     <ProjectReference Include="..\HeadHunter.HttpClients\HeadHunter.HttpClients.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="HeadHunter\" />
-  </ItemGroup>
-
 </Project>

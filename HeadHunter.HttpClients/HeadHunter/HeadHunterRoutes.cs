@@ -6,31 +6,31 @@
 
         public const string Domain = "api.hh.ru";
 
-        public const string VacanciesPath = "vacancies";
+        public const string VacanciesPath = "vacancies/";
 
-        public const string EmployersPath = "employers";
+        public const string EmployersPath = "employers/";
 
-        public const string AreasPath = "areas";
+        public const string AreasPath = "areas/";
 
         public const string AreasCountriesQuery = "countries";
 
-        public const string SpecializationsPath = "specializations";
+        public const string SpecializationsPath = "specializations/";
 
-        public const string MetroPath = "metro";
+        public const string MetroPath = "metro/";
 
-        public const string LanguagesPath = "languages";
+        public const string LanguagesPath = "languages/";
 
-        public const string IndustriesPath = "industries";
+        public const string IndustriesPath = "industries/";
 
-        public const string UniversitiesPath = "educational_institutions";
+        public const string UniversitiesPath = "educational_institutions/";
 
         public const string UniversitiesFacultiesQuery = "faculties";
 
-        public const string KeySkillsPath = "skills";
+        public const string KeySkillsPath = "skills/";
 
-        public const string DictionariesPath = "dictionaries";
+        public const string DictionariesPath = "dictionaries/";
 
-        public const string SuggestsPath = "suggests";
+        public const string SuggestsPath = "suggests/";
 
         public const string SuggestsAreaLeavesQuery = "area_leaves";
 
