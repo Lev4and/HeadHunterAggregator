@@ -10,15 +10,17 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeadHunter.Models", "HeadHunter.Models\HeadHunter.Models.csproj", "{EF0E5FDA-9DB9-4118-BADF-B92EAD9D5DBB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadHunter.HttpClients.Common", "HeadHunter.HttpClients.Common\HeadHunter.HttpClients.Common.csproj", "{AD4E2AA7-CCC5-4A9F-B0A2-61083DF2B9D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeadHunter.HttpClients.Common", "HeadHunter.HttpClients.Common\HeadHunter.HttpClients.Common.csproj", "{AD4E2AA7-CCC5-4A9F-B0A2-61083DF2B9D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadHunter.HttpClients", "HeadHunter.HttpClients\HeadHunter.HttpClients.csproj", "{8AC30AF5-D6C0-4033-8D4D-F74D48B4F981}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeadHunter.HttpClients", "HeadHunter.HttpClients\HeadHunter.HttpClients.csproj", "{8AC30AF5-D6C0-4033-8D4D-F74D48B4F981}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadHunter.HttpClients.Common.Tests", "HeadHunter.HttpClients.Common.Tests\HeadHunter.HttpClients.Common.Tests.csproj", "{3333B6D8-1029-4B38-AEE3-7C7B15B65514}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeadHunter.HttpClients.Common.Tests", "HeadHunter.HttpClients.Common.Tests\HeadHunter.HttpClients.Common.Tests.csproj", "{3333B6D8-1029-4B38-AEE3-7C7B15B65514}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadHunter.HttpClients.Tests", "HeadHunter.HttpClients.Tests\HeadHunter.HttpClients.Tests.csproj", "{E770E396-B315-4E80-B54A-91CCA332922B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeadHunter.HttpClients.Tests", "HeadHunter.HttpClients.Tests\HeadHunter.HttpClients.Tests.csproj", "{E770E396-B315-4E80-B54A-91CCA332922B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadHunter.Model.Common", "HeadHunter.Model.Common\HeadHunter.Model.Common.csproj", "{E2486557-4CDE-4FC7-BFFF-AE7821C31032}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeadHunter.Model.Common", "HeadHunter.Model.Common\HeadHunter.Model.Common.csproj", "{E2486557-4CDE-4FC7-BFFF-AE7821C31032}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadHunter.ResourceWebApplication.Tests", "HeadHunter.ResourceWebApplication.Tests\HeadHunter.ResourceWebApplication.Tests.csproj", "{37E60D77-6E91-4769-BFD6-3E2385554CD3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,6 +64,10 @@ Global
 		{E2486557-4CDE-4FC7-BFFF-AE7821C31032}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2486557-4CDE-4FC7-BFFF-AE7821C31032}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2486557-4CDE-4FC7-BFFF-AE7821C31032}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37E60D77-6E91-4769-BFD6-3E2385554CD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37E60D77-6E91-4769-BFD6-3E2385554CD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37E60D77-6E91-4769-BFD6-3E2385554CD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37E60D77-6E91-4769-BFD6-3E2385554CD3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
