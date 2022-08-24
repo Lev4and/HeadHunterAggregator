@@ -22,10 +22,10 @@ jobs:
       run: dotnet restore
 
     - name: Build
-      run: dotnet build HeadHunter.HttpClients.Common.Tests --no-restore
+      run: dotnet build ~/HeadHunter.HttpClients.Common.Tests --no-restore
 
     - name: Test
-      run: dotnet test HeadHunter.HttpClients.Common.Tests --no-build --verbosity normal
+      run: dotnet test ~/HeadHunter.HttpClients.Common.Tests --no-build --verbosity normal
 
   http-clients-unit-test:
     name: HttpClients.Common Unit Test
@@ -42,7 +42,7 @@ jobs:
       run: dotnet restore
 
     - name: Build
-      run: dotnet build HeadHunter.HttpClients.Tests --no-restore
+      run: dotnet build ~/HeadHunter.HttpClients.Tests --no-restore
 
     - name: Test
-      run: dotnet test HeadHunter.HttpClients.Tests --no-build --verbosity normal
+      run: dotnet test ~/HeadHunter.HttpClients.Tests --no-build --verbosity normal
