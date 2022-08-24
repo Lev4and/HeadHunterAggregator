@@ -10,6 +10,8 @@ jobs:
   http-clients-common-unit-test:
     name: HttpClients.Common Unit Test
     runs-on: ubuntu-latest
+    env:
+      ProjectName: HeadHunter.HttpClients.Common.Tests
     steps:
     - uses: actions/checkout@v3
     - name: Setup .NET
@@ -19,17 +21,19 @@ jobs:
         dotnet-version: 6.0.x
 
     - name: Restore dependencies
-      run: dotnet restore HeadHunter.HttpClients.Common.Tests
+      run: dotnet restore $ProjectName
 
     - name: Build
-      run: dotnet build HeadHunter.HttpClients.Common.Tests --no-restore
+      run: dotnet build $ProjectName --no-restore
 
     - name: Test
-      run: dotnet test HeadHunter.HttpClients.Common.Tests --no-build --verbosity normal
+      run: dotnet test $ProjectName --no-build --verbosity normal
 
   http-clients-unit-test:
-    name: HttpClients.Common Unit Test
+    name: HttpClients Unit Test
     runs-on: ubuntu-latest
+    env:
+      ProjectName: HeadHunter.HttpClients.Tests
     steps:
     - uses: actions/checkout@v3
     - name: Setup .NET
@@ -39,10 +43,32 @@ jobs:
         dotnet-version: 6.0.x
 
     - name: Restore dependencies
-      run: dotnet restore HeadHunter.HttpClients.Tests
+      run: dotnet restore $ProjectName
 
     - name: Build
-      run: dotnet build HeadHunter.HttpClients.Tests --no-restore
+      run: dotnet build $ProjectName --no-restore
 
     - name: Test
-      run: dotnet test HeadHunter.HttpClients.Tests --no-build --verbosity normal
+      run: dotnet test $ProjectName --no-build --verbosity normal
+  
+  resource-web-application-unit-test:
+    name: ResourceWebApplication Unit Test
+    runs-on: ubuntu-latest
+    env:
+      ProjectName: HeadHunter.ResourceWebApplication.Tests
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0.x
+
+    - name: Restore dependencies
+      run: dotnet restore $ProjectName
+
+    - name: Build
+      run: dotnet build $ProjectName --no-restore
+
+    - name: Test
+      run: dotnet test $ProjectName --no-build --verbosity normal
