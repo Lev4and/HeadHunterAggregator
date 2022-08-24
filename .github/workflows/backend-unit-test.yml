@@ -19,13 +19,13 @@ jobs:
         dotnet-version: 6.0.x
 
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore HeadHunter.HttpClients.Common.Tests
 
     - name: Build
-      run: dotnet build ~/HeadHunter.HttpClients.Common.Tests --no-restore
+      run: dotnet build HeadHunter.HttpClients.Common.Tests --no-restore
 
     - name: Test
-      run: dotnet test ~/HeadHunter.HttpClients.Common.Tests --no-build --verbosity normal
+      run: dotnet test HeadHunter.HttpClients.Common.Tests --no-build --verbosity normal
 
   http-clients-unit-test:
     name: HttpClients.Common Unit Test
@@ -39,10 +39,10 @@ jobs:
         dotnet-version: 6.0.x
 
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore HeadHunter.HttpClients.Tests
 
     - name: Build
-      run: dotnet build ~/HeadHunter.HttpClients.Tests --no-restore
+      run: dotnet build HeadHunter.HttpClients.Tests --no-restore
 
     - name: Test
-      run: dotnet test ~/HeadHunter.HttpClients.Tests --no-build --verbosity normal
+      run: dotnet test HeadHunter.HttpClients.Tests --no-build --verbosity normal
