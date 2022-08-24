@@ -105,17 +105,6 @@ namespace HeadHunter.HttpClients.Tests.HeadHunter
         }
 
         [Fact]
-        public async Task GetAllFacultiesByUniversityIdAsync_WithNotExistsUniversityIdParam_ReturnNotFoundResponseWithEmptyResult()
-        {
-            var response = await _context.HeadHunter.Universities.GetAllFacultiesByUniversityIdAsync(1);
-            var statusCode = response.Status.Code;
-
-            Assert.NotNull(response);
-            Assert.Empty(response.Result);
-            Assert.Equal(HttpStatusCode.NotFound, statusCode);
-        }
-
-        [Fact]
         public async Task GetAllFacultiesByUniversityIdAsync_WithValidUniversityIdParam_ReturnNotFoundResponseWithNotEmptyResult()
         {
             var response = await _context.HeadHunter.Universities.GetAllFacultiesByUniversityIdAsync(45470);
