@@ -1,0 +1,48 @@
+name: Backend Unit Tests
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  http-clients-common-unit-test:
+    name: HttpClients.Common Unit Test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0.x
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build HeadHunter.HttpClients.Common.Tests --no-restore
+
+    - name: Test
+      run: dotnet test HeadHunter.HttpClients.Common.Tests --no-build --verbosity normal
+
+  http-clients-unit-test:
+    name: HttpClients.Common Unit Test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0.x
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build HeadHunter.HttpClients.Tests --no-restore
+
+    - name: Test
+      run: dotnet test HeadHunter.HttpClients.Tests --no-build --verbosity normal
