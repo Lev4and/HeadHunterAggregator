@@ -2,11 +2,11 @@
 using HeadHunter.Model.Common;
 using HeadHunter.Models;
 
-namespace HeadHunter.HttpClients.HeadHunter
+namespace HeadHunter.HttpClients.Resource
 {
-    public class VacanciesHttpClient : HeadHunterHttpClient
+    public class HeadHunterVacanciesHttpClient : ResourceHttpClient
     {
-        public VacanciesHttpClient(): base(HeadHunterRoutes.VacanciesPath)
+        public HeadHunterVacanciesHttpClient() : base(ResourceRoutes.HeadHunterVacanciesPath)
         {
 
         }
@@ -37,8 +37,8 @@ namespace HeadHunter.HttpClients.HeadHunter
             var moscowDateTo = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(dateTo, "Russian Standard Time");
 
             return await Get<PagedResponseModel<Vacancy>>($"?page={page}&per_page={perPage}" +
-                $"&date_from={moscowDateFrom.ToString("yyyy-MM-ddTHH:mm:ss")}" +
-                $"&date_to={moscowDateTo.ToString("yyyy-MM-ddTHH:mm:ss")}");
+                $"&dateFrom={moscowDateFrom.ToString("yyyy-MM-ddTHH:mm:ssK")}" +
+                $"&dateTo={moscowDateTo.ToString("yyyy-MM-ddTHH:mm:ssK")}");
         }
 
         public async Task<ResponseModel<Vacancy>> GetVacancyAsync(long id)
