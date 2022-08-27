@@ -4,7 +4,7 @@ namespace HeadHunter.HttpClients.Resource
 {
     public class ResourceHttpClient : BaseHttpClient
     {
-        public ResourceHttpClient(string path) : base($"{ResourceRoutes.Protocol}://{ResourceRoutes.Domain}/{path}")
+        public ResourceHttpClient(string path) : base($"{ResourceRoutes.Protocol}://{ResourceRoutes.Domain}/resource/{path}")
         {
             if (path == null)
             {
