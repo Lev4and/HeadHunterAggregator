@@ -12,8 +12,8 @@ namespace HeadHunter.Model.Common
 
         public ResponseStatus(HttpStatusCode code)
         {
-            Name = "";
-            Message = "";
+            Name = ResponseStatuses.Dictionary[code].Name;
+            Message = ResponseStatuses.Dictionary[code].Message;
             Code = code;
         }
 
