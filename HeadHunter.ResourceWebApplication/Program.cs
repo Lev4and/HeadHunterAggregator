@@ -1,9 +1,13 @@
+using Microsoft.OpenApi.Models;
 using Serilog;
+using HttpClients = HeadHunter.HttpClients;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Host.UseSerilog((context, loggerConfiguration) =>
     loggerConfiguration.WriteTo.Console().ReadFrom.Configuration(context.Configuration));
+
+builder.Services.AddSingleton<HttpClients.HttpContext>();
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
@@ -17,11 +21,22 @@ builder.Services.AddCors(options =>
                 .AllowAnyHeader().AllowCredentials());
 });
 
-builder.Services.AddControllers();
+builder.Services.AddControllersWithViews()
+    .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling =
+        Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddSwaggerGen(options =>
 {
     options.CustomSchemaIds(type => type.ToString());
+
+    if (builder.Environment.IsProduction())
+    {
+        options.AddServer(new OpenApiServer()
+        {
+            Url = "http://194-67-67-175.cloudvps.regruhosting.ru/resource"
+        });
+    }
 });
 
 var app = builder.Build();
@@ -34,4 +49,14 @@ app.UseHttpsRedirection();
 app.MapControllers();
 app.UseRouting();
 app.UseCors("CorsPolicy");
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "api/{controller=Home}/{action=Index}/{id?}");
+    endpoints.MapAreaControllerRoute(
+        name: "headHunterArea",
+        areaName: "HeadHunter",
+        pattern: "api/headHunter/{controller=Home}/{action=Index}/{id?}");
+});
 app.Run();

@@ -4,13 +4,13 @@ namespace HeadHunter.HttpClients.Common.Extensions
 {
     public static class StringExtensions
     {
-        public static T? Deserialize<T>(this string json)
+        public static T Deserialize<T>(this string json)
         {
             try
             {
                 return JsonConvert.DeserializeObject<T>(json);
             }
-            catch
+            catch (Exception ex)
             {
                 return Activator.CreateInstance<T>();
             }

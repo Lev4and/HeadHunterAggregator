@@ -17,7 +17,7 @@ namespace HeadHunter.HttpClients.HeadHunter
 
         public async Task<ResponseModel<City>> GetAllStationsMetroByCityIdAsync(int cityId)
         {
-            if (cityId < 1)
+            if (cityId < HeadHunterConstants.IdLowerValue)
             {
                 throw new ArgumentOutOfRangeException(nameof(cityId));
             }

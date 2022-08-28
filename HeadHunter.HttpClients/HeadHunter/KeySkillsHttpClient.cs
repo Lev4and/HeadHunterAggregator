@@ -13,12 +13,12 @@ namespace HeadHunter.HttpClients.HeadHunter
 
         public async Task<ResponseModel<ItemsResponseModel<KeySkill>>> GetKeySkillAsync(int id)
         {
-            if (id < 1)
+            if (id < HeadHunterConstants.IdLowerValue)
             {
                 throw new ArgumentOutOfRangeException(nameof(id));
             }
 
-            return await Get<ItemsResponseModel<KeySkill>>($"?id={id}");
+            return await Get<ItemsResponseModel<KeySkill>>($"?{HeadHunterRoutes.KeySkillsIdQueryParam}={id}");
         }
 
         public async Task<ResponseModel<ItemsResponseModel<KeySkill>>> GetKeySkillsAsync(int[] ids)
@@ -28,12 +28,12 @@ namespace HeadHunter.HttpClients.HeadHunter
                 throw new ArgumentNullException(nameof(ids));
             }
 
-            if (ids.Any(id => id < 1))
+            if (ids.Any(id => id < HeadHunterConstants.IdLowerValue))
             {
                 throw new ArgumentOutOfRangeException(nameof(ids));
             }
 
-            return await Get<ItemsResponseModel<KeySkill>>($"?{string.Join('&', ids.Select(id => $"id={id}"))}");
+            return await Get<ItemsResponseModel<KeySkill>>($"?{string.Join('&', ids.Select(id => $"{HeadHunterRoutes.KeySkillsIdQueryParam}={id}"))}");
         }
     }
 }
