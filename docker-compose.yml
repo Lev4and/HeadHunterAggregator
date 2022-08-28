@@ -81,6 +81,11 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
+  headhunter.dozzle:
+    image: amir20/dozzle
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
   proxy:
     image: nginx:mainline
 
