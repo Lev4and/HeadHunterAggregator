@@ -11,7 +11,7 @@ jobs:
     name: Docker Compose Deploy
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v2
     - name: Build and push image
       run: |
         DOCKER_NAME=headhunter
