@@ -17,7 +17,6 @@ jobs:
         DOCKER_NAME=headhunter
         DOCKER_IMAGE=docker.pkg.github.com/Lev4and/${GITHUB_REPOSITORY##*/}/${DOCKER_NAME}:${GITHUB_REF##*/}
         docker login docker.pkg.github.com -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
-        rm .env
         cp .env.dist .env
         export $(egrep -v '^#' .env | xargs -0)
         docker volume create portainer_data
