@@ -1,4 +1,6 @@
 ﻿using HeadHunter.HttpClients.Resource;
+using HeadHunter.Model.Common;
+using HeadHunter.Models;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,6 +20,7 @@ namespace HeadHunter.ResourceWebApplication.Areas.HeadHunter.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(typeof(ResponseModel<Dictionaries>), 200)]
         public async Task<IActionResult> GetDictionariesAsync()
         {
             var responseModel = await _context.HeadHunter.Dictionaries.GetDictionariesAsync();
