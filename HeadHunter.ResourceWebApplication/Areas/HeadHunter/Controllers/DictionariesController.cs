@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Cors;
+﻿using HeadHunter.HttpClients.Resource;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HeadHunter.ResourceWebApplication.Areas.HeadHunter.Controllers
@@ -6,7 +7,7 @@ namespace HeadHunter.ResourceWebApplication.Areas.HeadHunter.Controllers
     [ApiController]
     [Area("HeadHunter")]
     [EnableCors("CorsPolicy")]
-    [Route("api/headHunter/dictionaries")]
+    [Route(ResourceRoutes.HeadHunterDictionariesPath)]
     public class DictionariesController : ControllerBase
     {
         private readonly HttpClients.HttpContext _context;

@@ -1,4 +1,5 @@
 ﻿using HeadHunter.HttpClients.HeadHunter.ResponseModels;
+using HeadHunter.HttpClients.Resource;
 using HeadHunter.Model.Common;
 using HeadHunter.Models;
 using Microsoft.AspNetCore.Cors;
@@ -10,7 +11,7 @@ namespace HeadHunter.ResourceWebApplication.Areas.HeadHunter.Controllers
     [ApiController]
     [Area("HeadHunter")]
     [EnableCors("CorsPolicy")]
-    [Route("api/headHunter/vacancies")]
+    [Route(ResourceRoutes.HeadHunterVacanciesPath)]
     public class VacanciesController : ControllerBase
     {
         private readonly HttpClients.HttpContext _context;
@@ -41,15 +42,15 @@ namespace HeadHunter.ResourceWebApplication.Areas.HeadHunter.Controllers
         [ProducesResponseType(typeof(ResponseModel<object?>), 400)]
         [ProducesResponseType(typeof(ResponseModel<object?>), 404)]
         [ProducesResponseType(typeof(ResponseModel<PagedResponseModel<Vacancy>>), 200)]
-        public async Task<IActionResult> GetVacanciesAsync([Required][FromQuery(Name = "page")] int page, [Required][FromQuery(Name = "perPage")] int perPage, 
-            [Required][FromQuery(Name = "dateFrom")] DateTime dateFrom, [Required][FromQuery(Name = "dateTo")] DateTime dateTo)
+        public async Task<IActionResult> GetVacanciesAsync([Required][FromQuery(Name = ResourceRoutes.HeadHunterVacanciesPageQueryParam)] int page, [Required][FromQuery(Name = ResourceRoutes.HeadHunterVacanciesPerPageQueryParam)] int perPage, 
+            [Required][FromQuery(Name = ResourceRoutes.HeadHunterVacanciesDateFromQueryParam)] DateTime dateFrom, [Required][FromQuery(Name = ResourceRoutes.HeadHunterVacanciesDateToQueryParam)] DateTime dateTo)
         {
-            if (perPage < 1 || perPage > 100)
+            if (perPage < ResourceConstants.HeadHunterPerPageLowerValue || perPage > ResourceConstants.HeadHunterPerPageUpperValue)
             {
                 return BadRequest(new ResponseModel<object?>(null, ResponseStatuses.BadRequest));
             }
 
-            if (page < 1 || page * perPage >= 2000)
+            if (page < ResourceConstants.HeadHunterPageLowerValue || page * perPage > ResourceConstants.HeadHunterOffsetUpperValue)
             {
                 return BadRequest(new ResponseModel<object?>(null, ResponseStatuses.BadRequest));
             }

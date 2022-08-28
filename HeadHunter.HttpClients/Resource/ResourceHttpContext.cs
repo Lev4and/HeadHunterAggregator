@@ -25,10 +25,5 @@
         public HeadHunterUniversitiesHttpClient HeadHunterUniversities => new HeadHunterUniversitiesHttpClient();
 
         public HeadHunterVacanciesHttpClient HeadHunterVacancies => new HeadHunterVacanciesHttpClient();
-
-        public ResourceHttpContext()
-        {
-
-        }
     }
 }

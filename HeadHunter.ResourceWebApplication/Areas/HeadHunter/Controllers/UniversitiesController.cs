@@ -1,4 +1,5 @@
 ﻿using HeadHunter.HttpClients.HeadHunter.ResponseModels;
+using HeadHunter.HttpClients.Resource;
 using HeadHunter.Model.Common;
 using HeadHunter.Models;
 using Microsoft.AspNetCore.Cors;
@@ -10,7 +11,7 @@ namespace HeadHunter.ResourceWebApplication.Areas.HeadHunter.Controllers
     [ApiController]
     [Area("HeadHunter")]
     [EnableCors("CorsPolicy")]
-    [Route("api/headHunter/universities")]
+    [Route(ResourceRoutes.HeadHunterUniversitiesPath)]
     public class UniversitiesController : ControllerBase
     {
         private readonly HttpClients.HttpContext _context;
@@ -27,7 +28,7 @@ namespace HeadHunter.ResourceWebApplication.Areas.HeadHunter.Controllers
         [ProducesResponseType(typeof(ResponseModel<ItemsResponseModel<University>>), 200)]
         public async Task<IActionResult> GetUniversityByIdAsync([Required][FromRoute(Name = "id")] int id)
         {
-            if (id < 1)
+            if (id < ResourceConstants.HeadHunterIdLowerValue)
             {
                 return BadRequest(new ResponseModel<object?>(null, ResponseStatuses.BadRequest));
             }
@@ -41,14 +42,14 @@ namespace HeadHunter.ResourceWebApplication.Areas.HeadHunter.Controllers
         [ProducesResponseType(typeof(ResponseModel<object?>), 400)]
         [ProducesResponseType(typeof(ResponseModel<object?>), 404)]
         [ProducesResponseType(typeof(ResponseModel<ItemsResponseModel<University>>), 200)]
-        public async Task<IActionResult> GetUniversitiesByIdsAsync([Required][FromQuery(Name = "id")] int[] ids)
+        public async Task<IActionResult> GetUniversitiesByIdsAsync([Required][FromQuery(Name = ResourceRoutes.HeadHunterUniversitiesIdQueryParam)] int[] ids)
         {
             if (ids == null || ids.Length == 0)
             {
                 return BadRequest(new ResponseModel<object?>(null, ResponseStatuses.BadRequest));
             }
 
-            if (ids.Any(id => id < 1))
+            if (ids.Any(id => id < ResourceConstants.HeadHunterIdLowerValue))
             {
                 return BadRequest(new ResponseModel<object?>(null, ResponseStatuses.BadRequest));
             }
@@ -63,9 +64,9 @@ namespace HeadHunter.ResourceWebApplication.Areas.HeadHunter.Controllers
         [ProducesResponseType(typeof(ResponseModel<object?>), 400)]
         [ProducesResponseType(typeof(ResponseModel<object?>), 404)]
         [ProducesResponseType(typeof(ResponseModel<Faculty[]>), 200)]
-        public async Task<IActionResult> GetAllFacultiesByUniversityIdAsync([Required][FromRoute(Name = "universityId")] int universityId)
+        public async Task<IActionResult> GetAllFacultiesByUniversityIdAsync([Required][FromRoute(Name = ResourceRoutes.HeadHunterUniversitiesUniversityIdQueryParam)] int universityId)
         {
-            if (universityId < 1)
+            if (universityId < ResourceConstants.HeadHunterIdLowerValue)
             {
                 return BadRequest(new ResponseModel<object?>(null, ResponseStatuses.BadRequest));
             }

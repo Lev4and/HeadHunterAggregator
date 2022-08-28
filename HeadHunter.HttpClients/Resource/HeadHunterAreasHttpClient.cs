@@ -17,7 +17,7 @@ namespace HeadHunter.HttpClients.Resource
 
         public async Task<ResponseModel<Area>> GetAreaAsync(int id)
         {
-            if (id < 1)
+            if (id < ResourceConstants.HeadHunterIdLowerValue)
             {
                 throw new ArgumentOutOfRangeException(nameof(id));
             }

@@ -1,4 +1,5 @@
-﻿using HeadHunter.Model.Common;
+﻿using HeadHunter.HttpClients.Resource;
+using HeadHunter.Model.Common;
 using HeadHunter.Models;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -9,7 +10,7 @@ namespace HeadHunter.ResourceWebApplication.Areas.HeadHunter.Controllers
     [ApiController]
     [Area("HeadHunter")]
     [EnableCors("CorsPolicy")]
-    [Route("api/headHunter/metro")]
+    [Route(ResourceRoutes.HeadHunterMetroPath)]
     public class MetroController : ControllerBase
     {
         private readonly HttpClients.HttpContext _context;
@@ -20,7 +21,7 @@ namespace HeadHunter.ResourceWebApplication.Areas.HeadHunter.Controllers
         }
 
         [HttpGet]
-        [Route("all")]
+        [Route(ResourceRoutes.HeadHunterMetroAllQuery)]
         [ProducesResponseType(typeof(ResponseModel<City[]>), 200)]
         public async Task<IActionResult> GetAllStationsMetroAsync()
         {
@@ -33,9 +34,9 @@ namespace HeadHunter.ResourceWebApplication.Areas.HeadHunter.Controllers
         [ProducesResponseType(typeof(ResponseModel<City>), 200)]
         [ProducesResponseType(typeof(ResponseModel<object?>), 400)]
         [ProducesResponseType(typeof(ResponseModel<object?>), 404)]
-        public async Task<IActionResult> GetAllStationsMetroByCityIdAsync([Required][FromQuery(Name = "cityId")] int cityId)
+        public async Task<IActionResult> GetAllStationsMetroByCityIdAsync([Required][FromQuery(Name = ResourceRoutes.HeadHunterMetroAllStationsCityIdQueryParam)] int cityId)
         {
-            if (cityId < 1)
+            if (cityId < ResourceConstants.HeadHunterIdLowerValue)
             {
                 return BadRequest(new ResponseModel<object?>(null, ResponseStatuses.BadRequest));
             }

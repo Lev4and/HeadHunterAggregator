@@ -1,4 +1,5 @@
 ﻿using HeadHunter.HttpClients.HeadHunter.ResponseModels;
+using HeadHunter.HttpClients.Resource;
 using HeadHunter.Model.Common;
 using HeadHunter.Models;
 using Microsoft.AspNetCore.Cors;
@@ -10,7 +11,7 @@ namespace HeadHunter.ResourceWebApplication.Areas.HeadHunter.Controllers
     [ApiController]
     [Area("HeadHunter")]
     [EnableCors("CorsPolicy")]
-    [Route("api/headHunter/suggests")]
+    [Route(ResourceRoutes.HeadHunterSuggestsPath)]
     public class SuggestsController : ControllerBase
     {
         private readonly HttpClients.HttpContext _context;
@@ -21,18 +22,18 @@ namespace HeadHunter.ResourceWebApplication.Areas.HeadHunter.Controllers
         }
 
         [HttpGet]
-        [Route("areas")]
+        [Route(ResourceRoutes.HeadHunterSuggestsAreasQuery)]
         [ProducesResponseType(typeof(ResponseModel<object?>), 400)]
         [ProducesResponseType(typeof(ResponseModel<object?>), 404)]
         [ProducesResponseType(typeof(ResponseModel<ItemsResponseModel<Area>>), 200)]
-        public async Task<IActionResult> GetSuggestsAreaLeavesAsync([Required][FromQuery(Name = "q")] string searchString)
+        public async Task<IActionResult> GetSuggestsAreaLeavesAsync([Required][FromQuery(Name = ResourceRoutes.HeadHunterSuggestsSearchStringQueryParam)] string searchString)
         {
             if (string.IsNullOrEmpty(searchString))
             {
                 return BadRequest(new ResponseModel<object?>(null, ResponseStatuses.BadRequest));
             }
 
-            if (searchString.Length <= 2)
+            if (searchString.Length < ResourceConstants.HeadHunterMinLengthSearchString)
             {
                 return BadRequest(new ResponseModel<object?>(null, ResponseStatuses.BadRequest));
             }
@@ -43,18 +44,18 @@ namespace HeadHunter.ResourceWebApplication.Areas.HeadHunter.Controllers
         }
 
         [HttpGet]
-        [Route("companies")]
+        [Route(ResourceRoutes.HeadHunterSuggestsCompaniesQuery)]
         [ProducesResponseType(typeof(ResponseModel<object?>), 400)]
         [ProducesResponseType(typeof(ResponseModel<object?>), 404)]
         [ProducesResponseType(typeof(ResponseModel<ItemsResponseModel<Employer>>), 200)]
-        public async Task<IActionResult> GetSuggestsCompaniesLeavesAsync([Required][FromQuery(Name = "q")] string searchString)
+        public async Task<IActionResult> GetSuggestsCompaniesLeavesAsync([Required][FromQuery(Name = ResourceRoutes.HeadHunterSuggestsSearchStringQueryParam)] string searchString)
         {
             if (string.IsNullOrEmpty(searchString))
             {
                 return BadRequest(new ResponseModel<object?>(null, ResponseStatuses.BadRequest));
             }
 
-            if (searchString.Length <= 2)
+            if (searchString.Length < ResourceConstants.HeadHunterMinLengthSearchString)
             {
                 return BadRequest(new ResponseModel<object?>(null, ResponseStatuses.BadRequest));
             }
@@ -65,18 +66,18 @@ namespace HeadHunter.ResourceWebApplication.Areas.HeadHunter.Controllers
         }
 
         [HttpGet]
-        [Route("universities")]
+        [Route(ResourceRoutes.HeadHunterSuggestsUniversitiesQuery)]
         [ProducesResponseType(typeof(ResponseModel<object?>), 400)]
         [ProducesResponseType(typeof(ResponseModel<object?>), 404)]
         [ProducesResponseType(typeof(ResponseModel<ItemsResponseModel<University>>), 200)]
-        public async Task<IActionResult> GetSuggestsUniversitiesAsync([Required][FromQuery(Name = "q")] string searchString)
+        public async Task<IActionResult> GetSuggestsUniversitiesAsync([Required][FromQuery(Name = ResourceRoutes.HeadHunterSuggestsSearchStringQueryParam)] string searchString)
         {
             if (string.IsNullOrEmpty(searchString))
             {
                 return BadRequest(new ResponseModel<object?>(null, ResponseStatuses.BadRequest));
             }
 
-            if (searchString.Length <= 2)
+            if (searchString.Length < ResourceConstants.HeadHunterMinLengthSearchString)
             {
                 return BadRequest(new ResponseModel<object?>(null, ResponseStatuses.BadRequest));
             }
@@ -87,18 +88,18 @@ namespace HeadHunter.ResourceWebApplication.Areas.HeadHunter.Controllers
         }
 
         [HttpGet]
-        [Route("specializations")]
+        [Route(ResourceRoutes.HeadHunterSuggestsSpecializationsQuery)]
         [ProducesResponseType(typeof(ResponseModel<object?>), 400)]
         [ProducesResponseType(typeof(ResponseModel<object?>), 404)]
         [ProducesResponseType(typeof(ResponseModel<ItemsResponseModel<Specialization>>), 200)]
-        public async Task<IActionResult> GetSuggestsSpecializationsAsync([Required][FromQuery(Name = "q")] string searchString)
+        public async Task<IActionResult> GetSuggestsSpecializationsAsync([Required][FromQuery(Name = ResourceRoutes.HeadHunterSuggestsSearchStringQueryParam)] string searchString)
         {
             if (string.IsNullOrEmpty(searchString))
             {
                 return BadRequest(new ResponseModel<object?>(null, ResponseStatuses.BadRequest));
             }
 
-            if (searchString.Length <= 2)
+            if (searchString.Length < ResourceConstants.HeadHunterMinLengthSearchString)
             {
                 return BadRequest(new ResponseModel<object?>(null, ResponseStatuses.BadRequest));
             }
@@ -109,18 +110,18 @@ namespace HeadHunter.ResourceWebApplication.Areas.HeadHunter.Controllers
         }
 
         [HttpGet]
-        [Route("professionalRoles")]
+        [Route(ResourceRoutes.HeadHunterSuggestsProfessionalRolesQuery)]
         [ProducesResponseType(typeof(ResponseModel<object?>), 400)]
         [ProducesResponseType(typeof(ResponseModel<object?>), 404)]
         [ProducesResponseType(typeof(ResponseModel<ItemsResponseModel<ProfessionalRole>>), 200)]
-        public async Task<IActionResult> GetSuggestsProfessionalRolesAsync([Required][FromQuery(Name = "q")] string searchString)
+        public async Task<IActionResult> GetSuggestsProfessionalRolesAsync([Required][FromQuery(Name = ResourceRoutes.HeadHunterSuggestsSearchStringQueryParam)] string searchString)
         {
             if (string.IsNullOrEmpty(searchString))
             {
                 return BadRequest(new ResponseModel<object?>(null, ResponseStatuses.BadRequest));
             }
 
-            if (searchString.Length <= 2)
+            if (searchString.Length < ResourceConstants.HeadHunterMinLengthSearchString)
             {
                 return BadRequest(new ResponseModel<object?>(null, ResponseStatuses.BadRequest));
             }
@@ -131,18 +132,18 @@ namespace HeadHunter.ResourceWebApplication.Areas.HeadHunter.Controllers
         }
 
         [HttpGet]
-        [Route("keySkills")]
+        [Route(ResourceRoutes.HeadHunterSuggestsKeySkillsQuery)]
         [ProducesResponseType(typeof(ResponseModel<object?>), 400)]
         [ProducesResponseType(typeof(ResponseModel<object?>), 404)]
         [ProducesResponseType(typeof(ResponseModel<ItemsResponseModel<KeySkill>>), 200)]
-        public async Task<IActionResult> GetSuggestsKeySkillsAsync([Required][FromQuery(Name = "q")] string searchString)
+        public async Task<IActionResult> GetSuggestsKeySkillsAsync([Required][FromQuery(Name = ResourceRoutes.HeadHunterSuggestsSearchStringQueryParam)] string searchString)
         {
             if (string.IsNullOrEmpty(searchString))
             {
                 return BadRequest(new ResponseModel<object?>(null, ResponseStatuses.BadRequest));
             }
 
-            if (searchString.Length <= 2)
+            if (searchString.Length < ResourceConstants.HeadHunterMinLengthSearchString)
             {
                 return BadRequest(new ResponseModel<object?>(null, ResponseStatuses.BadRequest));
             }
@@ -153,18 +154,18 @@ namespace HeadHunter.ResourceWebApplication.Areas.HeadHunter.Controllers
         }
 
         [HttpGet]
-        [Route("vacancyPositions")]
+        [Route(ResourceRoutes.HeadHunterSuggestsVacancyPositionsQuery)]
         [ProducesResponseType(typeof(ResponseModel<object?>), 400)]
         [ProducesResponseType(typeof(ResponseModel<object?>), 404)]
         [ProducesResponseType(typeof(ResponseModel<ItemsResponseModel<VacancyPosition>>), 200)]
-        public async Task<IActionResult> GetSuggestsVacancyPositionsAsync([Required][FromQuery(Name = "q")] string searchString)
+        public async Task<IActionResult> GetSuggestsVacancyPositionsAsync([Required][FromQuery(Name = ResourceRoutes.HeadHunterSuggestsSearchStringQueryParam)] string searchString)
         {
             if (string.IsNullOrEmpty(searchString))
             {
                 return BadRequest(new ResponseModel<object?>(null, ResponseStatuses.BadRequest));
             }
 
-            if (searchString.Length <= 2)
+            if (searchString.Length < ResourceConstants.HeadHunterMinLengthSearchString)
             {
                 return BadRequest(new ResponseModel<object?>(null, ResponseStatuses.BadRequest));
             }
@@ -175,18 +176,18 @@ namespace HeadHunter.ResourceWebApplication.Areas.HeadHunter.Controllers
         }
 
         [HttpGet]
-        [Route("vacancyKeyWords")]
+        [Route(ResourceRoutes.HeadHunterSuggestsVacancyKeyWordsQuery)]
         [ProducesResponseType(typeof(ResponseModel<object?>), 400)]
         [ProducesResponseType(typeof(ResponseModel<object?>), 404)]
         [ProducesResponseType(typeof(ResponseModel<ItemsResponseModel<KeyWord>>), 200)]
-        public async Task<IActionResult> GetSuggestsVacancyKeyWordsAsync([Required][FromQuery(Name = "q")] string searchString)
+        public async Task<IActionResult> GetSuggestsVacancyKeyWordsAsync([Required][FromQuery(Name = ResourceRoutes.HeadHunterSuggestsSearchStringQueryParam)] string searchString)
         {
             if (string.IsNullOrEmpty(searchString))
             {
                 return BadRequest(new ResponseModel<object?>(null, ResponseStatuses.BadRequest));
             }
 
-            if (searchString.Length <= 2)
+            if (searchString.Length < ResourceConstants.HeadHunterMinLengthSearchString)
             {
                 return BadRequest(new ResponseModel<object?>(null, ResponseStatuses.BadRequest));
             }

@@ -17,12 +17,12 @@ namespace HeadHunter.HttpClients.Resource
 
         public async Task<ResponseModel<City>> GetAllStationsMetroByCityIdAsync(int cityId)
         {
-            if (cityId < 1)
+            if (cityId < ResourceConstants.HeadHunterIdLowerValue)
             {
                 throw new ArgumentOutOfRangeException(nameof(cityId));
             }
 
-            return await Get<City>($"?cityId={cityId}");
+            return await Get<City>($"?{ResourceRoutes.HeadHunterMetroAllStationsCityIdQueryParam}={cityId}");
         }
     }
 }

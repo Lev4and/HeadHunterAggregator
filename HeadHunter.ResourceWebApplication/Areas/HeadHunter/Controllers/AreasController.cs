@@ -1,4 +1,5 @@
-﻿using HeadHunter.Model.Common;
+﻿using HeadHunter.HttpClients.Resource;
+using HeadHunter.Model.Common;
 using HeadHunter.Models;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -9,7 +10,7 @@ namespace HeadHunter.ResourceWebApplication.Areas.HeadHunter.Controllers
     [ApiController]
     [Area("HeadHunter")]
     [EnableCors("CorsPolicy")]
-    [Route("api/headHunter/areas")]
+    [Route(ResourceRoutes.HeadHunterAreasPath)]
     public class AreasController : ControllerBase
     {
         private readonly HttpClients.HttpContext _context;
@@ -20,7 +21,7 @@ namespace HeadHunter.ResourceWebApplication.Areas.HeadHunter.Controllers
         }
 
         [HttpGet]
-        [Route("all")]
+        [Route(ResourceRoutes.HeadHunterAreasAllQuery)]
         [ProducesResponseType(typeof(ResponseModel<Area[]>), 200)]
         public async Task<IActionResult> GetAllAreasAsync()
         {
@@ -36,7 +37,7 @@ namespace HeadHunter.ResourceWebApplication.Areas.HeadHunter.Controllers
         [ProducesResponseType(typeof(ResponseModel<object?>), 404)]
         public async Task<IActionResult> GetAreaByIdAsync([Required][FromRoute(Name = "id")] int id)
         {
-            if (id < 1)
+            if (id < ResourceConstants.HeadHunterIdLowerValue)
             {
                 return BadRequest(new ResponseModel<object?>(null, ResponseStatuses.BadRequest));
             }
