@@ -1,3 +1,4 @@
+using Microsoft.OpenApi.Models;
 using Serilog;
 using HttpClients = HeadHunter.HttpClients;
 
@@ -24,9 +25,18 @@ builder.Services.AddControllersWithViews()
     .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling =
         Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddSwaggerGen(options =>
 {
     options.CustomSchemaIds(type => type.ToString());
+
+    if (builder.Environment.IsProduction())
+    {
+        options.AddServer(new OpenApiServer()
+        {
+            Url = "http://194-67-67-175.cloudvps.regruhosting.ru/resource"
+        });
+    }
 });
 
 var app = builder.Build();
