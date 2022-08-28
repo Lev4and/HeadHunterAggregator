@@ -4,11 +4,18 @@ namespace HeadHunter.Model.Common
 {
     public class ResponseStatus
     {
-        public string Name { get; }
+        public string Name { get; set; }
 
-        public string Message { get; }
+        public string Message { get; set; }
 
-        public HttpStatusCode Code { get; }
+        public HttpStatusCode Code { get; set; }
+
+        public ResponseStatus()
+        {
+            Name = "";
+            Message = "";
+            Code = HttpStatusCode.OK;
+        }
 
         public ResponseStatus(HttpStatusCode code)
         {

@@ -33,12 +33,14 @@ namespace HeadHunter.HttpClients.Resource
                 throw new ArgumentOutOfRangeException(nameof(dateTo));
             }
 
-            var moscowDateFrom = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(dateFrom, "Russian Standard Time");
-            var moscowDateTo = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(dateTo, "Russian Standard Time");
+            var russianTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Russian Standard Time");
 
-            return await Get<PagedResponseModel<Vacancy>>($"?page={page}&per_page={perPage}" +
-                $"&dateFrom={moscowDateFrom.ToString("yyyy-MM-ddTHH:mm:ssK")}" +
-                $"&dateTo={moscowDateTo.ToString("yyyy-MM-ddTHH:mm:ssK")}");
+            var moscowDateFrom = TimeZoneInfo.ConvertTimeFromUtc(dateFrom, russianTimeZone);
+            var moscowDateTo = TimeZoneInfo.ConvertTimeFromUtc(dateTo, russianTimeZone);
+
+            return await Get<PagedResponseModel<Vacancy>>($"?page={page}&perPage={perPage}" +
+                $"&dateFrom={moscowDateFrom.ToString("yyyy-MM-ddTHH:mm:ss")}" +
+                $"&dateTo={moscowDateTo.ToString("yyyy-MM-ddTHH:mm:ss")}");
         }
 
         public async Task<ResponseModel<Vacancy>> GetVacancyAsync(long id)

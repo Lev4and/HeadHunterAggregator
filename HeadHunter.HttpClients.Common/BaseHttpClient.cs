@@ -1,4 +1,6 @@
 ﻿using HeadHunter.HttpClients.Common.Extensions;
+using HeadHunter.HttpClients.Common.HttpContentReaders;
+using HeadHunter.HttpClients.Common.HttpResponseConverters;
 using HeadHunter.Model.Common;
 using System.Net;
 
@@ -6,10 +8,18 @@ namespace HeadHunter.HttpClients.Common
 {
     public class BaseHttpClient : HttpClient
     {
+        public IConvertibleHttpResponse ResponseConverter { get; }
+
         public BaseHttpClient(): base(new HttpClientHandlerBuilder().WithAllowAutoRedirect().WithAutomaticDecompression()
             .UseCertificateCustomValidation().Build())
         {
+            ResponseConverter = new DefaultHttpResponseConverter(new DefaultHttpContentReader());
+        }
 
+        public BaseHttpClient(IConvertibleHttpResponse responseConverter) : base(new HttpClientHandlerBuilder().WithAllowAutoRedirect().WithAutomaticDecompression()
+            .UseCertificateCustomValidation().Build())
+        {
+            ResponseConverter = responseConverter;
         }
 
         public BaseHttpClient(string uri) : base(new HttpClientHandlerBuilder().WithAllowAutoRedirect().WithAutomaticDecompression()
@@ -21,6 +31,19 @@ namespace HeadHunter.HttpClients.Common
             }
 
             BaseAddress = new Uri(uri);
+            ResponseConverter = new DefaultHttpResponseConverter(new DefaultHttpContentReader());
+        }
+
+        public BaseHttpClient(string uri, IConvertibleHttpResponse responseConverter) : base(new HttpClientHandlerBuilder().WithAllowAutoRedirect().WithAutomaticDecompression()
+            .UseCertificateCustomValidation().Build())
+        {
+            if (string.IsNullOrEmpty(uri))
+            {
+                throw new ArgumentNullException(nameof(uri));
+            }
+
+            BaseAddress = new Uri(uri);
+            ResponseConverter = responseConverter;
         }
 
         public async Task<ResponseModel<string>> Get(string query)
@@ -40,7 +63,7 @@ namespace HeadHunter.HttpClients.Common
                 throw new ArgumentNullException(nameof(query));
             }
 
-            return await (await GetAsync(query)).GetResponseModel<T>();
+            return await ResponseConverter.ToResponseModelAsync<T>(await GetAsync(query));
         }
 
         public async Task<ResponseModel<T>> Post<T>(string query, object content)
@@ -50,7 +73,7 @@ namespace HeadHunter.HttpClients.Common
                 throw new ArgumentNullException(nameof(query));
             }
 
-            return await (await PostAsync(query, content.ToStringContent())).GetResponseModel<T>();
+            return await ResponseConverter.ToResponseModelAsync<T>(await PostAsync(query, content.ToStringContent()));
         }
 
         public async Task<ResponseModel<T>> Put<T>(string query, object content)
@@ -60,7 +83,7 @@ namespace HeadHunter.HttpClients.Common
                 throw new ArgumentNullException(nameof(query));
             }
 
-            return await (await PutAsync(query, content.ToStringContent())).GetResponseModel<T>();
+            return await ResponseConverter.ToResponseModelAsync<T>(await PutAsync(query, content.ToStringContent()));
         }
 
         public async Task<ResponseModel<T>> Delete<T>(string query)
@@ -70,7 +93,7 @@ namespace HeadHunter.HttpClients.Common
                 throw new ArgumentNullException(nameof(query));
             }
 
-            return await (await DeleteAsync(query)).GetResponseModel<T>();
+            return await ResponseConverter.ToResponseModelAsync<T>(await DeleteAsync(query));
         }
 
         public void UseHeaders(Dictionary<string, string> headers)

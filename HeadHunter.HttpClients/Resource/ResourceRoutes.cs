@@ -14,7 +14,7 @@
 
         public const string HeadHunterAreasAllQuery = "all";
 
-        public const string HeadHunterCountriesPath = "api/headHunter/countries";
+        public const string HeadHunterCountriesPath = "api/headHunter/countries/";
 
         public const string HeadHunterCountriesAllQuery = "all";
 

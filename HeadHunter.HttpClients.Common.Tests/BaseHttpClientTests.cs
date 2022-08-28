@@ -7,7 +7,7 @@ namespace HeadHunter.HttpClients.Common.Tests
         [Fact]
         public void Initialization_WithNullUriParam_ThrowException()
         {
-            var action = () => { new BaseHttpClient(null); };
+            var action = () => { new BaseHttpClient(null as string); };
 
             Assert.Throws<ArgumentNullException>(action);
         }

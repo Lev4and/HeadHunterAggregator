@@ -59,7 +59,7 @@ namespace HeadHunter.ResourceWebApplication.Areas.HeadHunter.Controllers
         }
 
         [HttpGet]
-        [Route("{id:int}/faculties")]
+        [Route("{universityId:int}/faculties")]
         [ProducesResponseType(typeof(ResponseModel<object?>), 400)]
         [ProducesResponseType(typeof(ResponseModel<object?>), 404)]
         [ProducesResponseType(typeof(ResponseModel<Faculty[]>), 200)]
