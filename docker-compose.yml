@@ -86,7 +86,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
-      - DOZZLE_BASE=http://localhost/dozzle/
+      - DOZZLE_BASE=/dozzle/
 
   proxy:
     image: nginx:mainline
