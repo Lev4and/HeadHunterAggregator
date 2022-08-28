@@ -7,32 +7,109 @@ on:
     branches: [ "master" ]
 
 jobs:
-  build:
-    name: Docker Compose Deploy
+  headhunter-vuejsapp-build:
+    name: headhunter-vuejsapp image build and push
     runs-on: ubuntu-latest
     env:
-      DOCKER_NAME: headhunter
+      DOCKER_NAME: headhunter-vuejsapp
       DOCKER_IMAGE: docker.pkg.github.com/Lev4and/${GITHUB_REPOSITORY##*/}/${DOCKER_NAME}:${GITHUB_REF##*/}
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Login to docker.pkg.github.com
-      run: docker login docker.pkg.github.com -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
+      - name: Move to frontend head-hunter-vue-js-app folder
+        run: cd head-hunter-vue-js-app
 
-    - name: Copy .env.dist file
-      run: cp .env.dist .env
+      - name: Login to docker.pkg.github.com
+        run: docker login docker.pkg.github.com -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Build and pull docker image
+        run: docker build -f Dockerfile --pull -t $DOCKER_IMAGE .
 
-    - name: Export .env file
-      run: export $(egrep -v '^#' .env | xargs -0)
+      - name: Push docker image
+        run: docker push $DOCKER_IMAGE
 
-    - name: Create volume for docker containers
-      run: |
-        docker volume create portainer_data
-        docker volume create grafana_data
-    
-    - name: Build docker compose image
-      run: docker-compose -f docker-compose.yml build $DOCKER_NAME
+  headhunter-authorizationwebapplication-build:
+    name: headhunter-authorizationwebapplication image build and push
+    runs-on: ubuntu-latest
+    env:
+      DOCKER_NAME: headhunter-authorizationwebapplication
+      DOCKER_IMAGE: docker.pkg.github.com/Lev4and/${GITHUB_REPOSITORY##*/}/${DOCKER_NAME}:${GITHUB_REF##*/}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Push docker compose image
-      run: docker-compose -f docker-compose.yml push $DOCKER_NAME
+      - name: Move to frontend HeadHunter.AuthorizationWebApplication folder
+        run: cd HeadHunter.AuthorizationWebApplication
+
+      - name: Login to docker.pkg.github.com
+        run: docker login docker.pkg.github.com -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Build and pull docker image
+        run: docker build -f Dockerfile --pull -t $DOCKER_IMAGE .
+
+      - name: Push docker image
+        run: docker push $DOCKER_IMAGE
+
+  headhunter-resourcewebapplication-build:
+    name: headhunter-resourcewebapplication image build and push
+    runs-on: ubuntu-latest
+    env:
+      DOCKER_NAME: headhunter-resourcewebapplication
+      DOCKER_IMAGE: docker.pkg.github.com/Lev4and/${GITHUB_REPOSITORY##*/}/${DOCKER_NAME}:${GITHUB_REF##*/}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Move to frontend HeadHunter.ResourceWebApplication folder
+        run: cd HeadHunter.ResourceWebApplication
+
+      - name: Login to docker.pkg.github.com
+        run: docker login docker.pkg.github.com -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Build and pull docker image
+        run: docker build -f Dockerfile --pull -t $DOCKER_IMAGE .
+
+      - name: Push docker image
+        run: docker push $DOCKER_IMAGE
+
+  deploy:
+    name: Docker Compose Deploy
+    needs: [headhunter-vuejsapp-build, headhunter-authorizationwebapplication-build, headhunter-resourcewebapplication-build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Connect to server, build and run docker-compose
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: |
+            whoami
+            cd /var/
+            mkdir projects
+            cd projects
+            git clone https://github.com/Lev4and/${GITHUB_REPOSITORY##*/}.git
+            cd ${GITHUB_REPOSITORY##*/}
+            git fetch
+            git reset --hard origin/master
+            rm .env
+            cp .env.dist .env
+            export $(egrep -v '^#' .env | xargs -0)
+            docker-compose stop
+            docker rm -vf $(docker ps -aq)
+            docker rmi -f $(docker images -aq)
+            docker-compose ps
+            docker-compose images
+            docker ps
+            docker images
+            docker volume create portainer_data
+            docker volume create grafana_data
+            docker-compose up -d --build
+            chown -R 472:472 portainer_data
+            chown -R 472:472 grafana_data
+            docker-compose ps
+            docker-compose restart
+            docker-compose ps
+
