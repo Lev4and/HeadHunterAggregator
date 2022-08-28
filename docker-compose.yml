@@ -92,7 +92,7 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=sa
       - MONGO_INITDB_ROOT_PASSWORD=sa
     volumes:
-      - mongodb_data_container:/data/db
+      - ./mongodb_data_container:/data/db
 
   proxy:
     image: nginx:mainline
