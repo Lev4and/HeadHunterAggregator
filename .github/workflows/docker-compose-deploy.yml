@@ -32,9 +32,7 @@ jobs:
         docker volume create grafana_data
     
     - name: Build docker compose image
-      run: docker compose -f docker-compose.yml build
+      run: docker-compose -f docker-compose.yml build -t $DOCKER_NAME
 
     - name: Push docker compose image
-      run: |
-        docker login docker.pkg.github.com -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
-        docker compose -f docker-compose.yml push
+      run: docker-compose -f docker-compose.yml push -t $DOCKER_NAME
