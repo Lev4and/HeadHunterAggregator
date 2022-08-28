@@ -76,6 +76,11 @@ services:
       - GF_SERVER_ROOT_URL=http://localhost/grafana/
       - GF_USERS_ALLOW_SIGN_UP=false
 
+  headhunter.visualizer:
+    image: dockersamples/visualizer
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
   proxy:
     image: nginx:mainline
 

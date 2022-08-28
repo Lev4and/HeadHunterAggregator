@@ -52,6 +52,10 @@ services:
   headhunter.grafana:
     ports:
       - "3456:3000"
+  
+  headhunter.visualizer:
+    ports:
+      - "5003:8080"
 
   proxy:
     volumes:
