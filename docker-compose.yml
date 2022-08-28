@@ -85,6 +85,14 @@ services:
     image: amir20/dozzle
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+  
+  headhunter.mongodb:
+    image: mongo:latest
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=sa
+      - MONGO_INITDB_ROOT_PASSWORD=sa
+    volumes:
+      - ./mongodb_data_container:/data/db
 
   proxy:
     image: nginx:mainline
@@ -92,4 +100,5 @@ services:
 volumes:
   grafana_data:
     external: true
+  mongodb_data_container:
 
