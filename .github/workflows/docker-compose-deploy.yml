@@ -12,5 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker-compose --build --tag headhunter:$(date +%s)
+    - name: Build and push image
+      run: |
+        DOCKER_NAME=headhunter
+        DOCKER_IMAGE=docker.pkg.github.com/Lev4and/${GITHUB_REPOSITORY##*/}/${DOCKER_NAME}:${GITHUB_REF##*/}
+        docker login docker.pkg.github.com -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
+        docker-compose up $DOCKER_IMAGE
+        docker-compose push $DOCKER_IMAGE
