@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using HeadHunter.HttpClients.HeadHunter;
+using System.Net;
 
 namespace HeadHunter.HttpClients.Tests.HeadHunter
 {
@@ -12,31 +13,31 @@ namespace HeadHunter.HttpClients.Tests.HeadHunter
         }
 
         [Fact]
-        public async Task GetVacanciesAsync_WithPerPageParamLessOne_ThrowException()
+        public async Task GetVacanciesAsync_WithPerPageParamLessThanPerPageLowerValue_ThrowException()
         {
-            var action = async () => { await _context.HeadHunter.Vacancies.GetVacanciesAsync(100, 0, DateTime.UtcNow, DateTime.UtcNow); };
+            var action = async () => { await _context.HeadHunter.Vacancies.GetVacanciesAsync(100, HeadHunterConstants.PerPageLowerValue - 1, DateTime.UtcNow, DateTime.UtcNow); };
 
             await Assert.ThrowsAsync<ArgumentOutOfRangeException>(action);
         }
 
         [Fact]
-        public async Task GetVacanciesAsync_WithPerPageParamGreaterOneHundred_ThrowException()
+        public async Task GetVacanciesAsync_WithPerPageParamGreaterThanPerPageUpperValue_ThrowException()
         {
-            var action = async () => { await _context.HeadHunter.Vacancies.GetVacanciesAsync(100, 101, DateTime.UtcNow, DateTime.UtcNow); };
+            var action = async () => { await _context.HeadHunter.Vacancies.GetVacanciesAsync(100, HeadHunterConstants.PerPageUpperValue + 1, DateTime.UtcNow, DateTime.UtcNow); };
 
             await Assert.ThrowsAsync<ArgumentOutOfRangeException>(action);
         }
 
         [Fact]
-        public async Task GetVacanciesAsync_WithPageParamLessOne_ThrowException()
+        public async Task GetVacanciesAsync_WithPageParamLessThanPageLowerValue_ThrowException()
         {
-            var action = async () => { await _context.HeadHunter.Vacancies.GetVacanciesAsync(0, 100, DateTime.UtcNow, DateTime.UtcNow); };
+            var action = async () => { await _context.HeadHunter.Vacancies.GetVacanciesAsync(HeadHunterConstants.PageLowerValue - 1, HeadHunterConstants.PerPageUpperValue, DateTime.UtcNow, DateTime.UtcNow); };
 
             await Assert.ThrowsAsync<ArgumentOutOfRangeException>(action);
         }
 
         [Fact]
-        public async Task GetVacanciesAsync_WhenOffsetExceedsOrEqualTwoThousand_ThrowException()
+        public async Task GetVacanciesAsync_WhenOffsetExceedsThanOffsetUpperValue_ThrowException()
         {
             var action = async () => { await _context.HeadHunter.Vacancies.GetVacanciesAsync(20, 100, DateTime.UtcNow, DateTime.UtcNow); };
 
@@ -77,7 +78,7 @@ namespace HeadHunter.HttpClients.Tests.HeadHunter
         [Fact]
         public async Task GetVacancyAsync_WithInvalidIdParam_ThrowException()
         {
-            var action = async () => { await _context.HeadHunter.Vacancies.GetVacancyAsync(-1); };
+            var action = async () => { await _context.HeadHunter.Vacancies.GetVacancyAsync(HeadHunterConstants.IdLowerValue - 1); };
 
             await Assert.ThrowsAsync<ArgumentOutOfRangeException>(action);
         }
@@ -85,7 +86,7 @@ namespace HeadHunter.HttpClients.Tests.HeadHunter
         [Fact]
         public async Task GetVacancyAsync_WithNotExistsIdParam_ReturnNotFoundResponseWithNotNullResult()
         {
-            var response = await _context.HeadHunter.Vacancies.GetVacancyAsync(1);
+            var response = await _context.HeadHunter.Vacancies.GetVacancyAsync(HeadHunterConstants.IdLowerValue);
             var statusCode = response.Status.Code;
 
             Assert.NotNull(response);

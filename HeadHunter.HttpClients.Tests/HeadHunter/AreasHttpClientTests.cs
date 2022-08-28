@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using HeadHunter.HttpClients.HeadHunter;
+using System.Net;
 
 namespace HeadHunter.HttpClients.Tests.HeadHunter
 {
@@ -38,7 +39,7 @@ namespace HeadHunter.HttpClients.Tests.HeadHunter
         [Fact]
         public async Task GetAreaAsync_WithInvalidIdParam_ThrowException()
         {
-            var action = async () => { await _context.HeadHunter.Areas.GetAreaAsync(0); };
+            var action = async () => { await _context.HeadHunter.Areas.GetAreaAsync(HeadHunterConstants.IdLowerValue - 1); };
 
             await Assert.ThrowsAsync<ArgumentOutOfRangeException>(action);
         }
@@ -46,7 +47,7 @@ namespace HeadHunter.HttpClients.Tests.HeadHunter
         [Fact]
         public async Task GetAreaAsync_WithValidIdParam_ReturnSuccessResponseWithNotNullResult()
         {
-            var response = await _context.HeadHunter.Areas.GetAreaAsync(1);
+            var response = await _context.HeadHunter.Areas.GetAreaAsync(HeadHunterConstants.IdLowerValue);
             var statusCode = response.Status.Code;
 
             Assert.NotNull(response);

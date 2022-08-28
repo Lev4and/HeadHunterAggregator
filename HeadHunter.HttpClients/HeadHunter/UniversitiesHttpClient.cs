@@ -13,12 +13,12 @@ namespace HeadHunter.HttpClients.HeadHunter
 
         public async Task<ResponseModel<ItemsResponseModel<University>>> GetUniversityAsync(int id)
         {
-            if (id < 1)
+            if (id < HeadHunterConstants.IdLowerValue)
             {
                 throw new ArgumentOutOfRangeException(nameof(id));
             }
 
-            return await Get<ItemsResponseModel<University>>($"?id={id}");
+            return await Get<ItemsResponseModel<University>>($"?{HeadHunterRoutes.UniversitiesIdQueryParam}={id}");
         }
 
         public async Task<ResponseModel<ItemsResponseModel<University>>> GetUniversitiesAsync(int[] ids)
@@ -28,17 +28,17 @@ namespace HeadHunter.HttpClients.HeadHunter
                 throw new ArgumentNullException(nameof(ids));
             }
 
-            if (ids.Any(id => id < 1))
+            if (ids.Any(id => id < HeadHunterConstants.IdLowerValue))
             {
                 throw new ArgumentOutOfRangeException(nameof(ids));
             }
 
-            return await Get<ItemsResponseModel<University>>($"?{string.Join('&', ids.Select(id => $"id={id}"))}");
+            return await Get<ItemsResponseModel<University>>($"?{string.Join('&', ids.Select(id => $"{HeadHunterRoutes.UniversitiesIdQueryParam}={id}"))}");
         }
 
         public async Task<ResponseModel<Faculty[]>> GetAllFacultiesByUniversityIdAsync(int universityId)
         {
-            if (universityId < 1)
+            if (universityId < HeadHunterConstants.IdLowerValue)
             {
                 throw new ArgumentOutOfRangeException(nameof(universityId));
             }

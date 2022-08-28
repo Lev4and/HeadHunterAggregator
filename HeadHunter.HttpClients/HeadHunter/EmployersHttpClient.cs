@@ -13,7 +13,7 @@ namespace HeadHunter.HttpClients.HeadHunter
 
         public async Task<ResponseModel<Employer>> GetEmployerAsync(long id)
         {
-            if (id < 1)
+            if (id < HeadHunterConstants.IdLowerValue)
             {
                 throw new ArgumentOutOfRangeException(nameof(id));
             }

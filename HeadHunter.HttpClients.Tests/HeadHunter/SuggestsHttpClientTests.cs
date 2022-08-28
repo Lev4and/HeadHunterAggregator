@@ -28,7 +28,7 @@ namespace HeadHunter.HttpClients.Tests.HeadHunter
         }
 
         [Fact]
-        public async Task GetSuggestsAreaLeavesAsync_WhenSearchStringParamHaveLengthLessOrEqualTwo_ThrowException()
+        public async Task GetSuggestsAreaLeavesAsync_WhenSearchStringParamHaveLengthLessThanMinLengthSearchString_ThrowException()
         {
             var action = async () => { await _context.HeadHunter.Suggests.GetSuggestsAreaLeavesAsync("Мо"); };
 
@@ -64,7 +64,7 @@ namespace HeadHunter.HttpClients.Tests.HeadHunter
         }
 
         [Fact]
-        public async Task GetSuggestsCompaniesLeavesAsync_WhenSearchStringParamHaveLengthLessOrEqualTwo_ThrowException()
+        public async Task GetSuggestsCompaniesLeavesAsync_WhenSearchStringParamHaveLengthLessThanMinLengthSearchString_ThrowException()
         {
             var action = async () => { await _context.HeadHunter.Suggests.GetSuggestsCompaniesLeavesAsync("ДН"); };
 
@@ -100,7 +100,7 @@ namespace HeadHunter.HttpClients.Tests.HeadHunter
         }
 
         [Fact]
-        public async Task GetSuggestsKeySkillsAsync_WhenSearchStringParamHaveLengthLessOrEqualTwo_ThrowException()
+        public async Task GetSuggestsKeySkillsAsync_WhenSearchStringParamHaveLengthLessThanMinLengthSearchString_ThrowException()
         {
             var action = async () => { await _context.HeadHunter.Suggests.GetSuggestsKeySkillsAsync("AS"); };
 
@@ -136,7 +136,7 @@ namespace HeadHunter.HttpClients.Tests.HeadHunter
         }
 
         [Fact]
-        public async Task GetSuggestsProfessionalRolesAsync_WhenSearchStringParamHaveLengthLessOrEqualTwo_ThrowException()
+        public async Task GetSuggestsProfessionalRolesAsync_WhenSearchStringParamHaveLengthLessThanMinLengthSearchString_ThrowException()
         {
             var action = async () => { await _context.HeadHunter.Suggests.GetSuggestsProfessionalRolesAsync("Во"); };
 
@@ -172,7 +172,7 @@ namespace HeadHunter.HttpClients.Tests.HeadHunter
         }
 
         [Fact]
-        public async Task GetSuggestsSpecializationsAsync_WhenSearchStringParamHaveLengthLessOrEqualTwo_ThrowException()
+        public async Task GetSuggestsSpecializationsAsync_WhenSearchStringParamHaveLengthLessThanMinLengthSearchString_ThrowException()
         {
             var action = async () => { await _context.HeadHunter.Suggests.GetSuggestsSpecializationsAsync("Ко"); };
 
@@ -208,7 +208,7 @@ namespace HeadHunter.HttpClients.Tests.HeadHunter
         }
 
         [Fact]
-        public async Task GetSuggestsUniversitiesAsync_WhenSearchStringParamHaveLengthLessOrEqualTwo_ThrowException()
+        public async Task GetSuggestsUniversitiesAsync_WhenSearchStringParamHaveLengthLessThanMinLengthSearchString_ThrowException()
         {
             var action = async () => { await _context.HeadHunter.Suggests.GetSuggestsUniversitiesAsync("МГ"); };
 
@@ -244,7 +244,7 @@ namespace HeadHunter.HttpClients.Tests.HeadHunter
         }
 
         [Fact]
-        public async Task GetSuggestsVacancyPositionsAsync_WhenSearchStringParamHaveLengthLessOrEqualTwo_ThrowException()
+        public async Task GetSuggestsVacancyPositionsAsync_WhenSearchStringParamHaveLengthLessThanMinLengthSearchString_ThrowException()
         {
             var action = async () => { await _context.HeadHunter.Suggests.GetSuggestsVacancyPositionsAsync("Пр"); };
 
@@ -280,7 +280,7 @@ namespace HeadHunter.HttpClients.Tests.HeadHunter
         }
 
         [Fact]
-        public async Task GetSuggestsVacancyKeyWordsAsync_WhenSearchStringParamHaveLengthLessOrEqualTwo_ThrowException()
+        public async Task GetSuggestsVacancyKeyWordsAsync_WhenSearchStringParamHaveLengthLessThanMinLengthSearchString_ThrowException()
         {
             var action = async () => { await _context.HeadHunter.Suggests.GetSuggestsVacancyKeyWordsAsync("Ju"); };
 

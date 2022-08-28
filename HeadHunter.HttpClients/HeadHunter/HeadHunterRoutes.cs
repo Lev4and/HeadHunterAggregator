@@ -8,6 +8,14 @@
 
         public const string VacanciesPath = "vacancies/";
 
+        public const string VacanciesPageQueryParam = "page";
+
+        public const string VacanciesPerPageQueryParam = "per_page";
+
+        public const string VacanciesDateFromQueryParam = "date_from";
+
+        public const string VacanciesDateToQueryParam = "date_to";
+
         public const string EmployersPath = "employers/";
 
         public const string AreasPath = "areas/";
@@ -24,9 +32,13 @@
 
         public const string UniversitiesPath = "educational_institutions/";
 
+        public const string UniversitiesIdQueryParam = "id";
+
         public const string UniversitiesFacultiesQuery = "faculties";
 
         public const string KeySkillsPath = "skills/";
+
+        public const string KeySkillsIdQueryParam = "id";
 
         public const string DictionariesPath = "dictionaries/";
 
@@ -47,5 +59,7 @@
         public const string SuggestsVacancyPositionsQuery = "vacancy_positions";
 
         public const string SuggestsVacancyKeyWordsQuery = "vacancy_search_keyword";
+
+        public const string SuggestsSearchStringQueryParam = "text";
     }
 }

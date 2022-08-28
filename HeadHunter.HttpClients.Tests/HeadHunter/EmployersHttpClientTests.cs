@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using HeadHunter.HttpClients.HeadHunter;
+using System.Net;
 
 namespace HeadHunter.HttpClients.Tests.HeadHunter
 {
@@ -14,7 +15,7 @@ namespace HeadHunter.HttpClients.Tests.HeadHunter
         [Fact]
         public async Task GetEmployerAsync_WithInvalidIdParam_ThrowException()
         {
-            var action = async () => { await _context.HeadHunter.Employers.GetEmployerAsync(0); };
+            var action = async () => { await _context.HeadHunter.Employers.GetEmployerAsync(HeadHunterConstants.IdLowerValue - 1); };
 
             await Assert.ThrowsAsync<ArgumentOutOfRangeException>(action);
         }

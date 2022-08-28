@@ -18,12 +18,12 @@ namespace HeadHunter.HttpClients.HeadHunter
                 throw new ArgumentNullException(nameof(searchString));
             }
 
-            if (searchString.Length <= 2)
+            if (searchString.Length < HeadHunterConstants.MinLengthSearchString)
             {
                 throw new ArgumentOutOfRangeException(nameof(searchString));
             }
 
-            return await Get<ItemsResponseModel<Area>>($"{HeadHunterRoutes.SuggestsAreaLeavesQuery}?text={searchString}");
+            return await Get<ItemsResponseModel<Area>>($"{HeadHunterRoutes.SuggestsAreaLeavesQuery}?{HeadHunterRoutes.SuggestsSearchStringQueryParam}={searchString}");
         }
 
         public async Task<ResponseModel<ItemsResponseModel<Employer>>> GetSuggestsCompaniesLeavesAsync(string searchString)
@@ -33,12 +33,12 @@ namespace HeadHunter.HttpClients.HeadHunter
                 throw new ArgumentNullException(nameof(searchString));
             }
 
-            if (searchString.Length <= 2)
+            if (searchString.Length < HeadHunterConstants.MinLengthSearchString)
             {
                 throw new ArgumentOutOfRangeException(nameof(searchString));
             }
 
-            return await Get<ItemsResponseModel<Employer>>($"{HeadHunterRoutes.SuggestsCompaniesQuery}?text={searchString}");
+            return await Get<ItemsResponseModel<Employer>>($"{HeadHunterRoutes.SuggestsCompaniesQuery}?{HeadHunterRoutes.SuggestsSearchStringQueryParam}={searchString}");
         }
 
         public async Task<ResponseModel<ItemsResponseModel<University>>> GetSuggestsUniversitiesAsync(string searchString)
@@ -48,12 +48,12 @@ namespace HeadHunter.HttpClients.HeadHunter
                 throw new ArgumentNullException(nameof(searchString));
             }
 
-            if (searchString.Length <= 2)
+            if (searchString.Length < HeadHunterConstants.MinLengthSearchString)
             {
                 throw new ArgumentOutOfRangeException(nameof(searchString));
             }
 
-            return await Get<ItemsResponseModel<University>>($"{HeadHunterRoutes.SuggestsUniversitiesQuery}?text={searchString}");
+            return await Get<ItemsResponseModel<University>>($"{HeadHunterRoutes.SuggestsUniversitiesQuery}?{HeadHunterRoutes.SuggestsSearchStringQueryParam}={searchString}");
         }
 
         public async Task<ResponseModel<ItemsResponseModel<Specialization>>> GetSuggestsSpecializationsAsync(string searchString)
@@ -63,12 +63,12 @@ namespace HeadHunter.HttpClients.HeadHunter
                 throw new ArgumentNullException(nameof(searchString));
             }
 
-            if (searchString.Length <= 2)
+            if (searchString.Length < HeadHunterConstants.MinLengthSearchString)
             {
                 throw new ArgumentOutOfRangeException(nameof(searchString));
             }
 
-            return await Get<ItemsResponseModel<Specialization>>($"{HeadHunterRoutes.SuggestsSpecializationsQuery}?text={searchString}");
+            return await Get<ItemsResponseModel<Specialization>>($"{HeadHunterRoutes.SuggestsSpecializationsQuery}?{HeadHunterRoutes.SuggestsSearchStringQueryParam}={searchString}");
         }
 
         public async Task<ResponseModel<ItemsResponseModel<ProfessionalRole>>> GetSuggestsProfessionalRolesAsync(string searchString)
@@ -78,12 +78,12 @@ namespace HeadHunter.HttpClients.HeadHunter
                 throw new ArgumentNullException(nameof(searchString));
             }
 
-            if (searchString.Length <= 2)
+            if (searchString.Length < HeadHunterConstants.MinLengthSearchString)
             {
                 throw new ArgumentOutOfRangeException(nameof(searchString));
             }
 
-            return await Get<ItemsResponseModel<ProfessionalRole>>($"{HeadHunterRoutes.SuggestsProfessionalRolesQuery}?text={searchString}");
+            return await Get<ItemsResponseModel<ProfessionalRole>>($"{HeadHunterRoutes.SuggestsProfessionalRolesQuery}?{HeadHunterRoutes.SuggestsSearchStringQueryParam}={searchString}");
         }
 
         public async Task<ResponseModel<ItemsResponseModel<KeySkill>>> GetSuggestsKeySkillsAsync(string searchString)
@@ -93,12 +93,12 @@ namespace HeadHunter.HttpClients.HeadHunter
                 throw new ArgumentNullException(nameof(searchString));
             }
 
-            if (searchString.Length <= 2)
+            if (searchString.Length < HeadHunterConstants.MinLengthSearchString)
             {
                 throw new ArgumentOutOfRangeException(nameof(searchString));
             }
 
-            return await Get<ItemsResponseModel<KeySkill>>($"{HeadHunterRoutes.SuggestsKeySkillsQuery}?text={searchString}");
+            return await Get<ItemsResponseModel<KeySkill>>($"{HeadHunterRoutes.SuggestsKeySkillsQuery}?{HeadHunterRoutes.SuggestsSearchStringQueryParam}={searchString}");
         }
 
         public async Task<ResponseModel<ItemsResponseModel<VacancyPosition>>> GetSuggestsVacancyPositionsAsync(string searchString)
@@ -108,12 +108,12 @@ namespace HeadHunter.HttpClients.HeadHunter
                 throw new ArgumentNullException(nameof(searchString));
             }
 
-            if (searchString.Length <= 2)
+            if (searchString.Length < HeadHunterConstants.MinLengthSearchString)
             {
                 throw new ArgumentOutOfRangeException(nameof(searchString));
             }
 
-            return await Get<ItemsResponseModel<VacancyPosition>>($"{HeadHunterRoutes.SuggestsVacancyPositionsQuery}?text={searchString}");
+            return await Get<ItemsResponseModel<VacancyPosition>>($"{HeadHunterRoutes.SuggestsVacancyPositionsQuery}?{HeadHunterRoutes.SuggestsSearchStringQueryParam}={searchString}");
         }
 
         public async Task<ResponseModel<ItemsResponseModel<KeyWord>>> GetSuggestsVacancyKeyWordsAsync(string searchString)
@@ -123,12 +123,12 @@ namespace HeadHunter.HttpClients.HeadHunter
                 throw new ArgumentNullException(nameof(searchString));
             }
 
-            if (searchString.Length <= 2)
+            if (searchString.Length < HeadHunterConstants.MinLengthSearchString)
             {
                 throw new ArgumentOutOfRangeException(nameof(searchString));
             }
 
-            return await Get<ItemsResponseModel<KeyWord>>($"{HeadHunterRoutes.SuggestsVacancyKeyWordsQuery}?text={searchString}");
+            return await Get<ItemsResponseModel<KeyWord>>($"{HeadHunterRoutes.SuggestsVacancyKeyWordsQuery}?{HeadHunterRoutes.SuggestsSearchStringQueryParam}={searchString}");
         }
     }
 }

@@ -13,12 +13,12 @@ namespace HeadHunter.HttpClients.HeadHunter
 
         public async Task<ResponseModel<PagedResponseModel<Vacancy>>> GetVacanciesAsync(int page, int perPage, DateTime dateFrom, DateTime dateTo)
         {
-            if (perPage < 1 || perPage > 100)
+            if (perPage < HeadHunterConstants.PerPageLowerValue || perPage > HeadHunterConstants.PerPageUpperValue)
             {
                 throw new ArgumentOutOfRangeException(nameof(perPage));
             }
 
-            if (page < 1 || page * perPage >= 2000)
+            if (page < HeadHunterConstants.PageLowerValue || page * perPage > HeadHunterConstants.OffsetUpperValue)
             {
                 throw new ArgumentOutOfRangeException(nameof(page));
             }
@@ -38,14 +38,15 @@ namespace HeadHunter.HttpClients.HeadHunter
             var moscowDateFrom = TimeZoneInfo.ConvertTimeFromUtc(dateFrom, russianTimeZone);
             var moscowDateTo = TimeZoneInfo.ConvertTimeFromUtc(dateTo, russianTimeZone);
 
-            return await Get<PagedResponseModel<Vacancy>>($"?page={page}&per_page={perPage}" +
-                $"&date_from={moscowDateFrom.ToString("yyyy-MM-ddTHH:mm:ss")}" +
-                $"&date_to={moscowDateTo.ToString("yyyy-MM-ddTHH:mm:ss")}");
+            return await Get<PagedResponseModel<Vacancy>>($"?{HeadHunterRoutes.VacanciesPageQueryParam}={page}" +
+                $"&{HeadHunterRoutes.VacanciesPerPageQueryParam}={perPage}" +
+                $"&{HeadHunterRoutes.VacanciesDateFromQueryParam}={moscowDateFrom.ToString("yyyy-MM-ddTHH:mm:ss")}" +
+                $"&{HeadHunterRoutes.VacanciesDateToQueryParam}={moscowDateTo.ToString("yyyy-MM-ddTHH:mm:ss")}");
         }
 
         public async Task<ResponseModel<Vacancy>> GetVacancyAsync(long id)
         {
-            if (id < 1)
+            if (id < HeadHunterConstants.IdLowerValue)
             {
                 throw new ArgumentOutOfRangeException(nameof(id));
             }

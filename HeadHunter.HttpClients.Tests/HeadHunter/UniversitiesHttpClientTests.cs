@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using HeadHunter.HttpClients.HeadHunter;
+using System.Net;
 
 namespace HeadHunter.HttpClients.Tests.HeadHunter
 {
@@ -14,7 +15,7 @@ namespace HeadHunter.HttpClients.Tests.HeadHunter
         [Fact]
         public async Task GetUniversityAsync_WithInvalidIdParam_ThrowException()
         {
-            var action = async () => { await _context.HeadHunter.Universities.GetUniversityAsync(-1); };
+            var action = async () => { await _context.HeadHunter.Universities.GetUniversityAsync(HeadHunterConstants.IdLowerValue - 1); };
 
             await Assert.ThrowsAsync<ArgumentOutOfRangeException>(action);
         }
@@ -22,7 +23,7 @@ namespace HeadHunter.HttpClients.Tests.HeadHunter
         [Fact]
         public async Task GetUniversityAsync_WithNotExistsIdParam_ReturnSuccessResponseWithEmptyResult()
         {
-            var response = await _context.HeadHunter.Universities.GetUniversityAsync(1);
+            var response = await _context.HeadHunter.Universities.GetUniversityAsync(HeadHunterConstants.IdLowerValue);
             var statusCode = response.Status.Code;
 
             Assert.NotNull(response);
@@ -85,7 +86,7 @@ namespace HeadHunter.HttpClients.Tests.HeadHunter
         [Fact]
         public async Task GetUniversitiesAsync_WhenSomeItemOfIdsParamNotExists_ReturnSuccessResponseWithNotEmptyResult()
         {
-            var ids = new int[3] { 1, 45470, 39196 };
+            var ids = new int[3] { HeadHunterConstants.IdLowerValue, 45470, 39196 };
             var response = await _context.HeadHunter.Universities.GetUniversitiesAsync(ids);
             var statusCode = response.Status.Code;
 

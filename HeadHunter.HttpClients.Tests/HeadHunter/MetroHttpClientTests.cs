@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using HeadHunter.HttpClients.HeadHunter;
+using System.Net;
 
 namespace HeadHunter.HttpClients.Tests.HeadHunter
 {
@@ -26,7 +27,7 @@ namespace HeadHunter.HttpClients.Tests.HeadHunter
         [Fact]
         public async Task GetAllStationsMetroByCityIdAsync_WithInvalidCityIdParam_ThrowException()
         {
-            var action = async () => { await _context.HeadHunter.Metro.GetAllStationsMetroByCityIdAsync(-1); };
+            var action = async () => { await _context.HeadHunter.Metro.GetAllStationsMetroByCityIdAsync(HeadHunterConstants.IdLowerValue - 1); };
 
             await Assert.ThrowsAsync<ArgumentOutOfRangeException>(action);
         }
@@ -34,7 +35,7 @@ namespace HeadHunter.HttpClients.Tests.HeadHunter
         [Fact]
         public async Task GetAllStationsMetroByCityIdAsync_WithValidCityIdParam_ReturnSuccessResponseWithNotNullResult()
         {
-            var response = await _context.HeadHunter.Metro.GetAllStationsMetroByCityIdAsync(1);
+            var response = await _context.HeadHunter.Metro.GetAllStationsMetroByCityIdAsync(HeadHunterConstants.IdLowerValue);
             var statusCode = response.Status.Code;
 
             Assert.NotNull(response);

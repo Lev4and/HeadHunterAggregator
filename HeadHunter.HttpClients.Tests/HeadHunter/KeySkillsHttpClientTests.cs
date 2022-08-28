@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using HeadHunter.HttpClients.HeadHunter;
+using System.Net;
 
 namespace HeadHunter.HttpClients.Tests.HeadHunter
 {
@@ -14,7 +15,7 @@ namespace HeadHunter.HttpClients.Tests.HeadHunter
         [Fact]
         public async Task GetKeySkillAsync_WithInvalidIdParam_ThrowException()
         {
-            var action = async () => { await _context.HeadHunter.KeySkills.GetKeySkillAsync(-1); };
+            var action = async () => { await _context.HeadHunter.KeySkills.GetKeySkillAsync(HeadHunterConstants.IdLowerValue - 1); };
 
             await Assert.ThrowsAsync<ArgumentOutOfRangeException>(action);
         }
@@ -34,7 +35,7 @@ namespace HeadHunter.HttpClients.Tests.HeadHunter
         [Fact]
         public async Task GetKeySkillAsync_WithValidIdParam_ReturnSuccessResponseWithNotEmptyResult()
         {
-            var response = await _context.HeadHunter.KeySkills.GetKeySkillAsync(1);
+            var response = await _context.HeadHunter.KeySkills.GetKeySkillAsync(HeadHunterConstants.IdLowerValue);
             var statusCode = response.Status.Code;
 
             Assert.NotNull(response);
@@ -62,7 +63,7 @@ namespace HeadHunter.HttpClients.Tests.HeadHunter
         [Fact]
         public async Task GetKeySkillsAsync_WhenSomeItemOfIdsParamNotValid_ThrowException()
         {
-            var ids = new int[3] { 1, 2, -1 };
+            var ids = new int[3] { HeadHunterConstants.IdLowerValue, 2, HeadHunterConstants.IdLowerValue - 1 };
             var action = async () => { await _context.HeadHunter.KeySkills.GetKeySkillsAsync(ids); };
 
             await Assert.ThrowsAsync<ArgumentOutOfRangeException>(action);
@@ -71,7 +72,7 @@ namespace HeadHunter.HttpClients.Tests.HeadHunter
         [Fact]
         public async Task GetKeySkillsAsync_WhenAllItemsOfIdsParamValid_ReturnSuccessResponseWithNotEmptyResult()
         {
-            var ids = new int[3] { 1, 2, 3 };
+            var ids = new int[3] { HeadHunterConstants.IdLowerValue, 2, 3 };
             var response = await _context.HeadHunter.KeySkills.GetKeySkillsAsync(ids);
             var statusCode = response.Status.Code;
 
@@ -85,7 +86,7 @@ namespace HeadHunter.HttpClients.Tests.HeadHunter
         [Fact]
         public async Task GetKeySkillsAsync_WhenSomeItemOfIdsParamNotExists_ReturnSuccessResponseWithNotEmptyResult()
         {
-            var ids = new int[3] { 1, 2, 123456789 };
+            var ids = new int[3] { HeadHunterConstants.IdLowerValue, 2, 123456789 };
             var response = await _context.HeadHunter.KeySkills.GetKeySkillsAsync(ids);
             var statusCode = response.Status.Code;
 
