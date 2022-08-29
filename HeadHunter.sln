@@ -20,7 +20,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeadHunter.HttpClients.Test
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeadHunter.Model.Common", "HeadHunter.Model.Common\HeadHunter.Model.Common.csproj", "{E2486557-4CDE-4FC7-BFFF-AE7821C31032}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadHunter.ResourceWebApplication.Tests", "HeadHunter.ResourceWebApplication.Tests\HeadHunter.ResourceWebApplication.Tests.csproj", "{37E60D77-6E91-4769-BFD6-3E2385554CD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeadHunter.ResourceWebApplication.ControllerTests", "HeadHunter.ResourceWebApplication.ControllerTests\HeadHunter.ResourceWebApplication.ControllerTests.csproj", "{37C49659-C459-4553-BA78-E1FAB4D9CA0D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -64,10 +64,10 @@ Global
 		{E2486557-4CDE-4FC7-BFFF-AE7821C31032}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2486557-4CDE-4FC7-BFFF-AE7821C31032}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2486557-4CDE-4FC7-BFFF-AE7821C31032}.Release|Any CPU.Build.0 = Release|Any CPU
-		{37E60D77-6E91-4769-BFD6-3E2385554CD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{37E60D77-6E91-4769-BFD6-3E2385554CD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{37E60D77-6E91-4769-BFD6-3E2385554CD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{37E60D77-6E91-4769-BFD6-3E2385554CD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37C49659-C459-4553-BA78-E1FAB4D9CA0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37C49659-C459-4553-BA78-E1FAB4D9CA0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37C49659-C459-4553-BA78-E1FAB4D9CA0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37C49659-C459-4553-BA78-E1FAB4D9CA0D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
