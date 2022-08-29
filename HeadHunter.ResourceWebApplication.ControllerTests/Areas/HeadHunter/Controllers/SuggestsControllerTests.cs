@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System.Net;
 
-namespace HeadHunter.ResourceWebApplication.Tests.Areas.HeadHunter.Controllers
+namespace HeadHunter.ResourceWebApplication.ControllerTests.Areas.HeadHunter.Controllers
 {
     public class SuggestsControllerTests
     {

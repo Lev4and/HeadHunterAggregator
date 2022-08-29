@@ -6,27 +6,27 @@ using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System.Net;
 
-namespace HeadHunter.ResourceWebApplication.Tests.Areas.HeadHunter.Controllers
+namespace HeadHunter.ResourceWebApplication.ControllerTests.Areas.HeadHunter.Controllers
 {
-    public class LanguagesControllerTests
+    public class DictionariesControllerTests
     {
         private readonly Mock<HttpContext> _service;
 
-        public LanguagesControllerTests()
+        public DictionariesControllerTests()
         {
             _service = new Mock<HttpContext>();
         }
 
         [Fact]
-        public async Task GetAllLanguagesAsync_ReturnSuccessResponseWithNotEmptyResult()
+        public async Task GetDictionariesAsync_ReturnSuccessResponseWithNotNullResult()
         {
-            var controller = new LanguagesController(_service.Object);
+            var controller = new DictionariesController(_service.Object);
 
-            var response = await controller.GetAllLanguagesAsync();
+            var response = await controller.GetDictionariesAsync();
             var result = response as ObjectResult;
-            var value = result?.Value as ResponseModel<Language[]>;
+            var value = result?.Value as ResponseModel<Dictionaries>;
 
-            Assert.NotEmpty(value?.Result);
+            Assert.NotNull(value?.Result);
             Assert.Equal(200, result?.StatusCode);
             Assert.Equal(HttpStatusCode.OK, value?.Status?.Code);
         }

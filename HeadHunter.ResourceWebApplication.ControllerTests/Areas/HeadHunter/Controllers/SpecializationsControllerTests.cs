@@ -6,25 +6,25 @@ using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System.Net;
 
-namespace HeadHunter.ResourceWebApplication.Tests.Areas.HeadHunter.Controllers
+namespace HeadHunter.ResourceWebApplication.ControllerTests.Areas.HeadHunter.Controllers
 {
-    public class CountriesControllerTests
+    public class SpecializationsControllerTests
     {
         private readonly Mock<HttpContext> _service;
 
-        public CountriesControllerTests()
+        public SpecializationsControllerTests()
         {
             _service = new Mock<HttpContext>();
         }
 
         [Fact]
-        public async Task GetAllCountriesAsync_ReturnSuccessResponseWithNotEmptyResult()
+        public async Task GetAllSpecializationsAsync_ReturnSuccessResponseWithNotEmptyResult()
         {
-            var controller = new CountriesController(_service.Object);
+            var controller = new SpecializationsController(_service.Object);
 
-            var response = await controller.GetAllCountriesAsync();
+            var response = await controller.GetAllSpecializationsAsync();
             var result = response as ObjectResult;
-            var value = result?.Value as ResponseModel<Country[]>;
+            var value = result?.Value as ResponseModel<Specialization[]>;
 
             Assert.NotEmpty(value?.Result);
             Assert.Equal(200, result?.StatusCode);
