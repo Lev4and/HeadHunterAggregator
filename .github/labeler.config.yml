@@ -13,12 +13,21 @@ scss:
 
 api:
   - "*/**/api/**/*"
+  - "HeadHunter.HttpClients/Resource/**/*"
+  - "HeadHunter.ResourceWebApplication/**/*"
+  - "HeadHunter.HttpClients.Tests/Resource/**/*"
+  - "HeadHunter.AuthorizationWebApplication/**/*"
+  - "HeadHunter.ResourceWebApplication.ControllerTests/**/*"
 
 javascript:
   - "*/**/*.js"
 
 head hunter:
   - "*/**/api/headHunter/**/*"
+  - "HeadHunter.HttpClients/HeadHunter/**/*"
+  - "HeadHunter.HttpClients.Tests/HeadHunter/**/*"
+  - "HeadHunter.ResourceWebApplication/Areas/HeadHunter/**/*"
+  - "HeadHunter.ResourceWebApplication.ControllerTests/Areas/HeadHunter/**/*"
 
 shell:
   - "*/**/*.sh"
@@ -43,6 +52,9 @@ cypress:
 
 tests:
   - "*/**/tests/**/*"
+  - "HeadHunter.HttpClients.Tests/**/*"
+  - "HeadHunter.HttpClients.Common.Tests/**/*"
+  - "HeadHunter.ResourceWebApplication.ControllerTests/**/*"
 
 docker:
   - "*/**/Dockerfile"
@@ -62,6 +74,10 @@ frontend:
   - "*/**/*.css"
   - "*/**/*.scss"
 
+backend:
+  - "HeadHunter.ResourceWebApplication/**/"
+  - "HeadHunter.AuthorizationWebApplication/**/"
+
 github:
   - ".github/**/*"
 
@@ -72,3 +88,8 @@ npm:
 package:
   - "*/**/package.json"
   - "*/**/package-lock.json"
+
+database:
+  - "*/**/*.sql"
+  - "HeadHunter.Database.MongoDB/**/*"
+  - "HeadHunter.Database.PostgreSql/**/*"
