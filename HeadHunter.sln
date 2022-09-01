@@ -22,6 +22,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeadHunter.Model.Common", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeadHunter.ResourceWebApplication.ControllerTests", "HeadHunter.ResourceWebApplication.ControllerTests\HeadHunter.ResourceWebApplication.ControllerTests.csproj", "{37C49659-C459-4553-BA78-E1FAB4D9CA0D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadHunter.Database.MongoDb", "HeadHunter.Database.MongoDb\HeadHunter.Database.MongoDb.csproj", "{FA2627BE-3D53-49EE-9BAF-473AA230EEF6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadHunter.Database.MongoDb.Tests", "HeadHunter.Database.MongoDb.Tests\HeadHunter.Database.MongoDb.Tests.csproj", "{1710F976-D692-4CE4-BA1B-EB498EA64038}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadHunter.Database.MongoDb.Common", "HeadHunter.Database.MongoDb.Common\HeadHunter.Database.MongoDb.Common.csproj", "{4853DDDB-B08F-4996-B70C-D4143C8257D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadHunter.Database.MongoDb.Common.Tests", "HeadHunter.Database.MongoDb.Common.Tests\HeadHunter.Database.MongoDb.Common.Tests.csproj", "{83D5ED13-A017-410A-B41D-354D953E1523}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -68,6 +76,22 @@ Global
 		{37C49659-C459-4553-BA78-E1FAB4D9CA0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37C49659-C459-4553-BA78-E1FAB4D9CA0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37C49659-C459-4553-BA78-E1FAB4D9CA0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA2627BE-3D53-49EE-9BAF-473AA230EEF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA2627BE-3D53-49EE-9BAF-473AA230EEF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA2627BE-3D53-49EE-9BAF-473AA230EEF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA2627BE-3D53-49EE-9BAF-473AA230EEF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1710F976-D692-4CE4-BA1B-EB498EA64038}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1710F976-D692-4CE4-BA1B-EB498EA64038}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1710F976-D692-4CE4-BA1B-EB498EA64038}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1710F976-D692-4CE4-BA1B-EB498EA64038}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4853DDDB-B08F-4996-B70C-D4143C8257D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4853DDDB-B08F-4996-B70C-D4143C8257D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4853DDDB-B08F-4996-B70C-D4143C8257D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4853DDDB-B08F-4996-B70C-D4143C8257D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83D5ED13-A017-410A-B41D-354D953E1523}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83D5ED13-A017-410A-B41D-354D953E1523}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83D5ED13-A017-410A-B41D-354D953E1523}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83D5ED13-A017-410A-B41D-354D953E1523}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
