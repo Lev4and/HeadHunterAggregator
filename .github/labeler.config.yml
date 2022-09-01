@@ -53,7 +53,9 @@ cypress:
 tests:
   - "*/**/tests/**/*"
   - "HeadHunter.HttpClients.Tests/**/*"
+  - "HeadHunter.Database.MongoDb.Tests/**/*"
   - "HeadHunter.HttpClients.Common.Tests/**/*"
+  - "HeadHunter.Database.MongoDb.Common.Tests/**/*"
   - "HeadHunter.ResourceWebApplication.ControllerTests/**/*"
 
 docker:
@@ -91,5 +93,7 @@ package:
 
 database:
   - "*/**/*.sql"
-  - "HeadHunter.Database.MongoDB/**/*"
+  - "HeadHunter.Database.MongoDb/**/*"
   - "HeadHunter.Database.PostgreSql/**/*"
+  - "HeadHunter.Database.MongoDb.Common/**/*"
+  - "HeadHunter.Database.PostgreSql.Common/**/*"
