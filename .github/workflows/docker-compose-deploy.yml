@@ -3,8 +3,6 @@ name: Docker Compose Deploy
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ "master" ]
 
 jobs:
   vue-js-app-build:
@@ -87,7 +85,7 @@ jobs:
             git clone https://github.com/Lev4and/HeadHunter.git
             cd HeadHunter
             git fetch
-            git reset --hard origin/61-GitHub-Actions-Docker-Publish-containers
+            git reset --hard origin/master
             rm .env
             cp .env.dist .env
             export $(egrep -v '^#' .env | xargs -0)
