@@ -1,26 +1,26 @@
 version: '3.4'
 
 services:
-  headhunter.authorizationwebapplication:
-    image: ghcr.io/lev4and/headhunter/authorizationwebapp:latest
+  headhunter-authorization-web-application:
+    image: ghcr.io/lev4and/headhunter/authorization-web-app:latest
 
-  headhunter.authorizationwebapplication.seq:
+  headhunter-authorization-web-application-seq:
     image: datalust/seq:latest
     environment:
       - ACCEPT_EULA=Y
 
-  headhunter.resourcewebapplication:
-    image: ghcr.io/lev4and/headhunter/resourcewebapp:latest
+  headhunter.resource-web-application:
+    image: ghcr.io/lev4and/headhunter/resource-web-app:latest
 
-  headhunter.resourcewebapplication.seq:
+  headhunter.resource-web-application-seq:
     image: datalust/seq:latest
     environment:
       - ACCEPT_EULA=Y
 
-  headhunter.vuejsapp:
-    image: ghcr.io/lev4and/headhunter/authorizationwebapp:latest
+  headhunter.vue-js-app:
+    image: ghcr.io/lev4and/headhunter/vue-js-app:latest
 
-  headhunter.postgres:
+  headhunter-postgres:
     image: postgres:14.4-alpine
     restart: always
     environment:
@@ -30,14 +30,14 @@ services:
     volumes:
       - ./headhunter.postgres:/var/lib/postgresql/data
 
-  headhunter.portainer:
+  headhunter-portainer:
     image: portainer/portainer-ce
     restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./portainer_data:/data
 
-  headhunter.node.exporter:
+  headhunter-node-exporter:
     image: prom/node-exporter:latest
     restart: unless-stopped
     volumes:
@@ -50,13 +50,13 @@ services:
       - '--path.sysfs=/host/sys'
       - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
 
-  headhunter.prometheus:
+  headhunter-prometheus:
     image: prom/prometheus:latest
     restart: unless-stopped
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
 
-  headhunter.grafana:
+  headhunter-grafana:
     image: grafana/grafana
     volumes:
       - ./grafana_data:/var/lib/grafana
@@ -67,23 +67,23 @@ services:
       - GF_SERVER_ROOT_URL=http://localhost/grafana/
       - GF_USERS_ALLOW_SIGN_UP=false
 
-  headhunter.visualizer:
+  headhunter-visualizer:
     image: dockersamples/visualizer
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
-  headhunter.dozzle:
+  headhunter-dozzle:
     image: amir20/dozzle
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
   
-  headhunter.mongodb:
+  headhunter-mongodb:
     image: mongo:latest
     environment:
       - MONGO_INITDB_ROOT_USERNAME=sa
       - MONGO_INITDB_ROOT_PASSWORD=sa
     volumes:
-      - ./mongodb_data_container:/data/db
+      - ./mongodb_data:/data/db
 
   proxy:
     image: nginx:mainline
@@ -91,5 +91,5 @@ services:
 volumes:
   grafana_data:
     external: true
-  mongodb_data_container:
+  mongodb_data:
 
