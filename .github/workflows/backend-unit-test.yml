@@ -50,7 +50,7 @@ jobs:
       run: dotnet build $ProjectName --no-restore
 
     - name: Test
-      run: dotnet test $ProjectName --no-build --verbosity normal -filter FullyQualifiedName\!=$WithoutTests
+      run: dotnet test $ProjectName --no-build --verbosity normal --filter FullyQualifiedName\!=$WithoutTests
   
   resource-web-application-controller-test:
     name: ResourceWebApplication Controller Test
