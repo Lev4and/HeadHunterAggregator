@@ -26,7 +26,7 @@ jobs:
         run: docker login docker.pkg.github.com -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and pull docker image
-        run: docker build -f Dockerfile --pull -t $DOCKER_IMAGE .
+        run: docker build -f head-hunter-vue-js-app/Dockerfile --pull -t $DOCKER_IMAGE .
 
       - name: Push docker image
         run: docker push $DOCKER_IMAGE
