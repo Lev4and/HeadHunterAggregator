@@ -12,12 +12,10 @@ namespace HeadHunter.ResourceWebApplication.Areas.HeadHunter.Controllers
     [Route(ResourceRoutes.HeadHunterDictionariesPath)]
     public class DictionariesController : ControllerBase
     {
-        private readonly ILogger<DictionariesController> _logger;
         private readonly HttpClients.HttpContext _context;
 
-        public DictionariesController(ILogger<DictionariesController> logger, HttpClients.HttpContext context)
+        public DictionariesController(HttpClients.HttpContext context)
         {
-            _logger = logger;
             _context = context;
         }
 
@@ -26,8 +24,6 @@ namespace HeadHunter.ResourceWebApplication.Areas.HeadHunter.Controllers
         public async Task<IActionResult> GetDictionariesAsync()
         {
             var responseModel = await _context.HeadHunter.Dictionaries.GetDictionariesAsync();
-
-            _logger.LogInformation("GetDictionariesAsync");
 
             return StatusCode(Convert.ToInt32(responseModel.Status.Code), responseModel);
         }
