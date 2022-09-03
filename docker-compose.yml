@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   headhunter.authorizationwebapplication:
-    image: docker.pkg.github.com/lev4and/headhunter/authorizationwebapp:latest
+    image: ghcr.io/lev4and/headhunter/authorizationwebapp:latest
 
   headhunter.authorizationwebapplication.seq:
     image: datalust/seq:latest
@@ -10,7 +10,7 @@ services:
       - ACCEPT_EULA=Y
 
   headhunter.resourcewebapplication:
-    image: docker.pkg.github.com/lev4and/headhunter/resourcewebapp:latest
+    image: ghcr.io/lev4and/headhunter/resourcewebapp:latest
 
   headhunter.resourcewebapplication.seq:
     image: datalust/seq:latest
@@ -18,7 +18,7 @@ services:
       - ACCEPT_EULA=Y
 
   headhunter.vuejsapp:
-    image: docker.pkg.github.com/lev4and/headhunter/vuejsapp:latest
+    image: ghcr.io/lev4and/headhunter/authorizationwebapp:latest
 
   headhunter.postgres:
     image: postgres:14.4-alpine
