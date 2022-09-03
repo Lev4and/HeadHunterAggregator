@@ -40,7 +40,7 @@ services:
       - ./headhunter.postgres:/var/lib/postgresql/data
 
   headhunter.portainer:
-    image: portainer/portainer
+    image: portainer/portainer-ce
     restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
