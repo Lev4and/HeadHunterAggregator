@@ -9,15 +9,15 @@ services:
     environment:
       - ACCEPT_EULA=Y
 
-  headhunter.resource-web-application:
+  headhunter-resource-web-application:
     image: ghcr.io/lev4and/headhunter/resource-web-app:latest
 
-  headhunter.resource-web-application-seq:
+  headhunter-resource-web-application-seq:
     image: datalust/seq:latest
     environment:
       - ACCEPT_EULA=Y
 
-  headhunter.vue-js-app:
+  headhunter-vue-js-app:
     image: ghcr.io/lev4and/headhunter/vue-js-app:latest
 
   headhunter-postgres:
@@ -28,14 +28,14 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
-      - ./headhunter.postgres:/var/lib/postgresql/data
+      - ./headhunter-postgres:/var/lib/postgresql/data
 
   headhunter-portainer:
     image: portainer/portainer-ce
     restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./portainer_data:/data
+      - ./portainer-data:/data
 
   headhunter-node-exporter:
     image: prom/node-exporter:latest
@@ -59,7 +59,7 @@ services:
   headhunter-grafana:
     image: grafana/grafana
     volumes:
-      - ./grafana_data:/var/lib/grafana
+      - ./grafana-data:/var/lib/grafana
       - ./grafana/provisioning:/etc/grafana/provisioning
     environment:
       - GF_SECURITY_ADMIN_USER=${GRAFANA_ADMIN_USER}
@@ -83,13 +83,13 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=sa
       - MONGO_INITDB_ROOT_PASSWORD=sa
     volumes:
-      - ./mongodb_data:/data/db
+      - ./mongodb-data:/data/db
 
   proxy:
     image: nginx:mainline
 
 volumes:
-  grafana_data:
+  grafana-data:
     external: true
-  mongodb_data:
+  mongodb-data:
 
