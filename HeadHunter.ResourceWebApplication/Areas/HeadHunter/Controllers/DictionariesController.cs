@@ -27,6 +27,8 @@ namespace HeadHunter.ResourceWebApplication.Areas.HeadHunter.Controllers
         {
             var responseModel = await _context.HeadHunter.Dictionaries.GetDictionariesAsync();
 
+            _logger.LogInformation("GetDictionariesAsync");
+
             return StatusCode(Convert.ToInt32(responseModel.Status.Code), responseModel);
         }
     }
