@@ -4,16 +4,16 @@ on:
   push:
     branches: [ master ]
   pull_request:
-    branches: [ master ]
+    branches: [ "master" ]
 
 jobs:
-  headhunter-vuejsapp-build:
-    name: headhunter-vuejsapp image build and push
+  vue-js-app-build:
+    name: vuejsapp image build and push
     runs-on: ubuntu-latest
     env:
       PROJECT_SRC_DIR: head-hunter-vue-js-app
-      DOCKER_NAME: headhuntervuejsapp
-      DOCKER_IMAGE: docker.pkg.github.com/lev4and/headhunter/headhuntervuejsapp
+      DOCKER_NAME: vuejsapp
+      DOCKER_IMAGE: docker.pkg.github.com/lev4and/headhunter/vuejsapp:latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -27,13 +27,13 @@ jobs:
       - name: Push docker image
         run: docker push $DOCKER_IMAGE
 
-  headhunter-authorizationwebapplication-build:
-    name: headhunter-authorizationwebapplication image build and push
+  authorization-web-app-build:
+    name: authorizationwebapp image build and push
     runs-on: ubuntu-latest
     env:
       PROJECT_SRC_DIR: HeadHunter.AuthorizationWebApplication
-      DOCKER_NAME: headhunterauthorizationwebapplication
-      DOCKER_IMAGE: docker.pkg.github.com/lev4and/headhunter/headhunterauthorizationwebapplication
+      DOCKER_NAME: authorizationwebapp
+      DOCKER_IMAGE: docker.pkg.github.com/lev4and/headhunter/authorizationwebapp:latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -47,13 +47,13 @@ jobs:
       - name: Push docker image
         run: docker push $DOCKER_IMAGE
 
-  headhunter-resourcewebapplication-build:
-    name: headhunter-resourcewebapplication image build and push
+  resource-web-app-build:
+    name: resourcewebapp image build and push
     runs-on: ubuntu-latest
     env:
       PROJECT_SRC_DIR: HeadHunter.ResourceWebApplication
-      DOCKER_NAME: headhunterresourcewebapplication
-      DOCKER_IMAGE: docker.pkg.github.com/lev4and/headhunter/headhunterresourcewebapplication
+      DOCKER_NAME: resourcewebapp
+      DOCKER_IMAGE: docker.pkg.github.com/lev4and/headhunter/resourcewebapp:latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -66,3 +66,44 @@ jobs:
 
       - name: Push docker image
         run: docker push $DOCKER_IMAGE
+
+  deploy:
+    name: Docker Compose Deploy
+    needs: [vue-js-app-build, authorization-web-app-build, resource-web-app-build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Connect to server, build and run docker-compose
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: |
+            whoami
+            cd /var/
+            mkdir projects
+            cd projects
+            git clone https://github.com/Lev4and/HeadHunter.git
+            cd HeadHunter
+            git fetch
+            git reset --hard origin/61-GitHub-Actions-Docker-Publish-containers
+            rm .env
+            cp .env.dist .env
+            export $(egrep -v '^#' .env | xargs -0)
+            docker-compose stop
+            docker rm -vf $(docker ps -aq)
+            docker rmi -f $(docker images -aq)
+            docker-compose ps
+            docker-compose images
+            docker ps
+            docker images
+            docker volume create portainer_data
+            docker volume create grafana_data
+            docker-compose up -d --build
+            chown -R 472:472 portainer_data
+            chown -R 472:472 grafana_data
+            docker-compose ps
+            docker-compose restart
+            docker-compose ps
+      
