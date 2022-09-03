@@ -2,7 +2,10 @@ version: '3.4'
 
 services:
   headhunter.authorizationwebapplication:
-    image: ghcr.io/lev4and/headhunter/authorizationwebapp:latest
+    image: ${DOCKER_REGISTRY-}headhunterauthorizationwebapplication
+    build:
+      context: .
+      dockerfile: HeadHunter.AuthorizationWebApplication/Dockerfile
 
   headhunter.authorizationwebapplication.seq:
     image: datalust/seq:latest
@@ -10,7 +13,10 @@ services:
       - ACCEPT_EULA=Y
 
   headhunter.resourcewebapplication:
-    image: ghcr.io/lev4and/headhunter/resourcewebapp:latest
+    image: ${DOCKER_REGISTRY-}headhunterresourcewebapplication
+    build:
+      context: .
+      dockerfile: HeadHunter.ResourceWebApplication/Dockerfile
 
   headhunter.resourcewebapplication.seq:
     image: datalust/seq:latest
@@ -18,7 +24,10 @@ services:
       - ACCEPT_EULA=Y
 
   headhunter.vuejsapp:
-    image: ghcr.io/lev4and/headhunter/authorizationwebapp:latest
+    image: headhuntervuejsapp
+    build:
+        context: 'head-hunter-vue-js-app/'
+        dockerfile: 'Dockerfile'
 
   headhunter.postgres:
     image: postgres:14.4-alpine
@@ -92,4 +101,3 @@ volumes:
   grafana_data:
     external: true
   mongodb_data_container:
-
