@@ -8,7 +8,7 @@ namespace HeadHunter.Database.MongoDb.Common
 
         public MongoDbContext()
         {
-            _client = new MongoClient("mongodb://sa:sa@194-67-67-175.cloudvps.regruhosting.ru:27017/?authMechanism=DEFAULT");
+            _client = new MongoClient("mongodb://sa:sa@lev4and.ru:27017/?authMechanism=DEFAULT");
         }
 
         public IMongoDatabase GetDatabase(string name)
