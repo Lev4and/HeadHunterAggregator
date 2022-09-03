@@ -1,0 +1,103 @@
+version: '3.4'
+
+services:
+  headhunter.authorizationwebapplication:
+    image: ${DOCKER_REGISTRY-}headhunterauthorizationwebapplication
+    build:
+      context: .
+      dockerfile: HeadHunter.AuthorizationWebApplication/Dockerfile
+
+  headhunter.authorizationwebapplication.seq:
+    image: datalust/seq:latest
+    environment:
+      - ACCEPT_EULA=Y
+
+  headhunter.resourcewebapplication:
+    image: ${DOCKER_REGISTRY-}headhunterresourcewebapplication
+    build:
+      context: .
+      dockerfile: HeadHunter.ResourceWebApplication/Dockerfile
+
+  headhunter.resourcewebapplication.seq:
+    image: datalust/seq:latest
+    environment:
+      - ACCEPT_EULA=Y
+
+  headhunter.vuejsapp:
+    image: headhuntervuejsapp
+    build:
+        context: 'head-hunter-vue-js-app/'
+        dockerfile: 'Dockerfile'
+
+  headhunter.postgres:
+    image: postgres:14.4-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB_NAME}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - ./headhunter.postgres:/var/lib/postgresql/data
+
+  headhunter.portainer:
+    image: portainer/portainer-ce
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./portainer_data:/data
+
+  headhunter.node.exporter:
+    image: prom/node-exporter:latest
+    restart: unless-stopped
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.rootfs=/rootfs'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+
+  headhunter.prometheus:
+    image: prom/prometheus:latest
+    restart: unless-stopped
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+
+  headhunter.grafana:
+    image: grafana/grafana
+    volumes:
+      - ./grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+    environment:
+      - GF_SECURITY_ADMIN_USER=${GRAFANA_ADMIN_USER}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD}
+      - GF_SERVER_ROOT_URL=http://localhost/grafana/
+      - GF_USERS_ALLOW_SIGN_UP=false
+
+  headhunter.visualizer:
+    image: dockersamples/visualizer
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  headhunter.dozzle:
+    image: amir20/dozzle
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+  
+  headhunter.mongodb:
+    image: mongo:latest
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=sa
+      - MONGO_INITDB_ROOT_PASSWORD=sa
+    volumes:
+      - ./mongodb_data_container:/data/db
+
+  proxy:
+    image: nginx:mainline
+
+volumes:
+  grafana_data:
+    external: true
+  mongodb_data_container:
