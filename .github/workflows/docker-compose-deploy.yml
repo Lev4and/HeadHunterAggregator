@@ -25,7 +25,7 @@ jobs:
         run: |
           cd $PROJECT_SRC_DIR
           ls -a
-          docker build -f Dockerfile --pull -t $DOCKER_IMAGE
+          docker build -f Dockerfile --pull -t $DOCKER_IMAGE .
 
       - name: Push docker image
         run: docker push $DOCKER_IMAGE
@@ -48,7 +48,7 @@ jobs:
         run: |
           cd $PROJECT_SRC_DIR
           ls -a
-          docker build -f Dockerfile --pull -t $DOCKER_IMAGE
+          docker build -f Dockerfile --pull -t $DOCKER_IMAGE .
 
       - name: Push docker image
         run: docker push $DOCKER_IMAGE
@@ -71,7 +71,7 @@ jobs:
         run: |
           cd $PROJECT_SRC_DIR
           ls -a
-          docker build -f Dockerfile --pull -t $DOCKER_IMAGE
+          docker build -f Dockerfile --pull -t $DOCKER_IMAGE .
 
       - name: Push docker image
         run: docker push $DOCKER_IMAGE
