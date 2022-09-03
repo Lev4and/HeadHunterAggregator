@@ -3,12 +3,10 @@ name: Docker Stack Deploy
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
 
 jobs:
   vue-js-app-build:
-    name: vue-js-app image build and push
+    name: vue-js-app image build, pull and push
     runs-on: ubuntu-latest
     env:
       PROJECT_SRC_DIR: head-hunter-vue-js-app
@@ -33,7 +31,7 @@ jobs:
           method: POST
 
   authorization-web-app-build:
-    name: authorization-web-app image build and push
+    name: authorization-web-app image build, pull and push
     runs-on: ubuntu-latest
     env:
       PROJECT_SRC_DIR: HeadHunter.AuthorizationWebApplication
@@ -58,7 +56,7 @@ jobs:
           method: POST
 
   resource-web-app-build:
-    name: resource-web-app image build and push
+    name: resource-web-app image build, pull and push
     runs-on: ubuntu-latest
     env:
       PROJECT_SRC_DIR: HeadHunter.ResourceWebApplication
