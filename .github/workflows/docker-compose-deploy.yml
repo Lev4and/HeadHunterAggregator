@@ -11,22 +11,18 @@ jobs:
     name: headhunter-vuejsapp image build and push
     runs-on: ubuntu-latest
     env:
+      PROJECT_SRC_DIR: head-hunter-vue-js-app
       DOCKER_NAME: headhuntervuejsapp
       DOCKER_IMAGE: docker.pkg.github.com/lev4and/headhunter/headhuntervuejsapp
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Move to frontend head-hunter-vue-js-app folder
-        run: |
-          cd head-hunter-vue-js-app
-          ls -a
-
       - name: Login to docker.pkg.github.com
         run: docker login docker.pkg.github.com -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and pull docker image
-        run: docker build -f head-hunter-vue-js-app/Dockerfile --pull -t $DOCKER_IMAGE .
+        run: docker build -f Dockerfile --pull -t $DOCKER_IMAGE $PROJECT_SRC_DIR
 
       - name: Push docker image
         run: docker push $DOCKER_IMAGE
@@ -35,20 +31,18 @@ jobs:
     name: headhunter-authorizationwebapplication image build and push
     runs-on: ubuntu-latest
     env:
+      PROJECT_SRC_DIR: HeadHunter.AuthorizationWebApplication
       DOCKER_NAME: headhunterauthorizationwebapplication
-      DOCKER_IMAGE: docker.pkg.github.com/lev4and/headhunter/${DOCKER_NAME}:${GITHUB_REF##*/}
+      DOCKER_IMAGE: docker.pkg.github.com/lev4and/headhunter/headhunterauthorizationwebapplication
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-
-      - name: Move to frontend HeadHunter.AuthorizationWebApplication folder
-        run: cd HeadHunter.AuthorizationWebApplication
 
       - name: Login to docker.pkg.github.com
         run: docker login docker.pkg.github.com -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and pull docker image
-        run: docker build -f Dockerfile --pull -t $DOCKER_IMAGE .
+        run: docker build -f Dockerfile --pull -t $DOCKER_IMAGE $PROJECT_SRC_DIR
 
       - name: Push docker image
         run: docker push $DOCKER_IMAGE
@@ -57,20 +51,18 @@ jobs:
     name: headhunter-resourcewebapplication image build and push
     runs-on: ubuntu-latest
     env:
+      PROJECT_SRC_DIR: HeadHunter.ResourceWebApplication
       DOCKER_NAME: headhunterresourcewebapplication
-      DOCKER_IMAGE: docker.pkg.github.com/lev4and/headhunter/${DOCKER_NAME}:${GITHUB_REF##*/}
+      DOCKER_IMAGE: docker.pkg.github.com/lev4and/headhunter/headhunterresourcewebapplication
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-
-      - name: Move to frontend HeadHunter.ResourceWebApplication folder
-        run: cd HeadHunter.ResourceWebApplication
 
       - name: Login to docker.pkg.github.com
         run: docker login docker.pkg.github.com -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and pull docker image
-        run: docker build -f Dockerfile --pull -t $DOCKER_IMAGE .
+        run: docker build -f Dockerfile --pull -t $DOCKER_IMAGE $PROJECT_SRC_DIR
 
       - name: Push docker image
         run: docker push $DOCKER_IMAGE
