@@ -17,7 +17,7 @@ builder.Services.ConfigureApplicationCookie(options =>
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsPolicy", builder =>
-        builder.WithOrigins("http://localhost", "http://194-67-67-175.cloudvps.regruhosting.ru").AllowAnyMethod()
+        builder.WithOrigins("http://localhost", "http://194-67-67-175.cloudvps.regruhosting.ru", "http://lev4and.ru").AllowAnyMethod()
                 .AllowAnyHeader().AllowCredentials());
 });
 
@@ -37,7 +37,7 @@ builder.Services.AddSwaggerGen(options =>
 
     options.AddServer(new OpenApiServer()
     {
-        Url = "http://194-67-67-175.cloudvps.regruhosting.ru/resource"
+        Url = "http://lev4and.ru/resource"
     });
 });
 
