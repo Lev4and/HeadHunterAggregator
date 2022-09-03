@@ -26,6 +26,12 @@ jobs:
       - name: Push docker image
         run: docker push $DOCKER_IMAGE
 
+      - name: Deploy docker image
+        uses: satak/webrequest-action@master
+        with:
+          url: http://lev4and.ru/portainer/api/webhooks/4cd3e467-b9f1-4fe2-8405-626705dca1bc
+          method: POST
+
   authorization-web-app-build:
     name: authorization-web-app image build and push
     runs-on: ubuntu-latest
@@ -45,6 +51,12 @@ jobs:
       - name: Push docker image
         run: docker push $DOCKER_IMAGE
 
+      - name: Deploy docker image
+        uses: satak/webrequest-action@master
+        with:
+          url: http://lev4and.ru/portainer/api/webhooks/d476a2e6-7b99-4aac-827d-645982cdc3b4
+          method: POST
+
   resource-web-app-build:
     name: resource-web-app image build and push
     runs-on: ubuntu-latest
@@ -63,4 +75,10 @@ jobs:
 
       - name: Push docker image
         run: docker push $DOCKER_IMAGE
+      
+      - name: Deploy docker image
+        uses: satak/webrequest-action@master
+        with:
+          url: http://lev4and.ru/portainer/api/webhooks/a4b30b6d-f1fa-441e-8d8d-6a5ddcc9cafd
+          method: POST
       
