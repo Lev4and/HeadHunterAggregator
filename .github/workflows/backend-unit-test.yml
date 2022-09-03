@@ -34,6 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       ProjectName: HeadHunter.HttpClients.Tests
+      WithoutTests: HeadHunter.HttpClients.Tests.Resource
     steps:
     - uses: actions/checkout@v3
     - name: Setup .NET
@@ -49,7 +50,7 @@ jobs:
       run: dotnet build $ProjectName --no-restore
 
     - name: Test
-      run: dotnet test $ProjectName --no-build --verbosity normal
+      run: dotnet test $ProjectName --no-build --verbosity normal --filter FullyQualifiedName\!~$WithoutTests
   
   resource-web-application-controller-test:
     name: ResourceWebApplication Controller Test
