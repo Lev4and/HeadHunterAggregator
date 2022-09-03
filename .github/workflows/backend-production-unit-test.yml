@@ -2,7 +2,7 @@ name: Backend Production Unit Tests
 
 on:
   workflow_run:
-    workflows: [Docker Compose Deploy]
+    workflows: [Docker Stack Deploy]
     types: [completed]
 
 jobs:

@@ -1,26 +1,36 @@
 version: '3.4'
 
 services:
-  headhunter.authorizationwebapplication:
-    image: ghcr.io/lev4and/headhunter/authorizationwebapp:latest
+  headhunter-authorization-web-application:
+    image: ghcr.io/lev4and/headhunter/authorization-web-app:latest
+    ports:
+      - "5000:80"
 
-  headhunter.authorizationwebapplication.seq:
+  headhunter-authorization-web-application-seq:
     image: datalust/seq:latest
     environment:
       - ACCEPT_EULA=Y
+    ports:
+      - "5341:80"
 
-  headhunter.resourcewebapplication:
-    image: ghcr.io/lev4and/headhunter/resourcewebapp:latest
+  headhunter-resource-web-application:
+    image: ghcr.io/lev4and/headhunter/resource-web-app:latest
+    ports:
+      - "5001:80"
 
-  headhunter.resourcewebapplication.seq:
+  headhunter-resource-web-application-seq:
     image: datalust/seq:latest
     environment:
       - ACCEPT_EULA=Y
+    ports:
+      - "5342:80"
 
-  headhunter.vuejsapp:
-    image: ghcr.io/lev4and/headhunter/authorizationwebapp:latest
+  headhunter-vue-js-app:
+    image: ghcr.io/lev4and/headhunter/vue-js-app:latest
+    ports:
+      - "5002:8080"
 
-  headhunter.postgres:
+  headhunter-postgres:
     image: postgres:14.4-alpine
     restart: always
     environment:
@@ -28,16 +38,20 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
-      - ./headhunter.postgres:/var/lib/postgresql/data
+      - ./postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
 
-  headhunter.portainer:
+  headhunter-portainer:
     image: portainer/portainer-ce
     restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./portainer_data:/data
+      - ./portainer-data:/data
+    ports:
+      - "9000:9000"
 
-  headhunter.node.exporter:
+  headhunter-node-exporter:
     image: prom/node-exporter:latest
     restart: unless-stopped
     volumes:
@@ -49,47 +63,55 @@ services:
       - '--path.rootfs=/rootfs'
       - '--path.sysfs=/host/sys'
       - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+    ports:
+      - "9100:9100"
 
-  headhunter.prometheus:
+  headhunter-prometheus:
     image: prom/prometheus:latest
     restart: unless-stopped
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
 
-  headhunter.grafana:
+  headhunter-grafana:
     image: grafana/grafana
-    volumes:
-      - ./grafana_data:/var/lib/grafana
-      - ./grafana/provisioning:/etc/grafana/provisioning
     environment:
       - GF_SECURITY_ADMIN_USER=${GRAFANA_ADMIN_USER}
       - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD}
       - GF_SERVER_ROOT_URL=http://localhost/grafana/
       - GF_USERS_ALLOW_SIGN_UP=false
+    ports:
+      - "3456:3000"
 
-  headhunter.visualizer:
+  headhunter-visualizer:
     image: dockersamples/visualizer
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "5003:8080"
 
-  headhunter.dozzle:
+  headhunter-dozzle:
     image: amir20/dozzle
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "8888:8080"
   
-  headhunter.mongodb:
+  headhunter-mongodb:
     image: mongo:latest
     environment:
       - MONGO_INITDB_ROOT_USERNAME=sa
       - MONGO_INITDB_ROOT_PASSWORD=sa
     volumes:
-      - ./mongodb_data_container:/data/db
+      - ./mongodb-data:/data/db
+    ports:
+      - "27017:27017"
 
   proxy:
     image: nginx:mainline
-
-volumes:
-  grafana_data:
-    external: true
-  mongodb_data_container:
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "80:80"
 

@@ -1,0 +1,82 @@
+name: Docker Stack Deploy
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  vue-js-app-build:
+    name: vue-js-app image build, pull and push
+    runs-on: ubuntu-latest
+    env:
+      PROJECT_SRC_DIR: head-hunter-vue-js-app
+      DOCKER_IMAGE: docker.pkg.github.com/lev4and/headhunter/vue-js-app:latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Login to docker.pkg.github.com
+        run: docker login docker.pkg.github.com -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and pull docker image
+        run: docker build -f $PROJECT_SRC_DIR/Dockerfile --pull -t $DOCKER_IMAGE $PROJECT_SRC_DIR
+
+      - name: Push docker image
+        run: docker push $DOCKER_IMAGE
+
+      - name: Deploy docker image
+        uses: satak/webrequest-action@master
+        with:
+          url: http://lev4and.ru/portainer/api/webhooks/4cd3e467-b9f1-4fe2-8405-626705dca1bc
+          method: POST
+
+  authorization-web-app-build:
+    name: authorization-web-app image build, pull and push
+    runs-on: ubuntu-latest
+    env:
+      PROJECT_SRC_DIR: HeadHunter.AuthorizationWebApplication
+      DOCKER_IMAGE: docker.pkg.github.com/lev4and/headhunter/authorization-web-app:latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Login to docker.pkg.github.com
+        run: docker login docker.pkg.github.com -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and pull docker image
+        run: docker build -f $PROJECT_SRC_DIR/Dockerfile --pull -t $DOCKER_IMAGE .
+
+      - name: Push docker image
+        run: docker push $DOCKER_IMAGE
+
+      - name: Deploy docker image
+        uses: satak/webrequest-action@master
+        with:
+          url: http://lev4and.ru/portainer/api/webhooks/d476a2e6-7b99-4aac-827d-645982cdc3b4
+          method: POST
+
+  resource-web-app-build:
+    name: resource-web-app image build, pull and push
+    runs-on: ubuntu-latest
+    env:
+      PROJECT_SRC_DIR: HeadHunter.ResourceWebApplication
+      DOCKER_IMAGE: docker.pkg.github.com/lev4and/headhunter/resource-web-app:latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Login to docker.pkg.github.com
+        run: docker login docker.pkg.github.com -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and pull docker image
+        run: docker build -f $PROJECT_SRC_DIR/Dockerfile --pull -t $DOCKER_IMAGE .
+
+      - name: Push docker image
+        run: docker push $DOCKER_IMAGE
+      
+      - name: Deploy docker image
+        uses: satak/webrequest-action@master
+        with:
+          url: http://lev4and.ru/portainer/api/webhooks/a4b30b6d-f1fa-441e-8d8d-6a5ddcc9cafd
+          method: POST
+      
