@@ -12,10 +12,12 @@ namespace HeadHunter.ResourceWebApplication.Areas.HeadHunter.Controllers
     [Route(ResourceRoutes.HeadHunterDictionariesPath)]
     public class DictionariesController : ControllerBase
     {
+        private readonly ILogger<DictionariesController> _logger;
         private readonly HttpClients.HttpContext _context;
 
-        public DictionariesController(HttpClients.HttpContext context)
+        public DictionariesController(ILogger<DictionariesController> logger, HttpClients.HttpContext context)
         {
+            _logger = logger;
             _context = context;
         }
 
