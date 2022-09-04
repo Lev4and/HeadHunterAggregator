@@ -30,9 +30,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeadHunter.Database.MongoDb
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeadHunter.Database.MongoDb.Common.Tests", "HeadHunter.Database.MongoDb.Common.Tests\HeadHunter.Database.MongoDb.Common.Tests.csproj", "{83D5ED13-A017-410A-B41D-354D953E1523}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadHunter.Importer", "HeadHunter.Importer\HeadHunter.Importer.csproj", "{63C7B3B7-489E-48A8-98EE-C923E5DBD1FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeadHunter.Importer", "HeadHunter.Importer\HeadHunter.Importer.csproj", "{63C7B3B7-489E-48A8-98EE-C923E5DBD1FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadHunter.Importer.Tests", "HeadHunter.Importer.Tests\HeadHunter.Importer.Tests.csproj", "{6395D8A3-633D-440F-B030-15B71D2A789D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeadHunter.Importer.Tests", "HeadHunter.Importer.Tests\HeadHunter.Importer.Tests.csproj", "{6395D8A3-633D-440F-B030-15B71D2A789D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadHunter.Importer.ConsoleApp", "HeadHunter.Importer.ConsoleApp\HeadHunter.Importer.ConsoleApp.csproj", "{274881E6-92AA-4D48-B987-D1D9C8BE6475}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -104,6 +106,10 @@ Global
 		{6395D8A3-633D-440F-B030-15B71D2A789D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6395D8A3-633D-440F-B030-15B71D2A789D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6395D8A3-633D-440F-B030-15B71D2A789D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{274881E6-92AA-4D48-B987-D1D9C8BE6475}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{274881E6-92AA-4D48-B987-D1D9C8BE6475}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{274881E6-92AA-4D48-B987-D1D9C8BE6475}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{274881E6-92AA-4D48-B987-D1D9C8BE6475}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
