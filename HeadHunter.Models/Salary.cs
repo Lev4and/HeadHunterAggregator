@@ -14,6 +14,6 @@ namespace HeadHunter.Models
         public string Currency { get; set; }
 
         [JsonProperty("gross")]
-        public bool Gross { get; set; }
+        public bool? Gross { get; set; }
     }
 }
