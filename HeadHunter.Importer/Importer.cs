@@ -1,17 +1,20 @@
 ﻿using HeadHunter.HttpClients;
 using HeadHunter.Models;
+using Microsoft.Extensions.Logging;
 
 namespace HeadHunter.Importer
 {
     public class Importer
     {
+        private readonly ILogger<Importer> _logger;
         private readonly HttpContext _context;
 
         private DateTime _dateTo;
         private DateTime _dateFrom;
 
-        public Importer(HttpContext context)
+        public Importer(ILogger<Importer> logger, HttpContext context)
         {
+            _logger = logger;
             _context = context;
 
             _dateTo = DateTime.UtcNow;
@@ -20,6 +23,8 @@ namespace HeadHunter.Importer
 
         public async Task<Vacancy> GetVacancyAsync(long vacancyId, long companyId)
         {
+            _logger.LogInformation($"GetVacancyAsync VacancyId: {vacancyId} CompanyId: {companyId}");
+
             var vacancyResponse = await _context.HeadHunter.Vacancies.GetVacancyAsync(vacancyId);
             var companyResponse = await _context.HeadHunter.Employers.GetEmployerAsync(companyId);
 
@@ -35,6 +40,8 @@ namespace HeadHunter.Importer
         {
             while(_dateFrom < DateTime.UtcNow)
             {
+                _logger.LogInformation($"GetVacanciesAsync DateFrom: {_dateFrom.ToString("dd.MM.yyyy HH:mm:ss")}");
+
                 await foreach (var vacancy in GetVacanciesByPediodAsync())
                 {
                     yield return vacancy;
@@ -42,6 +49,8 @@ namespace HeadHunter.Importer
 
                 _dateTo = _dateTo.AddMinutes(5);
                 _dateFrom = _dateFrom.AddMinutes(5);
+
+                _logger.LogInformation($"GetVacanciesAsync Delay: {(_dateTo - DateTime.UtcNow).ToString("c")}");
 
                 if (_dateTo > DateTime.UtcNow) await Task.Delay(_dateTo - DateTime.UtcNow);
             }
@@ -51,8 +60,13 @@ namespace HeadHunter.Importer
         {
             var found = await GetCountVacanciesAsync();
 
+            _logger.LogInformation($"GetVacanciesByPediodAsync Found: {found}");
+            _logger.LogInformation($"GetVacanciesByPediodAsync Pages: {found / 100 + 1}");
+
             for (var i = 1; i <= found / 100 + 1; i++)
             {
+                _logger.LogInformation($"GetVacanciesByPediodAsync Page: {i}");
+
                 await foreach (var vacancy in GetVacanciesByPageAsync(i))
                 {
                     yield return vacancy;
@@ -66,6 +80,10 @@ namespace HeadHunter.Importer
 
             foreach (var vacancy in response?.Result?.Items ?? new Vacancy[0])
             {
+                _logger.LogInformation($"GetVacanciesByPageAsync Vacancy: Id - {vacancy.Id} Name - " +
+                    $"{vacancy.Name} CreatedAt - {vacancy.CreatedAt.ToString("dd.MM.yyyy HH:mm:ss")} " +
+                    $"Company - {vacancy.Employer.Name} Area - {vacancy.Area.Name} Salary from - {vacancy.Salary?.From}");
+
                 yield return vacancy;
             }
         }
