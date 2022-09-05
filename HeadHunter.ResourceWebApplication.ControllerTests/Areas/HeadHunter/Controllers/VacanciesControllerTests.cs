@@ -113,7 +113,7 @@ namespace HeadHunter.ResourceWebApplication.ControllerTests.Areas.HeadHunter.Con
             var value = result?.Value as ResponseModel<PagedResponseModel<Vacancy>>;
 
             Assert.NotNull(value?.Result);
-            Assert.Equal(1, value?.Result?.Page);
+            Assert.Equal(0, value?.Result?.Page);
             Assert.Equal(100, value?.Result?.PerPage);
             Assert.True(value?.Result?.Found > 0);
             Assert.NotEmpty(value?.Result?.Items);
