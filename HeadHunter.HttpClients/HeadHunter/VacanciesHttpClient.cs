@@ -38,7 +38,7 @@ namespace HeadHunter.HttpClients.HeadHunter
             var moscowDateFrom = TimeZoneInfo.ConvertTimeFromUtc(dateFrom, russianTimeZone);
             var moscowDateTo = TimeZoneInfo.ConvertTimeFromUtc(dateTo, russianTimeZone);
 
-            return await Get<PagedResponseModel<Vacancy>>($"?{HeadHunterRoutes.VacanciesPageQueryParam}={page}" +
+            return await Get<PagedResponseModel<Vacancy>>($"?{HeadHunterRoutes.VacanciesPageQueryParam}={page - 1}" +
                 $"&{HeadHunterRoutes.VacanciesPerPageQueryParam}={perPage}" +
                 $"&{HeadHunterRoutes.VacanciesDateFromQueryParam}={moscowDateFrom.ToString("yyyy-MM-ddTHH:mm:ss")}" +
                 $"&{HeadHunterRoutes.VacanciesDateToQueryParam}={moscowDateTo.ToString("yyyy-MM-ddTHH:mm:ss")}");
