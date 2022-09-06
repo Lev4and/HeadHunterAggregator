@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Collections\" />
+    <ProjectReference Include="..\HeadHunter.Database.MongoDb.Common\HeadHunter.Database.MongoDb.Common.csproj" />
   </ItemGroup>
 
 </Project>
