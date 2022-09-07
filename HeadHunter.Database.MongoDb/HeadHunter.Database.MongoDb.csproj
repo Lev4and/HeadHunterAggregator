@@ -7,12 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.2.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
     <PackageReference Include="MongoDB.Bson" Version="2.17.1" />
     <PackageReference Include="MongoDB.Driver" Version="2.17.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\HeadHunter.Database.MongoDb.Common\HeadHunter.Database.MongoDb.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\Address\" />
   </ItemGroup>
 
 </Project>

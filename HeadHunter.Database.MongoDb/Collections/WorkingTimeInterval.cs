@@ -1,9 +1,11 @@
 ﻿using HeadHunter.Database.MongoDb.Common;
+using HeadHunter.Database.MongoDb.Common.Attributes;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace HeadHunter.Database.MongoDb.Collections
 {
+    [MongoDbCollectionNameAttibute("workingtimeintervals")]
     public class WorkingTimeInterval : ICollection
     {
         [BsonId]
