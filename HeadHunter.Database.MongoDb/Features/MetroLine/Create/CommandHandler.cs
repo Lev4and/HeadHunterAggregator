@@ -17,7 +17,7 @@ namespace HeadHunter.Database.MongoDb.Features.MetroLine.Create
         {
             var metroLine = request.MetroLine;
 
-            await _repository.SaveAsync(metroLine);
+            await _repository.AddAsync(metroLine);
 
             return metroLine.Id;
         }

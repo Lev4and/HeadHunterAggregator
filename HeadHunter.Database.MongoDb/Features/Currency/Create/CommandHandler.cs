@@ -17,7 +17,7 @@ namespace HeadHunter.Database.MongoDb.Features.Currency.Create
         {
             var currency = request.Currency;
 
-            await _repository.SaveAsync(currency);
+            await _repository.AddAsync(currency);
 
             return currency.Id;
         }

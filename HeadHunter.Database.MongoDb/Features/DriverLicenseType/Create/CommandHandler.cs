@@ -17,7 +17,7 @@ namespace HeadHunter.Database.MongoDb.Features.DriverLicenseType.Create
         {
             var driverLicenseType = request.DriverLicenseType;
 
-            await _repository.SaveAsync(driverLicenseType);
+            await _repository.AddAsync(driverLicenseType);
 
             return driverLicenseType.Id;
         }

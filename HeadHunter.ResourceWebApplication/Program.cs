@@ -1,3 +1,4 @@
+using HeadHunter.Database.MongoDb;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using HttpClients = HeadHunter.HttpClients;
@@ -8,6 +9,7 @@ builder.Host.UseSerilog((context, loggerConfiguration) =>
     loggerConfiguration.WriteTo.Console().ReadFrom.Configuration(context.Configuration));
 
 builder.Services.AddSingleton<HttpClients.HttpContext>();
+builder.Services.AddMongoDb();
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
@@ -56,6 +58,10 @@ app.UseEndpoints(endpoints =>
     endpoints.MapControllerRoute(
         name: "default",
         pattern: "api/{controller=Home}/{action=Index}/{id?}");
+    endpoints.MapAreaControllerRoute(
+        name: "importArea",
+        areaName: "Import",
+        pattern: "api/import/{controller=Home}/{action=Index}/{id?}");
     endpoints.MapAreaControllerRoute(
         name: "headHunterArea",
         areaName: "HeadHunter",

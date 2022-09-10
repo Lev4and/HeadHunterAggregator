@@ -17,7 +17,7 @@ namespace HeadHunter.Database.MongoDb.Features.KeySkill.Create
         {
             var keySkill = request.KeySkill;
 
-            await _repository.SaveAsync(keySkill);
+            await _repository.AddAsync(keySkill);
 
             return keySkill.Id;
         }

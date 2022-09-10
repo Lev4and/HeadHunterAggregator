@@ -34,6 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HeadHunter.Database.MongoDb\HeadHunter.Database.MongoDb.csproj" />
     <ProjectReference Include="..\HeadHunter.HttpClients\HeadHunter.HttpClients.csproj" />
   </ItemGroup>
 

@@ -17,7 +17,7 @@ namespace HeadHunter.Database.MongoDb.Features.Area.Create
         {
             var area = request.Area;
 
-            await _repository.SaveAsync(area);
+            await _repository.AddAsync(area);
 
             return area.Id;
         }

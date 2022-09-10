@@ -17,7 +17,7 @@ namespace HeadHunter.Database.MongoDb.Features.Industry.Create
         {
             var industry = request.Industry;
 
-            await _repository.SaveAsync(industry);
+            await _repository.AddAsync(industry);
 
             return industry.Id;
         }

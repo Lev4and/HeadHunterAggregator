@@ -17,7 +17,7 @@ namespace HeadHunter.Database.MongoDb.Features.MetroStation.Create
         {
             var metroStation = request.MetroStation;
 
-            await _repository.SaveAsync(metroStation);
+            await _repository.AddAsync(metroStation);
 
             return metroStation.Id;
         }

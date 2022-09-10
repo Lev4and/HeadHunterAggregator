@@ -17,7 +17,7 @@ namespace HeadHunter.Database.MongoDb.Features.Experience.Create
         {
             var experience = request.Experience;
 
-            await _repository.SaveAsync(experience);
+            await _repository.AddAsync(experience);
 
             return experience.Id;
         }

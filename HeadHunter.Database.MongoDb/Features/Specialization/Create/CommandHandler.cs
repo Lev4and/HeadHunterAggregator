@@ -17,7 +17,7 @@ namespace HeadHunter.Database.MongoDb.Features.Specialization.Create
         {
             var specialization = request.Specialization;
 
-            await _repository.SaveAsync(specialization);
+            await _repository.AddAsync(specialization);
 
             return specialization.Id;
         }

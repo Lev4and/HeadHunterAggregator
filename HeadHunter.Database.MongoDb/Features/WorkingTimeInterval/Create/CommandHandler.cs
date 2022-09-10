@@ -17,7 +17,7 @@ namespace HeadHunter.Database.MongoDb.Features.WorkingTimeInterval.Create
         {
             var workingTimeInterval = request.WorkingTimeInterval;
 
-            await _repository.SaveAsync(workingTimeInterval);
+            await _repository.AddAsync(workingTimeInterval);
 
             return workingTimeInterval.Id;
         }

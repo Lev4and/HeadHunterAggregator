@@ -14,11 +14,9 @@ namespace HeadHunter.Database.MongoDb.Common
             _database = database;
         }
 
-        public async Task<ReplaceOneResult> SaveAsync<T>(T item) where T : ICollection
+        public async Task AddAsync<T>(T item) where T : ICollection
         {
-            var options = new ReplaceOptions { IsUpsert = true };
-
-            return await GetCollection<T>().ReplaceOneAsync(element => element.Id == item.Id, item, options);
+            await GetCollection<T>().InsertOneAsync(item);
         }
 
         public async Task<List<T>> FindAsync<T>() where T : ICollection
@@ -33,7 +31,7 @@ namespace HeadHunter.Database.MongoDb.Common
 
         public async Task<T> FirstAsync<T>(Expression<Func<T, bool>> predicate) where T : ICollection
         {
-            return await GetCollection<T>().Find(predicate).FirstAsync<T>();
+            return await GetCollection<T>().Find(predicate).FirstOrDefaultAsync<T>();
         }
 
         public async Task<bool> ContainsAsync<T>(Expression<Func<T, bool>> predicate) where T : ICollection

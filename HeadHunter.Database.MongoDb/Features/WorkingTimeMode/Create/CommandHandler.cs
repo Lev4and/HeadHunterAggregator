@@ -17,7 +17,7 @@ namespace HeadHunter.Database.MongoDb.Features.WorkingTimeMode.Create
         {
             var workingTimeMode = request.WorkingTimeMode;
 
-            await _repository.SaveAsync(workingTimeMode);
+            await _repository.AddAsync(workingTimeMode);
 
             return workingTimeMode.Id;
         }

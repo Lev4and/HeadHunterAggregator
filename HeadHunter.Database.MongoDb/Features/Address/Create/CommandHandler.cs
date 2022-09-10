@@ -17,7 +17,7 @@ namespace HeadHunter.Database.MongoDb.Features.Address.Create
         {
             var address = request.Address;
 
-            await _repository.SaveAsync(address);
+            await _repository.AddAsync(address);
 
             return address.Id;
         }

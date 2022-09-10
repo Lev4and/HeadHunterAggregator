@@ -17,7 +17,7 @@ namespace HeadHunter.Database.MongoDb.Features.BillingType.Create
         {
             var billingType = request.BillingType;
 
-            await _repository.SaveAsync(billingType);
+            await _repository.AddAsync(billingType);
 
             return billingType.Id;
         }

@@ -17,7 +17,7 @@ namespace HeadHunter.Database.MongoDb.Features.WorkingDay.Create
         {
             var workingDay = request.WorkingDay;
 
-            await _repository.SaveAsync(workingDay);
+            await _repository.AddAsync(workingDay);
 
             return workingDay.Id;
         }
