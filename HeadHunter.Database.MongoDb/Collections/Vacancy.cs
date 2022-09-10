@@ -1,41 +1,52 @@
 ﻿using HeadHunter.Database.MongoDb.Common;
+using HeadHunter.Database.MongoDb.Common.Attributes;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace HeadHunter.Database.MongoDb.Collections
 {
+    [MongoDbCollectionNameAttibute("vacancies")]
     public class Vacancy : ICollection
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public ObjectId Id { get; set; }
 
+        [BsonIgnoreIfNull]
         [BsonElement("hasTest")]
-        public bool HasTest { get; set; }
+        public bool? HasTest { get; set; }
 
+        [BsonIgnoreIfNull]
         [BsonElement("archived")]
-        public bool Archived { get; set; }
+        public bool? Archived { get; set; }
 
+        [BsonIgnoreIfNull]
         [BsonElement("premium")]
-        public bool Premium { get; set; }
+        public bool? Premium { get; set; }
 
+        [BsonIgnoreIfNull]
         [BsonElement("acceptKids")]
-        public bool AcceptKids { get; set; }
+        public bool? AcceptKids { get; set; }
 
+        [BsonIgnoreIfNull]
         [BsonElement("allowMessages")]
-        public bool AllowMessages { get; set; }
+        public bool? AllowMessages { get; set; }
 
+        [BsonIgnoreIfNull]
         [BsonElement("acceptTemporary")]
-        public bool AcceptTemporary { get; set; }
+        public bool? AcceptTemporary { get; set; }
 
+        [BsonIgnoreIfNull]
         [BsonElement("acceptHandicapped")]
-        public bool AcceptHandicapped { get; set; }
+        public bool? AcceptHandicapped { get; set; }
 
+        [BsonIgnoreIfNull]
         [BsonElement("responseLetterRequired")]
-        public bool ResponseLetterRequired { get; set; }
+        public bool? ResponseLetterRequired { get; set; }
 
+        [BsonIgnoreIfNull]
         [BsonElement("acceptIncompleteResumes")]
-        public bool AcceptIncompleteResumes { get; set; }
+        public bool? AcceptIncompleteResumes { get; set; }
 
         [BsonRequired]
         [BsonElement("headHunterId")]

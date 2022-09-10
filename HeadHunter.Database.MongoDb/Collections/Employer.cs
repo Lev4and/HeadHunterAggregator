@@ -1,17 +1,15 @@
 ﻿using HeadHunter.Database.MongoDb.Common;
+using HeadHunter.Database.MongoDb.Common.Attributes;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace HeadHunter.Database.MongoDb.Collections
 {
+    [MongoDbCollectionNameAttibute("employers")]
     public class Employer : ICollection
     {
         [BsonId]
         public ObjectId Id { get; set; }
-
-        [BsonRequired]
-        [BsonElement("headHunterId")]
-        public string HeadHunterId { get; set; }
 
         [BsonIgnoreIfNull]
         [BsonElement("trusted")]
@@ -20,6 +18,10 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonIgnoreIfNull]
         [BsonElement("blacklisted")]
         public bool? Blacklisted { get; set; }
+
+        [BsonRequired]
+        [BsonElement("headHunterId")]
+        public long HeadHunterId { get; set; }
 
         [BsonRequired]
         [BsonElement("name")]
