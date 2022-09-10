@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using HeadHunter.Database.MongoDb.Common;
+using HeadHunter.Database.MongoDb.Pipelines;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 

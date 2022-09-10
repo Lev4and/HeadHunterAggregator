@@ -67,7 +67,7 @@ namespace HeadHunter.HttpClients.Tests.Resource
 
             Assert.NotNull(response);
             Assert.NotNull(response.Result);
-            Assert.Equal(1, response?.Result?.Page);
+            Assert.Equal(0, response?.Result?.Page);
             Assert.Equal(100, response?.Result?.PerPage);
             Assert.True(response?.Result?.Found > 0);
             Assert.NotEmpty(response?.Result?.Items);

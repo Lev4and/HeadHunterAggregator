@@ -11,10 +11,6 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonId]
         public ObjectId Id { get; set; }
 
-        [BsonRequired]
-        [BsonElement("headHunterId")]
-        public string HeadHunterId { get; set; }
-
         [BsonIgnoreIfNull]
         [BsonElement("trusted")]
         public bool? Trusted { get; set; }
@@ -22,6 +18,10 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonIgnoreIfNull]
         [BsonElement("blacklisted")]
         public bool? Blacklisted { get; set; }
+
+        [BsonRequired]
+        [BsonElement("headHunterId")]
+        public long HeadHunterId { get; set; }
 
         [BsonRequired]
         [BsonElement("name")]

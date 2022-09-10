@@ -17,8 +17,4 @@
     <ProjectReference Include="..\HeadHunter.Database.MongoDb.Common\HeadHunter.Database.MongoDb.Common.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Address\" />
-  </ItemGroup>
-
 </Project>
