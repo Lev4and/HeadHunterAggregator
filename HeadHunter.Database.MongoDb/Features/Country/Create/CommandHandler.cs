@@ -17,7 +17,7 @@ namespace HeadHunter.Database.MongoDb.Features.Country.Create
         {
             var country = request.Country;
 
-            await _repository.SaveAsync(country);
+            await _repository.AddAsync(country);
 
             return country.Id;
         }

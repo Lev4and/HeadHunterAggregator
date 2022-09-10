@@ -17,7 +17,7 @@ namespace HeadHunter.Database.MongoDb.Features.Schedule.Create
         {
             var schedule = request.Schedule;
 
-            await _repository.SaveAsync(schedule);
+            await _repository.AddAsync(schedule);
 
             return schedule.Id;
         }

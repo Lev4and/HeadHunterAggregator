@@ -25,7 +25,7 @@ namespace HeadHunter.Database.MongoDb.Collections
 
         [BsonIgnoreIfNull]
         [BsonElement("description")]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         [BsonIgnoreIfNull]
         [BsonElement("latitude")]

@@ -17,7 +17,7 @@ namespace HeadHunter.Database.MongoDb.Features.Language.Create
         {
             var language = request.Language;
 
-            await _repository.SaveAsync(language);
+            await _repository.AddAsync(language);
 
             return language.Id;
         }

@@ -17,7 +17,7 @@ namespace HeadHunter.Database.MongoDb.Features.Employer.Create
         {
             var employer = request.Employer;
 
-            await _repository.SaveAsync(employer);
+            await _repository.AddAsync(employer);
 
             return employer.Id;
         }

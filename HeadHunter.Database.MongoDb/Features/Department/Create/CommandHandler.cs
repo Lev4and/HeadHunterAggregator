@@ -17,7 +17,7 @@ namespace HeadHunter.Database.MongoDb.Features.Department.Create
         {
             var department = request.Department;
 
-            await _repository.SaveAsync(department);
+            await _repository.AddAsync(department);
 
             return department.Id;
         }

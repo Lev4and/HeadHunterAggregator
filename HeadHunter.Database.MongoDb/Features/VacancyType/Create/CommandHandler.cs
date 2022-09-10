@@ -17,7 +17,7 @@ namespace HeadHunter.Database.MongoDb.Features.VacancyType.Create
         {
             var vacancyType = request.VacancyType;
 
-            await _repository.SaveAsync(vacancyType);
+            await _repository.AddAsync(vacancyType);
 
             return vacancyType.Id;
         }

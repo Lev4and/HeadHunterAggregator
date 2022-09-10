@@ -17,7 +17,7 @@ namespace HeadHunter.Database.MongoDb.Features.ProfessionalRole.Create
         {
             var professionalRole = request.ProfessionalRole;
 
-            await _repository.SaveAsync(professionalRole);
+            await _repository.AddAsync(professionalRole);
 
             return professionalRole.Id;
         }
