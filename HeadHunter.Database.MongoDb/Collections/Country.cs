@@ -26,5 +26,17 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonIgnoreIfNull]
         [BsonElement("areas")]
         public List<Area> Areas { get; set; }
+
+        public Country(Models.Country country)
+        {
+            if (country == null)
+            {
+                throw new ArgumentNullException(nameof(country));
+            }
+
+            HeadHunterId = country.Id;
+            Url = country.Url;
+            Name = country.Name;
+        }
     }
 }

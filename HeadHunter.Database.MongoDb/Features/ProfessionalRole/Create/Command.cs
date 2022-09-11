@@ -5,9 +5,9 @@ namespace HeadHunter.Database.MongoDb.Features.ProfessionalRole.Create
 {
     public class Command : IRequest<ObjectId>
     {
-        public Collections.ProfessionalRole ProfessionalRole { get; }
+        public Models.ProfessionalRole ProfessionalRole { get; }
 
-        public Command(Collections.ProfessionalRole professionalRole)
+        public Command(Models.ProfessionalRole professionalRole)
         {
             if (professionalRole == null)
             {

@@ -5,9 +5,9 @@ namespace HeadHunter.Database.MongoDb.Features.WorkingTimeMode.Create
 {
     public class Command : IRequest<ObjectId>
     {
-        public Collections.WorkingTimeMode WorkingTimeMode { get; }
+        public Models.WorkingTimeMode WorkingTimeMode { get; }
 
-        public Command(Collections.WorkingTimeMode workingTimeMode)
+        public Command(Models.WorkingTimeMode workingTimeMode)
         {
             if (workingTimeMode == null)
             {

@@ -5,9 +5,9 @@ namespace HeadHunter.Database.MongoDb.Features.WorkingTimeInterval.Create
 {
     public class Command : IRequest<ObjectId>
     {
-        public Collections.WorkingTimeInterval WorkingTimeInterval { get; }
+        public Models.WorkingTimeInterval WorkingTimeInterval { get; }
 
-        public Command(Collections.WorkingTimeInterval workingTimeInterval)
+        public Command(Models.WorkingTimeInterval workingTimeInterval)
         {
             if (workingTimeInterval == null)
             {

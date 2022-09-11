@@ -15,7 +15,7 @@ namespace HeadHunter.Database.MongoDb.Features.Language.Create
 
         public async Task<ObjectId> Handle(Command request, CancellationToken cancellationToken)
         {
-            var language = request.Language;
+            var language = new Collections.Language(request.Language);
 
             await _repository.AddAsync(language);
 

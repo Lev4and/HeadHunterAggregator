@@ -15,7 +15,7 @@ namespace HeadHunter.Database.MongoDb.Features.Currency.Create
 
         public async Task<ObjectId> Handle(Command request, CancellationToken cancellationToken)
         {
-            var currency = request.Currency;
+            var currency = new Collections.Currency(request.Currency);
 
             await _repository.AddAsync(currency);
 

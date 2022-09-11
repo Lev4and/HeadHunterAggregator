@@ -5,9 +5,9 @@ namespace HeadHunter.Database.MongoDb.Features.Address.Create
 {
     public class Command : IRequest<ObjectId>
     {
-        public Collections.Address Address { get; set; }
+        public Models.Address Address { get; set; }
 
-        public Command(Collections.Address address)
+        public Command(Models.Address address)
         {
             if (address == null)
             {

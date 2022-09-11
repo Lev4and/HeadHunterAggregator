@@ -5,9 +5,9 @@ namespace HeadHunter.Database.MongoDb.Features.Currency.Create
 {
     public class Command : IRequest<ObjectId>
     {
-        public Collections.Currency Currency { get; }
+        public Models.Currency Currency { get; }
 
-        public Command(Collections.Currency currency)
+        public Command(Models.Currency currency)
         {
             if (currency == null)
             {

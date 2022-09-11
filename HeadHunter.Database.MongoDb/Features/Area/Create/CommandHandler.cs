@@ -15,7 +15,7 @@ namespace HeadHunter.Database.MongoDb.Features.Area.Create
 
         public async Task<ObjectId> Handle(Command request, CancellationToken cancellationToken)
         {
-            var area = request.Area;
+            var area = new Collections.Area(request.Area);
 
             await _repository.AddAsync(area);
 

@@ -19,5 +19,18 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonIgnoreIfNull]
         [BsonElement("currency")]
         public Currency? Currency { get; set; }
+
+        public Salary(Models.Salary salary)
+        {
+            if (salary == null)
+            {
+                throw new ArgumentNullException(nameof(salary));
+            }
+
+            Gross = salary.Gross;
+            To = salary.To;
+            From = salary.From;
+            Currency = new Currency(new Models.Currency { Code = salary.Currency });
+        }
     }
 }

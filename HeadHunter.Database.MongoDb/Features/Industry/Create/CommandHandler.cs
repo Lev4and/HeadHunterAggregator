@@ -15,7 +15,7 @@ namespace HeadHunter.Database.MongoDb.Features.Industry.Create
 
         public async Task<ObjectId> Handle(Command request, CancellationToken cancellationToken)
         {
-            var industry = request.Industry;
+            var industry = new Collections.Industry(request.Industry);
 
             await _repository.AddAsync(industry);
 

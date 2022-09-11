@@ -15,7 +15,7 @@ namespace HeadHunter.Database.MongoDb.Features.Department.Create
 
         public async Task<ObjectId> Handle(Command request, CancellationToken cancellationToken)
         {
-            var department = request.Department;
+            var department = new Collections.Department(request.Department);
 
             await _repository.AddAsync(department);
 

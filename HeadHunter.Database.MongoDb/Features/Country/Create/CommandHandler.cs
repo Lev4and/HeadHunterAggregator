@@ -15,7 +15,7 @@ namespace HeadHunter.Database.MongoDb.Features.Country.Create
 
         public async Task<ObjectId> Handle(Command request, CancellationToken cancellationToken)
         {
-            var country = request.Country;
+            var country = new Collections.Country(request.Country);
 
             await _repository.AddAsync(country);
 

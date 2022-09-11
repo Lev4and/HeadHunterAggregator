@@ -5,9 +5,9 @@ namespace HeadHunter.Database.MongoDb.Features.Experience.Create
 {
     public class Command : IRequest<ObjectId>
     {
-        public Collections.Experience Experience { get; }
+        public Models.Experience Experience { get; }
 
-        public Command(Collections.Experience experience)
+        public Command(Models.Experience experience)
         {
             if (experience == null)
             {

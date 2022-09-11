@@ -5,9 +5,9 @@ namespace HeadHunter.Database.MongoDb.Features.Department.Create
 {
     public class Command : IRequest<ObjectId>
     {
-        public Collections.Department Department { get; }
+        public Models.Department Department { get; }
 
-        public Command(Collections.Department department)
+        public Command(Models.Department department)
         {
             if (department == null)
             {

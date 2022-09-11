@@ -38,5 +38,20 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonIgnoreIfNull]
         [BsonElement("profareaName")]
         public string ProfareaName { get; set; }
+
+        public Specialization(Models.Specialization specialization)
+        {
+            if (specialization == null)
+            {
+                throw new ArgumentNullException(nameof(specialization));
+            }
+
+            Laboring = specialization.Laboring;
+            Name = specialization.Name;
+            Text = specialization.Text;
+            ProfareaId = specialization.ProfareaId;
+            HeadHunterId = specialization.Id;
+            ProfareaName = specialization.ProfareaName;
+        }
     }
 }

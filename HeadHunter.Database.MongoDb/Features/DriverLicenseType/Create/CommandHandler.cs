@@ -15,7 +15,7 @@ namespace HeadHunter.Database.MongoDb.Features.DriverLicenseType.Create
 
         public async Task<ObjectId> Handle(Command request, CancellationToken cancellationToken)
         {
-            var driverLicenseType = request.DriverLicenseType;
+            var driverLicenseType = new Collections.DriverLicenseType(request.DriverLicenseType);
 
             await _repository.AddAsync(driverLicenseType);
 

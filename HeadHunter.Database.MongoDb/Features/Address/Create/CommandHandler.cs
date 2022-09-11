@@ -15,7 +15,7 @@ namespace HeadHunter.Database.MongoDb.Features.Address.Create
 
         public async Task<ObjectId> Handle(Command request, CancellationToken cancellationToken)
         {
-            var address = request.Address;
+            var address = new Collections.Address(request.Address);
 
             await _repository.AddAsync(address);
 

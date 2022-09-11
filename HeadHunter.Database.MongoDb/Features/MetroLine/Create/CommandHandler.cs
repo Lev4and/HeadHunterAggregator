@@ -15,7 +15,7 @@ namespace HeadHunter.Database.MongoDb.Features.MetroLine.Create
 
         public async Task<ObjectId> Handle(Command request, CancellationToken cancellationToken)
         {
-            var metroLine = request.MetroLine;
+            var metroLine = new Collections.MetroLine(request.MetroLine);
 
             await _repository.AddAsync(metroLine);
 

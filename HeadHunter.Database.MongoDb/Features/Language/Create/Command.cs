@@ -5,9 +5,9 @@ namespace HeadHunter.Database.MongoDb.Features.Language.Create
 {
     public class Command : IRequest<ObjectId>
     {
-        public Collections.Language Language { get; }
+        public Models.Language Language { get; }
 
-        public Command(Collections.Language language)
+        public Command(Models.Language language)
         {
             if (language == null)
             {

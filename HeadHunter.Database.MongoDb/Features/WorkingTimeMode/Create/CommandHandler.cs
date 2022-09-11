@@ -15,7 +15,7 @@ namespace HeadHunter.Database.MongoDb.Features.WorkingTimeMode.Create
 
         public async Task<ObjectId> Handle(Command request, CancellationToken cancellationToken)
         {
-            var workingTimeMode = request.WorkingTimeMode;
+            var workingTimeMode = new Collections.WorkingTimeMode(request.WorkingTimeMode);
 
             await _repository.AddAsync(workingTimeMode);
 

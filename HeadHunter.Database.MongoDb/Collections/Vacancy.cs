@@ -163,5 +163,54 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonIgnoreIfNull]
         [BsonElement("workingTimeIntervals")]
         public List<WorkingTimeInterval> WorkingTimeIntervals { get; set; }
+
+        public Vacancy(Models.Vacancy vacancy)
+        {
+            if (vacancy == null)
+            {
+                throw new ArgumentNullException(nameof(vacancy));
+            }
+
+            HasTest = vacancy.HasTest;
+            Archived = vacancy.Archived;
+            Premium = vacancy.Premium;
+            AcceptKids = vacancy.AcceptKids;
+            AllowMessages = vacancy.AllowMessages;
+            AcceptTemporary = vacancy.AcceptTemporary;
+            AcceptHandicapped = vacancy.AcceptHandicapped;
+            ResponseLetterRequired = vacancy.ResponseLetterRequired;
+            AcceptIncompleteResumes = vacancy.AcceptIncompleteResumes;
+            HeadHunterId = Convert.ToInt64(vacancy.Id);
+            Code = vacancy.Code;
+            Name = vacancy.Name;
+            Description = vacancy.Description;
+            AlternateUrl = vacancy.AlternateUrl;
+            ApplyAlternateUrl = vacancy.ApplyAlternateUrl;
+            BrandedDescription = vacancy.BrandedDescription;
+            CreatedAt = vacancy.CreatedAt;
+            PublishedAt = vacancy.PublishedAt;
+            InitialCreatedAt = vacancy.InitialCreatedAt;
+            Area = new Area(vacancy.Area);
+            Test = new Test(vacancy.Test);
+            Salary = new Salary(vacancy.Salary);
+            Address = new Address(vacancy.Address);
+            Employer = new Employer(vacancy.Employer);
+            Schedule = new Schedule(vacancy.Schedule);
+            Contacts = new Contacts(vacancy.Contacts);
+            Experience = new Experience(vacancy.Experience);
+            Employment = new Employment(vacancy.Employment);
+            Department = new Department(vacancy.Department);
+            VacancyType = new VacancyType(vacancy.Type);
+            BillingType = new BillingType(vacancy.BillingType);
+            InsiderInterview = new InsiderInterview(vacancy.InsiderInterview);
+            Languages = vacancy.Languages.Select(language => new Language(language)).ToList();
+            KeySkills = vacancy.KeySkills.Select(keySkill => new KeySkill(keySkill)).ToList();
+            WorkingDays = vacancy.WorkingDays.Select(workingDay => new WorkingDay(workingDay)).ToList();
+            Specializations = vacancy.Specializations.Select(specialization => new Specialization(specialization)).ToList();
+            WorkingTimeModes = vacancy.WorkingTimeModes.Select(workingTimeMode => new WorkingTimeMode(workingTimeMode)).ToList();
+            ProfessionalRoles = vacancy.ProfessionalRoles.Select(professionalRole => new ProfessionalRole(professionalRole)).ToList();
+            DriverLicenseTypes = vacancy.DriverLicenseTypes.Select(driverLicenseType => new DriverLicenseType(driverLicenseType)).ToList();
+            WorkingTimeIntervals = vacancy.WorkingTimeIntervals.Select(workingTimeInterval => new WorkingTimeInterval(workingTimeInterval)).ToList();
+        }
     }
 }

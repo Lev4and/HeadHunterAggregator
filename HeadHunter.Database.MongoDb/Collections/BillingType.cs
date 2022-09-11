@@ -18,5 +18,16 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonRequired]
         [BsonElement("name")]
         public string Name { get; set; }
+
+        public BillingType(Models.BillingType billingType)
+        {
+            if (billingType == null)
+            {
+                throw new ArgumentNullException(nameof(billingType));
+            }
+
+            HeadHunterId = billingType.Id;
+            Name = billingType.Name;
+        }
     }
 }

@@ -14,5 +14,15 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonRequired]
         [BsonElement("headHunterId")]
         public string HeadHunterId { get; set; }
+
+        public DriverLicenseType(Models.DriverLicenseType driverLicenseType)
+        {
+            if (driverLicenseType == null)
+            {
+                throw new ArgumentNullException(nameof(driverLicenseType));
+            }
+
+            HeadHunterId = driverLicenseType.Id;
+        }
     }
 }

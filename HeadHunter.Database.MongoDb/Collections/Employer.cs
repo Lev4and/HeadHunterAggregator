@@ -74,5 +74,29 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonIgnoreIfNull]
         [BsonElement("insiderInterviews")]
         public List<InsiderInterview> InsiderInterviews { get; set; }
+
+        public Employer(Models.Employer employer)
+        {
+            if (employer == null)
+            {
+                throw new ArgumentNullException(nameof(employer));
+            }
+
+            Trusted = employer.Trusted;
+            Blacklisted = employer.Blacklisted;
+            HeadHunterId = Convert.ToInt64(employer.Id);
+            Name = employer.Name;
+            Url = employer.Url;
+            Type = employer.Type;
+            SiteUrl = employer.SiteUrl;
+            Description = employer.Description;
+            AlternateUrl = employer.AlternateUrl;
+            VacanciesUrl = employer.VacanciesUrl;
+            BrandedDescription = employer.BrandedDescription;
+            Area = new Area(employer.Area);
+            LogoUrls = new LogoUrls(employer.LogoUrls);
+            Industries = employer.Industries.Select(industry => new Industry(industry)).ToList();
+            InsiderInterviews = employer.InsiderInterviews.Select(insiderInterview => new InsiderInterview(insiderInterview)).ToList();
+        }
     }
 }

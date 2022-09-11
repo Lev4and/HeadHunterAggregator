@@ -15,7 +15,7 @@ namespace HeadHunter.Database.MongoDb.Features.Employer.Create
 
         public async Task<ObjectId> Handle(Command request, CancellationToken cancellationToken)
         {
-            var employer = request.Employer;
+            var employer = new Collections.Employer(request.Employer);
 
             await _repository.AddAsync(employer);
 

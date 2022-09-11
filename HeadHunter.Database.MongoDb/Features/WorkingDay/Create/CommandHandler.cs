@@ -15,7 +15,7 @@ namespace HeadHunter.Database.MongoDb.Features.WorkingDay.Create
 
         public async Task<ObjectId> Handle(Command request, CancellationToken cancellationToken)
         {
-            var workingDay = request.WorkingDay;
+            var workingDay = new Collections.WorkingDay(request.WorkingDay);
 
             await _repository.AddAsync(workingDay);
 

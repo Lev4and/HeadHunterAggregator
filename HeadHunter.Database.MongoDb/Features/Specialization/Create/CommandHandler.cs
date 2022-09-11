@@ -15,7 +15,7 @@ namespace HeadHunter.Database.MongoDb.Features.Specialization.Create
 
         public async Task<ObjectId> Handle(Command request, CancellationToken cancellationToken)
         {
-            var specialization = request.Specialization;
+            var specialization = new Collections.Specialization(request.Specialization);
 
             await _repository.AddAsync(specialization);
 

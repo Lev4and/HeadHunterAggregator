@@ -15,7 +15,7 @@ namespace HeadHunter.Database.MongoDb.Features.Schedule.Create
 
         public async Task<ObjectId> Handle(Command request, CancellationToken cancellationToken)
         {
-            var schedule = request.Schedule;
+            var schedule = new Collections.Schedule(request.Schedule);
 
             await _repository.AddAsync(schedule);
 

@@ -18,5 +18,16 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonRequired]
         [BsonElement("name")]
         public string Name { get; set; }
+
+        public Language(Models.Language language)
+        {
+            if (language == null)
+            {
+                throw new ArgumentNullException(nameof(language));
+            }
+
+            HeadHunterId = language.Id;
+            Name = language.Name;
+        }
     }
 }

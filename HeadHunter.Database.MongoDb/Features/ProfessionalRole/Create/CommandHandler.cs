@@ -15,7 +15,7 @@ namespace HeadHunter.Database.MongoDb.Features.ProfessionalRole.Create
 
         public async Task<ObjectId> Handle(Command request, CancellationToken cancellationToken)
         {
-            var professionalRole = request.ProfessionalRole;
+            var professionalRole = new Collections.ProfessionalRole(request.ProfessionalRole);
 
             await _repository.AddAsync(professionalRole);
 

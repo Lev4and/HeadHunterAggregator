@@ -5,9 +5,9 @@ namespace HeadHunter.Database.MongoDb.Features.Industry.Create
 {
     public class Command : IRequest<ObjectId>
     {
-        public Collections.Industry Industry { get; }
+        public Models.Industry Industry { get; }
 
-        public Command(Collections.Industry industry)
+        public Command(Models.Industry industry)
         {
             if (industry == null)
             {

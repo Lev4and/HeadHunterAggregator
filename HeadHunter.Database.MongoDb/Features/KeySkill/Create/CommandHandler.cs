@@ -15,7 +15,7 @@ namespace HeadHunter.Database.MongoDb.Features.KeySkill.Create
 
         public async Task<ObjectId> Handle(Command request, CancellationToken cancellationToken)
         {
-            var keySkill = request.KeySkill;
+            var keySkill = new Collections.KeySkill(request.KeySkill);
 
             await _repository.AddAsync(keySkill);
 

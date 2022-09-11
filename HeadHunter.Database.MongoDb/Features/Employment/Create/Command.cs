@@ -5,9 +5,9 @@ namespace HeadHunter.Database.MongoDb.Features.Employment.Create
 {
     public class Command : IRequest<ObjectId>
     {
-        public Collections.Employment Employment { get; }
+        public Models.Employment Employment { get; }
 
-        public Command(Collections.Employment employment)
+        public Command(Models.Employment employment)
         {
             if (employment == null)
             {

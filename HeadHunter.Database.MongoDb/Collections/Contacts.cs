@@ -15,5 +15,17 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonIgnoreIfNull]
         [BsonElement("phones")]
         public List<Phone> Phones { get; set; }
+
+        public Contacts(Models.Contacts contacts)
+        {
+            if (contacts == null)
+            {
+                throw new ArgumentNullException(nameof(contacts));
+            }
+
+            Name = contacts.Name;
+            Email = contacts.Email;
+            Phones = contacts.Phones.Select(phone => new Phone(phone)).ToList();
+        }
     }
 }

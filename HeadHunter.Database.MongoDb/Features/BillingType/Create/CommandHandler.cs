@@ -15,7 +15,7 @@ namespace HeadHunter.Database.MongoDb.Features.BillingType.Create
 
         public async Task<ObjectId> Handle(Command request, CancellationToken cancellationToken)
         {
-            var billingType = request.BillingType;
+            var billingType = new Collections.BillingType(request.BillingType);
 
             await _repository.AddAsync(billingType);
 

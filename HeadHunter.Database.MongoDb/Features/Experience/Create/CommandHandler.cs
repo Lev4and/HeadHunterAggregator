@@ -15,7 +15,7 @@ namespace HeadHunter.Database.MongoDb.Features.Experience.Create
 
         public async Task<ObjectId> Handle(Command request, CancellationToken cancellationToken)
         {
-            var experience = request.Experience;
+            var experience = new Collections.Experience(request.Experience);
 
             await _repository.AddAsync(experience);
 

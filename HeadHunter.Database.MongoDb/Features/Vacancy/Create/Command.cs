@@ -5,9 +5,9 @@ namespace HeadHunter.Database.MongoDb.Features.Vacancy.Create
 {
     public class Command : IRequest<ObjectId>
     {
-        public Collections.Vacancy Vacancy { get; }
+        public Models.Vacancy Vacancy { get; }
 
-        public Command(Collections.Vacancy vacancy)
+        public Command(Models.Vacancy vacancy)
         {
             if (vacancy == null)
             {

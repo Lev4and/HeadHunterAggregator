@@ -46,5 +46,23 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonIgnoreIfNull]
         [BsonElement("longitude")]
         public double? Longitude { get; set; }
+
+        public MetroStation(Models.MetroStation metroStation)
+        {
+            if (metroStation == null)
+            {
+                throw new ArgumentNullException(nameof(metroStation));
+            }
+
+            HeadHunterId = metroStation.Id;
+            Order = metroStation.Order;
+            Name = metroStation.Name;
+            LineId = metroStation.LineId;
+            LineName = metroStation.LineName;
+            StationId = metroStation.StationId;
+            StationName = metroStation.StationName;
+            Latitude = metroStation.Lat;
+            Longitude = metroStation.Lng;
+        }
     }
 }

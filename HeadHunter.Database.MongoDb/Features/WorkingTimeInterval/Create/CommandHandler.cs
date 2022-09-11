@@ -15,7 +15,7 @@ namespace HeadHunter.Database.MongoDb.Features.WorkingTimeInterval.Create
 
         public async Task<ObjectId> Handle(Command request, CancellationToken cancellationToken)
         {
-            var workingTimeInterval = request.WorkingTimeInterval;
+            var workingTimeInterval = new Collections.WorkingTimeInterval(request.WorkingTimeInterval);
 
             await _repository.AddAsync(workingTimeInterval);
 

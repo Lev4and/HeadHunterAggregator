@@ -15,7 +15,7 @@ namespace HeadHunter.Database.MongoDb.Features.VacancyType.Create
 
         public async Task<ObjectId> Handle(Command request, CancellationToken cancellationToken)
         {
-            var vacancyType = request.VacancyType;
+            var vacancyType = new Collections.VacancyType(request.VacancyType);
 
             await _repository.AddAsync(vacancyType);
 

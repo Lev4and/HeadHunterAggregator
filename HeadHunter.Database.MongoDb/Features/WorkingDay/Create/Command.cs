@@ -5,9 +5,9 @@ namespace HeadHunter.Database.MongoDb.Features.WorkingDay.Create
 {
     public class Command : IRequest<ObjectId>
     {
-        public Collections.WorkingDay WorkingDay { get; }
+        public Models.WorkingDay WorkingDay { get; }
 
-        public Command(Collections.WorkingDay workingDay)
+        public Command(Models.WorkingDay workingDay)
         {
             if (workingDay == null)
             {

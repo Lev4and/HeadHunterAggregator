@@ -5,9 +5,9 @@ namespace HeadHunter.Database.MongoDb.Features.Specialization.Create
 {
     public class Command : IRequest<ObjectId>
     {
-        public Collections.Specialization Specialization { get; }
+        public Models.Specialization Specialization { get; }
 
-        public Command(Collections.Specialization specialization)
+        public Command(Models.Specialization specialization)
         {
             if (specialization == null)
             {
