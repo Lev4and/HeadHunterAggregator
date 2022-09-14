@@ -22,19 +22,10 @@ namespace HeadHunter.ResourceWebApplication.Areas.Import.Controllers
         }
 
         [HttpPost]
-        [Route("find")]
-        [ProducesResponseType(typeof(ResponseModel<Collections.MetroLine>), 200)]
-        public async Task<IActionResult> FindMetroLine([FromBody] MetroLine.Find.Command command)
+        [ProducesResponseType(typeof(ResponseModel<ObjectId>), 200)]
+        public async Task<IActionResult> Import([FromBody] MetroLine.Import.Command command)
         {
             return Ok(new ResponseModel<Collections.MetroLine>(await _mediator.Send(command), ResponseStatuses.Success));
-        }
-
-        [HttpPost]
-        [Route("create")]
-        [ProducesResponseType(typeof(ResponseModel<ObjectId>), 200)]
-        public async Task<IActionResult> CreateMetroLine([FromBody] MetroLine.Create.Command command)
-        {
-            return Ok(new ResponseModel<ObjectId>(await _mediator.Send(command), ResponseStatuses.Success));
         }
     }
 }

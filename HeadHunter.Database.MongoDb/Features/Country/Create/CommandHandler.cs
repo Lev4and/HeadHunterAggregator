@@ -4,7 +4,7 @@ using MongoDB.Bson;
 
 namespace HeadHunter.Database.MongoDb.Features.Country.Create
 {
-    public class CommandHandler : IRequestHandler<Command, ObjectId>
+    public class CommandHandler : IRequestHandler<Command, Collections.Country>
     {
         private readonly Repository _repository;
 
@@ -13,13 +13,13 @@ namespace HeadHunter.Database.MongoDb.Features.Country.Create
             _repository = repository;
         }
 
-        public async Task<ObjectId> Handle(Command request, CancellationToken cancellationToken)
+        public async Task<Collections.Country> Handle(Command request, CancellationToken cancellationToken)
         {
             var country = new Collections.Country(request.Country);
 
             await _repository.AddAsync(country);
 
-            return country.Id;
+            return country;
         }
     }
 }

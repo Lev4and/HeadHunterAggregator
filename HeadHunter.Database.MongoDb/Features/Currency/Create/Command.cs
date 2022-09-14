@@ -3,7 +3,7 @@ using MongoDB.Bson;
 
 namespace HeadHunter.Database.MongoDb.Features.Currency.Create
 {
-    public class Command : IRequest<ObjectId>
+    public class Command : IRequest<Collections.Currency>
     {
         public Models.Currency Currency { get; }
 

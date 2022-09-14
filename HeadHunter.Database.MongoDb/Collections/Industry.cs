@@ -19,6 +19,10 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonElement("headHunterId")]
         public string HeadHunterId { get; set; }
 
+        [BsonIgnoreIfNull]
+        [BsonElement("headHunterParentId")]
+        public string? HeadHunterParentId { get; set; }
+
         [BsonRequired]
         [BsonElement("name")]
         public string Name { get; set; }

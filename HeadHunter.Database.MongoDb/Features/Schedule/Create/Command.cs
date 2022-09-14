@@ -3,7 +3,7 @@ using MongoDB.Bson;
 
 namespace HeadHunter.Database.MongoDb.Features.Schedule.Create
 {
-    public class Command : IRequest<ObjectId>
+    public class Command : IRequest<Collections.Schedule>
     {
         public Models.Schedule Schedule { get; }
 

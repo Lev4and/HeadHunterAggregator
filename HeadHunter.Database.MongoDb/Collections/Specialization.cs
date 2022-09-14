@@ -36,6 +36,10 @@ namespace HeadHunter.Database.MongoDb.Collections
         public string HeadHunterId { get; set; }
 
         [BsonIgnoreIfNull]
+        [BsonElement("headHunterParentId")]
+        public string? HeadHunterParentId { get; set; }
+
+        [BsonIgnoreIfNull]
         [BsonElement("profareaName")]
         public string ProfareaName { get; set; }
 
@@ -51,6 +55,7 @@ namespace HeadHunter.Database.MongoDb.Collections
             Text = specialization.Text;
             ProfareaId = specialization.ProfareaId;
             HeadHunterId = specialization.Id;
+            HeadHunterParentId = specialization.ParentId;
             ProfareaName = specialization.ProfareaName;
         }
     }

@@ -4,7 +4,7 @@ using MongoDB.Bson;
 
 namespace HeadHunter.Database.MongoDb.Features.ProfessionalRole.Create
 {
-    public class CommandHandler : IRequestHandler<Command, ObjectId>
+    public class CommandHandler : IRequestHandler<Command, Collections.ProfessionalRole>
     {
         private readonly Repository _repository;
 
@@ -13,13 +13,13 @@ namespace HeadHunter.Database.MongoDb.Features.ProfessionalRole.Create
             _repository = repository;
         }
 
-        public async Task<ObjectId> Handle(Command request, CancellationToken cancellationToken)
+        public async Task<Collections.ProfessionalRole> Handle(Command request, CancellationToken cancellationToken)
         {
             var professionalRole = new Collections.ProfessionalRole(request.ProfessionalRole);
 
             await _repository.AddAsync(professionalRole);
 
-            return professionalRole.Id;
+            return professionalRole;
         }
     }
 }

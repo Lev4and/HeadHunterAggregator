@@ -22,19 +22,10 @@ namespace HeadHunter.ResourceWebApplication.Areas.Import.Controllers
         }
 
         [HttpPost]
-        [Route("find")]
-        [ProducesResponseType(typeof(ResponseModel<Collections.Specialization>), 200)]
-        public async Task<IActionResult> FindSpecialization([FromBody] Specialization.Find.Command command)
+        [ProducesResponseType(typeof(ResponseModel<ObjectId>), 200)]
+        public async Task<IActionResult> Import([FromBody] Specialization.Import.Command command)
         {
             return Ok(new ResponseModel<Collections.Specialization>(await _mediator.Send(command), ResponseStatuses.Success));
-        }
-
-        [HttpPost]
-        [Route("create")]
-        [ProducesResponseType(typeof(ResponseModel<ObjectId>), 200)]
-        public async Task<IActionResult> CreateSpecialization([FromBody] Specialization.Create.Command command)
-        {
-            return Ok(new ResponseModel<ObjectId>(await _mediator.Send(command), ResponseStatuses.Success));
         }
     }
 }

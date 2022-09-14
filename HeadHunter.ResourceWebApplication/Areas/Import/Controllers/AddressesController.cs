@@ -22,19 +22,10 @@ namespace HeadHunter.ResourceWebApplication.Areas.Import.Controllers
         }
 
         [HttpPost]
-        [Route("find")]
-        [ProducesResponseType(typeof(ResponseModel<Collections.Address>), 200)]
-        public async Task<IActionResult> FindAddress([FromBody] Address.Find.Command command)
+        [ProducesResponseType(typeof(ResponseModel<ObjectId>), 200)]
+        public async Task<IActionResult> Import([FromBody] Address.Import.Command command)
         {
             return Ok(new ResponseModel<Collections.Address>(await _mediator.Send(command), ResponseStatuses.Success));
-        }
-
-        [HttpPost]
-        [Route("create")]
-        [ProducesResponseType(typeof(ResponseModel<ObjectId>), 200)]
-        public async Task<IActionResult> CreateAddress([FromBody] Address.Create.Command command)
-        {
-            return Ok(new ResponseModel<ObjectId>(await _mediator.Send(command), ResponseStatuses.Success));
         }
     }
 }

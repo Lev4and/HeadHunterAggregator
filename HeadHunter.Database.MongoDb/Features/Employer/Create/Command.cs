@@ -3,7 +3,7 @@ using MongoDB.Bson;
 
 namespace HeadHunter.Database.MongoDb.Features.Employer.Create
 {
-    public class Command : IRequest<ObjectId>
+    public class Command : IRequest<Collections.Employer>
     {
         public Models.Employer Employer { get; }
 

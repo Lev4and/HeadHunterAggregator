@@ -22,19 +22,10 @@ namespace HeadHunter.ResourceWebApplication.Areas.Import.Controllers
         }
 
         [HttpPost]
-        [Route("find")]
-        [ProducesResponseType(typeof(ResponseModel<Collections.Language>), 200)]
-        public async Task<IActionResult> FindLanguage([FromBody] Language.Find.Command command)
+        [ProducesResponseType(typeof(ResponseModel<ObjectId>), 200)]
+        public async Task<IActionResult> Import([FromBody] Language.Import.Command command)
         {
             return Ok(new ResponseModel<Collections.Language>(await _mediator.Send(command), ResponseStatuses.Success));
-        }
-
-        [HttpPost]
-        [Route("create")]
-        [ProducesResponseType(typeof(ResponseModel<ObjectId>), 200)]
-        public async Task<IActionResult> CreateLanguage([FromBody] Language.Create.Command command)
-        {
-            return Ok(new ResponseModel<ObjectId>(await _mediator.Send(command), ResponseStatuses.Success));
         }
     }
 }

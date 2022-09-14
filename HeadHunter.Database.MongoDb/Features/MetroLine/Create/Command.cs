@@ -3,7 +3,7 @@ using MongoDB.Bson;
 
 namespace HeadHunter.Database.MongoDb.Features.MetroLine.Create
 {
-    public class Command : IRequest<ObjectId>
+    public class Command : IRequest<Collections.MetroLine>
     {
         public Models.MetroLine MetroLine { get; }
 

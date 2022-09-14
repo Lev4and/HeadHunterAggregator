@@ -7,5 +7,11 @@ namespace HeadHunter.Database.MongoDb.Features.Schedule.Find
         public string Name { get; set; }
 
         public string HeadHunterId { get; set; }
+
+        public Command(string name, string headHunterId)
+        {
+            Name = name;
+            HeadHunterId = headHunterId;
+        }
     }
 }

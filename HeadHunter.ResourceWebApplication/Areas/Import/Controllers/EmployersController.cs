@@ -22,19 +22,10 @@ namespace HeadHunter.ResourceWebApplication.Areas.Import.Controllers
         }
 
         [HttpPost]
-        [Route("find")]
-        [ProducesResponseType(typeof(ResponseModel<Collections.Employer>), 200)]
-        public async Task<IActionResult> FindEmployer([FromBody] Employer.Find.Command command)
+        [ProducesResponseType(typeof(ResponseModel<ObjectId>), 200)]
+        public async Task<IActionResult> Import([FromBody] Employer.Import.Command command)
         {
             return Ok(new ResponseModel<Collections.Employer>(await _mediator.Send(command), ResponseStatuses.Success));
-        }
-
-        [HttpPost]
-        [Route("create")]
-        [ProducesResponseType(typeof(ResponseModel<ObjectId>), 200)]
-        public async Task<IActionResult> CreateEmployer([FromBody] Employer.Create.Command command)
-        {
-            return Ok(new ResponseModel<ObjectId>(await _mediator.Send(command), ResponseStatuses.Success));
         }
     }
 }

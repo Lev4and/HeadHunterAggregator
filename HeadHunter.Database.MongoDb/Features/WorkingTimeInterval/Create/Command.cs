@@ -3,7 +3,7 @@ using MongoDB.Bson;
 
 namespace HeadHunter.Database.MongoDb.Features.WorkingTimeInterval.Create
 {
-    public class Command : IRequest<ObjectId>
+    public class Command : IRequest<Collections.WorkingTimeInterval>
     {
         public Models.WorkingTimeInterval WorkingTimeInterval { get; }
 

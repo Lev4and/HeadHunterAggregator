@@ -3,7 +3,7 @@ using MongoDB.Bson;
 
 namespace HeadHunter.Database.MongoDb.Features.Vacancy.Create
 {
-    public class Command : IRequest<ObjectId>
+    public class Command : IRequest<Collections.Vacancy>
     {
         public Models.Vacancy Vacancy { get; }
 

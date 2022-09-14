@@ -8,16 +8,16 @@ namespace HeadHunter.Models
         public string Id { get; set; }
 
         [JsonProperty("description")]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         [JsonProperty("branded_description")]
-        public string BrandedDescription { get; set; }
+        public string? BrandedDescription { get; set; }
 
         [JsonProperty("key_skills")]
         public List<KeySkill> KeySkills { get; set; }
 
         [JsonProperty("schedule")]
-        public Schedule Schedule { get; set; }
+        public Schedule? Schedule { get; set; }
 
         [JsonProperty("accept_handicapped")]
         public bool AcceptHandicapped { get; set; }
@@ -26,28 +26,28 @@ namespace HeadHunter.Models
         public bool AcceptKids { get; set; }
 
         [JsonProperty("experience")]
-        public Experience Experience { get; set; }
+        public Experience? Experience { get; set; }
 
         [JsonProperty("address")]
-        public Address Address { get; set; }
+        public Address? Address { get; set; }
 
         [JsonProperty("alternate_url")]
-        public string AlternateUrl { get; set; }
+        public string? AlternateUrl { get; set; }
 
         [JsonProperty("apply_alternate_url")]
-        public string ApplyAlternateUrl { get; set; }
+        public string? ApplyAlternateUrl { get; set; }
 
         [JsonProperty("code")]
-        public string Code { get; set; }
+        public string? Code { get; set; }
 
         [JsonProperty("department")]
-        public Department Department { get; set; }
+        public Department? Department { get; set; }
 
         [JsonProperty("employment")]
-        public Employment Employment { get; set; }
+        public Employment? Employment { get; set; }
 
         [JsonProperty("salary")]
-        public Salary Salary { get; set; }
+        public Salary? Salary { get; set; }
 
         [JsonProperty("archived")]
         public bool Archived { get; set; }
@@ -56,10 +56,10 @@ namespace HeadHunter.Models
         public string Name { get; set; }
 
         [JsonProperty("insider_interview")]
-        public InsiderInterview InsiderInterview { get; set; }
+        public InsiderInterview? InsiderInterview { get; set; }
 
         [JsonProperty("area")]
-        public Area Area { get; set; }
+        public Area? Area { get; set; }
 
         [JsonProperty("initial_created_at")]
         public DateTime InitialCreatedAt { get; set; }
@@ -71,31 +71,31 @@ namespace HeadHunter.Models
         public DateTime PublishedAt { get; set; }
 
         [JsonProperty("employer")]
-        public Employer Employer { get; set; }
+        public Employer? Employer { get; set; }
 
         [JsonProperty("response_letter_required")]
         public bool ResponseLetterRequired { get; set; }
 
         [JsonProperty("type")]
-        public VacancyType Type { get; set; }
+        public VacancyType? Type { get; set; }
 
         [JsonProperty("has_test")]
         public bool HasTest { get; set; }
 
         [JsonProperty("response_url")]
-        public object ResponseUrl { get; set; }
+        public object? ResponseUrl { get; set; }
 
         [JsonProperty("test")]
-        public Test Test { get; set; }
+        public Test? Test { get; set; }
 
         [JsonProperty("specializations")]
         public List<Specialization> Specializations { get; set; }
 
         [JsonProperty("contacts")]
-        public Contacts Contacts { get; set; }
+        public Contacts? Contacts { get; set; }
 
         [JsonProperty("billing_type")]
-        public BillingType BillingType { get; set; }
+        public BillingType? BillingType { get; set; }
 
         [JsonProperty("allow_messages")]
         public bool AllowMessages { get; set; }

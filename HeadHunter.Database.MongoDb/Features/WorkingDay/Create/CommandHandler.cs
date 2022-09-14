@@ -4,7 +4,7 @@ using MongoDB.Bson;
 
 namespace HeadHunter.Database.MongoDb.Features.WorkingDay.Create
 {
-    public class CommandHandler : IRequestHandler<Command, ObjectId>
+    public class CommandHandler : IRequestHandler<Command, Collections.WorkingDay>
     {
         private readonly Repository _repository;
 
@@ -13,13 +13,13 @@ namespace HeadHunter.Database.MongoDb.Features.WorkingDay.Create
             _repository = repository;
         }
 
-        public async Task<ObjectId> Handle(Command request, CancellationToken cancellationToken)
+        public async Task<Collections.WorkingDay> Handle(Command request, CancellationToken cancellationToken)
         {
             var workingDay = new Collections.WorkingDay(request.WorkingDay);
 
             await _repository.AddAsync(workingDay);
 
-            return workingDay.Id;
+            return workingDay;
         }
     }
 }

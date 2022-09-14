@@ -3,7 +3,7 @@ using MongoDB.Bson;
 
 namespace HeadHunter.Database.MongoDb.Features.DriverLicenseType.Create
 {
-    public class Command : IRequest<ObjectId>
+    public class Command : IRequest<Collections.DriverLicenseType>
     {
         public Models.DriverLicenseType DriverLicenseType { get; }
 

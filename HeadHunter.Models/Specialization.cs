@@ -13,8 +13,11 @@ namespace HeadHunter.Models
         [JsonProperty("id")]
         public string Id { get; set; }
 
+        [JsonProperty("parent_id")]
+        public string? ParentId { get; set; }
+
         [JsonProperty("text")]
-        public string Text { get; set; }
+        public string? Text { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -23,6 +26,11 @@ namespace HeadHunter.Models
         public bool Laboring { get; set; }
 
         [JsonProperty("specializations")]
-        public Specialization[] Specializations { get; set; }
+        public Specialization[]? Specializations { get; set; }
+
+        public Specialization()
+        {
+            ParentId = Id?.Split('.')[0] ?? "";
+        }
     }
 }

@@ -4,7 +4,7 @@ using MongoDB.Bson;
 
 namespace HeadHunter.Database.MongoDb.Features.Experience.Create
 {
-    public class CommandHandler : IRequestHandler<Command, ObjectId>
+    public class CommandHandler : IRequestHandler<Command, Collections.Experience>
     {
         private readonly Repository _repository;
 
@@ -13,13 +13,13 @@ namespace HeadHunter.Database.MongoDb.Features.Experience.Create
             _repository = repository;
         }
 
-        public async Task<ObjectId> Handle(Command request, CancellationToken cancellationToken)
+        public async Task<Collections.Experience> Handle(Command request, CancellationToken cancellationToken)
         {
             var experience = new Collections.Experience(request.Experience);
 
             await _repository.AddAsync(experience);
 
-            return experience.Id;
+            return experience;
         }
     }
 }

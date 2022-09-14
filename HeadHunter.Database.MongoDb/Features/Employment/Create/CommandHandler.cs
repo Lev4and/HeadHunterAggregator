@@ -4,7 +4,7 @@ using MongoDB.Bson;
 
 namespace HeadHunter.Database.MongoDb.Features.Employment.Create
 {
-    public class CommandHandler : IRequestHandler<Command, ObjectId>
+    public class CommandHandler : IRequestHandler<Command, Collections.Employment>
     {
         private readonly Repository _repository;
 
@@ -13,13 +13,13 @@ namespace HeadHunter.Database.MongoDb.Features.Employment.Create
             _repository = repository;
         }
 
-        public async Task<ObjectId> Handle(Command request, CancellationToken cancellationToken)
+        public async Task<Collections.Employment> Handle(Command request, CancellationToken cancellationToken)
         {
             var employment = new Collections.Employment(request.Employment);
 
             await _repository.AddAsync(employment);
 
-            return employment.Id;
+            return employment;
         }
     }
 }

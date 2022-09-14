@@ -93,7 +93,7 @@ namespace HeadHunter.Database.MongoDb.Collections
         public Salary? Salary { get; set; }
 
         [BsonIgnoreIfNull]
-        [BsonElement("schedule")]
+        [BsonElement("address")]
         public Address? Address { get; set; }
 
         [BsonRequired]

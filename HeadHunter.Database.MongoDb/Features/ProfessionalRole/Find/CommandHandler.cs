@@ -15,7 +15,7 @@ namespace HeadHunter.Database.MongoDb.Features.ProfessionalRole.Find
         public async Task<Collections.ProfessionalRole> Handle(Command request, CancellationToken cancellationToken)
         {
             return await _repository.FirstAsync<Collections.ProfessionalRole>(professionalRole => professionalRole.HeadHunterId == request.HeadHunterId &&
-                professionalRole.Name == request.Name && professionalRole.Text == request.Text);
+                professionalRole.Name == request.Name);
         }
     }
 }

@@ -3,7 +3,7 @@ using MongoDB.Bson;
 
 namespace HeadHunter.Database.MongoDb.Features.ProfessionalRole.Create
 {
-    public class Command : IRequest<ObjectId>
+    public class Command : IRequest<Collections.ProfessionalRole>
     {
         public Models.ProfessionalRole ProfessionalRole { get; }
 

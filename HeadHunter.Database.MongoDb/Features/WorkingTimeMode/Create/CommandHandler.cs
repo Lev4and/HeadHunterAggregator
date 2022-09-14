@@ -4,7 +4,7 @@ using MongoDB.Bson;
 
 namespace HeadHunter.Database.MongoDb.Features.WorkingTimeMode.Create
 {
-    public class CommandHandler : IRequestHandler<Command, ObjectId>
+    public class CommandHandler : IRequestHandler<Command, Collections.WorkingTimeMode>
     {
         private readonly Repository _repository;
 
@@ -13,13 +13,13 @@ namespace HeadHunter.Database.MongoDb.Features.WorkingTimeMode.Create
             _repository = repository;
         }
 
-        public async Task<ObjectId> Handle(Command request, CancellationToken cancellationToken)
+        public async Task<Collections.WorkingTimeMode> Handle(Command request, CancellationToken cancellationToken)
         {
             var workingTimeMode = new Collections.WorkingTimeMode(request.WorkingTimeMode);
 
             await _repository.AddAsync(workingTimeMode);
 
-            return workingTimeMode.Id;
+            return workingTimeMode;
         }
     }
 }

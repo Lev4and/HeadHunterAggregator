@@ -3,7 +3,7 @@ using MongoDB.Bson;
 
 namespace HeadHunter.Database.MongoDb.Features.Language.Create
 {
-    public class Command : IRequest<ObjectId>
+    public class Command : IRequest<Collections.Language>
     {
         public Models.Language Language { get; }
 

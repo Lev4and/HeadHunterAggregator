@@ -3,7 +3,7 @@ using MongoDB.Bson;
 
 namespace HeadHunter.Database.MongoDb.Features.WorkingDay.Create
 {
-    public class Command : IRequest<ObjectId>
+    public class Command : IRequest<Collections.WorkingDay>
     {
         public Models.WorkingDay WorkingDay { get; }
 

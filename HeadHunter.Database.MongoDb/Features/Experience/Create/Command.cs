@@ -3,7 +3,7 @@ using MongoDB.Bson;
 
 namespace HeadHunter.Database.MongoDb.Features.Experience.Create
 {
-    public class Command : IRequest<ObjectId>
+    public class Command : IRequest<Collections.Experience>
     {
         public Models.Experience Experience { get; }
 

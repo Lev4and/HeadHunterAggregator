@@ -4,7 +4,7 @@ using MongoDB.Bson;
 
 namespace HeadHunter.Database.MongoDb.Features.KeySkill.Create
 {
-    public class CommandHandler : IRequestHandler<Command, ObjectId>
+    public class CommandHandler : IRequestHandler<Command, Collections.KeySkill>
     {
         private readonly Repository _repository;
 
@@ -13,13 +13,13 @@ namespace HeadHunter.Database.MongoDb.Features.KeySkill.Create
             _repository = repository;
         }
 
-        public async Task<ObjectId> Handle(Command request, CancellationToken cancellationToken)
+        public async Task<Collections.KeySkill> Handle(Command request, CancellationToken cancellationToken)
         {
             var keySkill = new Collections.KeySkill(request.KeySkill);
 
             await _repository.AddAsync(keySkill);
 
-            return keySkill.Id;
+            return keySkill;
         }
     }
 }

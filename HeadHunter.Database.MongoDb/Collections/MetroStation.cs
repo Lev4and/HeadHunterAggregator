@@ -11,6 +11,10 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonId]
         public ObjectId Id { get; set; }
 
+        [BsonIgnoreIfNull]
+        [BsonElement("metroLineId")]
+        public ObjectId? MetroLineId { get; set; }
+
         [BsonRequired]
         [BsonElement("headHunterId")]
         public string HeadHunterId { get; set; }

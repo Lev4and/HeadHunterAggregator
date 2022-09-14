@@ -3,7 +3,7 @@ using MongoDB.Bson;
 
 namespace HeadHunter.Database.MongoDb.Features.Specialization.Create
 {
-    public class Command : IRequest<ObjectId>
+    public class Command : IRequest<Collections.Specialization>
     {
         public Models.Specialization Specialization { get; }
 
