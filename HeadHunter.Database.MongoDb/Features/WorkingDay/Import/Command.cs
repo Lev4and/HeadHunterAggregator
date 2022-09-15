@@ -4,6 +4,11 @@
     {
         public Models.WorkingDay Model { get; set; }
 
+        public Command()
+        {
+
+        }
+
         public Command(Models.WorkingDay workingDay)
         {
             if (workingDay == null)

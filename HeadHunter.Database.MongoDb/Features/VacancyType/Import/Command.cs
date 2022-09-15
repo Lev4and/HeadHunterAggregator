@@ -4,6 +4,11 @@
     {
         public Models.VacancyType Model { get; set; }
 
+        public Command()
+        {
+
+        }
+
         public Command(Models.VacancyType vacancyType)
         {
             if (vacancyType == null)

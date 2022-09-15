@@ -20,10 +20,10 @@ namespace HeadHunter.Models
         public Schedule? Schedule { get; set; }
 
         [JsonProperty("accept_handicapped")]
-        public bool AcceptHandicapped { get; set; }
+        public bool? AcceptHandicapped { get; set; }
 
         [JsonProperty("accept_kids")]
-        public bool AcceptKids { get; set; }
+        public bool? AcceptKids { get; set; }
 
         [JsonProperty("experience")]
         public Experience? Experience { get; set; }
@@ -50,7 +50,7 @@ namespace HeadHunter.Models
         public Salary? Salary { get; set; }
 
         [JsonProperty("archived")]
-        public bool Archived { get; set; }
+        public bool? Archived { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -71,16 +71,16 @@ namespace HeadHunter.Models
         public DateTime PublishedAt { get; set; }
 
         [JsonProperty("employer")]
-        public Employer? Employer { get; set; }
+        public Employer Employer { get; set; }
 
         [JsonProperty("response_letter_required")]
-        public bool ResponseLetterRequired { get; set; }
+        public bool? ResponseLetterRequired { get; set; }
 
         [JsonProperty("type")]
         public VacancyType? Type { get; set; }
 
         [JsonProperty("has_test")]
-        public bool HasTest { get; set; }
+        public bool? HasTest { get; set; }
 
         [JsonProperty("response_url")]
         public object? ResponseUrl { get; set; }
@@ -98,16 +98,16 @@ namespace HeadHunter.Models
         public BillingType? BillingType { get; set; }
 
         [JsonProperty("allow_messages")]
-        public bool AllowMessages { get; set; }
+        public bool? AllowMessages { get; set; }
 
         [JsonProperty("premium")]
-        public bool Premium { get; set; }
+        public bool? Premium { get; set; }
 
         [JsonProperty("driver_license_types")]
         public List<DriverLicenseType> DriverLicenseTypes { get; set; }
 
         [JsonProperty("accept_incomplete_resumes")]
-        public bool AcceptIncompleteResumes { get; set; }
+        public bool? AcceptIncompleteResumes { get; set; }
 
         [JsonProperty("working_days")]
         public List<WorkingDay> WorkingDays { get; set; }
@@ -119,7 +119,7 @@ namespace HeadHunter.Models
         public List<WorkingTimeMode> WorkingTimeModes { get; set; }
 
         [JsonProperty("accept_temporary")]
-        public bool AcceptTemporary { get; set; }
+        public bool? AcceptTemporary { get; set; }
 
         [JsonProperty("professional_roles")]
         public List<ProfessionalRole> ProfessionalRoles { get; set; }

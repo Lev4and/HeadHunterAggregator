@@ -4,6 +4,11 @@
     {
         public Models.BillingType Model { get; set; }
 
+        public Command()
+        {
+
+        }
+
         public Command(Models.BillingType billingType)
         {
             if (billingType == null)

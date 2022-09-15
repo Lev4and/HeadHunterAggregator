@@ -4,6 +4,11 @@
     {
         public Models.Currency Model { get; set; }
 
+        public Command()
+        {
+
+        }
+
         public Command(Models.Currency currency)
         {
             if (currency == null)

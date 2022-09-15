@@ -4,6 +4,11 @@
     {
         public Models.Schedule Model { get; set; }
 
+        public Command()
+        {
+
+        }
+
         public Command(Models.Schedule schedule)
         {
             if (schedule == null)

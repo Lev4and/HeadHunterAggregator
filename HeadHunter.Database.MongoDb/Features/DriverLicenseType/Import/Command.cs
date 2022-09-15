@@ -4,6 +4,11 @@
     {
         public Models.DriverLicenseType Model { get; set; }
 
+        public Command()
+        {
+
+        }
+
         public Command(Models.DriverLicenseType driverLicenseType)
         {
             if (driverLicenseType == null)

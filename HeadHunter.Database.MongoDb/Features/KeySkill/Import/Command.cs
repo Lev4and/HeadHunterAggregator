@@ -4,6 +4,11 @@
     {
         public Models.KeySkill Model { get; set; }
 
+        public Command()
+        {
+
+        }
+
         public Command(Models.KeySkill keySkill)
         {
             if (keySkill == null)

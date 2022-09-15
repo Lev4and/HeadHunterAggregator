@@ -4,6 +4,11 @@
     {
         public Models.Department Model { get; set; }
 
+        public Command()
+        {
+
+        }
+
         public Command(Models.Department department)
         {
             if (department == null)

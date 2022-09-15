@@ -52,24 +52,29 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonElement("headHunterId")]
         public long HeadHunterId { get; set; }
 
+        [BsonIgnoreIfNull]
         [BsonElement("code")]
-        public string Code { get; set; }
+        public string? Code { get; set; }
 
         [BsonRequired]
         [BsonElement("name")]
         public string Name { get; set; }
 
+        [BsonIgnoreIfNull]
         [BsonElement("description")]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
+        [BsonIgnoreIfNull]
         [BsonElement("alternateUrl")]
-        public string AlternateUrl { get; set; }
+        public string? AlternateUrl { get; set; }
 
+        [BsonIgnoreIfNull]
         [BsonElement("applyAlternateUrl")]
-        public string ApplyAlternateUrl { get; set; }
+        public string? ApplyAlternateUrl { get; set; }
 
+        [BsonIgnoreIfNull]
         [BsonElement("brandedDescription")]
-        public string BrandedDescription { get; set; }
+        public string? BrandedDescription { get; set; }
 
         [BsonElement("createdAt")]
         public DateTime CreatedAt { get; set; }
@@ -190,19 +195,19 @@ namespace HeadHunter.Database.MongoDb.Collections
             CreatedAt = vacancy.CreatedAt;
             PublishedAt = vacancy.PublishedAt;
             InitialCreatedAt = vacancy.InitialCreatedAt;
-            Area = new Area(vacancy.Area);
-            Test = new Test(vacancy.Test);
-            Salary = new Salary(vacancy.Salary);
-            Address = new Address(vacancy.Address);
+            Area = vacancy.Area != null ? new Area(vacancy.Area) : null;
+            Test = vacancy.Test != null ? new Test(vacancy.Test) : null;
+            Salary = vacancy.Salary != null ? new Salary(vacancy.Salary) : null;
+            Address = vacancy.Address != null ? new Address(vacancy.Address) : null;
             Employer = new Employer(vacancy.Employer);
-            Schedule = new Schedule(vacancy.Schedule);
-            Contacts = new Contacts(vacancy.Contacts);
-            Experience = new Experience(vacancy.Experience);
-            Employment = new Employment(vacancy.Employment);
-            Department = new Department(vacancy.Department);
-            VacancyType = new VacancyType(vacancy.Type);
-            BillingType = new BillingType(vacancy.BillingType);
-            InsiderInterview = new InsiderInterview(vacancy.InsiderInterview);
+            Schedule = vacancy.Schedule != null ? new Schedule(vacancy.Schedule) : null;
+            Contacts = vacancy.Contacts != null ? new Contacts(vacancy.Contacts) : null;
+            Experience = vacancy.Experience != null ? new Experience(vacancy.Experience) : null;
+            Employment = vacancy.Employment != null ? new Employment(vacancy.Employment) : null;
+            Department = vacancy.Department != null ? new Department(vacancy.Department) : null;
+            VacancyType = vacancy.Type != null ? new VacancyType(vacancy.Type) : null;
+            BillingType = vacancy.BillingType != null ? new BillingType(vacancy.BillingType) : null;
+            InsiderInterview = vacancy.InsiderInterview != null ? new InsiderInterview(vacancy.InsiderInterview) : null;
             Languages = vacancy.Languages.Select(language => new Language(language)).ToList();
             KeySkills = vacancy.KeySkills.Select(keySkill => new KeySkill(keySkill)).ToList();
             WorkingDays = vacancy.WorkingDays.Select(workingDay => new WorkingDay(workingDay)).ToList();

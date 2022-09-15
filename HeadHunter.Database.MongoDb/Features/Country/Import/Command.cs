@@ -4,6 +4,11 @@
     {
         public Models.Country Model { get; set; }
 
+        public Command()
+        {
+
+        }
+
         public Command(Models.Country country)
         {
             if (country == null)

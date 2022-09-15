@@ -4,6 +4,11 @@
     {
         public Models.Experience Model { get; set; }
 
+        public Command()
+        {
+
+        }
+
         public Command(Models.Experience experience)
         {
             if (experience == null)

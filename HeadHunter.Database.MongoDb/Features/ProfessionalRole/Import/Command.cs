@@ -4,6 +4,11 @@
     {
         public Models.ProfessionalRole Model { get; set; }
 
+        public Command()
+        {
+
+        }
+
         public Command(Models.ProfessionalRole professionalRole)
         {
             if (professionalRole == null)

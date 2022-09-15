@@ -11,6 +11,6 @@ namespace HeadHunter.Models
         public string Name { get; set; }
 
         [JsonProperty("level")]
-        public Level Level { get; set; }
+        public Level? Level { get; set; }
     }
 }

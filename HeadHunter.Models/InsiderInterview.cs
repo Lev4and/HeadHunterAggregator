@@ -8,9 +8,9 @@ namespace HeadHunter.Models
         public string Id { get; set; }
 
         [JsonProperty("title")]
-        public string Title { get; set; }
+        public string? Title { get; set; }
 
         [JsonProperty("url")]
-        public string Url { get; set; }
+        public string? Url { get; set; }
     }
 }

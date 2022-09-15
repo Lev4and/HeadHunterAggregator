@@ -5,7 +5,7 @@ namespace HeadHunter.Models
     public class Employer
     {
         [JsonProperty("logo_urls")]
-        public LogoUrls LogoUrls { get; set; }
+        public LogoUrls? LogoUrls { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -20,10 +20,10 @@ namespace HeadHunter.Models
         public string Id { get; set; }
 
         [JsonProperty("trusted")]
-        public bool Trusted { get; set; }
+        public bool? Trusted { get; set; }
 
         [JsonProperty("blacklisted")]
-        public bool Blacklisted { get; set; }
+        public bool? Blacklisted { get; set; }
 
         [JsonProperty("area")]
         public Area? Area { get; set; }
@@ -41,7 +41,7 @@ namespace HeadHunter.Models
         public List<InsiderInterview> InsiderInterviews { get; set; }
 
         [JsonProperty("open_vacancies")]
-        public int OpenVacancies { get; set; }
+        public int? OpenVacancies { get; set; }
 
         [JsonProperty("relations")]
         public List<object> Relations { get; set; }

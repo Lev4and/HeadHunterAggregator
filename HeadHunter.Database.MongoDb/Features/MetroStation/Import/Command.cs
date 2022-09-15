@@ -4,6 +4,11 @@
     {
         public Models.MetroStation Model { get; set; }
 
+        public Command()
+        {
+
+        }
+
         public Command(Models.MetroStation metroStation)
         {
             if (metroStation == null)

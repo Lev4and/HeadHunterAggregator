@@ -4,6 +4,11 @@
     {
         public Models.WorkingTimeInterval Model { get; set; }
 
+        public Command()
+        {
+
+        }
+
         public Command(Models.WorkingTimeInterval workingTimeInterval)
         {
             if (workingTimeInterval == null)

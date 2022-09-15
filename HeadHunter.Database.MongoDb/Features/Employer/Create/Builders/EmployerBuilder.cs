@@ -17,7 +17,7 @@ namespace HeadHunter.Database.MongoDb.Features.Employer.Create.Builders
         {
             Enqueue(() => Task.Run(async () =>
             {
-                Document.Area = await ImportAsync(new Area.Import.Command(_employer.Area));
+                Document.Area = _employer.Area != null ? await ImportAsync(new Area.Import.Command(_employer.Area)) : null;
             }));
 
             return this;

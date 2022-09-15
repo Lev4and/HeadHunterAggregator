@@ -4,6 +4,11 @@
     {
         public Models.Specialization Model { get; set; }
 
+        public Command()
+        {
+
+        }
+
         public Command(Models.Specialization specialization)
         {
             if (specialization == null)

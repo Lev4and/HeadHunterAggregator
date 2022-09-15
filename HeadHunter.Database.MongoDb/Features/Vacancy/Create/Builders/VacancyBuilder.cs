@@ -17,7 +17,7 @@ namespace HeadHunter.Database.MongoDb.Features.Vacancy.Create.Builders
         {
             Enqueue(() => Task.Run(async () =>
             {
-                Document.Area = await ImportAsync(new Area.Import.Command(_vacancy.Area));
+                Document.Area = _vacancy.Area != null ? await ImportAsync(new Area.Import.Command(_vacancy.Area)) : null;
             }));
 
             return this;
@@ -27,7 +27,7 @@ namespace HeadHunter.Database.MongoDb.Features.Vacancy.Create.Builders
         {
             Enqueue(() => Task.Run(async () =>
             {
-                Document.Address = await ImportAsync(new Address.Import.Command(_vacancy.Address));
+                Document.Address = _vacancy.Address != null ? await ImportAsync(new Address.Import.Command(_vacancy.Address)) : null;
             }));
 
             return this;
@@ -47,7 +47,7 @@ namespace HeadHunter.Database.MongoDb.Features.Vacancy.Create.Builders
         {
             Enqueue(() => Task.Run(async () =>
             {
-                Document.Schedule = await ImportAsync(new Schedule.Import.Command(_vacancy.Schedule));
+                Document.Schedule = _vacancy.Schedule != null ? await ImportAsync(new Schedule.Import.Command(_vacancy.Schedule)) : null;
             }));
 
             return this;
@@ -57,7 +57,7 @@ namespace HeadHunter.Database.MongoDb.Features.Vacancy.Create.Builders
         {
             Enqueue(() => Task.Run(async () =>
             {
-                Document.Experience = await ImportAsync(new Experience.Import.Command(_vacancy.Experience));
+                Document.Experience = _vacancy.Experience != null ? await ImportAsync(new Experience.Import.Command(_vacancy.Experience)) : null;
             }));
 
             return this;
@@ -67,7 +67,7 @@ namespace HeadHunter.Database.MongoDb.Features.Vacancy.Create.Builders
         {
             Enqueue(() => Task.Run(async () =>
             {
-                Document.Employment = await ImportAsync(new Employment.Import.Command(_vacancy.Employment));
+                Document.Employment = _vacancy.Employment != null ? await ImportAsync(new Employment.Import.Command(_vacancy.Employment)) : null;
             }));
 
             return this;
@@ -77,7 +77,7 @@ namespace HeadHunter.Database.MongoDb.Features.Vacancy.Create.Builders
         {
             Enqueue(() => Task.Run(async () =>
             {
-                Document.Department = await ImportAsync(new Department.Import.Command(_vacancy.Department));
+                Document.Department = _vacancy.Department != null ? await ImportAsync(new Department.Import.Command(_vacancy.Department)) : null;
             }));
 
             return this;
@@ -87,7 +87,7 @@ namespace HeadHunter.Database.MongoDb.Features.Vacancy.Create.Builders
         {
             Enqueue(() => Task.Run(async () =>
             {
-                Document.VacancyType = await ImportAsync(new VacancyType.Import.Command(_vacancy.Type));
+                Document.VacancyType = _vacancy.Type != null ? await ImportAsync(new VacancyType.Import.Command(_vacancy.Type)) : null;
             }));
 
             return this;
@@ -97,7 +97,7 @@ namespace HeadHunter.Database.MongoDb.Features.Vacancy.Create.Builders
         {
             Enqueue(() => Task.Run(async () =>
             {
-                Document.BillingType = await ImportAsync(new BillingType.Import.Command(_vacancy.BillingType));
+                Document.BillingType = _vacancy.BillingType != null ? await ImportAsync(new BillingType.Import.Command(_vacancy.BillingType)) : null;
             }));
 
             return this;

@@ -4,6 +4,11 @@
     {
         public Models.Address Model { get; set; }
 
+        public Command()
+        {
+
+        }
+
         public Command(Models.Address address)
         {
             if (address == null)

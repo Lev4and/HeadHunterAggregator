@@ -4,6 +4,11 @@
     {
         public Models.Industry Model { get; set; }
 
+        public Command()
+        {
+
+        }
+
         public Command(Models.Industry industry)
         {
             if (industry == null)

@@ -4,6 +4,11 @@
     {
         public Models.Employment Model { get; set; }
 
+        public Command()
+        {
+
+        }
+
         public Command(Models.Employment employment)
         {
             if (employment == null)

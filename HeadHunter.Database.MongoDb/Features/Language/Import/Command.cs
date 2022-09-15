@@ -4,6 +4,11 @@
     {
         public Models.Language Model { get; set; }
 
+        public Command()
+        {
+
+        }
+
         public Command(Models.Language language)
         {
             if (language == null)

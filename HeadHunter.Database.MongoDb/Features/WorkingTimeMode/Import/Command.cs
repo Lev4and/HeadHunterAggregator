@@ -4,6 +4,11 @@
     {
         public Models.WorkingTimeMode Model { get; set; }
 
+        public Command()
+        {
+
+        }
+
         public Command(Models.WorkingTimeMode workingTimeMode)
         {
             if (workingTimeMode == null)

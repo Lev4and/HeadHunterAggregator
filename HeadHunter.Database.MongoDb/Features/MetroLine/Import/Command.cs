@@ -4,6 +4,11 @@
     {
         public Models.MetroLine Model { get; set; }
 
+        public Command()
+        {
+
+        }
+
         public Command(Models.MetroLine metroLine)
         {
             if (metroLine == null)
