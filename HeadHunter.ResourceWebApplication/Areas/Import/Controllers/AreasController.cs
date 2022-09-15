@@ -12,7 +12,7 @@ namespace HeadHunter.ResourceWebApplication.Areas.Import.Controllers
     [ApiController]
     [Area("Import")]
     [EnableCors("CorsPolicy")]
-    [Route(ResourceRoutes.ImportAreaPath)]
+    [Route(ResourceRoutes.ImportAreasPath)]
     public class AreasController : ControllerBase
     {
         private readonly IMediator _mediator;
