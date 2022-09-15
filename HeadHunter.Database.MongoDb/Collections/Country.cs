@@ -23,10 +23,6 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonElement("name")]
         public string Name { get; set; }
 
-        [BsonIgnoreIfNull]
-        [BsonElement("areas")]
-        public List<Area> Areas { get; set; }
-
         public Country(Models.Country country)
         {
             if (country == null)

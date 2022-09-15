@@ -19,10 +19,6 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonElement("name")]
         public string Name { get; set; }
 
-        [BsonRequired]
-        [BsonElement("text")]
-        public string Text { get; set; }
-
         public ProfessionalRole(Models.ProfessionalRole professionalRole)
         {
             if (professionalRole == null)
@@ -32,7 +28,6 @@ namespace HeadHunter.Database.MongoDb.Collections
 
             HeadHunterId = professionalRole.Id;
             Name = professionalRole.Name;
-            Text = professionalRole.Text;
         }
     }
 }

@@ -9,8 +9,43 @@ namespace HeadHunter.Database.MongoDb.Collections
     public class Vacancy : ICollection
     {
         [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
         public ObjectId Id { get; set; }
+
+        [BsonIgnoreIfNull]
+        [BsonElement("areaId")]
+        public ObjectId? AreaId { get; set; }
+
+        [BsonIgnoreIfNull]
+        [BsonElement("addressId")]
+        public ObjectId? AddressId { get; set; }
+
+        [BsonRequired]
+        [BsonElement("employerId")]
+        public ObjectId EmployerId { get; set; }
+
+        [BsonIgnoreIfNull]
+        [BsonElement("scheduleId")]
+        public ObjectId? ScheduleId { get; set; }
+
+        [BsonIgnoreIfNull]
+        [BsonElement("experienceId")]
+        public ObjectId? ExperienceId { get; set; }
+
+        [BsonIgnoreIfNull]
+        [BsonElement("employmentId")]
+        public ObjectId? EmploymentId { get; set; }
+
+        [BsonIgnoreIfNull]
+        [BsonElement("departmentId")]
+        public ObjectId? DepartmentId { get; set; }
+
+        [BsonIgnoreIfNull]
+        [BsonElement("vacancyTypeId")]
+        public ObjectId? VacancyTypeId { get; set; }
+
+        [BsonIgnoreIfNull]
+        [BsonElement("billingTypeId")]
+        public ObjectId? BillingTypeId { get; set; }
 
         [BsonIgnoreIfNull]
         [BsonElement("hasTest")]
@@ -85,8 +120,7 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonElement("initialCreatedAt")]
         public DateTime InitialCreatedAt { get; set; }
 
-        [BsonIgnoreIfNull]
-        [BsonElement("area")]
+        [BsonIgnore]
         public Area? Area { get; set; }
 
         [BsonIgnoreIfNull]
@@ -97,40 +131,32 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonElement("salary")]
         public Salary? Salary { get; set; }
 
-        [BsonIgnoreIfNull]
-        [BsonElement("address")]
+        [BsonIgnore]
         public Address? Address { get; set; }
 
-        [BsonRequired]
-        [BsonElement("employer")]
+        [BsonIgnore]
         public Employer Employer { get; set; }
 
-        [BsonIgnoreIfNull]
-        [BsonElement("schedule")]
+        [BsonIgnore]
         public Schedule? Schedule { get; set; }
 
         [BsonIgnoreIfNull]
         [BsonElement("contacts")]
         public Contacts? Contacts { get; set; }
 
-        [BsonIgnoreIfNull]
-        [BsonElement("experience")]
+        [BsonIgnore]
         public Experience? Experience { get; set; }
 
-        [BsonIgnoreIfNull]
-        [BsonElement("employment")]
+        [BsonIgnore]
         public Employment? Employment { get; set; }
 
-        [BsonIgnoreIfNull]
-        [BsonElement("department")]
+        [BsonIgnore]
         public Department? Department { get; set; }
 
-        [BsonIgnoreIfNull]
-        [BsonElement("vacancyType")]
+        [BsonIgnore]
         public VacancyType? VacancyType { get; set; }
 
-        [BsonIgnoreIfNull]
-        [BsonElement("billingType")]
+        [BsonIgnore]
         public BillingType? BillingType { get; set; }
 
         [BsonIgnoreIfNull]
@@ -138,35 +164,59 @@ namespace HeadHunter.Database.MongoDb.Collections
         public InsiderInterview? InsiderInterview { get; set; }
 
         [BsonIgnoreIfNull]
-        [BsonElement("languages")]
+        [BsonElement("languagesIds")]
+        public List<ObjectId> LanguagesIds { get; set; }
+
+        [BsonIgnore]
         public List<Language> Languages { get; set; }
 
         [BsonIgnoreIfNull]
-        [BsonElement("keySkills")]
+        [BsonElement("keySkillsIds")]
+        public List<ObjectId> KeySkillsIds { get; set; }
+
+        [BsonIgnore]
         public List<KeySkill> KeySkills { get; set; }
 
         [BsonIgnoreIfNull]
-        [BsonElement("workingDays")]
+        [BsonElement("workingDaysIds")]
+        public List<ObjectId> WorkingDaysIds { get; set; }
+
+        [BsonIgnore]
         public List<WorkingDay> WorkingDays { get; set; }
 
         [BsonIgnoreIfNull]
-        [BsonElement("specializations")]
+        [BsonElement("specializationsIds")]
+        public List<ObjectId> SpecializationsIds { get; set; }
+
+        [BsonIgnore]
         public List<Specialization> Specializations { get; set; }
 
         [BsonIgnoreIfNull]
-        [BsonElement("workingTimeModes")]
+        [BsonElement("workingTimeModesIds")]
+        public List<ObjectId> WorkingTimeModesIds { get; set; }
+
+        [BsonIgnore]
         public List<WorkingTimeMode> WorkingTimeModes { get; set; }
 
         [BsonIgnoreIfNull]
-        [BsonElement("professionalRoles")]
+        [BsonElement("professionalRolesIds")]
+        public List<ObjectId> ProfessionalRolesIds { get; set; }
+
+        [BsonIgnore]
         public List<ProfessionalRole> ProfessionalRoles { get; set; }
 
         [BsonIgnoreIfNull]
-        [BsonElement("driverLicenseTypes")]
+        [BsonElement("driverLicenseTypesIds")]
+        public List<ObjectId> DriverLicenseTypesIds { get; set; }
+
+        [BsonIgnore]
         public List<DriverLicenseType> DriverLicenseTypes { get; set; }
 
         [BsonIgnoreIfNull]
-        [BsonElement("workingTimeIntervals")]
+        [BsonElement("workingTimeIntervalsIds")]
+        public List<ObjectId> WorkingTimeIntervalsIds { get; set; }
+
+        [BsonIgnore]
         public List<WorkingTimeInterval> WorkingTimeIntervals { get; set; }
 
         public Vacancy(Models.Vacancy vacancy)

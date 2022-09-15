@@ -24,12 +24,8 @@ namespace HeadHunter.Database.MongoDb.Collections
         public string Name { get; set; }
 
         [BsonIgnoreIfNull]
-        [BsonElement("text")]
-        public string Text { get; set; }
-
-        [BsonIgnoreIfNull]
         [BsonElement("profareaId")]
-        public string ProfareaId { get; set; }
+        public string? ProfareaId { get; set; }
 
         [BsonRequired]
         [BsonElement("headHunterId")]
@@ -41,7 +37,7 @@ namespace HeadHunter.Database.MongoDb.Collections
 
         [BsonIgnoreIfNull]
         [BsonElement("profareaName")]
-        public string ProfareaName { get; set; }
+        public string? ProfareaName { get; set; }
 
         public Specialization(Models.Specialization specialization)
         {
@@ -52,7 +48,6 @@ namespace HeadHunter.Database.MongoDb.Collections
 
             Laboring = specialization.Laboring;
             Name = specialization.Name;
-            Text = specialization.Text;
             ProfareaId = specialization.ProfareaId;
             HeadHunterId = specialization.Id;
             HeadHunterParentId = specialization.ParentId;

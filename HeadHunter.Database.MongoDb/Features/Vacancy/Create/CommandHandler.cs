@@ -18,7 +18,7 @@ namespace HeadHunter.Database.MongoDb.Features.Vacancy.Create
         public async Task<Collections.Vacancy> Handle(Command request, CancellationToken cancellationToken)
         {
             var vacancy = await new VacancyBuilder(_mediator, request.Vacancy)
-                .WithArea().WithAddress().WithEmployer().WithSchedule().WithExperience().WithEmployment()
+                .WithArea().WithSalary().WithAddress().WithEmployer().WithSchedule().WithExperience().WithEmployment()
                 .WithDepartment().WithVacancyType().WithBillingType().WithLanguages().WithKeySkills()
                 .WithWorkingDays().WithSpecializations().WithWorkingTimeModes().WithProfessionalRoles()
                 .WithDriverLicenseTypes().WithWorkingTimeIntervals().BuildAsync();

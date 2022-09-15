@@ -12,6 +12,10 @@ namespace HeadHunter.Database.MongoDb.Collections
         public ObjectId Id { get; set; }
 
         [BsonIgnoreIfNull]
+        [BsonElement("areaId")]
+        public ObjectId? AreaId { get; set; }
+
+        [BsonIgnoreIfNull]
         [BsonElement("trusted")]
         public bool? Trusted { get; set; }
 
@@ -59,8 +63,7 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonElement("brandedDescription")]
         public string? BrandedDescription { get; set; }
 
-        [BsonIgnoreIfNull]
-        [BsonElement("area")]
+        [BsonIgnore]
         public Area? Area { get; set; }
 
         [BsonIgnoreIfNull]
@@ -68,7 +71,10 @@ namespace HeadHunter.Database.MongoDb.Collections
         public LogoUrls? LogoUrls { get; set; }
 
         [BsonIgnoreIfNull]
-        [BsonElement("industries")]
+        [BsonElement("industriesIds")]
+        public List<ObjectId> IndustriesIds { get; set; }
+
+        [BsonIgnore]
         public List<Industry> Industries { get; set; }
 
         [BsonIgnoreIfNull]

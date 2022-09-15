@@ -17,7 +17,26 @@ namespace HeadHunter.Database.MongoDb.Features.Vacancy.Create.Builders
         {
             Enqueue(() => Task.Run(async () =>
             {
-                Document.Area = _vacancy.Area != null ? await ImportAsync(new Area.Import.Command(_vacancy.Area)) : null;
+                var area = _vacancy.Area != null ? await ImportAsync(new Area.Import.Command(_vacancy.Area)) : null;
+
+                Document.Area = area;
+                Document.AreaId = area?.Id;
+            }));
+
+            return this;
+        }
+
+        public VacancyBuilder WithSalary()
+        {
+            Enqueue(() => Task.Run(async () =>
+            {
+                if (_vacancy.Salary != null)
+                {
+                    var currency = _vacancy.Salary.Currency != null ? await ImportAsync(new Currency.Import.Command(new Models.Currency() { Code = _vacancy.Salary.Currency })) : null;
+
+                    Document.Salary.Currency = currency;
+                    Document.Salary.CurrencyId = currency?.Id;
+                }
             }));
 
             return this;
@@ -27,7 +46,10 @@ namespace HeadHunter.Database.MongoDb.Features.Vacancy.Create.Builders
         {
             Enqueue(() => Task.Run(async () =>
             {
-                Document.Address = _vacancy.Address != null ? await ImportAsync(new Address.Import.Command(_vacancy.Address)) : null;
+                var address = _vacancy.Address != null ? await ImportAsync(new Address.Import.Command(_vacancy.Address)) : null;
+
+                Document.Address = address;
+                Document.AddressId = address?.Id;
             }));
 
             return this;
@@ -37,7 +59,10 @@ namespace HeadHunter.Database.MongoDb.Features.Vacancy.Create.Builders
         {
             Enqueue(() => Task.Run(async () =>
             {
-                Document.Employer = await ImportAsync(new Employer.Import.Command(_vacancy.Employer));
+                var employer = await ImportAsync(new Employer.Import.Command(_vacancy.Employer));
+
+                Document.Employer = employer;
+                Document.EmployerId = employer.Id;
             }));
 
             return this;
@@ -47,7 +72,10 @@ namespace HeadHunter.Database.MongoDb.Features.Vacancy.Create.Builders
         {
             Enqueue(() => Task.Run(async () =>
             {
-                Document.Schedule = _vacancy.Schedule != null ? await ImportAsync(new Schedule.Import.Command(_vacancy.Schedule)) : null;
+                var schedule = _vacancy.Schedule != null ? await ImportAsync(new Schedule.Import.Command(_vacancy.Schedule)) : null;
+
+                Document.Schedule = schedule;
+                Document.ScheduleId = schedule?.Id;
             }));
 
             return this;
@@ -57,7 +85,10 @@ namespace HeadHunter.Database.MongoDb.Features.Vacancy.Create.Builders
         {
             Enqueue(() => Task.Run(async () =>
             {
-                Document.Experience = _vacancy.Experience != null ? await ImportAsync(new Experience.Import.Command(_vacancy.Experience)) : null;
+                var experience = _vacancy.Experience != null ? await ImportAsync(new Experience.Import.Command(_vacancy.Experience)) : null;
+
+                Document.Experience = experience;
+                Document.ExperienceId = experience?.Id;
             }));
 
             return this;
@@ -67,7 +98,10 @@ namespace HeadHunter.Database.MongoDb.Features.Vacancy.Create.Builders
         {
             Enqueue(() => Task.Run(async () =>
             {
-                Document.Employment = _vacancy.Employment != null ? await ImportAsync(new Employment.Import.Command(_vacancy.Employment)) : null;
+                var employment = _vacancy.Employment != null ? await ImportAsync(new Employment.Import.Command(_vacancy.Employment)) : null;
+
+                Document.Employment = employment;
+                Document.EmploymentId = employment?.Id;
             }));
 
             return this;
@@ -77,7 +111,10 @@ namespace HeadHunter.Database.MongoDb.Features.Vacancy.Create.Builders
         {
             Enqueue(() => Task.Run(async () =>
             {
-                Document.Department = _vacancy.Department != null ? await ImportAsync(new Department.Import.Command(_vacancy.Department)) : null;
+                var department = _vacancy.Department != null ? await ImportAsync(new Department.Import.Command(_vacancy.Department)) : null;
+
+                Document.Department = department;
+                Document.DepartmentId = department?.Id;
             }));
 
             return this;
@@ -87,7 +124,10 @@ namespace HeadHunter.Database.MongoDb.Features.Vacancy.Create.Builders
         {
             Enqueue(() => Task.Run(async () =>
             {
-                Document.VacancyType = _vacancy.Type != null ? await ImportAsync(new VacancyType.Import.Command(_vacancy.Type)) : null;
+                var vacancyType = _vacancy.Type != null ? await ImportAsync(new VacancyType.Import.Command(_vacancy.Type)) : null;
+
+                Document.VacancyType = vacancyType;
+                Document.VacancyTypeId = vacancyType?.Id;
             }));
 
             return this;
@@ -97,7 +137,10 @@ namespace HeadHunter.Database.MongoDb.Features.Vacancy.Create.Builders
         {
             Enqueue(() => Task.Run(async () =>
             {
-                Document.BillingType = _vacancy.BillingType != null ? await ImportAsync(new BillingType.Import.Command(_vacancy.BillingType)) : null;
+                var billingType = _vacancy.BillingType != null ? await ImportAsync(new BillingType.Import.Command(_vacancy.BillingType)) : null;
+
+                Document.BillingType = billingType;
+                Document.BillingTypeId = billingType?.Id;
             }));
 
             return this;
@@ -107,7 +150,10 @@ namespace HeadHunter.Database.MongoDb.Features.Vacancy.Create.Builders
         {
             Enqueue(() => Task.Run(async () =>
             {
-                Document.Languages = await ImportItemsAsync((item) => new Language.Import.Command(item), _vacancy.Languages);
+                var languages = await ImportItemsAsync((item) => new Language.Import.Command(item), _vacancy.Languages);
+
+                Document.Languages = languages;
+                Document.LanguagesIds = languages.Select(language => language.Id).ToList();
             }));
 
             return this;
@@ -117,7 +163,10 @@ namespace HeadHunter.Database.MongoDb.Features.Vacancy.Create.Builders
         {
             Enqueue(() => Task.Run(async () =>
             {
-                Document.KeySkills = await ImportItemsAsync((item) => new KeySkill.Import.Command(item), _vacancy.KeySkills);
+                var keySkills = await ImportItemsAsync((item) => new KeySkill.Import.Command(item), _vacancy.KeySkills);
+
+                Document.KeySkills = keySkills;
+                Document.KeySkillsIds = keySkills.Select(keySkill => keySkill.Id).ToList();
             }));
 
             return this;
@@ -127,7 +176,10 @@ namespace HeadHunter.Database.MongoDb.Features.Vacancy.Create.Builders
         {
             Enqueue(() => Task.Run(async () =>
             {
-                Document.WorkingDays = await ImportItemsAsync((item) => new WorkingDay.Import.Command(item), _vacancy.WorkingDays);
+                var workingDays = await ImportItemsAsync((item) => new WorkingDay.Import.Command(item), _vacancy.WorkingDays);
+
+                Document.WorkingDays = workingDays;
+                Document.WorkingDaysIds = workingDays.Select(workingDay => workingDay.Id).ToList();
             }));
 
             return this;
@@ -137,7 +189,10 @@ namespace HeadHunter.Database.MongoDb.Features.Vacancy.Create.Builders
         {
             Enqueue(() => Task.Run(async () =>
             {
-                Document.Specializations = await ImportItemsAsync((item) => new Specialization.Import.Command(item), _vacancy.Specializations);
+                var specializations = await ImportItemsAsync((item) => new Specialization.Import.Command(item), _vacancy.Specializations);
+
+                Document.Specializations = specializations;
+                Document.SpecializationsIds = specializations.Select(specialization => specialization.Id).ToList();
             }));
 
             return this;
@@ -147,7 +202,10 @@ namespace HeadHunter.Database.MongoDb.Features.Vacancy.Create.Builders
         {
             Enqueue(() => Task.Run(async () =>
             {
-                Document.WorkingTimeModes = await ImportItemsAsync((item) => new WorkingTimeMode.Import.Command(item), _vacancy.WorkingTimeModes);
+                var workingTimeModes = await ImportItemsAsync((item) => new WorkingTimeMode.Import.Command(item), _vacancy.WorkingTimeModes);
+
+                Document.WorkingTimeModes = workingTimeModes;
+                Document.WorkingTimeModesIds = workingTimeModes.Select(workingTimeMode => workingTimeMode.Id).ToList();
             }));
 
             return this;
@@ -157,7 +215,10 @@ namespace HeadHunter.Database.MongoDb.Features.Vacancy.Create.Builders
         {
             Enqueue(() => Task.Run(async () =>
             {
-                Document.ProfessionalRoles = await ImportItemsAsync((item) => new ProfessionalRole.Import.Command(item), _vacancy.ProfessionalRoles);
+                var professionalRoles = await ImportItemsAsync((item) => new ProfessionalRole.Import.Command(item), _vacancy.ProfessionalRoles);
+
+                Document.ProfessionalRoles = professionalRoles;
+                Document.ProfessionalRolesIds = professionalRoles.Select(professionalRole => professionalRole.Id).ToList();
             }));
 
             return this;
@@ -167,7 +228,10 @@ namespace HeadHunter.Database.MongoDb.Features.Vacancy.Create.Builders
         {
             Enqueue(() => Task.Run(async () =>
             {
-                Document.DriverLicenseTypes = await ImportItemsAsync((item) => new DriverLicenseType.Import.Command(item), _vacancy.DriverLicenseTypes);
+                var driverLicenseTypes = await ImportItemsAsync((item) => new DriverLicenseType.Import.Command(item), _vacancy.DriverLicenseTypes);
+
+                Document.DriverLicenseTypes = driverLicenseTypes;
+                Document.DriverLicenseTypesIds = driverLicenseTypes.Select(driverLicenseType => driverLicenseType.Id).ToList();
             }));
 
             return this;
@@ -177,7 +241,10 @@ namespace HeadHunter.Database.MongoDb.Features.Vacancy.Create.Builders
         {
             Enqueue(() => Task.Run(async () =>
             {
-                Document.WorkingTimeIntervals = await ImportItemsAsync((item) => new WorkingTimeInterval.Import.Command(item), _vacancy.WorkingTimeIntervals);
+                var workingTimeIntervals = await ImportItemsAsync((item) => new WorkingTimeInterval.Import.Command(item), _vacancy.WorkingTimeIntervals);
+
+                Document.WorkingTimeIntervals = workingTimeIntervals;
+                Document.WorkingTimeIntervalsIds = workingTimeIntervals.Select(workingTimeInterval => workingTimeInterval.Id).ToList();
             }));
 
             return this;

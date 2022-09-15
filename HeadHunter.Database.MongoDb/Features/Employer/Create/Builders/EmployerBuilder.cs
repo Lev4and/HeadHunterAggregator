@@ -17,7 +17,10 @@ namespace HeadHunter.Database.MongoDb.Features.Employer.Create.Builders
         {
             Enqueue(() => Task.Run(async () =>
             {
-                Document.Area = _employer.Area != null ? await ImportAsync(new Area.Import.Command(_employer.Area)) : null;
+                var area = _employer.Area != null ? await ImportAsync(new Area.Import.Command(_employer.Area)) : null;
+
+                Document.Area = area;
+                Document.AreaId = area?.Id;
             }));
 
             return this;
@@ -27,7 +30,10 @@ namespace HeadHunter.Database.MongoDb.Features.Employer.Create.Builders
         {
             Enqueue(() => Task.Run(async () =>
             {
-                Document.Industries = await ImportItemsAsync((item) => new Industry.Import.Command(item), _employer.Industries);
+                var industries = await ImportItemsAsync((item) => new Industry.Import.Command(item), _employer.Industries);
+
+                Document.Industries = industries;
+                Document.IndustriesIds = industries.Select(industry => industry.Id).ToList();
             }));
 
             return this;
