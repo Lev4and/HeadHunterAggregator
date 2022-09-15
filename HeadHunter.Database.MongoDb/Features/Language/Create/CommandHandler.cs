@@ -1,10 +1,9 @@
 ﻿using HeadHunter.Database.MongoDb.Common;
 using MediatR;
-using MongoDB.Bson;
 
 namespace HeadHunter.Database.MongoDb.Features.Language.Create
 {
-    public class CommandHandler : IRequestHandler<Command, ObjectId>
+    public class CommandHandler : IRequestHandler<Command, Collections.Language>
     {
         private readonly Repository _repository;
 
@@ -13,13 +12,13 @@ namespace HeadHunter.Database.MongoDb.Features.Language.Create
             _repository = repository;
         }
 
-        public async Task<ObjectId> Handle(Command request, CancellationToken cancellationToken)
+        public async Task<Collections.Language> Handle(Command request, CancellationToken cancellationToken)
         {
-            var language = request.Language;
+            var language = new Collections.Language(request.Language);
 
             await _repository.AddAsync(language);
 
-            return language.Id;
+            return language;
         }
     }
 }

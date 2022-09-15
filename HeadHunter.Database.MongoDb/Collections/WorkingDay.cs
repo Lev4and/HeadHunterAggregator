@@ -18,5 +18,16 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonRequired]
         [BsonElement("name")]
         public string Name { get; set; }
+
+        public WorkingDay(Models.WorkingDay workingDay)
+        {
+            if (workingDay == null)
+            {
+                throw new ArgumentNullException(nameof(workingDay));
+            }
+
+            HeadHunterId = workingDay.Id;
+            Name = workingDay.Name;
+        }
     }
 }

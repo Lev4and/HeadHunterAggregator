@@ -3,11 +3,11 @@ using MongoDB.Bson;
 
 namespace HeadHunter.Database.MongoDb.Features.Address.Create
 {
-    public class Command : IRequest<ObjectId>
+    public class Command : IRequest<Collections.Address>
     {
-        public Collections.Address Address { get; set; }
+        public Models.Address Address { get; set; }
 
-        public Command(Collections.Address address)
+        public Command(Models.Address address)
         {
             if (address == null)
             {

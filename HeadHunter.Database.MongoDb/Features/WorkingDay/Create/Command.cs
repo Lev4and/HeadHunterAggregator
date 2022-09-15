@@ -3,11 +3,11 @@ using MongoDB.Bson;
 
 namespace HeadHunter.Database.MongoDb.Features.WorkingDay.Create
 {
-    public class Command : IRequest<ObjectId>
+    public class Command : IRequest<Collections.WorkingDay>
     {
-        public Collections.WorkingDay WorkingDay { get; }
+        public Models.WorkingDay WorkingDay { get; }
 
-        public Command(Collections.WorkingDay workingDay)
+        public Command(Models.WorkingDay workingDay)
         {
             if (workingDay == null)
             {

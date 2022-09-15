@@ -19,5 +19,18 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonIgnoreIfNull]
         [BsonElement("comment")]
         public object? Comment { get; set; }
+
+        public Phone(Models.Phone phone)
+        {
+            if (phone == null)
+            {
+                throw new ArgumentNullException(nameof(phone));
+            }
+
+            City = phone.City;
+            Number = phone.Number;
+            Country = phone.Country;
+            Comment = phone.Comment;
+        }
     }
 }

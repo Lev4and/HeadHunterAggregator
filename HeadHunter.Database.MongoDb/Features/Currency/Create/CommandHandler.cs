@@ -4,7 +4,7 @@ using MongoDB.Bson;
 
 namespace HeadHunter.Database.MongoDb.Features.Currency.Create
 {
-    public class CommandHandler : IRequestHandler<Command, ObjectId>
+    public class CommandHandler : IRequestHandler<Command, Collections.Currency>
     {
         private readonly Repository _repository;
 
@@ -13,13 +13,13 @@ namespace HeadHunter.Database.MongoDb.Features.Currency.Create
             _repository = repository;
         }
 
-        public async Task<ObjectId> Handle(Command request, CancellationToken cancellationToken)
+        public async Task<Collections.Currency> Handle(Command request, CancellationToken cancellationToken)
         {
-            var currency = request.Currency;
+            var currency = new Collections.Currency(request.Currency);
 
             await _repository.AddAsync(currency);
 
-            return currency.Id;
+            return currency;
         }
     }
 }

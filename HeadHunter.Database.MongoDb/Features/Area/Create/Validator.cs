@@ -7,8 +7,8 @@ namespace HeadHunter.Database.MongoDb.Features.Area.Create
         public Validator()
         {
             RuleFor(command => command.Area).NotNull();
+            RuleFor(command => command.Area.Id).NotEmpty();
             RuleFor(command => command.Area.Name).NotEmpty();
-            RuleFor(command => command.Area.HeadHunterId).NotEmpty();
         }
     }
 }

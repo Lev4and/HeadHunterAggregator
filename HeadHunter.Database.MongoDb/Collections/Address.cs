@@ -32,7 +32,22 @@ namespace HeadHunter.Database.MongoDb.Collections
         public double? Latitude { get; set; }
 
         [BsonIgnoreIfNull]
-        [BsonElement("Longitude")]
+        [BsonElement("longitude")]
         public double? Longitude { get; set; }
+
+        public Address(Models.Address address)
+        {
+            if (address == null)
+            {
+                throw new ArgumentNullException(nameof(address));
+            }
+
+            City = address.City;
+            Street = address.Street;
+            Building = address.Building;
+            Description = address.Description;
+            Latitude = address.Lat;
+            Longitude = address.Lng;
+        }
     }
 }

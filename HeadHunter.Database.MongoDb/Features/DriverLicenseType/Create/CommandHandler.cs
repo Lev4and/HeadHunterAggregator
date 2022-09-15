@@ -4,7 +4,7 @@ using MongoDB.Bson;
 
 namespace HeadHunter.Database.MongoDb.Features.DriverLicenseType.Create
 {
-    public class CommandHandler : IRequestHandler<Command, ObjectId>
+    public class CommandHandler : IRequestHandler<Command, Collections.DriverLicenseType>
     {
         private readonly Repository _repository;
 
@@ -13,13 +13,13 @@ namespace HeadHunter.Database.MongoDb.Features.DriverLicenseType.Create
             _repository = repository;
         }
 
-        public async Task<ObjectId> Handle(Command request, CancellationToken cancellationToken)
+        public async Task<Collections.DriverLicenseType> Handle(Command request, CancellationToken cancellationToken)
         {
-            var driverLicenseType = request.DriverLicenseType;
+            var driverLicenseType = new Collections.DriverLicenseType(request.DriverLicenseType);
 
             await _repository.AddAsync(driverLicenseType);
 
-            return driverLicenseType.Id;
+            return driverLicenseType;
         }
     }
 }

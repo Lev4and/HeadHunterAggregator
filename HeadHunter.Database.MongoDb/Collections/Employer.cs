@@ -12,6 +12,10 @@ namespace HeadHunter.Database.MongoDb.Collections
         public ObjectId Id { get; set; }
 
         [BsonIgnoreIfNull]
+        [BsonElement("areaId")]
+        public ObjectId? AreaId { get; set; }
+
+        [BsonIgnoreIfNull]
         [BsonElement("trusted")]
         public bool? Trusted { get; set; }
 
@@ -59,8 +63,7 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonElement("brandedDescription")]
         public string? BrandedDescription { get; set; }
 
-        [BsonIgnoreIfNull]
-        [BsonElement("area")]
+        [BsonIgnore]
         public Area? Area { get; set; }
 
         [BsonIgnoreIfNull]
@@ -68,11 +71,38 @@ namespace HeadHunter.Database.MongoDb.Collections
         public LogoUrls? LogoUrls { get; set; }
 
         [BsonIgnoreIfNull]
-        [BsonElement("industries")]
+        [BsonElement("industriesIds")]
+        public List<ObjectId> IndustriesIds { get; set; }
+
+        [BsonIgnore]
         public List<Industry> Industries { get; set; }
 
         [BsonIgnoreIfNull]
         [BsonElement("insiderInterviews")]
         public List<InsiderInterview> InsiderInterviews { get; set; }
+
+        public Employer(Models.Employer employer)
+        {
+            if (employer == null)
+            {
+                throw new ArgumentNullException(nameof(employer));
+            }
+
+            Trusted = employer.Trusted;
+            Blacklisted = employer.Blacklisted;
+            HeadHunterId = Convert.ToInt64(employer.Id);
+            Name = employer.Name;
+            Url = employer.Url;
+            Type = employer.Type;
+            SiteUrl = employer.SiteUrl;
+            Description = employer.Description;
+            AlternateUrl = employer.AlternateUrl;
+            VacanciesUrl = employer.VacanciesUrl;
+            BrandedDescription = employer.BrandedDescription;
+            Area = employer.Area != null ? new Area(employer.Area) : null;
+            LogoUrls = employer.LogoUrls != null ? new LogoUrls(employer.LogoUrls) : null;
+            Industries = employer.Industries.Select(industry => new Industry(industry)).ToList();
+            InsiderInterviews = employer.InsiderInterviews.Select(insiderInterview => new InsiderInterview(insiderInterview)).ToList();
+        }
     }
 }

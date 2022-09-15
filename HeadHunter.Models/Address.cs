@@ -5,16 +5,16 @@ namespace HeadHunter.Models
     public class Address
     {
         [JsonProperty("city")]
-        public string City { get; set; }
+        public string? City { get; set; }
 
         [JsonProperty("street")]
-        public string Street { get; set; }
+        public string? Street { get; set; }
 
         [JsonProperty("building")]
-        public string Building { get; set; }
+        public string? Building { get; set; }
 
         [JsonProperty("description")]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         [JsonProperty("lat")]
         public double? Lat { get; set; }

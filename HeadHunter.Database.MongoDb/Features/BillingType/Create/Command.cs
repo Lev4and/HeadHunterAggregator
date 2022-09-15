@@ -3,11 +3,11 @@ using MongoDB.Bson;
 
 namespace HeadHunter.Database.MongoDb.Features.BillingType.Create
 {
-    public class Command : IRequest<ObjectId>
+    public class Command : IRequest<Collections.BillingType>
     {
-        public Collections.BillingType BillingType { get; }
+        public Models.BillingType BillingType { get; }
 
-        public Command(Collections.BillingType billingType)
+        public Command(Models.BillingType billingType)
         {
             if (billingType == null)
             {

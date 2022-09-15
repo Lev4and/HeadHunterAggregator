@@ -19,8 +19,23 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonElement("headHunterId")]
         public string HeadHunterId { get; set; }
 
+        [BsonIgnoreIfNull]
+        [BsonElement("headHunterParentId")]
+        public string? HeadHunterParentId { get; set; }
+
         [BsonRequired]
         [BsonElement("name")]
         public string Name { get; set; }
+
+        public Industry(Models.Industry industry)
+        {
+            if (industry == null)
+            {
+                throw new ArgumentNullException(nameof(industry));
+            }
+
+            HeadHunterId = industry.Id;
+            Name = industry.Name;
+        }
     }
 }

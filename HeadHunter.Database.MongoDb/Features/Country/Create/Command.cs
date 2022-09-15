@@ -3,11 +3,11 @@ using MongoDB.Bson;
 
 namespace HeadHunter.Database.MongoDb.Features.Country.Create
 {
-    public class Command : IRequest<ObjectId>
+    public class Command : IRequest<Collections.Country>
     {
-        public Collections.Country Country { get; }
+        public Models.Country Country { get; }
 
-        public Command(Collections.Country country)
+        public Command(Models.Country country)
         {
             if (country == null)
             {

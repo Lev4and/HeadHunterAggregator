@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HeadHunter.Database.MongoDb.Common\HeadHunter.Database.MongoDb.Common.csproj" />
+    <ProjectReference Include="..\HeadHunter.Models\HeadHunter.Models.csproj" />
   </ItemGroup>
 
 </Project>

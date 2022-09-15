@@ -4,7 +4,7 @@ using MongoDB.Bson;
 
 namespace HeadHunter.Database.MongoDb.Features.MetroLine.Create
 {
-    public class CommandHandler : IRequestHandler<Command, ObjectId>
+    public class CommandHandler : IRequestHandler<Command, Collections.MetroLine>
     {
         private readonly Repository _repository;
 
@@ -13,13 +13,13 @@ namespace HeadHunter.Database.MongoDb.Features.MetroLine.Create
             _repository = repository;
         }
 
-        public async Task<ObjectId> Handle(Command request, CancellationToken cancellationToken)
+        public async Task<Collections.MetroLine> Handle(Command request, CancellationToken cancellationToken)
         {
-            var metroLine = request.MetroLine;
+            var metroLine = new Collections.MetroLine(request.MetroLine);
 
             await _repository.AddAsync(metroLine);
 
-            return metroLine.Id;
+            return metroLine;
         }
     }
 }

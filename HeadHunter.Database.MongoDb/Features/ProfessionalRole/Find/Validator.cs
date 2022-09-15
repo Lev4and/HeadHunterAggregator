@@ -6,7 +6,6 @@ namespace HeadHunter.Database.MongoDb.Features.ProfessionalRole.Find
     {
         public Validator()
         {
-            RuleFor(command => command.Text).NotEmpty();
             RuleFor(command => command.Name).NotEmpty();
             RuleFor(command => command.HeadHunterId).NotEmpty();
         }

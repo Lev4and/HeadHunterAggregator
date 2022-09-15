@@ -18,5 +18,16 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonRequired]
         [BsonElement("name")]
         public string Name { get; set; }
+
+        public Experience(Models.Experience experience)
+        {
+            if (experience == null)
+            {
+                throw new ArgumentNullException(nameof(experience));
+            }
+
+            HeadHunterId = experience.Id;
+            Name = experience.Name;
+        }
     }
 }

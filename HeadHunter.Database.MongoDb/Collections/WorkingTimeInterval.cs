@@ -18,5 +18,16 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonRequired]
         [BsonElement("name")]
         public string Name { get; set; }
+
+        public WorkingTimeInterval(Models.WorkingTimeInterval workingTimeInterval)
+        {
+            if (workingTimeInterval == null)
+            {
+                throw new ArgumentNullException(nameof(workingTimeInterval));
+            }
+
+            HeadHunterId = workingTimeInterval.Id;
+            Name = workingTimeInterval.Name;
+        }
     }
 }

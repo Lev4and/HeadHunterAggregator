@@ -15,5 +15,17 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonIgnoreIfNull]
         [BsonElement("twoHundredFortyByTwoHundredForty")]
         public string? TwoHundredFortyByTwoHundredForty { get; set; }
+
+        public LogoUrls(Models.LogoUrls logoUrls)
+        {
+            if (logoUrls == null)
+            {
+                throw new ArgumentNullException(nameof(logoUrls));
+            }
+
+            Original = logoUrls.Original;
+            NinetyByNinety = logoUrls._90;
+            TwoHundredFortyByTwoHundredForty = logoUrls._240;
+        }
     }
 }

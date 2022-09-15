@@ -11,7 +11,7 @@ namespace HeadHunter.Models
         public decimal? From { get; set; }
 
         [JsonProperty("currency")]
-        public string Currency { get; set; }
+        public string? Currency { get; set; }
 
         [JsonProperty("gross")]
         public bool? Gross { get; set; }

@@ -5,15 +5,15 @@ namespace HeadHunter.Models
     public class Phone
     {
         [JsonProperty("country")]
-        public string Country { get; set; }
+        public string? Country { get; set; }
 
         [JsonProperty("city")]
-        public string City { get; set; }
+        public string? City { get; set; }
 
         [JsonProperty("number")]
-        public string Number { get; set; }
+        public string? Number { get; set; }
 
         [JsonProperty("comment")]
-        public object Comment { get; set; }
+        public object? Comment { get; set; }
     }
 }

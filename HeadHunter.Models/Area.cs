@@ -5,7 +5,7 @@ namespace HeadHunter.Models
     public class Area
     {
         [JsonProperty("url")]
-        public string Url { get; set; }
+        public string? Url { get; set; }
 
         [JsonProperty("id")]
         public string Id { get; set; }
@@ -14,12 +14,12 @@ namespace HeadHunter.Models
         public string? ParentId { get; set; }
 
         [JsonProperty("text")]
-        public string Text { get; set; }
+        public string? Text { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }
 
         [JsonProperty("areas")]
-        public Area[] Areas { get; set; }
+        public Area[]? Areas { get; set; }
     }
 }

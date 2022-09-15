@@ -14,5 +14,15 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonRequired]
         [BsonElement("name")]
         public string Name { get; set; }
+
+        public KeySkill(Models.KeySkill keySkill)
+        {
+            if (keySkill == null)
+            {
+                throw new ArgumentNullException(nameof(keySkill));
+            }
+
+            Name = keySkill.Name;
+        }
     }
 }

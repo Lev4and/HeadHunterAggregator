@@ -34,8 +34,18 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonElement("text")]
         public string? Text { get; set; }
 
-        [BsonIgnoreIfNull]
-        [BsonElement("metroLines")]
-        public List<MetroLine> MetroLines { get; set; }
+        public Area(Models.Area area)
+        {
+            if (area == null)
+            {
+                throw new ArgumentNullException(nameof(area));
+            }
+
+            HeadHunterId = area.Id;
+            HeadHunterParentId = area.ParentId;
+            Name = area.Name;
+            Url = area.Url;
+            Text = area.Text;
+        }
     }
 }

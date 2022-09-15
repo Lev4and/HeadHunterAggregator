@@ -8,7 +8,7 @@ namespace HeadHunter.Models
         public string Id { get; set; }
 
         [JsonProperty("hex_color")]
-        public string HexColor { get; set; }
+        public string? HexColor { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }

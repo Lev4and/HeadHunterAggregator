@@ -24,19 +24,34 @@ namespace HeadHunter.Database.MongoDb.Collections
         public string Name { get; set; }
 
         [BsonIgnoreIfNull]
-        [BsonElement("text")]
-        public string Text { get; set; }
-
-        [BsonIgnoreIfNull]
         [BsonElement("profareaId")]
-        public string ProfareaId { get; set; }
+        public string? ProfareaId { get; set; }
 
         [BsonRequired]
         [BsonElement("headHunterId")]
         public string HeadHunterId { get; set; }
 
         [BsonIgnoreIfNull]
+        [BsonElement("headHunterParentId")]
+        public string? HeadHunterParentId { get; set; }
+
+        [BsonIgnoreIfNull]
         [BsonElement("profareaName")]
-        public string ProfareaName { get; set; }
+        public string? ProfareaName { get; set; }
+
+        public Specialization(Models.Specialization specialization)
+        {
+            if (specialization == null)
+            {
+                throw new ArgumentNullException(nameof(specialization));
+            }
+
+            Laboring = specialization.Laboring;
+            Name = specialization.Name;
+            ProfareaId = specialization.ProfareaId;
+            HeadHunterId = specialization.Id;
+            HeadHunterParentId = specialization.ParentId;
+            ProfareaName = specialization.ProfareaName;
+        }
     }
 }

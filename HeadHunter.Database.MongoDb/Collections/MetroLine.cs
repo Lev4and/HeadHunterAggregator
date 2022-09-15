@@ -21,10 +21,18 @@ namespace HeadHunter.Database.MongoDb.Collections
 
         [BsonIgnoreIfNull]
         [BsonElement("hexColor")]
-        public string HexColor { get; set; }
+        public string? HexColor { get; set; }
 
-        [BsonIgnoreIfNull]
-        [BsonElement("stations")]
-        public List<MetroStation> Stations { get; set; }
+        public MetroLine(Models.MetroLine metroLine)
+        {
+            if (metroLine == null)
+            {
+                throw new ArgumentNullException(nameof(metroLine));
+            }
+
+            HeadHunterId = metroLine.Id;
+            Name = metroLine.Name;
+            HexColor = metroLine.HexColor;
+        }
     }
 }

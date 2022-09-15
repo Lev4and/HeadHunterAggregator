@@ -3,11 +3,11 @@ using MongoDB.Bson;
 
 namespace HeadHunter.Database.MongoDb.Features.KeySkill.Create
 {
-    public class Command : IRequest<ObjectId>
+    public class Command : IRequest<Collections.KeySkill>
     {
-        public Collections.KeySkill KeySkill { get; }
+        public Models.KeySkill KeySkill { get; }
 
-        public Command(Collections.KeySkill keySkill)
+        public Command(Models.KeySkill keySkill)
         {
             if (keySkill == null)
             {

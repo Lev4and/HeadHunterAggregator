@@ -14,5 +14,15 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonRequired]
         [BsonElement("headHunterId")]
         public string HeadHunterId { get; set; }
+
+        public Currency(Models.Currency currency)
+        {
+            if (currency == null)
+            {
+                throw new ArgumentNullException(nameof(currency));
+            }
+
+            HeadHunterId = currency.Code;
+        }
     }
 }

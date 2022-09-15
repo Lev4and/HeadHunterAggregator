@@ -18,5 +18,16 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonRequired]
         [BsonElement("name")]
         public string Name { get; set; }
+
+        public Employment(Models.Employment employment)
+        {
+            if (employment == null)
+            {
+                throw new ArgumentNullException(nameof(employment));
+            }
+
+            HeadHunterId = employment.Id;
+            Name = employment.Name;
+        }
     }
 }
