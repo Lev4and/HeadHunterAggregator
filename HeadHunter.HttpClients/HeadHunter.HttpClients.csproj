@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HeadHunter.Database.MongoDb\HeadHunter.Database.MongoDb.csproj" />
     <ProjectReference Include="..\HeadHunter.HttpClients.Common\HeadHunter.HttpClients.Common.csproj" />
     <ProjectReference Include="..\HeadHunter.Models\HeadHunter.Models.csproj" />
   </ItemGroup>

@@ -1,4 +1,5 @@
-﻿using HeadHunter.Model.Common;
+﻿using HeadHunter.HttpClients.Resource;
+using HeadHunter.Model.Common;
 using MediatR;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -11,7 +12,7 @@ namespace HeadHunter.ResourceWebApplication.Areas.Import.Controllers
     [ApiController]
     [Area("Import")]
     [EnableCors("CorsPolicy")]
-    [Route("api/import/driverLicenseTypes")]
+    [Route(ResourceRoutes.ImportDriverLicenseTypesPath)]
     public class DriverLicenseTypesController : ControllerBase
     {
         private readonly IMediator _mediator;

@@ -4,7 +4,7 @@
     {
         public const string Protocol = "http";
 
-        public const string Domain = "194-67-67-175.cloudvps.regruhosting.ru/resource";
+        public const string Domain = "lev4and.ru/resource";
 
         public const string HeadHunterApiPath = "api";
 
@@ -81,5 +81,53 @@
         public const string HeadHunterSuggestsVacancyKeyWordsQuery = "vacancyKeyWords";
 
         public const string HeadHunterSuggestsSearchStringQueryParam = "q";
+
+        public const string ImportAreaPath = $"{HeadHunterApiPath}/import";
+
+        public const string ImportAddressesPath = $"{ImportAreaPath}/addresses/";
+
+        public const string ImportAreasPath = $"{ImportAreaPath}/areas/";
+
+        public const string ImportBillingTypesPath = $"{ImportAreaPath}/billingTypes/";
+
+        public const string ImportCountriesPath = $"{ImportAreaPath}/countries/";
+
+        public const string ImportCurrenciesPath = $"{ImportAreaPath}/currencies/";
+
+        public const string ImportDepartmentsPath = $"{ImportAreaPath}/departments/";
+
+        public const string ImportDriverLicenseTypesPath = $"{ImportAreaPath}/driverLicenseTypes/";
+
+        public const string ImportEmployersPath = $"{ImportAreaPath}/employers/";
+
+        public const string ImportEmploymentsPath = $"{ImportAreaPath}/employments/";
+
+        public const string ImportExperiencesPath = $"{ImportAreaPath}/experiences/";
+
+        public const string ImportIndustriesPath = $"{ImportAreaPath}/industries/";
+
+        public const string ImportKeySkillsPath = $"{ImportAreaPath}/keySkills/";
+
+        public const string ImportLanguagesPath = $"{ImportAreaPath}/languages/";
+
+        public const string ImportMetroLinesPath = $"{ImportAreaPath}/metroLines/";
+
+        public const string ImportMetroStationsPath = $"{ImportAreaPath}/metroStations/";
+
+        public const string ImportProfessionalRolesPath = $"{ImportAreaPath}/professionalRoles/";
+
+        public const string ImportSchedulesPath = $"{ImportAreaPath}/schedules/";
+
+        public const string ImportSpecializationsPath = $"{ImportAreaPath}/specializations/";
+
+        public const string ImportVacanciesPath = $"{ImportAreaPath}/vacancies/";
+
+        public const string ImportVacancyTypesPath = $"{ImportAreaPath}/vacancyTypes/";
+
+        public const string ImportWorkingDaysPath = $"{ImportAreaPath}/workingDays/";
+
+        public const string ImportWorkingTimeIntervalsPath = $"{ImportAreaPath}/workingTimeIntervals/";
+
+        public const string ImportWorkingTimeModesPath = $"{ImportAreaPath}/workingTimeModes/";
     }
 }
