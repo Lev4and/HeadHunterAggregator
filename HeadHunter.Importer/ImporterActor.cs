@@ -8,7 +8,7 @@ namespace HeadHunter.Importer
         private readonly Importer _importer;
         private readonly EventBus _eventBus;
 
-        public override int ThreadCount => 10;
+        public override int ThreadCount => 1;
 
         public ImporterActor(Importer importer, EventBus eventBus)
         {

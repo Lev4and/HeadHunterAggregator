@@ -14,6 +14,6 @@ namespace HeadHunter.Models
         public string? Url { get; set; }
 
         [JsonProperty("lines")]
-        public List<MetroLine> Lines { get; set; }
+        public List<MetroLine>? Lines { get; set; }
     }
 }

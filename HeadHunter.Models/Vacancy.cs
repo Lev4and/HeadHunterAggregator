@@ -14,7 +14,7 @@ namespace HeadHunter.Models
         public string? BrandedDescription { get; set; }
 
         [JsonProperty("key_skills")]
-        public List<KeySkill> KeySkills { get; set; }
+        public List<KeySkill>? KeySkills { get; set; }
 
         [JsonProperty("schedule")]
         public Schedule? Schedule { get; set; }
@@ -89,7 +89,7 @@ namespace HeadHunter.Models
         public Test? Test { get; set; }
 
         [JsonProperty("specializations")]
-        public List<Specialization> Specializations { get; set; }
+        public List<Specialization>? Specializations { get; set; }
 
         [JsonProperty("contacts")]
         public Contacts? Contacts { get; set; }
@@ -104,27 +104,27 @@ namespace HeadHunter.Models
         public bool? Premium { get; set; }
 
         [JsonProperty("driver_license_types")]
-        public List<DriverLicenseType> DriverLicenseTypes { get; set; }
+        public List<DriverLicenseType>? DriverLicenseTypes { get; set; }
 
         [JsonProperty("accept_incomplete_resumes")]
         public bool? AcceptIncompleteResumes { get; set; }
 
         [JsonProperty("working_days")]
-        public List<WorkingDay> WorkingDays { get; set; }
+        public List<WorkingDay>? WorkingDays { get; set; }
 
         [JsonProperty("working_time_intervals")]
-        public List<WorkingTimeInterval> WorkingTimeIntervals { get; set; }
+        public List<WorkingTimeInterval>? WorkingTimeIntervals { get; set; }
 
         [JsonProperty("working_time_modes")]
-        public List<WorkingTimeMode> WorkingTimeModes { get; set; }
+        public List<WorkingTimeMode>? WorkingTimeModes { get; set; }
 
         [JsonProperty("accept_temporary")]
         public bool? AcceptTemporary { get; set; }
 
         [JsonProperty("professional_roles")]
-        public List<ProfessionalRole> ProfessionalRoles { get; set; }
+        public List<ProfessionalRole>? ProfessionalRoles { get; set; }
 
         [JsonProperty("languages")]
-        public List<Language> Languages { get; set; }
+        public List<Language>? Languages { get; set; }
     }
 }

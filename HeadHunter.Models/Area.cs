@@ -20,6 +20,6 @@ namespace HeadHunter.Models
         public string Name { get; set; }
 
         [JsonProperty("areas")]
-        public Area[]? Areas { get; set; }
+        public List<Area>? Areas { get; set; }
     }
 }

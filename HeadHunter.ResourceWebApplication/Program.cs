@@ -1,6 +1,7 @@
 using HeadHunter.Database.MongoDb;
 using Microsoft.OpenApi.Models;
 using Serilog;
+using System.Net;
 using HttpClients = HeadHunter.HttpClients;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -47,6 +48,18 @@ var app = builder.Build();
 
 app.UseSwagger();
 app.UseSwaggerUI();
+
+app.UseStatusCodePages(context =>
+{
+    var response = context.HttpContext.Response;
+
+    if (response.StatusCode == (int)HttpStatusCode.BadRequest)
+    {
+        response.Redirect("/api/error/bagRequest");
+    }
+
+    return Task.CompletedTask;
+});
 
 app.UseSerilogRequestLogging();
 app.UseHttpsRedirection();

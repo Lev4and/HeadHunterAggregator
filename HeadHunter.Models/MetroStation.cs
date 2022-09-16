@@ -5,10 +5,10 @@ namespace HeadHunter.Models
     public class MetroStation
     {
         [JsonProperty("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         [JsonProperty("name")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [JsonProperty("order")]
         public int? Order { get; set; }
