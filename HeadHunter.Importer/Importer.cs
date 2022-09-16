@@ -33,6 +33,8 @@ namespace HeadHunter.Importer
 
             vacancy.Employer = company;
 
+            await _context.Resource.ImportVacancies.Import(vacancy);
+
             return vacancy;
         }
 
