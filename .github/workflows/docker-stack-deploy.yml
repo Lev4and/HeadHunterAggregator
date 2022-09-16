@@ -3,6 +3,8 @@ name: Docker Stack Deploy
 on:
   push:
     branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
   vue-js-app-build:
