@@ -46,7 +46,7 @@ namespace HeadHunter.Database.MongoDb.Collections
             }
 
             HeadHunterId = industry.Id;
-            HeadHunterParentId = industry.Id.Contains('.') ? industry.Id.Substring(0, industry.Id.LastIndexOf('.') - 1) : industry.Id;
+            HeadHunterParentId = industry.Id.Contains('.') ? industry.Id.Substring(0, industry.Id.LastIndexOf('.')) : null;
             Name = industry.Name;
         }
     }
