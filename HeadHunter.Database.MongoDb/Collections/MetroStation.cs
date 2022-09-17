@@ -15,11 +15,11 @@ namespace HeadHunter.Database.MongoDb.Collections
         [JsonConverter(typeof(ObjectIdConverter))]
         public ObjectId Id { get; set; }
 
-        [BsonIgnoreIfNull]
+        [BsonRequired]
         [BsonElement("metroLineId")]
         [BsonRepresentation(BsonType.ObjectId)]
         [JsonConverter(typeof(ObjectIdConverter))]
-        public ObjectId? MetroLineId { get; set; }
+        public ObjectId MetroLineId { get; set; }
 
         [BsonRequired]
         [BsonElement("headHunterId")]

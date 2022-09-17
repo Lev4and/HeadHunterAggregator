@@ -16,7 +16,7 @@ namespace HeadHunter.Database.MongoDb.Features.MetroStation.Create.Builders
                 var metroLineByIdCommand = new MetroLineById.Command(Document.LineId);
                 var metroLineById = await Mediator.Send(metroLineByIdCommand);
 
-                Document.MetroLineId = metroLineById?.Id;
+                Document.MetroLineId = metroLineById.Id;
             }));
 
             return this;
