@@ -3,14 +3,14 @@ using System.Diagnostics;
 
 namespace HeadHunter.Importer
 {
-    public class ImporterActor : AbstractActor<Vacancy>
+    public class VacanciesImporterActor : AbstractActor<Vacancy>
     {
-        private readonly Importer _importer;
+        private readonly VacanciesImporter _importer;
         private readonly EventBus _eventBus;
 
         public override int ThreadCount => 20;
 
-        public ImporterActor(Importer importer, EventBus eventBus)
+        public VacanciesImporterActor(VacanciesImporter importer, EventBus eventBus)
         {
             _importer = importer;
             _eventBus = eventBus;
@@ -21,7 +21,7 @@ namespace HeadHunter.Importer
             var vacancyId = Convert.ToInt64(vacancy.Id);
             var companyId = Convert.ToInt64(vacancy.Employer.Id);
 
-            var importedVacancy = await _importer.GetVacancyAsync(vacancyId, companyId);
+            var importedVacancy = await _importer.ImportVacancyAsync(vacancyId, companyId);
 
             await _eventBus.RaiseOnVacancyImported(importedVacancy);
         }

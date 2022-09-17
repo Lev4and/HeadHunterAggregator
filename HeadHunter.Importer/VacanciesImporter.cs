@@ -4,15 +4,15 @@ using Microsoft.Extensions.Logging;
 
 namespace HeadHunter.Importer
 {
-    public class Importer
+    public class VacanciesImporter
     {
-        private readonly ILogger<Importer> _logger;
+        private readonly ILogger<VacanciesImporter> _logger;
         private readonly HttpContext _context;
 
         private DateTime _dateTo;
         private DateTime _dateFrom;
 
-        public Importer(ILogger<Importer> logger, HttpContext context)
+        public VacanciesImporter(ILogger<VacanciesImporter> logger, HttpContext context)
         {
             _logger = logger;
             _context = context;
@@ -21,26 +21,9 @@ namespace HeadHunter.Importer
             _dateFrom = DateTime.UtcNow.AddMinutes(-5);
         }
 
-        public async Task<Vacancy> GetVacancyAsync(long vacancyId, long companyId)
-        {
-            _logger.LogInformation($"GetVacancyAsync VacancyId: {vacancyId} CompanyId: {companyId}");
-
-            var vacancyResponse = await _context.HeadHunter.Vacancies.GetVacancyAsync(vacancyId);
-            var companyResponse = await _context.HeadHunter.Employers.GetEmployerAsync(companyId);
-
-            var vacancy = vacancyResponse.Result as Vacancy;
-            var company = companyResponse.Result as Employer;
-
-            vacancy.Employer = company;
-
-            await _context.Resource.ImportVacancies.Import(vacancy);
-
-            return vacancy;
-        }
-
         public async IAsyncEnumerable<Vacancy> GetVacanciesAsync()
         {
-            while(_dateFrom < DateTime.UtcNow)
+            while (_dateFrom < DateTime.UtcNow)
             {
                 _logger.LogInformation($"GetVacanciesAsync DateFrom: {_dateFrom.ToString("dd.MM.yyyy HH:mm:ss")}");
 
@@ -74,6 +57,13 @@ namespace HeadHunter.Importer
             }
         }
 
+        private async Task<int> GetCountVacanciesAsync()
+        {
+            var response = await _context.HeadHunter.Vacancies.GetVacanciesAsync(1, 1, _dateFrom, _dateTo);
+
+            return response?.Result?.Found ?? 0;
+        }
+
         private async IAsyncEnumerable<Vacancy> GetVacanciesByPageAsync(int page)
         {
             var response = await _context.HeadHunter.Vacancies.GetVacanciesAsync(page, 100, _dateFrom, _dateTo);
@@ -82,17 +72,27 @@ namespace HeadHunter.Importer
             {
                 _logger.LogInformation($"GetVacanciesByPageAsync Vacancy: Id - {vacancy.Id} Name - " +
                     $"{vacancy.Name} CreatedAt - {vacancy.CreatedAt.ToString("dd.MM.yyyy HH:mm:ss")} " +
-                    $"Company - {vacancy.Employer.Name} Area - {vacancy.Area.Name} Salary from - {vacancy.Salary?.From}");
+                    $"Company - {vacancy.Employer.Name} Area - {vacancy.Area?.Name} Salary from - {vacancy.Salary?.From}");
 
                 yield return vacancy;
             }
         }
 
-        private async Task<int> GetCountVacanciesAsync()
+        public async Task<Vacancy> ImportVacancyAsync(long vacancyId, long companyId)
         {
-            var response = await _context.HeadHunter.Vacancies.GetVacanciesAsync(1, 1, _dateFrom, _dateTo);
+            _logger.LogInformation($"GetVacancyAsync VacancyId: {vacancyId} CompanyId: {companyId}");
 
-            return response?.Result?.Found ?? 0;
+            var vacancyResponse = await _context.HeadHunter.Vacancies.GetVacancyAsync(vacancyId);
+            var companyResponse = await _context.HeadHunter.Employers.GetEmployerAsync(companyId);
+
+            var vacancy = vacancyResponse.Result as Vacancy;
+            var company = companyResponse.Result as Employer;
+
+            vacancy.Employer = company;
+
+            await _context.Resource.ImportVacancies.ImportAsync(vacancy);
+
+            return vacancy;
         }
     }
 }

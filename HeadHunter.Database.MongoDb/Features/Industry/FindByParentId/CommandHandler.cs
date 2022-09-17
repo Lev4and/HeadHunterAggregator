@@ -14,7 +14,7 @@ namespace HeadHunter.Database.MongoDb.Features.Industry.FindByParentId
 
         public async Task<Collections.Industry?> Handle(Command request, CancellationToken cancellationToken)
         {
-            return await _repository.FirstAsync<Collections.Industry>(industry => industry.HeadHunterParentId == request.ParentId);
+            return await _repository.FirstAsync<Collections.Industry>(industry => industry.HeadHunterId == request.ParentId);
         }
     }
 }

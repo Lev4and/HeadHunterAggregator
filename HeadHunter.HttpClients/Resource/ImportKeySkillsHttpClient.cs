@@ -4,21 +4,21 @@ using HeadHunter.Model.Common;
 
 namespace HeadHunter.HttpClients.Resource
 {
-    public class ImportKeySkillsHttpClient : ResourceHttpClient
+    public class ImportKeySkillsHttpClient : ResourceHttpClient, IImporter<KeySkill, Models.KeySkill>
     {
         public ImportKeySkillsHttpClient() : base(ResourceRoutes.ImportKeySkillsPath)
         {
 
         }
 
-        public async Task<ResponseModel<KeySkill>> Import(Models.KeySkill keySkill)
+        public async Task<ResponseModel<KeySkill>> ImportAsync(Models.KeySkill model)
         {
-            if (keySkill == null)
+            if (model == null)
             {
-                throw new ArgumentNullException(nameof(keySkill));
+                throw new ArgumentNullException(nameof(model));
             }
 
-            return await Post<KeySkill>("", new Command(keySkill));
+            return await Post<KeySkill>("", new Command(model));
         }
     }
 }

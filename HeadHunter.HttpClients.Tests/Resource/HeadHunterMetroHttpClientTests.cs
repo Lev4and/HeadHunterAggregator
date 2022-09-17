@@ -12,9 +12,9 @@ namespace HeadHunter.HttpClients.Tests.Resource
         }
 
         [Fact]
-        public async Task GetAllStationsMetroAsync_ReturnSuccessResponseWithNotNullResult()
+        public async Task GetAllAsync_ReturnSuccessResponseWithNotNullResult()
         {
-            var response = await _context.Resource.HeadHunterMetro.GetAllStationsMetroAsync();
+            var response = await _context.Resource.HeadHunterMetro.GetAllAsync();
             var statusCode = response.Status.Code;
 
             Assert.NotNull(response);

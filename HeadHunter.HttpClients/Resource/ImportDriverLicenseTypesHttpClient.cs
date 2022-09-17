@@ -4,21 +4,21 @@ using HeadHunter.Model.Common;
 
 namespace HeadHunter.HttpClients.Resource
 {
-    public class ImportDriverLicenseTypesHttpClient : ResourceHttpClient
+    public class ImportDriverLicenseTypesHttpClient : ResourceHttpClient, IImporter<DriverLicenseType, Models.DriverLicenseType>
     {
         public ImportDriverLicenseTypesHttpClient() : base(ResourceRoutes.ImportDriverLicenseTypesPath)
         {
 
         }
 
-        public async Task<ResponseModel<DriverLicenseType>> Import(Models.DriverLicenseType driverLicenseType)
+        public async Task<ResponseModel<DriverLicenseType>> ImportAsync(Models.DriverLicenseType model)
         {
-            if (driverLicenseType == null)
+            if (model == null)
             {
-                throw new ArgumentNullException(nameof(driverLicenseType));
+                throw new ArgumentNullException(nameof(model));
             }
 
-            return await Post<DriverLicenseType>("", new Command(driverLicenseType));
+            return await Post<DriverLicenseType>("", new Command(model));
         }
     }
 }

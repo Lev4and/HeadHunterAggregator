@@ -14,10 +14,10 @@ namespace HeadHunter.Models
         public int? Order { get; set; }
 
         [JsonProperty("station_id")]
-        public string StationId { get; set; }
+        public string? StationId { get; set; }
 
         [JsonProperty("station_name")]
-        public string StationName { get; set; }
+        public string? StationName { get; set; }
 
         [JsonProperty("line_id")]
         public string? LineId { get; set; }

@@ -4,21 +4,21 @@ using HeadHunter.Model.Common;
 
 namespace HeadHunter.HttpClients.Resource
 {
-    public class ImportCurrenciesHttpClient : ResourceHttpClient
+    public class ImportCurrenciesHttpClient : ResourceHttpClient, IImporter<Currency, Models.Currency>
     {
         public ImportCurrenciesHttpClient() : base(ResourceRoutes.ImportCurrenciesPath)
         {
 
         }
 
-        public async Task<ResponseModel<Currency>> Import(Models.Currency currency)
+        public async Task<ResponseModel<Currency>> ImportAsync(Models.Currency model)
         {
-            if (currency == null)
+            if (model == null)
             {
-                throw new ArgumentNullException(nameof(currency));
+                throw new ArgumentNullException(nameof(model));
             }
 
-            return await Post<Currency>("", new Command(currency));
+            return await Post<Currency>("", new Command(model));
         }
     }
 }

@@ -4,21 +4,21 @@ using HeadHunter.Model.Common;
 
 namespace HeadHunter.HttpClients.Resource
 {
-    public class ImportWorkingDaysHttpClient : ResourceHttpClient
+    public class ImportWorkingDaysHttpClient : ResourceHttpClient, IImporter<WorkingDay, Models.WorkingDay>
     {
         public ImportWorkingDaysHttpClient() : base(ResourceRoutes.ImportWorkingDaysPath)
         {
 
         }
 
-        public async Task<ResponseModel<WorkingDay>> Import(Models.WorkingDay workingDay)
+        public async Task<ResponseModel<WorkingDay>> ImportAsync(Models.WorkingDay model)
         {
-            if (workingDay == null)
+            if (model == null)
             {
-                throw new ArgumentNullException(nameof(workingDay));
+                throw new ArgumentNullException(nameof(model));
             }
 
-            return await Post<WorkingDay>("", new Command(workingDay));
+            return await Post<WorkingDay>("", new Command(model));
         }
     }
 }

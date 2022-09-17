@@ -4,21 +4,21 @@ using HeadHunter.Model.Common;
 
 namespace HeadHunter.HttpClients.Resource
 {
-    public class ImportMetroLinesHttpClient : ResourceHttpClient
+    public class ImportMetroLinesHttpClient : ResourceHttpClient, IImporter<MetroLine, Models.MetroLine>
     {
         public ImportMetroLinesHttpClient() : base(ResourceRoutes.ImportMetroLinesPath)
         {
 
         }
 
-        public async Task<ResponseModel<MetroLine>> Import(Models.MetroLine metroLine)
+        public async Task<ResponseModel<MetroLine>> ImportAsync(Models.MetroLine model)
         {
-            if (metroLine == null)
+            if (model == null)
             {
-                throw new ArgumentNullException(nameof(metroLine));
+                throw new ArgumentNullException(nameof(model));
             }
 
-            return await Post<MetroLine>("", new Command(metroLine));
+            return await Post<MetroLine>("", new Command(model));
         }
     }
 }

@@ -12,9 +12,9 @@ namespace HeadHunter.HttpClients.Tests.Resource
         }
 
         [Fact]
-        public async Task GetLanguagesAsync_ReturnSuccessResponseWithNotNullResult()
+        public async Task GetAllAsync_ReturnSuccessResponseWithNotNullResult()
         {
-            var response = await _context.Resource.HeadHunterLanguages.GetLanguagesAsync();
+            var response = await _context.Resource.HeadHunterLanguages.GetAllAsync();
             var statusCode = response.Status.Code;
 
             Assert.NotNull(response);

@@ -2,12 +2,12 @@
 
 namespace HeadHunter.Database.MongoDb.Common
 {
-    public interface IImporter<TColection, TModel> where TColection : ICollection where TModel : class
+    public interface IImporter<TCollection, TModel> where TCollection : ICollection where TModel : class
     {
-        Task<TColection> SaveAsync(TModel model);
+        Task<TCollection> SaveAsync(TModel model);
 
-        Task<TColection> FindAsync(TModel model);
+        Task<TCollection> FindAsync(TModel model);
 
-        Task<TColection> ImportAsync(TModel model);
+        Task<TCollection> ImportAsync(TModel model);
     }
 }
