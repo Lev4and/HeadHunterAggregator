@@ -35,16 +35,16 @@ namespace HeadHunter.Models
         public string? Description { get; set; }
 
         [JsonProperty("industries")]
-        public List<Industry> Industries { get; set; }
+        public List<Industry>? Industries { get; set; }
 
         [JsonProperty("insider_interviews")]
-        public List<InsiderInterview> InsiderInterviews { get; set; }
+        public List<InsiderInterview>? InsiderInterviews { get; set; }
 
         [JsonProperty("open_vacancies")]
         public int? OpenVacancies { get; set; }
 
         [JsonProperty("relations")]
-        public List<object> Relations { get; set; }
+        public List<object>? Relations { get; set; }
 
         [JsonProperty("site_url")]
         public string? SiteUrl { get; set; }

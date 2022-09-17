@@ -20,6 +20,11 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonElement("comment")]
         public object? Comment { get; set; }
 
+        public Phone()
+        {
+
+        }
+
         public Phone(Models.Phone phone)
         {
             if (phone == null)

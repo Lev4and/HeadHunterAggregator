@@ -26,7 +26,7 @@ namespace HeadHunter.Models
         public bool? Laboring { get; set; }
 
         [JsonProperty("specializations")]
-        public Specialization[]? Specializations { get; set; }
+        public List<Specialization>? Specializations { get; set; }
 
         public Specialization()
         {

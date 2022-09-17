@@ -23,6 +23,6 @@ namespace HeadHunter.Models
         public double? Lng { get; set; }
 
         [JsonProperty("metro_stations")]
-        public List<MetroStation> MetroStations { get; set; }
+        public List<MetroStation>? MetroStations { get; set; }
     }
 }

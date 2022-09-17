@@ -1,7 +1,9 @@
 ﻿using HeadHunter.Database.MongoDb.Common;
 using HeadHunter.Database.MongoDb.Common.Attributes;
+using HeadHunter.Database.MongoDb.Common.JsonConverters;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using Newtonsoft.Json;
 
 namespace HeadHunter.Database.MongoDb.Collections
 {
@@ -9,9 +11,13 @@ namespace HeadHunter.Database.MongoDb.Collections
     public class Area : ICollection
     {
         [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        [JsonConverter(typeof(ObjectIdConverter))]
         public ObjectId Id { get; set; }
 
         [BsonElement("parentId")]
+        [BsonRepresentation(BsonType.ObjectId)]
+        [JsonConverter(typeof(ObjectIdConverter))]
         public ObjectId? ParentId { get; set; }
 
         [BsonRequired]
@@ -33,6 +39,11 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonIgnoreIfNull]
         [BsonElement("text")]
         public string? Text { get; set; }
+
+        public Area()
+        {
+
+        }
 
         public Area(Models.Area area)
         {

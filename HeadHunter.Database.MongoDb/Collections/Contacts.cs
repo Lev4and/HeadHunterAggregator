@@ -16,6 +16,11 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonElement("phones")]
         public List<Phone> Phones { get; set; }
 
+        public Contacts()
+        {
+
+        }
+
         public Contacts(Models.Contacts contacts)
         {
             if (contacts == null)

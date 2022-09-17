@@ -14,6 +14,6 @@ namespace HeadHunter.Models
         public string Name { get; set; }
 
         [JsonProperty("industries")]
-        public Industry[] Industries { get; set; }
+        public List<Industry>? Industries { get; set; }
     }
 }
