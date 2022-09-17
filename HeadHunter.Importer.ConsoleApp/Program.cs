@@ -11,8 +11,11 @@ Console.OutputEncoding = Encoding.UTF8;
 
 var host = AppStartup();
 
-var importer = host.Services.GetService<Importer>();
-var actor = host.Services.GetService<ImporterActor>();
+var importer = host.Services.GetService<VacanciesImporter>();
+var actor = host.Services.GetService<VacanciesImporterActor>();
+var initializingImporter = host.Services.GetService<InitializingImporter>();
+
+await initializingImporter.InitializeAsync();
 
 await foreach (var vacancy in importer.GetVacanciesAsync())
 {
@@ -35,10 +38,11 @@ static IHost AppStartup()
     var host = Host.CreateDefaultBuilder()
         .ConfigureServices((context, services) =>
         {
-            services.AddTransient<HttpContext>();
-            services.AddTransient<EventBus>();
-            services.AddTransient<Importer>();
-            services.AddTransient<ImporterActor>();
+            services.AddSingleton<HttpContext>();
+            services.AddSingleton<EventBus>();
+            services.AddSingleton<InitializingImporter>();
+            services.AddSingleton<VacanciesImporter>();
+            services.AddSingleton<VacanciesImporterActor>();
         })
         .UseSerilog()
         .Build();
