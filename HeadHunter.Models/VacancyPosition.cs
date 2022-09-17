@@ -11,6 +11,6 @@ namespace HeadHunter.Models
         public string? Text { get; set; }
 
         [JsonProperty("professional_roles")]
-        public ProfessionalRole[] ProfessionalRoles { get; set; }
+        public List<ProfessionalRole>? ProfessionalRoles { get; set; }
     }
 }

@@ -11,6 +11,6 @@ namespace HeadHunter.Models
         public string? Email { get; set; }
 
         [JsonProperty("phones")]
-        public List<Phone> Phones { get; set; }
+        public List<Phone>? Phones { get; set; }
     }
 }

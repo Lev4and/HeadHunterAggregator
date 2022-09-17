@@ -1,7 +1,9 @@
 ﻿using HeadHunter.Database.MongoDb.Common;
 using HeadHunter.Database.MongoDb.Common.Attributes;
+using HeadHunter.Database.MongoDb.Common.JsonConverters;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using Newtonsoft.Json;
 
 namespace HeadHunter.Database.MongoDb.Collections
 {
@@ -9,6 +11,8 @@ namespace HeadHunter.Database.MongoDb.Collections
     public class MetroLine : ICollection
     {
         [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        [JsonConverter(typeof(ObjectIdConverter))]
         public ObjectId Id { get; set; }
 
         [BsonRequired]
@@ -22,6 +26,11 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonIgnoreIfNull]
         [BsonElement("hexColor")]
         public string? HexColor { get; set; }
+
+        public MetroLine()
+        {
+
+        }
 
         public MetroLine(Models.MetroLine metroLine)
         {

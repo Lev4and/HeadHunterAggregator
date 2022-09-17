@@ -12,6 +12,11 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonElement("name")]
         public string Name { get; set; }
 
+        public Test()
+        {
+
+        }
+
         public Test(Models.Test test)
         {
             if (test == null)

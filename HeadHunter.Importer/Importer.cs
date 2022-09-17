@@ -52,8 +52,6 @@ namespace HeadHunter.Importer
                 _dateTo = _dateTo.AddMinutes(5);
                 _dateFrom = _dateFrom.AddMinutes(5);
 
-                _logger.LogInformation($"GetVacanciesAsync Delay: {(_dateTo - DateTime.UtcNow).ToString("c")}");
-
                 if (_dateTo > DateTime.UtcNow) await Task.Delay(_dateTo - DateTime.UtcNow);
             }
         }

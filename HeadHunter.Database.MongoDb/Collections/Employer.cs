@@ -1,7 +1,9 @@
 ﻿using HeadHunter.Database.MongoDb.Common;
 using HeadHunter.Database.MongoDb.Common.Attributes;
+using HeadHunter.Database.MongoDb.Common.JsonConverters;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using Newtonsoft.Json;
 
 namespace HeadHunter.Database.MongoDb.Collections
 {
@@ -9,10 +11,14 @@ namespace HeadHunter.Database.MongoDb.Collections
     public class Employer : ICollection
     {
         [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        [JsonConverter(typeof(ObjectIdConverter))]
         public ObjectId Id { get; set; }
 
         [BsonIgnoreIfNull]
         [BsonElement("areaId")]
+        [BsonRepresentation(BsonType.ObjectId)]
+        [JsonConverter(typeof(ObjectIdConverter))]
         public ObjectId? AreaId { get; set; }
 
         [BsonIgnoreIfNull]
@@ -72,6 +78,7 @@ namespace HeadHunter.Database.MongoDb.Collections
 
         [BsonIgnoreIfNull]
         [BsonElement("industriesIds")]
+        [JsonConverter(typeof(ObjectIdListConverter))]
         public List<ObjectId> IndustriesIds { get; set; }
 
         [BsonIgnore]
@@ -80,6 +87,11 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonIgnoreIfNull]
         [BsonElement("insiderInterviews")]
         public List<InsiderInterview> InsiderInterviews { get; set; }
+
+        public Employer()
+        {
+
+        }
 
         public Employer(Models.Employer employer)
         {

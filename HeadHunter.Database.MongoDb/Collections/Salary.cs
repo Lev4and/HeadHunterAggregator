@@ -1,5 +1,7 @@
-﻿using MongoDB.Bson;
+﻿using HeadHunter.Database.MongoDb.Common.JsonConverters;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using Newtonsoft.Json;
 
 namespace HeadHunter.Database.MongoDb.Collections
 {
@@ -7,6 +9,8 @@ namespace HeadHunter.Database.MongoDb.Collections
     {
         [BsonIgnoreIfNull]
         [BsonElement("currencyId")]
+        [BsonRepresentation(BsonType.ObjectId)]
+        [JsonConverter(typeof(ObjectIdConverter))]
         public ObjectId? CurrencyId { get; set; }
 
         [BsonIgnoreIfNull]
@@ -23,6 +27,11 @@ namespace HeadHunter.Database.MongoDb.Collections
 
         [BsonIgnore]
         public Currency? Currency { get; set; }
+
+        public Salary()
+        {
+
+        }
 
         public Salary(Models.Salary salary)
         {

@@ -16,6 +16,11 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonElement("url")]
         public string? Url { get; set; }
 
+        public InsiderInterview()
+        {
+
+        }
+
         public InsiderInterview(Models.InsiderInterview insiderInterview)
         {
             if (insiderInterview == null)
