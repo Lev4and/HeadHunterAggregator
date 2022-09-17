@@ -14,7 +14,7 @@ namespace HeadHunter.Database.MongoDb.Features.Area.FindByParentId
 
         public async Task<Collections.Area?> Handle(Command request, CancellationToken cancellationToken)
         {
-            return await _repository.FirstAsync<Collections.Area>(area => area.HeadHunterParentId == request.ParentId);
+            return await _repository.FirstAsync<Collections.Area>(area => area.HeadHunterId == request.ParentId);
         }
     }
 }
