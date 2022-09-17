@@ -15,6 +15,12 @@ namespace HeadHunter.Database.MongoDb.Collections
         [JsonConverter(typeof(ObjectIdConverter))]
         public ObjectId Id { get; set; }
 
+        [BsonIgnoreIfNull]
+        [BsonElement("areaId")]
+        [BsonRepresentation(BsonType.ObjectId)]
+        [JsonConverter(typeof(ObjectIdConverter))]
+        public ObjectId? AreaId { get; set; }
+
         [BsonRequired]
         [BsonElement("headHunterId")]
         public string HeadHunterId { get; set; }
@@ -24,8 +30,15 @@ namespace HeadHunter.Database.MongoDb.Collections
         public string Name { get; set; }
 
         [BsonIgnoreIfNull]
+        [BsonElement("cityId")]
+        public string? CityId { get; set; }
+
+        [BsonIgnoreIfNull]
         [BsonElement("hexColor")]
         public string? HexColor { get; set; }
+
+        [BsonIgnore]
+        public Area? Area { get; set; }
 
         public MetroLine()
         {
@@ -41,7 +54,9 @@ namespace HeadHunter.Database.MongoDb.Collections
 
             HeadHunterId = metroLine.Id;
             Name = metroLine.Name;
+            CityId = metroLine.AreaId;
             HexColor = metroLine.HexColor;
+            Area = metroLine.Area != null ? new Area(metroLine.Area) : null;
         }
     }
 }
