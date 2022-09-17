@@ -3,8 +3,6 @@ name: Docker Stack Deploy
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
 
 jobs:
   vue-js-app-build:
@@ -100,3 +98,9 @@ jobs:
 
       - name: Push docker image
         run: docker push $DOCKER_IMAGE
+      
+      - name: Deploy docker image
+        uses: satak/webrequest-action@master
+        with:
+          url: http://lev4and.ru/portainer/api/webhooks/9710790c-7491-4aad-9c26-9681be3ca960
+          method: POST
