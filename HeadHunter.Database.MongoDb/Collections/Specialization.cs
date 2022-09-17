@@ -62,6 +62,7 @@ namespace HeadHunter.Database.MongoDb.Collections
             ProfareaId = specialization.ProfareaId;
             HeadHunterId = specialization.Id;
             HeadHunterParentId = specialization.ParentId;
+            HeadHunterParentId = specialization.Id.Contains('.') ? specialization.Id.Substring(0, specialization.Id.IndexOf('.')) : null;
             ProfareaName = specialization.ProfareaName;
         }
     }

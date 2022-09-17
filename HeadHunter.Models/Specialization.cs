@@ -30,7 +30,7 @@ namespace HeadHunter.Models
 
         public Specialization()
         {
-            ParentId = Id.Contains('.') ? Id.Substring(0, Id.IndexOf('.')) : null;
+
         }
     }
 }
