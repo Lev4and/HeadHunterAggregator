@@ -25,6 +25,16 @@ services:
     ports:
       - "5342:80"
 
+  headhunter-importer-console-app:
+    image: ghcr.io/lev4and/headhunter/importer-console-app:latest
+
+  headhunter-importer-console-app-seq:
+    image: datalust/seq:latest
+    environment:
+      - ACCEPT_EULA=Y
+    ports:
+      - "5343:80"
+
   headhunter-vue-js-app:
     image: ghcr.io/lev4and/headhunter/vue-js-app:latest
     ports:
