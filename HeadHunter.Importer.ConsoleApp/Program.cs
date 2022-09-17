@@ -35,10 +35,10 @@ static IHost AppStartup()
     var host = Host.CreateDefaultBuilder()
         .ConfigureServices((context, services) =>
         {
-            services.AddSingleton<HttpContext>();
-            services.AddSingleton<EventBus>();
-            services.AddSingleton<Importer>();
-            services.AddSingleton<ImporterActor>();
+            services.AddTransient<HttpContext>();
+            services.AddTransient<EventBus>();
+            services.AddTransient<Importer>();
+            services.AddTransient<ImporterActor>();
         })
         .UseSerilog()
         .Build();
