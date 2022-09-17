@@ -90,7 +90,7 @@ namespace HeadHunter.Importer
 
             vacancy.Employer = company;
 
-            await _context.Resource.ImportVacancies.Import(vacancy);
+            await _context.Resource.ImportVacancies.ImportAsync(vacancy);
 
             return vacancy;
         }

@@ -4,21 +4,21 @@ using HeadHunter.Model.Common;
 
 namespace HeadHunter.HttpClients.Resource
 {
-    public class ImportLanguagesHttpClient : ResourceHttpClient
+    public class ImportLanguagesHttpClient : ResourceHttpClient, IImporter<Language, Models.Language>
     {
         public ImportLanguagesHttpClient() : base(ResourceRoutes.ImportLanguagesPath)
         {
 
         }
 
-        public async Task<ResponseModel<Language>> Import(Models.Language language)
+        public async Task<ResponseModel<Language>> ImportAsync(Models.Language model)
         {
-            if (language == null)
+            if (model == null)
             {
-                throw new ArgumentNullException(nameof(language));
+                throw new ArgumentNullException(nameof(model));
             }
 
-            return await Post<Language>("", new Command(language));
+            return await Post<Language>("", new Command(model));
         }
     }
 }

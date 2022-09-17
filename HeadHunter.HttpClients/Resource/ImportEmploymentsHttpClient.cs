@@ -1,29 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HeadHunter.Database.MongoDb.Collections;
+﻿using HeadHunter.Database.MongoDb.Collections;
 using HeadHunter.Database.MongoDb.Features.Employment.Import;
 using HeadHunter.Model.Common;
 
 namespace HeadHunter.HttpClients.Resource
 {
-    public class ImportEmploymentsHttpClient : ResourceHttpClient
+    public class ImportEmploymentsHttpClient : ResourceHttpClient, IImporter<Employment, Models.Employment>
     {
         public ImportEmploymentsHttpClient() : base(ResourceRoutes.ImportEmploymentsPath)
         {
 
         }
 
-        public async Task<ResponseModel<Employment>> Import(Models.Employment employment)
+        public async Task<ResponseModel<Employment>> ImportAsync(Models.Employment model)
         {
-            if (employment == null)
+            if (model == null)
             {
-                throw new ArgumentNullException(nameof(employment));
+                throw new ArgumentNullException(nameof(model));
             }
 
-            return await Post<Employment>("", new Command(employment));
+            return await Post<Employment>("", new Command(model));
         }
     }
 }

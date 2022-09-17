@@ -4,21 +4,21 @@ using HeadHunter.Model.Common;
 
 namespace HeadHunter.HttpClients.Resource
 {
-    public class ImportWorkingTimeIntervalsHttpClient : ResourceHttpClient
+    public class ImportWorkingTimeIntervalsHttpClient : ResourceHttpClient, IImporter<WorkingTimeInterval, Models.WorkingTimeInterval>
     {
         public ImportWorkingTimeIntervalsHttpClient() : base(ResourceRoutes.ImportWorkingTimeIntervalsPath)
         {
 
         }
 
-        public async Task<ResponseModel<WorkingTimeInterval>> Import(Models.WorkingTimeInterval workingTimeInterval)
+        public async Task<ResponseModel<WorkingTimeInterval>> ImportAsync(Models.WorkingTimeInterval model)
         {
-            if (workingTimeInterval == null)
+            if (model == null)
             {
-                throw new ArgumentNullException(nameof(workingTimeInterval));
+                throw new ArgumentNullException(nameof(model));
             }
 
-            return await Post<WorkingTimeInterval>("", new Command(workingTimeInterval));
+            return await Post<WorkingTimeInterval>("", new Command(model));
         }
     }
 }

@@ -4,21 +4,21 @@ using HeadHunter.Model.Common;
 
 namespace HeadHunter.HttpClients.Resource
 {
-    public class ImportSpecializationsHttpClient : ResourceHttpClient
+    public class ImportSpecializationsHttpClient : ResourceHttpClient, IImporter<Specialization, Models.Specialization>
     {
         public ImportSpecializationsHttpClient() : base(ResourceRoutes.ImportSpecializationsPath)
         {
 
         }
 
-        public async Task<ResponseModel<Specialization>> Import(Models.Specialization specialization)
+        public async Task<ResponseModel<Specialization>> ImportAsync(Models.Specialization model)
         {
-            if (specialization == null)
+            if (model == null)
             {
-                throw new ArgumentNullException(nameof(specialization));
+                throw new ArgumentNullException(nameof(model));
             }
 
-            return await Post<Specialization>("", new Command(specialization));
+            return await Post<Specialization>("", new Command(model));
         }
     }
 }

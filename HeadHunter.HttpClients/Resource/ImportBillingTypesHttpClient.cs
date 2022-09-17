@@ -4,21 +4,21 @@ using HeadHunter.Model.Common;
 
 namespace HeadHunter.HttpClients.Resource
 {
-    public class ImportBillingTypesHttpClient : ResourceHttpClient
+    public class ImportBillingTypesHttpClient : ResourceHttpClient, IImporter<BillingType, Models.BillingType>
     {
         public ImportBillingTypesHttpClient() : base(ResourceRoutes.ImportBillingTypesPath)
         {
 
         }
 
-        public async Task<ResponseModel<BillingType>> Import(Models.BillingType billingType)
+        public async Task<ResponseModel<BillingType>> ImportAsync(Models.BillingType model)
         {
-            if (billingType == null)
+            if (model == null)
             {
-                throw new ArgumentNullException(nameof(billingType));
+                throw new ArgumentNullException(nameof(model));
             }
 
-            return await Post<BillingType>("", new Command(billingType));
+            return await Post<BillingType>("", new Command(model));
         }
     }
 }

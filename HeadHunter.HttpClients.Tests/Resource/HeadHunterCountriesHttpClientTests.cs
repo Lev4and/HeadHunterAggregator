@@ -12,9 +12,9 @@ namespace HeadHunter.HttpClients.Tests.Resource
         }
 
         [Fact]
-        public async Task GetAllCountriesAsync_ReturnSuccessResponseWithNotEmptyResult()
+        public async Task GetAllAsync_ReturnSuccessResponseWithNotEmptyResult()
         {
-            var response = await _context.Resource.HeadHunterCountries.GetAllCountriesAsync();
+            var response = await _context.Resource.HeadHunterCountries.GetAllAsync();
             var statusCode = response.Status.Code;
 
             Assert.NotNull(response);

@@ -1,29 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HeadHunter.Database.MongoDb.Collections;
+﻿using HeadHunter.Database.MongoDb.Collections;
 using HeadHunter.Database.MongoDb.Features.MetroStation.Import;
 using HeadHunter.Model.Common;
 
 namespace HeadHunter.HttpClients.Resource
 {
-    public class ImportMetroStationsHttpClient : ResourceHttpClient
+    public class ImportMetroStationsHttpClient : ResourceHttpClient, IImporter<MetroStation, Models.MetroStation>
     {
         public ImportMetroStationsHttpClient() : base(ResourceRoutes.ImportMetroStationsPath)
         {
 
         }
 
-        public async Task<ResponseModel<MetroStation>> Import(Models.MetroStation metroStation)
+        public async Task<ResponseModel<MetroStation>> ImportAsync(Models.MetroStation model)
         {
-            if (metroStation == null)
+            if (model == null)
             {
-                throw new ArgumentNullException(nameof(metroStation));
+                throw new ArgumentNullException(nameof(model));
             }
 
-            return await Post<MetroStation>("", new Command(metroStation));
+            return await Post<MetroStation>("", new Command(model));
         }
     }
 }

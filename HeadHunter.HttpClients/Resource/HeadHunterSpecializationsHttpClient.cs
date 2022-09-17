@@ -3,14 +3,14 @@ using HeadHunter.Models;
 
 namespace HeadHunter.HttpClients.Resource
 {
-    public class HeadHunterSpecializationsHttpClient : ResourceHttpClient
+    public class HeadHunterSpecializationsHttpClient : ResourceHttpClient, IGetAll<Specialization>
     {
         public HeadHunterSpecializationsHttpClient() : base(ResourceRoutes.HeadHunterSpecializationsPath)
         {
 
         }
 
-        public async Task<ResponseModel<Specialization[]>> GetAllSpecializationsAsync()
+        public async Task<ResponseModel<Specialization[]>> GetAllAsync()
         {
             return await Get<Specialization[]>(ResourceRoutes.HeadHunterSpecializationsAllQuery);
         }

@@ -4,21 +4,21 @@ using HeadHunter.Model.Common;
 
 namespace HeadHunter.HttpClients.Resource
 {
-    public class ImportSchedulesHttpClient : ResourceHttpClient
+    public class ImportSchedulesHttpClient : ResourceHttpClient, IImporter<Schedule, Models.Schedule>
     {
         public ImportSchedulesHttpClient() : base(ResourceRoutes.ImportSchedulesPath)
         {
 
         }
 
-        public async Task<ResponseModel<Schedule>> Import(Models.Schedule schedule)
+        public async Task<ResponseModel<Schedule>> ImportAsync(Models.Schedule model)
         {
-            if (schedule == null)
+            if (model == null)
             {
-                throw new ArgumentNullException(nameof(schedule));
+                throw new ArgumentNullException(nameof(model));
             }
 
-            return await Post<Schedule>("", new Command(schedule));
+            return await Post<Schedule>("", new Command(model));
         }
     }
 }
