@@ -1,10 +1,12 @@
 using HeadHunter.Database.MongoDb;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using System.Net;
 using HttpClients = HeadHunter.HttpClients;
 
 var builder = WebApplication.CreateBuilder(args);
+var logger = new LoggerConfiguration().MinimumLevel.Debug().WriteTo.Console().CreateLogger();
 
 builder.Host.UseSerilog((context, loggerConfiguration) =>
     loggerConfiguration.WriteTo.Console().ReadFrom.Configuration(context.Configuration));
@@ -27,15 +29,32 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllersWithViews()
     .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling =
         Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-builder.Services.AddEndpointsApiExplorer();
 
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.InvalidModelStateResponseFactory = context =>
+    {
+        var problemDetails = new ValidationProblemDetails(context.ModelState);
+
+        var description = string.Join(' ', problemDetails.Errors.ToList().Select(error =>
+        {
+            return $"{error.Key} {string.Join(", ", error.Value)}";
+        }));
+
+        logger.Warning(description);
+
+        return new BadRequestObjectResult(problemDetails);
+    };
+});
+
+builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
     options.CustomSchemaIds(type => type.ToString());
 
     options.AddServer(new OpenApiServer()
     {
-        Url = "https://localhost:44300"
+        Url = "https://localhost:5001"
     });
 
     options.AddServer(new OpenApiServer()

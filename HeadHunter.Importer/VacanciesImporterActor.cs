@@ -1,17 +1,21 @@
 ﻿using HeadHunter.Models;
+using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 
 namespace HeadHunter.Importer
 {
     public class VacanciesImporterActor : AbstractActor<Vacancy>
     {
+        private readonly ILogger<VacanciesImporterActor> _logger;
         private readonly VacanciesImporter _importer;
         private readonly EventBus _eventBus;
 
         public override int ThreadCount => 20;
 
-        public VacanciesImporterActor(VacanciesImporter importer, EventBus eventBus)
+        public VacanciesImporterActor(ILogger<VacanciesImporterActor> logger, VacanciesImporter importer, EventBus eventBus)
         {
+            _logger = logger;
+
             _importer = importer;
             _eventBus = eventBus;
         }
@@ -28,11 +32,7 @@ namespace HeadHunter.Importer
 
         public override async Task HandleError(Vacancy vacancy, Exception ex)
         {
-            Debug.WriteLine($"Error handling {vacancy.Id} with error {ex.Message}");
-
-            await Task.Delay(1000);
-
-            await SendAsync(vacancy);
+            _logger.LogError(ex, $"Error when import vacancy: Id: {vacancy.Id} EmployerId: {vacancy.Employer.Id}");
         }
     }
 }
