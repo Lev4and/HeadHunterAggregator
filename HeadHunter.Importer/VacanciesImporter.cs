@@ -85,12 +85,20 @@ namespace HeadHunter.Importer
             var vacancyResponse = await _context.HeadHunter.Vacancies.GetVacancyAsync(vacancyId);
             var companyResponse = await _context.HeadHunter.Employers.GetEmployerAsync(companyId);
 
-            var vacancy = vacancyResponse.Result as Vacancy;
-            var company = companyResponse.Result as Employer;
+            var vacancy = vacancyResponse.Result;
+            var company = companyResponse.Result;
 
             vacancy.Employer = company;
 
-            await _context.Resource.ImportVacancies.ImportAsync(vacancy);
+            if (!string.IsNullOrEmpty(vacancy.Id) && !string.IsNullOrEmpty(vacancy.Name))
+            {
+                await _context.Resource.ImportVacancies.ImportAsync(vacancy);
+            }
+            else
+            {
+                _logger.LogWarning($"Failed of import vacancy - VacancyId: {vacancyId} CompanyId: {companyId}");
+            }
+
 
             return vacancy;
         }
