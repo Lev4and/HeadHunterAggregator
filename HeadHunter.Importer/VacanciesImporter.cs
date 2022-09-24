@@ -17,8 +17,8 @@ namespace HeadHunter.Importer
             _logger = logger;
             _context = context;
 
-            _dateTo = DateTime.UtcNow;
-            _dateFrom = DateTime.UtcNow.AddMinutes(-5);
+            _dateTo = DateTime.UtcNow.AddDays(-7).AddMinutes(5);
+            _dateFrom = DateTime.UtcNow.AddDays(-7);
         }
 
         public async IAsyncEnumerable<Vacancy> GetVacanciesAsync()
@@ -35,7 +35,7 @@ namespace HeadHunter.Importer
                 _dateTo = _dateTo.AddMinutes(5);
                 _dateFrom = _dateFrom.AddMinutes(5);
 
-                if (_dateTo > DateTime.UtcNow) await Task.Delay(_dateTo - DateTime.UtcNow);
+                //if (_dateTo > DateTime.UtcNow) await Task.Delay(_dateTo - DateTime.UtcNow);
             }
         }
 
@@ -76,6 +76,15 @@ namespace HeadHunter.Importer
 
                 yield return vacancy;
             }
+        }
+
+        public async Task<Vacancy> ImportVacancyAsync(Vacancy vacancy)
+        {
+            _logger.LogInformation($"GetVacancyAsync VacancyId: {vacancy.Id} CompanyId: {vacancy.Employer.Id}");
+
+            await _context.Resource.ImportVacancies.ImportAsync(vacancy);
+
+            return vacancy;
         }
 
         public async Task<Vacancy> ImportVacancyAsync(long vacancyId, long companyId)
