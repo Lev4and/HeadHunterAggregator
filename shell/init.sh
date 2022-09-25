@@ -10,6 +10,7 @@ git reset --hard origin/master
 rm .env
 cp .env.dist .env
 export $(egrep -v '^#' .env | xargs -0)
+mkdir pgadmin-data
 mkdir postgres-data
 mkdir portainer-data
 mkdir mongodb-data
