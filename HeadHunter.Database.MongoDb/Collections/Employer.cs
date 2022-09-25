@@ -113,8 +113,8 @@ namespace HeadHunter.Database.MongoDb.Collections
             BrandedDescription = employer.BrandedDescription;
             Area = employer.Area != null ? new Area(employer.Area) : null;
             LogoUrls = employer.LogoUrls != null ? new LogoUrls(employer.LogoUrls) : null;
-            Industries = employer.Industries.Select(industry => new Industry(industry)).ToList();
-            InsiderInterviews = employer.InsiderInterviews.Select(insiderInterview => new InsiderInterview(insiderInterview)).ToList();
+            Industries = employer.Industries?.Select(industry => new Industry(industry)).ToList() ?? new List<Industry>();
+            InsiderInterviews = employer.InsiderInterviews?.Select(insiderInterview => new InsiderInterview(insiderInterview)).ToList() ?? new List<InsiderInterview>();
         }
     }
 }

@@ -78,6 +78,15 @@ namespace HeadHunter.Importer
             }
         }
 
+        public async Task<Vacancy> ImportVacancyAsync(Vacancy vacancy)
+        {
+            _logger.LogInformation($"GetVacancyAsync VacancyId: {vacancy.Id} CompanyId: {vacancy.Employer.Id}");
+
+            await _context.Resource.ImportVacancies.ImportAsync(vacancy);
+
+            return vacancy;
+        }
+
         public async Task<Vacancy> ImportVacancyAsync(long vacancyId, long companyId)
         {
             _logger.LogInformation($"GetVacancyAsync VacancyId: {vacancyId} CompanyId: {companyId}");

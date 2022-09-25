@@ -296,14 +296,14 @@ namespace HeadHunter.Database.MongoDb.Collections
             VacancyType = vacancy.Type != null ? new VacancyType(vacancy.Type) : null;
             BillingType = vacancy.BillingType != null ? new BillingType(vacancy.BillingType) : null;
             InsiderInterview = vacancy.InsiderInterview != null ? new InsiderInterview(vacancy.InsiderInterview) : null;
-            Languages = vacancy.Languages.Select(language => new Language(language)).ToList();
-            KeySkills = vacancy.KeySkills.Select(keySkill => new KeySkill(keySkill)).ToList();
-            WorkingDays = vacancy.WorkingDays.Select(workingDay => new WorkingDay(workingDay)).ToList();
-            Specializations = vacancy.Specializations.Select(specialization => new Specialization(specialization)).ToList();
-            WorkingTimeModes = vacancy.WorkingTimeModes.Select(workingTimeMode => new WorkingTimeMode(workingTimeMode)).ToList();
-            ProfessionalRoles = vacancy.ProfessionalRoles.Select(professionalRole => new ProfessionalRole(professionalRole)).ToList();
-            DriverLicenseTypes = vacancy.DriverLicenseTypes.Select(driverLicenseType => new DriverLicenseType(driverLicenseType)).ToList();
-            WorkingTimeIntervals = vacancy.WorkingTimeIntervals.Select(workingTimeInterval => new WorkingTimeInterval(workingTimeInterval)).ToList();
+            Languages = vacancy.Languages?.Select(language => new Language(language)).ToList() ?? new List<Language>();
+            KeySkills = vacancy.KeySkills?.Select(keySkill => new KeySkill(keySkill)).ToList() ?? new List<KeySkill>();
+            WorkingDays = vacancy.WorkingDays?.Select(workingDay => new WorkingDay(workingDay)).ToList() ?? new List<WorkingDay>();
+            Specializations = vacancy.Specializations?.Select(specialization => new Specialization(specialization)).ToList() ?? new List<Specialization>();
+            WorkingTimeModes = vacancy.WorkingTimeModes?.Select(workingTimeMode => new WorkingTimeMode(workingTimeMode)).ToList() ?? new List<WorkingTimeMode>();
+            ProfessionalRoles = vacancy.ProfessionalRoles?.Select(professionalRole => new ProfessionalRole(professionalRole)).ToList() ?? new List<ProfessionalRole>();
+            DriverLicenseTypes = vacancy.DriverLicenseTypes?.Select(driverLicenseType => new DriverLicenseType(driverLicenseType)).ToList() ?? new List<DriverLicenseType>();
+            WorkingTimeIntervals = vacancy.WorkingTimeIntervals?.Select(workingTimeInterval => new WorkingTimeInterval(workingTimeInterval)).ToList() ?? new List<WorkingTimeInterval>();
         }
     }
 }

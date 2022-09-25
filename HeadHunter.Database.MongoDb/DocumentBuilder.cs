@@ -52,9 +52,12 @@ namespace HeadHunter.Database.MongoDb
         {
             var result = new List<TCollection>();
 
-            foreach (var item in items)
+            if (items != null)
             {
-                result.Add(await Mediator.Send(commandCreateFunc(item)));
+                foreach (var item in items)
+                {
+                    result.Add(await Mediator.Send(commandCreateFunc(item)));
+                }
             }
 
             return result;
