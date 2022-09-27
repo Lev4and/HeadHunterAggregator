@@ -21,12 +21,6 @@ namespace HeadHunter.Database.MongoDb.Collections
         [JsonConverter(typeof(ObjectIdConverter))]
         public ObjectId? AreaId { get; set; }
 
-        [BsonIgnoreIfNull]
-        [BsonElement("addressId")]
-        [BsonRepresentation(BsonType.ObjectId)]
-        [JsonConverter(typeof(ObjectIdConverter))]
-        public ObjectId? AddressId { get; set; }
-
         [BsonRequired]
         [BsonElement("employerId")]
         [BsonRepresentation(BsonType.ObjectId)]
@@ -156,7 +150,8 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonElement("salary")]
         public Salary? Salary { get; set; }
 
-        [BsonIgnore]
+        [BsonIgnoreIfNull]
+        [BsonElement("address")]
         public Address? Address { get; set; }
 
         [BsonIgnore]

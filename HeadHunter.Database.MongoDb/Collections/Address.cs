@@ -1,20 +1,10 @@
-﻿using HeadHunter.Database.MongoDb.Common;
-using HeadHunter.Database.MongoDb.Common.Attributes;
-using HeadHunter.Database.MongoDb.Common.JsonConverters;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-using Newtonsoft.Json;
 
 namespace HeadHunter.Database.MongoDb.Collections
 {
-    [MongoDbCollectionNameAttibute("addresses")]
-    public class Address : ICollection
+    public class Address
     {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        [JsonConverter(typeof(ObjectIdConverter))]
-        public ObjectId Id { get; set; }
-
         [BsonIgnoreIfNull]
         [BsonElement("city")]
         public string City { get; set; }
