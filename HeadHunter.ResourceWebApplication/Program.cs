@@ -54,7 +54,7 @@ builder.Services.AddSwaggerGen(options =>
 
     options.AddServer(new OpenApiServer()
     {
-        Url = "https://localhost:5001"
+        Url = "https://localhost:44300"
     });
 
     options.AddServer(new OpenApiServer()

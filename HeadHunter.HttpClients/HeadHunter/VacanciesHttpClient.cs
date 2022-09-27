@@ -41,7 +41,8 @@ namespace HeadHunter.HttpClients.HeadHunter
             return await Get<PagedResponseModel<Vacancy>>($"?{HeadHunterRoutes.VacanciesPageQueryParam}={page - 1}" +
                 $"&{HeadHunterRoutes.VacanciesPerPageQueryParam}={perPage}" +
                 $"&{HeadHunterRoutes.VacanciesDateFromQueryParam}={moscowDateFrom.ToString("yyyy-MM-ddTHH:mm:ss")}" +
-                $"&{HeadHunterRoutes.VacanciesDateToQueryParam}={moscowDateTo.ToString("yyyy-MM-ddTHH:mm:ss")}");
+                $"&{HeadHunterRoutes.VacanciesDateToQueryParam}={moscowDateTo.ToString("yyyy-MM-ddTHH:mm:ss")}" +
+                $"&{HeadHunterRoutes.VacanciesOrderByQueryParam}=publication_time");
         }
 
         public async Task<ResponseModel<Vacancy>> GetVacancyAsync(long id)
