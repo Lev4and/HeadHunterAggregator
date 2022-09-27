@@ -32,8 +32,6 @@
 
         public ImportBillingTypesHttpClient ImportBillingTypes => new ImportBillingTypesHttpClient();
 
-        public ImportCountriesHttpClient ImportCountries => new ImportCountriesHttpClient();
-
         public ImportCurrenciesHttpClient ImportCurrencies => new ImportCurrenciesHttpClient();
 
         public ImportDepartmentsHttpClient ImportDepartments => new ImportDepartmentsHttpClient();

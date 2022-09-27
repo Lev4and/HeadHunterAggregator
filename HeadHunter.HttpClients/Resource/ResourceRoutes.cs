@@ -90,8 +90,6 @@
 
         public const string ImportBillingTypesPath = $"{ImportAreaPath}/billingTypes/";
 
-        public const string ImportCountriesPath = $"{ImportAreaPath}/countries/";
-
         public const string ImportCurrenciesPath = $"{ImportAreaPath}/currencies/";
 
         public const string ImportDepartmentsPath = $"{ImportAreaPath}/departments/";
