@@ -56,6 +56,7 @@ namespace HeadHunter.Database.MongoDb.Collections
 
         [BsonIgnoreIfNull]
         [BsonElement("description")]
+        [JsonConverter(typeof(BrotliConverter))]
         public string? Description { get; set; }
 
         [BsonIgnoreIfNull]

@@ -114,6 +114,7 @@ namespace HeadHunter.Database.MongoDb.Collections
 
         [BsonIgnoreIfNull]
         [BsonElement("description")]
+        [JsonConverter(typeof(BrotliConverter))]
         public string? Description { get; set; }
 
         [BsonIgnoreIfNull]
@@ -126,6 +127,7 @@ namespace HeadHunter.Database.MongoDb.Collections
 
         [BsonIgnoreIfNull]
         [BsonElement("brandedDescription")]
+        [JsonConverter(typeof(BrotliConverter))]
         public string? BrandedDescription { get; set; }
 
         [BsonElement("createdAt")]
