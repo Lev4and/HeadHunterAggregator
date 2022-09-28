@@ -9,33 +9,43 @@ namespace HeadHunter.Importer
         private readonly ILogger<VacanciesImporter> _logger;
         private readonly HttpContext _context;
 
+        private int _importedVacanciesPerHour;
         private DateTime _dateTo;
         private DateTime _dateFrom;
+        private DateTime _startedAt;
 
         public VacanciesImporter(ILogger<VacanciesImporter> logger, HttpContext context)
         {
             _logger = logger;
             _context = context;
-
+            _importedVacanciesPerHour = 0;
             _dateTo = DateTime.UtcNow;
             _dateFrom = DateTime.UtcNow.AddMinutes(-5);
+            _startedAt = DateTime.UtcNow;
         }
 
         public async IAsyncEnumerable<Vacancy> GetVacanciesAsync()
         {
-            while (_dateFrom < DateTime.UtcNow)
+            while (true)
             {
-                _logger.LogInformation($"GetVacanciesAsync DateFrom: {_dateFrom.ToString("dd.MM.yyyy HH:mm:ss")}");
-
                 await foreach (var vacancy in GetVacanciesByPediodAsync())
                 {
-                    yield return vacancy;
+                    if (HourHasPassed()) ResetImportData();
+
+                    if (IsLimitExceeded())
+                    {
+                        await Task.Delay(3600000);
+
+                        continue;
+                    }
+                    else yield return vacancy;
+
+                    _importedVacanciesPerHour += 1;
                 }
 
-                _dateTo = _dateTo.AddMinutes(5);
-                _dateFrom = _dateFrom.AddMinutes(5);
+                IncrementDateRangeFilters();
 
-                if (_dateTo > DateTime.UtcNow) await Task.Delay(_dateTo - DateTime.UtcNow);
+                await WaitAsync();
             }
         }
 
@@ -48,8 +58,6 @@ namespace HeadHunter.Importer
 
             for (var i = 1; i <= found / 100 + 1; i++)
             {
-                _logger.LogInformation($"GetVacanciesByPediodAsync Page: {i}");
-
                 await foreach (var vacancy in GetVacanciesByPageAsync(i))
                 {
                     yield return vacancy;
@@ -70,27 +78,12 @@ namespace HeadHunter.Importer
 
             foreach (var vacancy in response?.Result?.Items ?? new Vacancy[0])
             {
-                _logger.LogInformation($"GetVacanciesByPageAsync Vacancy: Id - {vacancy.Id} Name - " +
-                    $"{vacancy.Name} CreatedAt - {vacancy.CreatedAt.ToString("dd.MM.yyyy HH:mm:ss")} " +
-                    $"Company - {vacancy.Employer.Name} Area - {vacancy.Area?.Name} Salary from - {vacancy.Salary?.From}");
-
                 yield return vacancy;
             }
         }
 
-        public async Task<Vacancy> ImportVacancyAsync(Vacancy vacancy)
-        {
-            _logger.LogInformation($"GetVacancyAsync VacancyId: {vacancy.Id} CompanyId: {vacancy.Employer.Id}");
-
-            await _context.Resource.ImportVacancies.ImportAsync(vacancy);
-
-            return vacancy;
-        }
-
         public async Task<Vacancy> ImportVacancyAsync(long vacancyId, long companyId)
         {
-            _logger.LogInformation($"GetVacancyAsync VacancyId: {vacancyId} CompanyId: {companyId}");
-
             var vacancyResponse = await _context.HeadHunter.Vacancies.GetVacancyAsync(vacancyId);
             var companyResponse = await _context.HeadHunter.Employers.GetEmployerAsync(companyId);
 
@@ -110,6 +103,33 @@ namespace HeadHunter.Importer
 
 
             return vacancy;
+        }
+
+        private bool HourHasPassed()
+        {
+            return (DateTime.UtcNow - _startedAt).TotalMinutes > 60;
+        }
+
+        private void ResetImportData()
+        {
+            _startedAt = DateTime.UtcNow;
+            _importedVacanciesPerHour = 0;
+        }
+
+        private bool IsLimitExceeded()
+        {
+            return _importedVacanciesPerHour > 3500;
+        }
+
+        private void IncrementDateRangeFilters()
+        {
+            _dateTo = _dateTo.AddMinutes(5);
+            _dateFrom = _dateFrom.AddMinutes(5);
+        }
+
+        private async Task WaitAsync()
+        {
+            if (_dateTo > DateTime.UtcNow) await Task.Delay(_dateTo - DateTime.UtcNow);
         }
     }
 }
