@@ -1,5 +1,6 @@
 ﻿using HeadHunter.Database.MongoDb.Common;
 using HeadHunter.Database.MongoDb.Common.Attributes;
+using HeadHunter.Database.MongoDb.Common.BsonSerializers;
 using HeadHunter.Database.MongoDb.Common.JsonConverters;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
@@ -114,7 +115,7 @@ namespace HeadHunter.Database.MongoDb.Collections
 
         [BsonIgnoreIfNull]
         [BsonElement("description")]
-        [JsonConverter(typeof(BrotliConverter))]
+        [BsonSerializer(typeof(BrotliSerializer))]
         public string? Description { get; set; }
 
         [BsonIgnoreIfNull]
@@ -127,7 +128,7 @@ namespace HeadHunter.Database.MongoDb.Collections
 
         [BsonIgnoreIfNull]
         [BsonElement("brandedDescription")]
-        [JsonConverter(typeof(BrotliConverter))]
+        [BsonSerializer(typeof(BrotliSerializer))]
         public string? BrandedDescription { get; set; }
 
         [BsonElement("createdAt")]
