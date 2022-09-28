@@ -42,19 +42,6 @@ namespace HeadHunter.Database.MongoDb.Features.Vacancy.Create.Builders
             return this;
         }
 
-        public VacancyBuilder WithAddress()
-        {
-            Enqueue(() => Task.Run(async () =>
-            {
-                var address = _vacancy.Address != null ? await ImportAsync(new Address.Import.Command(_vacancy.Address)) : null;
-
-                Document.Address = address;
-                Document.AddressId = address?.Id;
-            }));
-
-            return this;
-        }
-
         public VacancyBuilder WithEmployer()
         {
             Enqueue(() => Task.Run(async () =>

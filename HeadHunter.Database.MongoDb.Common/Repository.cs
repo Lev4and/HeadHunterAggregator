@@ -49,6 +49,11 @@ namespace HeadHunter.Database.MongoDb.Common
             return await GetCollection<T>().DeleteOneAsync(item => item.Id == id);
         }
 
+        public async Task CreateIndexKeysAsync<T>(IDefiningIndexKeys<T> definingIndexKeys) where T : ICollection
+        {
+            await GetCollection<T>().Indexes.CreateManyAsync(definingIndexKeys.GetIndexKeys());
+        }
+
         private IMongoCollection<T> GetCollection<T>() => _database.GetCollection<T>((typeof(T)
             .GetCustomAttributes(typeof(MongoDbCollectionNameAttibute), true)[0] as MongoDbCollectionNameAttibute).Name);
     }

@@ -1,8 +1,10 @@
 ﻿using HeadHunter.Database.MongoDb.Common;
 using HeadHunter.Database.MongoDb.Common.Attributes;
+using HeadHunter.Database.MongoDb.Common.BsonSerializers;
 using HeadHunter.Database.MongoDb.Common.JsonConverters;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Driver;
 using Newtonsoft.Json;
 
 namespace HeadHunter.Database.MongoDb.Collections
@@ -20,12 +22,6 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonRepresentation(BsonType.ObjectId)]
         [JsonConverter(typeof(ObjectIdConverter))]
         public ObjectId? AreaId { get; set; }
-
-        [BsonIgnoreIfNull]
-        [BsonElement("addressId")]
-        [BsonRepresentation(BsonType.ObjectId)]
-        [JsonConverter(typeof(ObjectIdConverter))]
-        public ObjectId? AddressId { get; set; }
 
         [BsonRequired]
         [BsonElement("employerId")]
@@ -119,6 +115,7 @@ namespace HeadHunter.Database.MongoDb.Collections
 
         [BsonIgnoreIfNull]
         [BsonElement("description")]
+        [BsonSerializer(typeof(BrotliSerializer))]
         public string? Description { get; set; }
 
         [BsonIgnoreIfNull]
@@ -131,6 +128,7 @@ namespace HeadHunter.Database.MongoDb.Collections
 
         [BsonIgnoreIfNull]
         [BsonElement("brandedDescription")]
+        [BsonSerializer(typeof(BrotliSerializer))]
         public string? BrandedDescription { get; set; }
 
         [BsonElement("createdAt")]
@@ -156,7 +154,8 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonElement("salary")]
         public Salary? Salary { get; set; }
 
-        [BsonIgnore]
+        [BsonIgnoreIfNull]
+        [BsonElement("address")]
         public Address? Address { get; set; }
 
         [BsonIgnore]

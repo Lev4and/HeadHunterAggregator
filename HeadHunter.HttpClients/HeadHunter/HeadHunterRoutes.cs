@@ -16,6 +16,8 @@
 
         public const string VacanciesDateToQueryParam = "date_to";
 
+        public const string VacanciesOrderByQueryParam = "order_by";
+
         public const string EmployersPath = "employers/";
 
         public const string AreasPath = "areas/";

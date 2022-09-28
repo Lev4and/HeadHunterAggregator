@@ -26,13 +26,9 @@
 
         public HeadHunterVacanciesHttpClient HeadHunterVacancies => new HeadHunterVacanciesHttpClient();
 
-        public ImportAddressesHttpClient ImportAddresses => new ImportAddressesHttpClient();
-
         public ImportAreasHttpClient ImportAreas => new ImportAreasHttpClient();
 
         public ImportBillingTypesHttpClient ImportBillingTypes => new ImportBillingTypesHttpClient();
-
-        public ImportCountriesHttpClient ImportCountries => new ImportCountriesHttpClient();
 
         public ImportCurrenciesHttpClient ImportCurrencies => new ImportCurrenciesHttpClient();
 

@@ -84,13 +84,9 @@
 
         public const string ImportAreaPath = $"{HeadHunterApiPath}/import";
 
-        public const string ImportAddressesPath = $"{ImportAreaPath}/addresses/";
-
         public const string ImportAreasPath = $"{ImportAreaPath}/areas/";
 
         public const string ImportBillingTypesPath = $"{ImportAreaPath}/billingTypes/";
-
-        public const string ImportCountriesPath = $"{ImportAreaPath}/countries/";
 
         public const string ImportCurrenciesPath = $"{ImportAreaPath}/currencies/";
 

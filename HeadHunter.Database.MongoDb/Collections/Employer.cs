@@ -1,8 +1,10 @@
 ﻿using HeadHunter.Database.MongoDb.Common;
 using HeadHunter.Database.MongoDb.Common.Attributes;
+using HeadHunter.Database.MongoDb.Common.BsonSerializers;
 using HeadHunter.Database.MongoDb.Common.JsonConverters;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Driver;
 using Newtonsoft.Json;
 
 namespace HeadHunter.Database.MongoDb.Collections
@@ -55,6 +57,7 @@ namespace HeadHunter.Database.MongoDb.Collections
 
         [BsonIgnoreIfNull]
         [BsonElement("description")]
+        [BsonSerializer(typeof(BrotliSerializer))]
         public string? Description { get; set; }
 
         [BsonIgnoreIfNull]
