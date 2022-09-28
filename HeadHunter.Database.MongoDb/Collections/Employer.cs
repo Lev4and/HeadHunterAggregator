@@ -70,6 +70,7 @@ namespace HeadHunter.Database.MongoDb.Collections
 
         [BsonIgnoreIfNull]
         [BsonElement("brandedDescription")]
+        [BsonSerializer(typeof(BrotliSerializer))]
         public string? BrandedDescription { get; set; }
 
         [BsonIgnore]
