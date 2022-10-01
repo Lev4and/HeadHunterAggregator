@@ -41,10 +41,8 @@ namespace HeadHunter.Importer
             }
         }
 
-        private async Task ImportAreaAsync(Models.Area area)
+        private async Task ImportAreaAsync(Area area)
         {
-            _logger.LogInformation($"Import of area: {area.Name}");
-
             await _context.Resource.ImportAreas.ImportAsync(area);
 
             if (area.Areas != null)
@@ -77,70 +75,70 @@ namespace HeadHunter.Importer
             }
         }
 
-        private async Task ImportBillingTypesAsync(List<Models.BillingType>? billingTypes)
+        private async Task ImportBillingTypesAsync(List<BillingType>? billingTypes)
         {
             _logger.LogInformation($"Import of billingTypes");
 
             await ImportAsync(billingTypes, _context.Resource.ImportBillingTypes);
         }
 
-        private async Task ImportCurrenciesAsync(List<Models.Currency>? currencies)
+        private async Task ImportCurrenciesAsync(List<Currency>? currencies)
         {
             _logger.LogInformation($"Import of currencies");
 
             await ImportAsync(currencies, _context.Resource.ImportCurrencies);
         }
 
-        private async Task ImportDriverLicenseTypesAsync(List<Models.DriverLicenseType>? driverLicenseTypes)
+        private async Task ImportDriverLicenseTypesAsync(List<DriverLicenseType>? driverLicenseTypes)
         {
             _logger.LogInformation($"Import of driverLicenseTypes");
 
             await ImportAsync(driverLicenseTypes, _context.Resource.ImportDriverLicenseTypes);
         }
 
-        private async Task ImportEmploymentsAsync(List<Models.Employment>? employments)
+        private async Task ImportEmploymentsAsync(List<Employment>? employments)
         {
             _logger.LogInformation($"Import of employments");
 
             await ImportAsync(employments, _context.Resource.ImportEmployments);
         }
 
-        private async Task ImportExperiencesAsync(List<Models.Experience>? experiences)
+        private async Task ImportExperiencesAsync(List<Experience>? experiences)
         {
             _logger.LogInformation($"Import of experiences");
 
             await ImportAsync(experiences, _context.Resource.ImportExperiences);
         }
 
-        private async Task ImportSchedulesAsync(List<Models.Schedule>? schedules)
+        private async Task ImportSchedulesAsync(List<Schedule>? schedules)
         {
             _logger.LogInformation($"Import of schedules");
 
             await ImportAsync(schedules, _context.Resource.ImportSchedules);
         }
 
-        private async Task ImportVacancyTypesAsync(List<Models.VacancyType>? vacancyTypes)
+        private async Task ImportVacancyTypesAsync(List<VacancyType>? vacancyTypes)
         {
             _logger.LogInformation($"Import of vacancyTypes");
 
             await ImportAsync(vacancyTypes, _context.Resource.ImportVacancyTypes);
         }
 
-        private async Task ImportWorkingDaysAsync(List<Models.WorkingDay>? workingDays)
+        private async Task ImportWorkingDaysAsync(List<WorkingDay>? workingDays)
         {
             _logger.LogInformation($"Import of workingDays");
 
             await ImportAsync(workingDays, _context.Resource.ImportWorkingDays);
         }
 
-        private async Task ImportWorkingTimeIntervalsAsync(List<Models.WorkingTimeInterval>? workingTimeIntervals)
+        private async Task ImportWorkingTimeIntervalsAsync(List<WorkingTimeInterval>? workingTimeIntervals)
         {
             _logger.LogInformation($"Import of workingTimeIntervals");
 
             await ImportAsync(workingTimeIntervals, _context.Resource.ImportWorkingTimeIntervals);
         }
 
-        private async Task ImportWorkingTimeModesAsync(List<Models.WorkingTimeMode>? workingTimeModes)
+        private async Task ImportWorkingTimeModesAsync(List<WorkingTimeMode>? workingTimeModes)
         {
             _logger.LogInformation($"Import of workingTimeModes");
 
@@ -164,10 +162,8 @@ namespace HeadHunter.Importer
             }
         }
         
-        private async Task ImportIndustryAsync(Models.Industry industry)
+        private async Task ImportIndustryAsync(Industry industry)
         {
-            _logger.LogInformation($"Import of industry: {industry.Name}");
-
             await _context.Resource.ImportIndustries.ImportAsync(industry);
 
             if (industry.Industries != null)
@@ -214,8 +210,6 @@ namespace HeadHunter.Importer
 
         private async Task ImportMetroLineInCityAsync(City city, MetroLine metroLine)
         {
-            _logger.LogInformation($"Import of metro line: {metroLine.Name}");
-
             metroLine.Area = new Area { Id = city.Id, Name = city.Name };
             metroLine.AreaId = city.Id;
 
@@ -232,8 +226,6 @@ namespace HeadHunter.Importer
 
         private async Task ImportMetroStationInMetroLineAsync(MetroLine metroLine, MetroStation metroStation)
         {
-            _logger.LogInformation($"Import of metro station: {metroStation.Name}");
-
             metroStation.LineId = metroLine.Id;
             metroStation.LineName = metroLine.Name;
             metroStation.StationId = metroStation.Id;
@@ -259,8 +251,6 @@ namespace HeadHunter.Importer
 
         private async Task ImportSpecializationAsync(Specialization specialization)
         {
-            _logger.LogInformation($"Import of specialization: {specialization.Name}");
-
             await _context.Resource.ImportSpecializations.ImportAsync(specialization);
 
             if (specialization.Specializations != null)
@@ -268,17 +258,6 @@ namespace HeadHunter.Importer
                 foreach (var subSpecialization in specialization.Specializations)
                 {
                     await ImportSpecializationAsync(subSpecialization);
-                }
-            }
-        }
-
-        private async Task ImportAsync<TCollection, TModel>(TModel[]? items, HttpClients.Resource.IImporter<TCollection, TModel> importer) where TCollection : ICollection where TModel : class
-        {
-            if (items != null)
-            {
-                foreach (var item in items)
-                {
-                    await importer.ImportAsync(item);
                 }
             }
         }

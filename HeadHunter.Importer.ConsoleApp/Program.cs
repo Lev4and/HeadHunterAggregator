@@ -28,16 +28,16 @@ static IHost AppStartup()
 
     BuildConfig(builder);
 
-    Log.Logger = new LoggerConfiguration()
-        .ReadFrom.Configuration(builder.Build())
-        .WriteTo.Console()
-        .CreateLogger();
-
-    Log.Logger.Information("Application Starting");
-
     var host = Host.CreateDefaultBuilder()
         .ConfigureServices((context, services) =>
         {
+            Log.Logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(context.Configuration)
+                .WriteTo.Console()
+                .CreateLogger();
+
+            Log.Logger.Information("Application Starting");
+
             services.AddSingleton<HttpContext>();
             services.AddSingleton<EventBus>();
             services.AddSingleton<InitializingImporter>();

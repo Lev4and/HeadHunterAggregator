@@ -1,4 +1,5 @@
 ﻿using HeadHunter.HttpClients;
+using HeadHunter.HttpClients.HeadHunter;
 using HeadHunter.Models;
 using Microsoft.Extensions.Logging;
 
@@ -6,10 +7,14 @@ namespace HeadHunter.Importer
 {
     public class VacanciesImporter
     {
-        private readonly ILogger<VacanciesImporter> _logger;
         private readonly HttpContext _context;
+        private readonly int _vacanciesPerPage;
+        private readonly double _dateRangeIncrement;
+        private readonly int _limitImportedVacanciesPerHour;
+        private readonly ILogger<VacanciesImporter> _logger;
 
         private int _importedVacanciesPerHour;
+
         private DateTime _dateTo;
         private DateTime _dateFrom;
         private DateTime _startedAt;
@@ -18,22 +23,30 @@ namespace HeadHunter.Importer
         {
             _logger = logger;
             _context = context;
-            _importedVacanciesPerHour = 0;
+
+            _vacanciesPerPage = 100;
+            _dateRangeIncrement = 2.5;
             _dateTo = DateTime.UtcNow;
-            _dateFrom = DateTime.UtcNow.AddMinutes(-5);
             _startedAt = DateTime.UtcNow;
+            _importedVacanciesPerHour = 0;
+            _limitImportedVacanciesPerHour = 3500;
+            _dateFrom = DateTime.UtcNow.AddMinutes(-_dateRangeIncrement);
         }
 
         public async IAsyncEnumerable<Vacancy> GetVacanciesAsync()
         {
             while (true)
             {
+                _logger.LogInformation($"Date range filter value: From - {_dateFrom} To - {_dateTo}");
+
                 await foreach (var vacancy in GetVacanciesByPediodAsync())
                 {
                     if (HourHasPassed()) ResetImportData();
 
                     if (IsLimitExceeded())
                     {
+                        _logger.LogWarning("The limit has been exceeded. Import will be suspended on one hour.");
+
                         await Task.Delay(3600000);
 
                         continue;
@@ -41,6 +54,8 @@ namespace HeadHunter.Importer
                     else yield return vacancy;
 
                     _importedVacanciesPerHour += 1;
+
+                    _logger.LogInformation($"Imported vacancies per hour: {_importedVacanciesPerHour}");
                 }
 
                 IncrementDateRangeFilters();
@@ -53,11 +68,13 @@ namespace HeadHunter.Importer
         {
             var found = await GetCountVacanciesAsync();
 
-            _logger.LogInformation($"GetVacanciesByPediodAsync Found: {found}");
-            _logger.LogInformation($"GetVacanciesByPediodAsync Pages: {found / 100 + 1}");
+            _logger.LogInformation($"VacanciesByPediod Found: {found}");
+            _logger.LogInformation($"VacanciesByPediod Pages: {found / _vacanciesPerPage + 1}");
 
-            for (var i = 1; i <= found / 100 + 1; i++)
+            for (var i = 1; i <= found / _vacanciesPerPage + 1; i++)
             {
+                _logger.LogInformation($"VacanciesByPediod Page: {i}");
+
                 await foreach (var vacancy in GetVacanciesByPageAsync(i))
                 {
                     yield return vacancy;
@@ -74,12 +91,16 @@ namespace HeadHunter.Importer
 
         private async IAsyncEnumerable<Vacancy> GetVacanciesByPageAsync(int page)
         {
-            var response = await _context.HeadHunter.Vacancies.GetVacanciesAsync(page, 100, _dateFrom, _dateTo);
-
-            foreach (var vacancy in response?.Result?.Items ?? new Vacancy[0])
+            if (page * _vacanciesPerPage < HeadHunterConstants.OffsetUpperValue)
             {
-                yield return vacancy;
+                var response = await _context.HeadHunter.Vacancies.GetVacanciesAsync(page, _vacanciesPerPage, _dateFrom, _dateTo);
+
+                foreach (var vacancy in response?.Result?.Items ?? new Vacancy[0])
+                {
+                    yield return vacancy;
+                }
             }
+            else _logger.LogWarning($"The page {page} will be skipped");
         }
 
         public async Task<Vacancy> ImportVacancyAsync(long vacancyId, long companyId)
@@ -96,10 +117,7 @@ namespace HeadHunter.Importer
             {
                 await _context.Resource.ImportVacancies.ImportAsync(vacancy);
             }
-            else
-            {
-                _logger.LogWarning($"Failed of import vacancy - VacancyId: {vacancyId} CompanyId: {companyId}");
-            }
+            else _logger.LogWarning($"Failed of import vacancy - VacancyId: {vacancyId} CompanyId: {companyId}");
 
 
             return vacancy;
@@ -118,13 +136,13 @@ namespace HeadHunter.Importer
 
         private bool IsLimitExceeded()
         {
-            return _importedVacanciesPerHour > 3500;
+            return _importedVacanciesPerHour > _limitImportedVacanciesPerHour;
         }
 
         private void IncrementDateRangeFilters()
         {
-            _dateTo = _dateTo.AddMinutes(5);
-            _dateFrom = _dateFrom.AddMinutes(5);
+            _dateTo = _dateTo.AddMinutes(_dateRangeIncrement);
+            _dateFrom = _dateFrom.AddMinutes(_dateRangeIncrement);
         }
 
         private async Task WaitAsync()
