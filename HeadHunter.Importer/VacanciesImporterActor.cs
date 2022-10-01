@@ -27,6 +27,9 @@ namespace HeadHunter.Importer
 
             var importedVacancy = await _importer.ImportVacancyAsync(vacancyId, companyId);
 
+            _logger.LogInformation($"Successful import of vacancy: Id - {importedVacancy.Id} Name - {importedVacancy.Name} " +
+                $"Company - {importedVacancy.Employer.Name} Area - {importedVacancy.Area?.Name} PublishedAt - {importedVacancy.PublishedAt}");
+
             await _eventBus.RaiseOnVacancyImported(importedVacancy);
         }
 
