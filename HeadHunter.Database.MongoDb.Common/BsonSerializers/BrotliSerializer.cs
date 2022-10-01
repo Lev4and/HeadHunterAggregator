@@ -14,7 +14,7 @@ namespace HeadHunter.Database.MongoDb.Common.BsonSerializers
 
             using (var outputStream = new MemoryStream())
             {
-                using (var compressStream = new BrotliStream(outputStream, CompressionLevel.Optimal))
+                using (var compressStream = new BrotliStream(outputStream, CompressionLevel.SmallestSize))
                 {
                     compressStream.Write(uncompressedTextBytes, 0, uncompressedTextBytes.Length);
                 }
