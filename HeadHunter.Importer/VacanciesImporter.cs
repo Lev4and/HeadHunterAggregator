@@ -15,7 +15,6 @@ namespace HeadHunter.Importer
 
         private DateTime _dateTo;
         private DateTime _dateFrom;
-        private DateTime _startedAt;
 
         private List<DateTime> _timesImportVacancies;
 
@@ -27,7 +26,6 @@ namespace HeadHunter.Importer
             _vacanciesPerPage = 100;
             _dateRangeIncrement = 2.5;
             _dateTo = DateTime.UtcNow;
-            _startedAt = DateTime.UtcNow;
             _limitImportedVacanciesPerHour = 3900;
             _timesImportVacancies = new List<DateTime>();
             _dateFrom = DateTime.UtcNow.AddMinutes(-_dateRangeIncrement);
@@ -42,8 +40,6 @@ namespace HeadHunter.Importer
                 await foreach (var vacancy in GetVacanciesByPediodAsync())
                 {
                     RemoveAllTimesImportVacanciesLaterHour();
-
-                    if (HourHasPassed()) ResetImportData();
 
                     if (IsLimitExceeded())
                     {
@@ -128,17 +124,6 @@ namespace HeadHunter.Importer
         private void RemoveAllTimesImportVacanciesLaterHour()
         {
             _timesImportVacancies.RemoveAll(TimesImportVacanciesLaterHour());
-        }
-
-        private bool HourHasPassed()
-        {
-            return (DateTime.UtcNow - _startedAt).TotalMinutes > 60;
-        }
-
-        private void ResetImportData()
-        {
-            _startedAt = DateTime.UtcNow;
-            _timesImportVacancies = new List<DateTime>();
         }
 
         private bool IsLimitExceeded()
