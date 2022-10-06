@@ -21,11 +21,11 @@ namespace HeadHunter.ResourceWebApplication.Areas.HeadHunter.Controllers
         }
 
         [HttpGet]
-        [Route("{id:int}")]
+        [Route("{id:long}")]
         [ProducesResponseType(typeof(ResponseModel<object?>), 400)]
         [ProducesResponseType(typeof(ResponseModel<object?>), 404)]
         [ProducesResponseType(typeof(ResponseModel<Employer>), 200)]
-        public async Task<IActionResult> GetCompanyByIdAsync([Required][FromRoute(Name = "id")] int id)
+        public async Task<IActionResult> GetCompanyByIdAsync([Required][FromRoute(Name = "id")] long id)
         {
             if (id < ResourceConstants.HeadHunterIdLowerValue)
             {

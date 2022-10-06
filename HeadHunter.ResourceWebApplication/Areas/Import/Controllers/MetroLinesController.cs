@@ -3,7 +3,6 @@ using HeadHunter.Model.Common;
 using MediatR;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson;
 using Collections = HeadHunter.Database.MongoDb.Collections;
 using MetroLine = HeadHunter.Database.MongoDb.Features.MetroLine;
 
@@ -23,7 +22,7 @@ namespace HeadHunter.ResourceWebApplication.Areas.Import.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(ResponseModel<ObjectId>), 200)]
+        [ProducesResponseType(typeof(ResponseModel<Collections.MetroLine>), 200)]
         public async Task<IActionResult> Import([FromBody] MetroLine.Import.Command command)
         {
             return Ok(new ResponseModel<Collections.MetroLine>(await _mediator.Send(command), ResponseStatuses.Success));

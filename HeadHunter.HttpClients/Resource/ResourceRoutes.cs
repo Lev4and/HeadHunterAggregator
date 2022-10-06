@@ -125,5 +125,11 @@
         public const string ImportWorkingTimeIntervalsPath = $"{ImportAreaPath}/workingTimeIntervals/";
 
         public const string ImportWorkingTimeModesPath = $"{ImportAreaPath}/workingTimeModes/";
+
+        public const string DefaultAreaPath = $"{HeadHunterApiPath}";
+
+        public const string VacanciesPath = $"{DefaultAreaPath}/vacancies/";
+
+        public const string EmployersPath = $"{DefaultAreaPath}/employers/";
     }
 }
