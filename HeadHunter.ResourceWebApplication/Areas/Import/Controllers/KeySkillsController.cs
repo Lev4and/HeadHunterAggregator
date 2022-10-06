@@ -3,7 +3,6 @@ using HeadHunter.Model.Common;
 using MediatR;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson;
 using Collections = HeadHunter.Database.MongoDb.Collections;
 using KeySkill = HeadHunter.Database.MongoDb.Features.KeySkill;
 
@@ -23,7 +22,7 @@ namespace HeadHunter.ResourceWebApplication.Areas.Import.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(ResponseModel<ObjectId>), 200)]
+        [ProducesResponseType(typeof(ResponseModel<Collections.KeySkill>), 200)]
         public async Task<IActionResult> Import([FromBody] KeySkill.Import.Command command)
         {
             return Ok(new ResponseModel<Collections.KeySkill>(await _mediator.Send(command), ResponseStatuses.Success));

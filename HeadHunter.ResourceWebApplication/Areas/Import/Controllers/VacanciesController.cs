@@ -3,7 +3,6 @@ using HeadHunter.Model.Common;
 using MediatR;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson;
 using Collections = HeadHunter.Database.MongoDb.Collections;
 using Vacancy = HeadHunter.Database.MongoDb.Features.Vacancy;
 
@@ -23,7 +22,7 @@ namespace HeadHunter.ResourceWebApplication.Areas.Import.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(ResponseModel<ObjectId>), 200)]
+        [ProducesResponseType(typeof(ResponseModel<Collections.Vacancy>), 200)]
         public async Task<IActionResult> Import([FromBody] Vacancy.Import.Command command)
         {
             return Ok(new ResponseModel<Collections.Vacancy>(await _mediator.Send(command), ResponseStatuses.Success));
