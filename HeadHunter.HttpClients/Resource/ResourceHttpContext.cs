@@ -67,5 +67,9 @@
         public ImportWorkingTimeIntervalsHttpClient ImportWorkingTimeIntervals => new ImportWorkingTimeIntervalsHttpClient();
 
         public ImportWorkingTimeModesHttpClient ImportWorkingTimeModes => new ImportWorkingTimeModesHttpClient();
+
+        public VacanciesHttpClient Vacancies => new VacanciesHttpClient();
+
+        public EmployersHttpClient Employers => new EmployersHttpClient();
     }
 }

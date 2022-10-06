@@ -10,7 +10,7 @@ namespace HeadHunter.HttpClients.Resource
 
         }
 
-        public async Task<ResponseModel<Employer>> GetCompanyAsync(long id)
+        public async Task<ResponseModel<Employer>> GetEmployerByIdAsync(long id)
         {
             if (id < ResourceConstants.HeadHunterIdLowerValue)
             {

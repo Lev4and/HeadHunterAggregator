@@ -22,15 +22,20 @@ namespace HeadHunter.Importer
 
         public override async Task HandleMessage(Vacancy vacancy)
         {
-            var vacancyId = Convert.ToInt64(vacancy.Id);
-            var companyId = Convert.ToInt64(vacancy.Employer.Id);
+            var status = await _importer.ImportVacancyAsync(vacancy);
 
-            var importedVacancy = await _importer.ImportVacancyAsync(vacancyId, companyId);
+            if (status)
+            {
+                _logger.LogInformation($"Successful import of vacancy: Id - {vacancy.Id} Name - {vacancy.Name} " +
+                    $"Company - {vacancy.Employer.Name} Area - {vacancy.Area?.Name} PublishedAt - {vacancy.PublishedAt}");
 
-            _logger.LogInformation($"Successful import of vacancy: Id - {importedVacancy.Id} Name - {importedVacancy.Name} " +
-                $"Company - {importedVacancy.Employer.Name} Area - {importedVacancy.Area?.Name} PublishedAt - {importedVacancy.PublishedAt}");
-
-            await _eventBus.RaiseOnVacancyImported(importedVacancy);
+                await _eventBus.RaiseOnVacancyImported(vacancy);
+            }
+            else
+            {
+                _logger.LogWarning($"Failed import of vacancy: Id - {vacancy.Id} Name - {vacancy.Name} " +
+                    $"Company - {vacancy.Employer.Name} Area - {vacancy.Area?.Name} PublishedAt - {vacancy.PublishedAt}");
+            }
         }
 
         public override async Task HandleError(Vacancy vacancy, Exception ex)
