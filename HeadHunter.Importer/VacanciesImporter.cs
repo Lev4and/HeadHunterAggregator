@@ -86,7 +86,9 @@ namespace HeadHunter.Importer
         private async Task RecalculateNewVacancyIdAsync()
         {
             var response = await _context.HeadHunter.Vacancies.GetVacanciesAsync(1, 1, _dateFrom, _dateTo);
-            var newVacancyId = response.Result.Items.Max(item => Convert.ToInt64(item.Id));
+            var items = response.Result.Items;
+
+            var newVacancyId = items.Length > 0 ? items.Max(item => Convert.ToInt64(item.Id)) : 0;
 
             if (newVacancyId > _newVacancyId) _newVacancyId = newVacancyId;
         }
