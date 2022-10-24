@@ -145,7 +145,6 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonDateTimeOptions(Kind = DateTimeKind.Utc)]
         public DateTime InitialCreatedAt { get; set; }
 
-        [BsonIgnore]
         public Area? Area { get; set; }
 
         [BsonIgnoreIfNull]
@@ -160,29 +159,22 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonElement("address")]
         public Address? Address { get; set; }
 
-        [BsonIgnore]
         public Employer Employer { get; set; }
 
-        [BsonIgnore]
         public Schedule? Schedule { get; set; }
 
         [BsonIgnoreIfNull]
         [BsonElement("contacts")]
         public Contacts? Contacts { get; set; }
 
-        [BsonIgnore]
         public Experience? Experience { get; set; }
 
-        [BsonIgnore]
         public Employment? Employment { get; set; }
 
-        [BsonIgnore]
         public Department? Department { get; set; }
 
-        [BsonIgnore]
         public VacancyType? VacancyType { get; set; }
 
-        [BsonIgnore]
         public BillingType? BillingType { get; set; }
 
         [BsonIgnoreIfNull]
@@ -194,7 +186,6 @@ namespace HeadHunter.Database.MongoDb.Collections
         [JsonConverter(typeof(ObjectIdListConverter))]
         public List<ObjectId> LanguagesIds { get; set; }
 
-        [BsonIgnore]
         public List<Language> Languages { get; set; }
 
         [BsonIgnoreIfNull]
@@ -202,7 +193,6 @@ namespace HeadHunter.Database.MongoDb.Collections
         [JsonConverter(typeof(ObjectIdListConverter))]
         public List<ObjectId> KeySkillsIds { get; set; }
 
-        [BsonIgnore]
         public List<KeySkill> KeySkills { get; set; }
 
         [BsonIgnoreIfNull]
@@ -210,7 +200,6 @@ namespace HeadHunter.Database.MongoDb.Collections
         [JsonConverter(typeof(ObjectIdListConverter))]
         public List<ObjectId> WorkingDaysIds { get; set; }
 
-        [BsonIgnore]
         public List<WorkingDay> WorkingDays { get; set; }
 
         [BsonIgnoreIfNull]
@@ -218,7 +207,6 @@ namespace HeadHunter.Database.MongoDb.Collections
         [JsonConverter(typeof(ObjectIdListConverter))]
         public List<ObjectId> SpecializationsIds { get; set; }
 
-        [BsonIgnore]
         public List<Specialization> Specializations { get; set; }
 
         [BsonIgnoreIfNull]
@@ -226,7 +214,6 @@ namespace HeadHunter.Database.MongoDb.Collections
         [JsonConverter(typeof(ObjectIdListConverter))]
         public List<ObjectId> WorkingTimeModesIds { get; set; }
 
-        [BsonIgnore]
         public List<WorkingTimeMode> WorkingTimeModes { get; set; }
 
         [BsonIgnoreIfNull]
@@ -234,7 +221,6 @@ namespace HeadHunter.Database.MongoDb.Collections
         [JsonConverter(typeof(ObjectIdListConverter))]
         public List<ObjectId> ProfessionalRolesIds { get; set; }
 
-        [BsonIgnore]
         public List<ProfessionalRole> ProfessionalRoles { get; set; }
 
         [BsonIgnoreIfNull]
@@ -242,7 +228,6 @@ namespace HeadHunter.Database.MongoDb.Collections
         [JsonConverter(typeof(ObjectIdListConverter))]
         public List<ObjectId> DriverLicenseTypesIds { get; set; }
 
-        [BsonIgnore]
         public List<DriverLicenseType> DriverLicenseTypes { get; set; }
 
         [BsonIgnoreIfNull]
@@ -250,7 +235,6 @@ namespace HeadHunter.Database.MongoDb.Collections
         [JsonConverter(typeof(ObjectIdListConverter))]
         public List<ObjectId> WorkingTimeIntervalsIds { get; set; }
 
-        [BsonIgnore]
         public List<WorkingTimeInterval> WorkingTimeIntervals { get; set; }
 
         public Vacancy()

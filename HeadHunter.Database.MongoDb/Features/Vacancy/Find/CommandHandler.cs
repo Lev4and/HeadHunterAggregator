@@ -1,5 +1,6 @@
 ﻿using HeadHunter.Database.MongoDb.Common;
 using MediatR;
+using MongoDB.Driver;
 
 namespace HeadHunter.Database.MongoDb.Features.Vacancy.Find
 {

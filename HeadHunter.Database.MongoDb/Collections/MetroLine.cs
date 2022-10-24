@@ -1,5 +1,6 @@
 ﻿using HeadHunter.Database.MongoDb.Common;
 using HeadHunter.Database.MongoDb.Common.Attributes;
+using HeadHunter.Database.MongoDb.Common.BsonSerializers;
 using HeadHunter.Database.MongoDb.Common.JsonConverters;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
@@ -37,8 +38,9 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonElement("hexColor")]
         public string? HexColor { get; set; }
 
-        [BsonIgnore]
         public Area? Area { get; set; }
+
+        public List<MetroStation> Stations { get; set; }
 
         public MetroLine()
         {

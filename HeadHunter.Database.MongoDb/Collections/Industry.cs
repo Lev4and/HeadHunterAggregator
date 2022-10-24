@@ -1,5 +1,6 @@
 ﻿using HeadHunter.Database.MongoDb.Common;
 using HeadHunter.Database.MongoDb.Common.Attributes;
+using HeadHunter.Database.MongoDb.Common.BsonSerializers;
 using HeadHunter.Database.MongoDb.Common.JsonConverters;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
@@ -8,7 +9,7 @@ using Newtonsoft.Json;
 namespace HeadHunter.Database.MongoDb.Collections
 {
     [MongoDbCollectionNameAttibute("industries")]
-    public class Industry : ICollection
+    public record Industry : ICollection
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
@@ -32,6 +33,10 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonRequired]
         [BsonElement("name")]
         public string Name { get; set; }
+
+        public Industry Parent { get; set; }
+
+        public List<Industry> Children { get; set; }
 
         public Industry()
         {

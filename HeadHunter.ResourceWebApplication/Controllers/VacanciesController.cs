@@ -21,6 +21,13 @@ namespace HeadHunter.ResourceWebApplication.Controllers
             _mediator = mediator;
         }
 
+        [HttpPost]
+        [ProducesResponseType(typeof(ResponseModel<List<Collections.Vacancy>>), 200)]
+        public async Task<IActionResult> GetVacancies([Required][FromBody] Vacancy.Filter.Command command)
+        {
+            return Ok(new ResponseModel<List<Collections.Vacancy>>(await _mediator.Send(command), ResponseStatuses.Success));
+        }
+
         [HttpGet]
         [Route("{id:long}")]
         [ProducesResponseType(typeof(ResponseModel<object?>), 400)]

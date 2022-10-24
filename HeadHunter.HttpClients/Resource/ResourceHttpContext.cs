@@ -1,4 +1,6 @@
-﻿namespace HeadHunter.HttpClients.Resource
+﻿using HeadHunter.Database.MongoDb.Collections;
+
+namespace HeadHunter.HttpClients.Resource
 {
     public class ResourceHttpContext
     {
@@ -71,5 +73,41 @@
         public VacanciesHttpClient Vacancies => new VacanciesHttpClient();
 
         public EmployersHttpClient Employers => new EmployersHttpClient();
+
+        public BillingTypesHttpClient BillingTypes => new BillingTypesHttpClient();
+
+        public CurrenciesHttpClient Currencies => new CurrenciesHttpClient();
+
+        public DepartmentsHttpClient Departments => new DepartmentsHttpClient();
+
+        public DriverLicenseTypesHttpClient DriverLicenseTypes => new DriverLicenseTypesHttpClient();
+
+        public EmploymentsHttpClient Employments => new EmploymentsHttpClient();
+
+        public ExperiencesHttpClient Experiences => new ExperiencesHttpClient();
+
+        public IndustriesHttpClient Industries => new IndustriesHttpClient();
+
+        public LanguagesHttpClient Languages => new LanguagesHttpClient();
+
+        public MetroLinesHttpClient MetroLines => new MetroLinesHttpClient();
+
+        public MetroStationsHttpClient MetroStations => new MetroStationsHttpClient();
+
+        public ProfessionalRolesHttpClient ProfessionalRoles => new ProfessionalRolesHttpClient();
+
+        public SchedulesHttpClient Schedules => new SchedulesHttpClient();
+
+        public SpecializationsHttpClient Specializations => new SpecializationsHttpClient();
+
+        public VacancyTypesHttpClient VacancyTypes => new VacancyTypesHttpClient();
+
+        public WorkingDaysHttpClient WorkingDays => new WorkingDaysHttpClient();
+
+        public WorkingTimeIntervalsHttpClient WorkingTimeIntervals => new WorkingTimeIntervalsHttpClient();
+
+        public WorkingTimeModesHttpClient WorkingTimeModes => new WorkingTimeModesHttpClient();
+
+        public SuggestsHttpClient Suggests => new SuggestsHttpClient();
     }
 }
