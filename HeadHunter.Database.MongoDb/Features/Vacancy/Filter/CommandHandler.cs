@@ -13,12 +13,14 @@ namespace HeadHunter.Database.MongoDb.Features.Vacancy.Filter
         public CommandHandler(Repository repository)
         {
             _repository = repository;
+
+            VacancyAggregateExtensions.Init(_repository);
         }
 
         public async Task<List<Collections.Vacancy>> Handle(Command request, CancellationToken cancellationToken)
         {
             return await _repository.Aggregate<Collections.Vacancy>()
-                .WithAll(_repository)
+                .WithAll()
                 .Project<Collections.Vacancy>(Builders<Collections.Vacancy>.Projection.WithoutDescriptions())
                 .Skip((request.Page - 1) * request.PerPage)
                 .Limit(request.PerPage)

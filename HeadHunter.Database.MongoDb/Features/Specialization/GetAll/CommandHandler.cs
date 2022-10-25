@@ -12,12 +12,14 @@ namespace HeadHunter.Database.MongoDb.Features.Specialization.GetAll
         public CommandHandler(Repository repository)
         {
             _repository = repository;
+
+            SpecializationAggregateExtensions.Init(_repository);
         }
 
         public async Task<List<Collections.Specialization>> Handle(Command request, CancellationToken cancellationToken)
         {
             return await _repository.Aggregate<Collections.Specialization>()
-                .WithChildren(_repository.GetCollection<Collections.Specialization>())
+                .WithChildren()
                 .SortBy(specialization => specialization.HeadHunterId)
                 .ToListAsync();
         }

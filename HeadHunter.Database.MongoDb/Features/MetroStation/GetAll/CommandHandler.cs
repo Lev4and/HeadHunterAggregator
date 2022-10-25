@@ -12,13 +12,15 @@ namespace HeadHunter.Database.MongoDb.Features.MetroStation.GetAll
         public CommandHandler(Repository repository)
         {
             _repository = repository;
+
+            MetroStationAggregateExtensions.Init(_repository);
         }
 
         public async Task<List<Collections.MetroStation>> Handle(Command request, CancellationToken cancellationToken)
         {
             return await _repository.Aggregate<Collections.MetroStation>()
-                .WithLine(_repository.GetCollection<Collections.MetroLine>())
-                .WithLineArea(_repository.GetCollection<Collections.Area>())
+                .WithLine()
+                .WithLineArea()
                 .SortBy(metroStation => metroStation.Name)
                 .ToListAsync();
         }
