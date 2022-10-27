@@ -112,7 +112,7 @@ namespace HeadHunter.Importer
             var vacancyId = Convert.ToInt64(vacancy.Id);
             var companyId = Convert.ToInt64(vacancy.Employer.Id);
 
-            var vacancyFromDbResponse = await _context.Resource.Vacancies.GetVacancyIdAsync(vacancyId);
+            var vacancyFromDbResponse = await _context.Resource.Vacancies.GetVacancyByHeadHunterIdAsync(vacancyId);
             var companyFromDbResponse = await _context.Resource.Employers.GetEmployerByIdAsync(companyId);
 
             var vacancyFromDb = vacancyFromDbResponse.Result;

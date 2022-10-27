@@ -13,11 +13,9 @@ namespace HeadHunter.Database.MongoDb.Collections.Extensions.Projection
                 .Exclude(vacancy => vacancy.Employer.BrandedDescription);
         }
 
-        public static ProjectionDefinition<Vacancy> WithoutDescriptions(this ProjectionDefinition<Vacancy> builder)
+        public static ProjectionDefinition<Vacancy> WithoutEmployerDescriptions(this ProjectionDefinitionBuilder<Vacancy> builder)
         {
             return builder
-                .Exclude(vacancy => vacancy.Description)
-                .Exclude(vacancy => vacancy.BrandedDescription)
                 .Exclude(vacancy => vacancy.Employer.Description)
                 .Exclude(vacancy => vacancy.Employer.BrandedDescription);
         }
