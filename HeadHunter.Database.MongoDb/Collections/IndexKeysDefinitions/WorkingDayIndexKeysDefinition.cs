@@ -1,19 +1,19 @@
 ﻿using HeadHunter.Database.MongoDb.Common;
 using MongoDB.Driver;
+using System.Linq.Expressions;
 
 namespace HeadHunter.Database.MongoDb.Collections.IndexKeysDefinitions
 {
     public class WorkingDayIndexKeysDefinition : IDefiningIndexKeys<WorkingDay>
     {
-        public List<CreateIndexModel<WorkingDay>> GetIndexKeys()
+        public IEnumerable<CreateIndexModel<WorkingDay>> GetIndexKeys()
         {
-            var result = new List<CreateIndexModel<WorkingDay>>()
+            var fields = new List<Expression<Func<WorkingDay, object>>>()
             {
-                new CreateIndexModel<WorkingDay>(Builders<WorkingDay>.IndexKeys.Ascending(area => area.HeadHunterId)),
-                new CreateIndexModel<WorkingDay>(Builders<WorkingDay>.IndexKeys.Ascending(area => area.Name))
+                item => item.HeadHunterId, item => item.Name
             };
 
-            return result;
+            return CreatorCreateIndexModel.Create(fields.ToArray());
         }
     }
 }

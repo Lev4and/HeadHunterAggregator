@@ -1,19 +1,19 @@
 ﻿using HeadHunter.Database.MongoDb.Common;
 using MongoDB.Driver;
+using System.Linq.Expressions;
 
 namespace HeadHunter.Database.MongoDb.Collections.IndexKeysDefinitions
 {
     public class LanguageIndexKeysDefinition : IDefiningIndexKeys<Language>
     {
-        public List<CreateIndexModel<Language>> GetIndexKeys()
+        public IEnumerable<CreateIndexModel<Language>> GetIndexKeys()
         {
-            var result = new List<CreateIndexModel<Language>>()
+            var fields = new List<Expression<Func<Language, object>>>()
             {
-                new CreateIndexModel<Language>(Builders<Language>.IndexKeys.Ascending(area => area.HeadHunterId)),
-                new CreateIndexModel<Language>(Builders<Language>.IndexKeys.Ascending(area => area.Name))
+                item => item.HeadHunterId, item => item.Name
             };
 
-            return result;
+            return CreatorCreateIndexModel.Create(fields.ToArray());
         }
     }
 }

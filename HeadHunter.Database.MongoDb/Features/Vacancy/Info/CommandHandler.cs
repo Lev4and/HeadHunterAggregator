@@ -20,10 +20,9 @@ namespace HeadHunter.Database.MongoDb.Features.Vacancy.Info
         public async Task<Collections.Vacancy> Handle(Command request, CancellationToken cancellationToken)
         {
             var result = await _repository.Aggregate<Collections.Vacancy>()
-                .Match(vacancy => vacancy.Id == request.Id)
                 .WithAll()
+                .Match(vacancy => vacancy.Id == request.Id)
                 .Project<Collections.Vacancy>(Builders<Collections.Vacancy>.Projection.WithoutEmployerDescriptions())
-                .Limit(1)
                 .ToListAsync();
 
             return result.FirstOrDefault();
