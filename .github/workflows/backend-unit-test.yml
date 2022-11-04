@@ -34,29 +34,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       ProjectName: HeadHunter.HttpClients.Tests
-      WithoutTests: HeadHunter.HttpClients.Tests.Resource
-    steps:
-    - uses: actions/checkout@v3
-    - name: Setup .NET
-
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: 6.0.x
-
-    - name: Restore dependencies
-      run: dotnet restore $ProjectName
-
-    - name: Build
-      run: dotnet build $ProjectName --no-restore
-
-    - name: Test
-      run: dotnet test $ProjectName --no-build -l "console;verbosity=normal" --filter FullyQualifiedName\!~$WithoutTests
-  
-  resource-web-application-controller-test:
-    name: ResourceWebApplication Controller Test
-    runs-on: ubuntu-latest
-    env:
-      ProjectName: HeadHunter.ResourceWebApplication.ControllerTests
     steps:
     - uses: actions/checkout@v3
     - name: Setup .NET
