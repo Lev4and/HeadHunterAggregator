@@ -28,6 +28,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeadHunter.Importer", "Head
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeadHunter.Importer.ConsoleApp", "HeadHunter.Importer.ConsoleApp\HeadHunter.Importer.ConsoleApp.csproj", "{274881E6-92AA-4D48-B987-D1D9C8BE6475}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadHunter.Database.PostgreSQL.Common", "HeadHunter.Database.PostgreSQL.Common\HeadHunter.Database.PostgreSQL.Common.csproj", "{304165AA-6A2E-41F9-940D-4820E63ABA3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadHunter.Database.PostgreSQL", "HeadHunter.Database.PostgreSQL\HeadHunter.Database.PostgreSQL.csproj", "{77D84F43-ABFE-4141-98E0-83EF598790A4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -86,6 +90,14 @@ Global
 		{274881E6-92AA-4D48-B987-D1D9C8BE6475}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{274881E6-92AA-4D48-B987-D1D9C8BE6475}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{274881E6-92AA-4D48-B987-D1D9C8BE6475}.Release|Any CPU.Build.0 = Release|Any CPU
+		{304165AA-6A2E-41F9-940D-4820E63ABA3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{304165AA-6A2E-41F9-940D-4820E63ABA3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{304165AA-6A2E-41F9-940D-4820E63ABA3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{304165AA-6A2E-41F9-940D-4820E63ABA3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77D84F43-ABFE-4141-98E0-83EF598790A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77D84F43-ABFE-4141-98E0-83EF598790A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77D84F43-ABFE-4141-98E0-83EF598790A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77D84F43-ABFE-4141-98E0-83EF598790A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

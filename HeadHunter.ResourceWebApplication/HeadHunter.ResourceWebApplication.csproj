@@ -13,6 +13,15 @@
 
   <ItemGroup>
 	<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.8" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.8" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.8">
+		<PrivateAssets>all</PrivateAssets>
+		<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	</PackageReference>
+	<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.8">
+		<PrivateAssets>all</PrivateAssets>
+		<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	</PackageReference>
 	<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.15.1" />
 	<PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />
 	<PackageReference Include="Serilog.Enrichers.AspNetCore" Version="1.0.0" />
@@ -32,6 +41,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HeadHunter.Database.MongoDb\HeadHunter.Database.MongoDb.csproj" />
+    <ProjectReference Include="..\HeadHunter.Database.PostgreSQL\HeadHunter.Database.PostgreSQL.csproj" />
     <ProjectReference Include="..\HeadHunter.HttpClients\HeadHunter.HttpClients.csproj" />
   </ItemGroup>
 
