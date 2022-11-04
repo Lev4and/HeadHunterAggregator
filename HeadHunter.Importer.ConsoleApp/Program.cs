@@ -17,9 +17,12 @@ var initializingImporter = host.Services.GetService<InitializingImporter>();
 
 await initializingImporter.InitializeAsync();
 
-await foreach (var vacancy in importer.GetVacanciesAsync())
+while (true)
 {
-    await actor.SendAsync(vacancy);
+    await foreach (var vacancy in importer.GetVacanciesAsync())
+    {
+        await actor.SendAsync(vacancy);
+    }
 }
 
 static IHost AppStartup()

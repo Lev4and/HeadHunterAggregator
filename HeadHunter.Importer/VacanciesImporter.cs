@@ -7,11 +7,12 @@ namespace HeadHunter.Importer
 {
     public class VacanciesImporter
     {
+        private const int _vacanciesPerPage = 100;
+        private const int _errorNewVacancyId = 5000;
+        private const double _dateRangeMinuteIncrement = 5;
+        private const int _limitImportedVacanciesPerHour = 3900;
+
         private readonly HttpContext _context;
-        private readonly int _vacanciesPerPage;
-        private readonly long _offsetNewVacancyId;
-        private readonly double _dateRangeIncrement;
-        private readonly int _limitImportedVacanciesPerHour;
         private readonly ILogger<VacanciesImporter> _logger;
 
         private long _newVacancyId;
@@ -27,33 +28,26 @@ namespace HeadHunter.Importer
             _context = context;
 
             _newVacancyId = 0;
-            _vacanciesPerPage = 100;
-            _dateRangeIncrement = 2.5;
-            _dateTo = DateTime.UtcNow;
-            _offsetNewVacancyId = 5000;
-            _limitImportedVacanciesPerHour = 3900;
             _timesImportVacancies = new List<DateTime>();
-            _dateFrom = DateTime.UtcNow.AddMinutes(-_dateRangeIncrement);
+            _dateTo = DateTime.UtcNow.AddMinutes(-_dateRangeMinuteIncrement);
+            _dateFrom = DateTime.UtcNow.AddMinutes(-_dateRangeMinuteIncrement * 2);
         }
 
         public async IAsyncEnumerable<Vacancy> GetVacanciesAsync()
         {
-            while (true)
+            _logger.LogInformation($"Date range filter value: From - {_dateFrom} To - {_dateTo}");
+
+            await foreach (var vacancy in GetVacanciesByPediodAsync())
             {
-                _logger.LogInformation($"Date range filter value: From - {_dateFrom} To - {_dateTo}");
+                RemoveAllTimesImportVacanciesLaterHour();
 
-                await foreach (var vacancy in GetVacanciesByPediodAsync())
-                {
-                    RemoveAllTimesImportVacanciesLaterHour();
-
-                    if (IsLimitExceeded()) await OneHourIdleAsync();
-                    else if (IsNewVacancy(vacancy)) yield return vacancy;
-                }
-
-                IncrementDateRangeFilters();
-
-                await WaitAsync();
+                if (IsLimitExceeded()) await OneHourIdleAsync();
+                else if (IsNewVacancy(vacancy)) yield return vacancy;
             }
+
+            IncrementDateRangeFilters();
+
+            await WaitAsync();
         }
 
         private async IAsyncEnumerable<Vacancy> GetVacanciesByPediodAsync()
@@ -152,8 +146,8 @@ namespace HeadHunter.Importer
 
         private void IncrementDateRangeFilters()
         {
-            _dateTo = _dateTo.AddMinutes(_dateRangeIncrement);
-            _dateFrom = _dateFrom.AddMinutes(_dateRangeIncrement);
+            _dateTo = _dateTo.AddMinutes(_dateRangeMinuteIncrement);
+            _dateFrom = _dateFrom.AddMinutes(_dateRangeMinuteIncrement);
         }
 
         private Predicate<DateTime> TimesImportVacanciesLaterHour()
@@ -165,22 +159,23 @@ namespace HeadHunter.Importer
         {
             _logger.LogWarning("The limit has been exceeded. Import will be suspended on one hour.");
 
-            await Task.Delay(3600000);
+            await Task.Delay(1000 * 60 * 60);
         }
 
         private bool IsNewVacancy(Vacancy vacancy)
         {
-            return Convert.ToInt64(vacancy.Id) > _newVacancyId - _offsetNewVacancyId;
+            return Convert.ToInt64(vacancy.Id) > _newVacancyId - _errorNewVacancyId;
         }
 
         private async Task WaitAsync()
         {
-            if (_dateTo > DateTime.UtcNow) await Task.Delay(_dateTo - DateTime.UtcNow);
+            if (_dateTo > DateTime.UtcNow.AddMinutes(-_dateRangeMinuteIncrement)) await Task.Delay(_dateTo - DateTime.UtcNow.AddMinutes(-_dateRangeMinuteIncrement));
         }
 
         private void OnVacancyImported()
         {
             _timesImportVacancies.Add(DateTime.UtcNow);
+
             _logger.LogInformation($"Imported vacancies per hour: {_timesImportVacancies.Count}");
         }
 
