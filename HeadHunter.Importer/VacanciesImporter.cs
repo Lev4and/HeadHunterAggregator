@@ -7,10 +7,10 @@ namespace HeadHunter.Importer
 {
     public class VacanciesImporter
     {
-        private const int vacanciesPerPage = 100;
-        private const int errorNewVacancyId = 5000;
-        private const double dateRangeMinuteIncrement = 5;
-        private const int limitImportedVacanciesPerHour = 3900;
+        private const int _vacanciesPerPage = 100;
+        private const int _errorNewVacancyId = 5000;
+        private const double _dateRangeMinuteIncrement = 5;
+        private const int _limitImportedVacanciesPerHour = 3900;
 
         private readonly HttpContext _context;
         private readonly ILogger<VacanciesImporter> _logger;
@@ -29,8 +29,8 @@ namespace HeadHunter.Importer
 
             _newVacancyId = 0;
             _timesImportVacancies = new List<DateTime>();
-            _dateTo = DateTime.UtcNow.AddMinutes(-dateRangeMinuteIncrement);
-            _dateFrom = DateTime.UtcNow.AddMinutes(-dateRangeMinuteIncrement * 2);
+            _dateTo = DateTime.UtcNow.AddMinutes(-_dateRangeMinuteIncrement);
+            _dateFrom = DateTime.UtcNow.AddMinutes(-_dateRangeMinuteIncrement * 2);
         }
 
         public async IAsyncEnumerable<Vacancy> GetVacanciesAsync()
@@ -57,9 +57,9 @@ namespace HeadHunter.Importer
             await RecalculateNewVacancyIdAsync();
 
             _logger.LogInformation($"VacanciesByPediod Found: {found}");
-            _logger.LogInformation($"VacanciesByPediod Pages: {found / vacanciesPerPage + 1}");
+            _logger.LogInformation($"VacanciesByPediod Pages: {found / _vacanciesPerPage + 1}");
 
-            for (var i = 1; i <= found / vacanciesPerPage + 1; i++)
+            for (var i = 1; i <= found / _vacanciesPerPage + 1; i++)
             {
                 _logger.LogInformation($"VacanciesByPediod Page: {i}");
 
@@ -89,9 +89,9 @@ namespace HeadHunter.Importer
 
         private async IAsyncEnumerable<Vacancy> GetVacanciesByPageAsync(int page)
         {
-            if (page * vacanciesPerPage < HeadHunterConstants.OffsetUpperValue)
+            if (page * _vacanciesPerPage < HeadHunterConstants.OffsetUpperValue)
             {
-                var response = await _context.HeadHunter.Vacancies.GetVacanciesAsync(page, vacanciesPerPage, _dateFrom, _dateTo);
+                var response = await _context.HeadHunter.Vacancies.GetVacanciesAsync(page, _vacanciesPerPage, _dateFrom, _dateTo);
 
                 foreach (var vacancy in response?.Result?.Items ?? new Vacancy[0])
                 {
@@ -141,13 +141,13 @@ namespace HeadHunter.Importer
 
         private bool IsLimitExceeded()
         {
-            return _timesImportVacancies.Count > limitImportedVacanciesPerHour;
+            return _timesImportVacancies.Count > _limitImportedVacanciesPerHour;
         }
 
         private void IncrementDateRangeFilters()
         {
-            _dateTo = _dateTo.AddMinutes(dateRangeMinuteIncrement);
-            _dateFrom = _dateFrom.AddMinutes(dateRangeMinuteIncrement);
+            _dateTo = _dateTo.AddMinutes(_dateRangeMinuteIncrement);
+            _dateFrom = _dateFrom.AddMinutes(_dateRangeMinuteIncrement);
         }
 
         private Predicate<DateTime> TimesImportVacanciesLaterHour()
@@ -159,22 +159,23 @@ namespace HeadHunter.Importer
         {
             _logger.LogWarning("The limit has been exceeded. Import will be suspended on one hour.");
 
-            await Task.Delay(3600000);
+            await Task.Delay(1000 * 60 * 60);
         }
 
         private bool IsNewVacancy(Vacancy vacancy)
         {
-            return Convert.ToInt64(vacancy.Id) > _newVacancyId - errorNewVacancyId;
+            return Convert.ToInt64(vacancy.Id) > _newVacancyId - _errorNewVacancyId;
         }
 
         private async Task WaitAsync()
         {
-            if (_dateTo > DateTime.UtcNow) await Task.Delay(_dateTo - DateTime.UtcNow);
+            if (_dateTo > DateTime.UtcNow.AddMinutes(-_dateRangeMinuteIncrement)) await Task.Delay(_dateTo - DateTime.UtcNow.AddMinutes(-_dateRangeMinuteIncrement));
         }
 
         private void OnVacancyImported()
         {
             _timesImportVacancies.Add(DateTime.UtcNow);
+
             _logger.LogInformation($"Imported vacancies per hour: {_timesImportVacancies.Count}");
         }
 
