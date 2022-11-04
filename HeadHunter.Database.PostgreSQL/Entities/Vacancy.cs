@@ -1,4 +1,6 @@
-﻿namespace HeadHunter.Database.PostgreSQL.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace HeadHunter.Database.PostgreSQL.Entities
 {
     public class Vacancy
     {
@@ -22,6 +24,8 @@
 
         public Guid BillingTypeId { get; set; }
 
+        public Guid? InsiderInterviewId { get; set; }
+
         public bool HasTest { get; set; }
 
         public bool Premium { get; set; }
@@ -42,12 +46,15 @@
 
         public long HeadHunterId { get; set; }
 
+        [Required]
         public string Name { get; set; }
 
         public string? Code { get; set; }
 
+        [Required]
         public string AlternateUrl { get; set; }
 
+        [Required]
         public string ApplyAlternateUrl { get; set; }
 
         public DateTime CreatedAt { get; set; }
@@ -80,6 +87,24 @@
 
         public virtual VacancyDescription? Description { get; set; }
 
+        public virtual InsiderInterview? InsiderInterview { get; set; }
+
         public virtual VacancyBrandedDescription? BrandedDescription { get; set; }
+
+        public virtual ICollection<VacancyLanguage>? Languages { get; set; }
+
+        public virtual ICollection<VacancyKeySkill>? KeySkills { get; set; }
+
+        public virtual ICollection<VacancyWorkingDay>? WorkingDays { get; set; }
+
+        public virtual ICollection<VacancySpecialization>? Specializations { get; set; }
+
+        public virtual ICollection<VacancyWorkingTimeMode>? WorkingTimeModes { get; set; }
+
+        public virtual ICollection<VacancyProfessionalRole>? ProfessionalRoles { get; set; }
+
+        public virtual ICollection<VacancyDriverLicenseType>? DriverLicenseTypes { get; set; }
+
+        public virtual ICollection<VacancyWorkingTimeInterval>? WorkingTimeIntervals { get; set; }
     }
 }

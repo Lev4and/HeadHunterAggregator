@@ -1,4 +1,7 @@
-﻿namespace HeadHunter.Database.PostgreSQL.Entities
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace HeadHunter.Database.PostgreSQL.Entities
 {
     public class VacancySalary
     {
@@ -10,8 +13,10 @@
 
         public bool? Gross { get; set; }
 
+        [Column(TypeName = "decimal(18,6)")]
         public decimal? To { get; set; }
 
+        [Column(TypeName = "decimal(18,6)")]
         public decimal? From { get; set; }
 
         public virtual Vacancy? Vacancy { get; set; }

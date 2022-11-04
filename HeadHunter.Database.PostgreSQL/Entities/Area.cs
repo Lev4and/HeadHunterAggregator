@@ -1,4 +1,6 @@
-﻿namespace HeadHunter.Database.PostgreSQL.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace HeadHunter.Database.PostgreSQL.Entities
 {
     public class Area
     {
@@ -10,6 +12,7 @@
 
         public string? HeadHunterParentId { get; set; }
 
+        [Required]
         public string Name { get; set; }
 
         public virtual Area? Parent { get; set; }

@@ -1,4 +1,6 @@
-﻿namespace HeadHunter.Database.PostgreSQL.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace HeadHunter.Database.PostgreSQL.Entities
 {
     public class MetroLine
     {
@@ -6,8 +8,10 @@
 
         public Guid? AreaId { get; set; }
 
+        [Required]
         public string HeadHunterId { get; set; }
 
+        [Required]
         public string Name { get; set; }
 
         public string? CityId { get; set; }

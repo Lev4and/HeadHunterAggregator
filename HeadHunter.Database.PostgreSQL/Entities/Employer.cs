@@ -1,4 +1,6 @@
-﻿namespace HeadHunter.Database.PostgreSQL.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace HeadHunter.Database.PostgreSQL.Entities
 {
     public class Employer
     {
@@ -14,6 +16,7 @@
 
         public long HeadHunterId { get; set; }
 
+        [Required]
         public string Name { get; set; }
 
         public string? Url { get; set; }
