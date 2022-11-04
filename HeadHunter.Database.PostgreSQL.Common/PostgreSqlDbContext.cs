@@ -14,7 +14,7 @@ namespace HeadHunter.Database.PostgreSQL.Common
 
         public QueryFactory QueryFactory { get; }
 
-        public PostgreSqlDbContext(DbContextOptions<PostgreSqlDbContext> options) : base(options)
+        public PostgreSqlDbContext(DbContextOptions options) : base(options)
         {
             _compiler = new PostgresCompiler();
             _connection = new NpgsqlConnection(Database.GetConnectionString());

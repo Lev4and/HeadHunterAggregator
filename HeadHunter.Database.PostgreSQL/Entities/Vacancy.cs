@@ -8,7 +8,7 @@ namespace HeadHunter.Database.PostgreSQL.Entities
 
         public Guid AreaId { get; set; }
 
-        public Guid TypeId { get; set; }
+        public Guid? TypeId { get; set; }
 
         public Guid? AddressId { get; set; }
 
@@ -20,7 +20,7 @@ namespace HeadHunter.Database.PostgreSQL.Entities
 
         public Guid EmploymentId { get; set; }
 
-        public Guid DepartmentId { get; set; }
+        public Guid? DepartmentId { get; set; }
 
         public Guid BillingTypeId { get; set; }
 
@@ -36,7 +36,7 @@ namespace HeadHunter.Database.PostgreSQL.Entities
 
         public bool AllowMessages { get; set; }
 
-        public bool AcceptTemporary { get; set; }
+        public bool? AcceptTemporary { get; set; }
 
         public bool AcceptHandicapped { get; set; }
 

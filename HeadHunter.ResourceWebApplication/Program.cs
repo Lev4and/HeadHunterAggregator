@@ -1,4 +1,5 @@
 using HeadHunter.Database.MongoDb;
+using HeadHunter.Database.PostgreSQL;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using Serilog;
@@ -12,6 +13,7 @@ builder.Host.UseSerilog((context, loggerConfiguration) =>
     loggerConfiguration.WriteTo.Console().ReadFrom.Configuration(context.Configuration));
 
 builder.Services.AddSingleton<HttpClients.HttpContext>();
+builder.Services.AddPostgreSQL();
 builder.Services.AddMongoDb();
 
 builder.Services.ConfigureApplicationCookie(options =>

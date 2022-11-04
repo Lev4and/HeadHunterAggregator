@@ -37,8 +37,8 @@ namespace HeadHunter.Database.PostgreSQL.Entities
 
         public virtual EmployerBrandedDescription? BrandedDescription { get; set; }
 
-        public virtual ICollection<Employer>? Employers { get; set; }
-        
+        public virtual ICollection<Vacancy>? Vacancies { get; set; }
+
         public virtual ICollection<EmployerIndustry>? Industries { get; set; }
 
         public virtual ICollection<EmployerInsiderInterview>? InsiderInterviews { get; set; }

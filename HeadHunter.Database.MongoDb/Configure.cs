@@ -19,7 +19,7 @@ namespace HeadHunter.Database.MongoDb
             services.AddTransient<Repository>();
 
             services.AddSingleton(mongoDbContext.GetDatabase("headHunterDB"));
-            services.AddHostedService<ConfigureMongoDbIndexesService>();
+            //services.AddHostedService<ConfigureMongoDbIndexesService>();
 
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationPipe<,>));
         }
