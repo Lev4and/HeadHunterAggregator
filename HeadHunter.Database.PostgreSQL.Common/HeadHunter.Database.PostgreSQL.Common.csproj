@@ -20,6 +20,7 @@
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.7" />
     <PackageReference Include="SqlKata" Version="2.4.0" />
     <PackageReference Include="SqlKata.Execution" Version="2.4.0" />
+    <PackageReference Include="Z.EntityFramework.Extensions.EFCore" Version="6.16.1" />
   </ItemGroup>
 
 </Project>

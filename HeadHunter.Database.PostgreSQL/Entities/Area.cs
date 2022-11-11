@@ -24,5 +24,22 @@ namespace HeadHunter.Database.PostgreSQL.Entities
         public virtual ICollection<Employer>? Employers { get; set; }
 
         public virtual ICollection<MetroLine>? MetroLines { get; set; }
+
+        public Area()
+        {
+
+        }
+
+        public Area(Models.Area area)
+        {
+            if (area == null)
+            {
+                throw new ArgumentNullException(nameof(area));
+            }
+
+            HeadHunterId = area.Id;
+            HeadHunterParentId = area.ParentId;
+            Name = area.Name;
+        }
     }
 }

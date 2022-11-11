@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using MediatR;
 
-namespace HeadHunter.Database.MongoDb.Pipelines
+namespace HeadHunter.Database.PostgreSQL.Pipelines
 {
     public class ValidationPipe<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
     {

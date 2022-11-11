@@ -7,11 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+	<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.2.1" />
+	<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
     <PackageReference Include="EFCore.NamingConventions" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\HeadHunter.Database.PostgreSQL.Common\HeadHunter.Database.PostgreSQL.Common.csproj" />
+    <ProjectReference Include="..\HeadHunter.Models\HeadHunter.Models.csproj" />
   </ItemGroup>
 
   <ItemGroup>
