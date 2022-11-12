@@ -19,9 +19,9 @@ await initializingImporter.InitializeAsync();
 
 while (true)
 {
-    await foreach (var vacancy in importer.GetVacanciesAsync())
+    await foreach (var vacancyId in importer.GetVacancyIdsAsync())
     {
-        await actor.SendAsync(vacancy);
+        await actor.SendAsync(vacancyId);
     }
 }
 
