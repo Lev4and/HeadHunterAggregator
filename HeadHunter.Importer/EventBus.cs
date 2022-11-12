@@ -4,11 +4,11 @@ namespace HeadHunter.Importer
 {
     public class EventBus
     {
-        public event Func<Vacancy, Task> OnVacancyImported;
+        public event Func<long, Task> OnVacancyImported;
 
-        public Task RaiseOnVacancyImported(Vacancy vacancy) => OnVacancyImported?.Invoke(vacancy) ?? Task.CompletedTask;
+        public Task RaiseOnVacancyImported(long vacancyId) => OnVacancyImported?.Invoke(vacancyId) ?? Task.CompletedTask;
 
-        public void Subscribe(Func<Vacancy, Task> handler)
+        public void Subscribe(Func<long, Task> handler)
         {
             OnVacancyImported += handler;
         }
