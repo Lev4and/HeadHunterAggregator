@@ -30,7 +30,7 @@ namespace HeadHunter.Importer
 
                 await _eventBus.RaiseOnVacancyImported(vacancyId);
             }
-            else _logger.LogWarning($"Failed import of vacancy: Id - {vacancyId}");
+            else _logger.LogWarning($"Vacancy is already contained in the system: Id - {vacancyId}");
         }
 
         public override async Task HandleError(long vacancyId, Exception ex)
