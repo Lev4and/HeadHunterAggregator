@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 namespace HeadHunter.Importer
 {
-    public class VacanciesImporterActor : AbstractActor<Vacancy>
+    public class VacanciesImporterActor : AbstractActor<long>
     {
         private readonly ILogger<VacanciesImporterActor> _logger;
         private readonly VacanciesImporter _importer;
@@ -20,27 +20,22 @@ namespace HeadHunter.Importer
             _eventBus = eventBus;
         }
 
-        public override async Task HandleMessage(Vacancy vacancy)
+        public override async Task HandleMessage(long vacancyId)
         {
-            var status = await _importer.ImportVacancyAsync(vacancy);
+            var status = await _importer.ImportVacancyAsync(vacancyId);
 
             if (status)
             {
-                _logger.LogInformation($"Successful import of vacancy: Id - {vacancy.Id} Name - {vacancy.Name} " +
-                    $"Company - {vacancy.Employer.Name} Area - {vacancy.Area?.Name} PublishedAt - {vacancy.PublishedAt}");
+                _logger.LogInformation($"Successful import of vacancy: Id - {vacancyId}");
 
-                await _eventBus.RaiseOnVacancyImported(vacancy);
+                await _eventBus.RaiseOnVacancyImported(vacancyId);
             }
-            else
-            {
-                _logger.LogWarning($"Failed import of vacancy: Id - {vacancy.Id} Name - {vacancy.Name} " +
-                    $"Company - {vacancy.Employer.Name} Area - {vacancy.Area?.Name} PublishedAt - {vacancy.PublishedAt}");
-            }
+            else _logger.LogWarning($"Vacancy is already contained in the system: Id - {vacancyId}");
         }
 
-        public override async Task HandleError(Vacancy vacancy, Exception ex)
+        public override async Task HandleError(long vacancyId, Exception ex)
         {
-            _logger.LogError(ex, $"Error when import vacancy: Id: {vacancy.Id} EmployerId: {vacancy.Employer.Id}");
+            _logger.LogError(ex, $"Error when import vacancy: Id: {vacancyId}");
         }
     }
 }
