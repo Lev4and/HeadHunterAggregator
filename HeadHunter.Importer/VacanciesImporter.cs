@@ -12,8 +12,8 @@ namespace HeadHunter.Importer
         private readonly HttpContext _context;
         private readonly ILogger<VacanciesImporter> _logger;
 
-        private long _newVacancyId;
-        private long _previousNewVacancyId;
+        private long _maxVacancyId;
+        private long _previousMaxVacancyId;
 
         private DateTime _dateTo;
         private DateTime _dateFrom;
@@ -25,8 +25,8 @@ namespace HeadHunter.Importer
             _logger = logger;
             _context = context;
 
-            _newVacancyId = 0;
-            _previousNewVacancyId = 0;
+            _maxVacancyId = 0;
+            _previousMaxVacancyId = 0;
             _timesImportVacancies = new List<DateTime>();
             _dateTo = DateTime.UtcNow.AddMinutes(-_dateRangeMinuteIncrement);
             _dateFrom = DateTime.UtcNow.AddMinutes(-_dateRangeMinuteIncrement * 2);
@@ -34,7 +34,7 @@ namespace HeadHunter.Importer
 
         public async IAsyncEnumerable<long> GetVacancyIdsAsync()
         {
-            _logger.LogInformation($"Date range filter value: From - {_dateFrom} To - {_dateTo}");
+            _logger.LogInformation($"Date range filter value: from {_dateFrom} to {_dateTo}");
 
             await foreach (var vacancyId in GetVacancyIdsByPediodAsync())
             {
@@ -51,26 +51,27 @@ namespace HeadHunter.Importer
 
         private async IAsyncEnumerable<long> GetVacancyIdsByPediodAsync()
         {
-            await RecalculateNewVacancyIdAsync();
+            _previousMaxVacancyId = _maxVacancyId;
+            _maxVacancyId = await GetMaxVacancyIdAsync();
 
-            for (var i = _previousNewVacancyId + 1; i <= _newVacancyId; i++)
+            for (var i = _previousMaxVacancyId + 1; i <= _maxVacancyId && _previousMaxVacancyId != 0; i++)
             {
                 yield return i;
             }
         }
 
-        private async Task RecalculateNewVacancyIdAsync()
+        private async Task<long> GetMaxVacancyIdAsync()
+        {
+            var items = await GetVacanciesAsync();
+
+            return items.Count() > 0 ? items.Max(item => Convert.ToInt64(item.Id)) : 0;
+        }
+
+        private async Task<IEnumerable<Vacancy>> GetVacanciesAsync()
         {
             var response = await _context.HeadHunter.Vacancies.GetVacanciesAsync(1, 1, _dateFrom, _dateTo);
-            var items = response.Result.Items;
 
-            var newVacancyId = items.Length > 0 ? items.Max(item => Convert.ToInt64(item.Id)) : 0;
-
-            if (newVacancyId > _newVacancyId)
-            {
-                _previousNewVacancyId = _previousNewVacancyId != 0 ? _newVacancyId : newVacancyId;
-                _newVacancyId = newVacancyId;
-            }
+            return response.Result.Items;
         }
 
         public async Task<bool> ImportVacancyAsync(long vacancyId)
@@ -85,7 +86,9 @@ namespace HeadHunter.Importer
 
                     await SaveVacancyAsync(vacancy);
                 }
-                else _logger.LogWarning($"Failed of save vacancy - VacancyId: {vacancyId}");
+                else _logger.LogWarning($"Vacancy not exists in hh.ru or system blocked the request - VacancyId: {vacancyId}");
+
+                OnVacancyImported();
 
                 return true;
             }
@@ -165,8 +168,6 @@ namespace HeadHunter.Importer
         private async Task SaveVacancyAsync(Vacancy vacancy)
         {
             await _context.Resource.ImportVacancies.ImportAsync(vacancy);
-
-            OnVacancyImported();
         }
     }
 }
