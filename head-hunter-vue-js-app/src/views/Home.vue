@@ -1,18 +1,34 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <Header />
+    <main>
+      <RecentVacancies />
+      <Facts />
+      <HowItWorks />
+      <Categories />
+      <Newsletter />
+    </main>
   </div>
 </template>
 
 <script lang="ts">
-import { Options, Vue } from 'vue-class-component';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+  import { Options, Vue } from 'vue-class-component'
+  import Header from '@/components/home/Header.vue'
+  import RecentVacancies from '@/components/home/RecentVacancies.vue'
+  import Facts from '@/components/home/Facts.vue'
+  import HowItWorks from '@/components/home/HowItWorks.vue'
+  import Categories from '@/components/home/Categories.vue'
+  import Newsletter from '@/components/home/Newsletter.vue'
 
-@Options({
-  components: {
-    HelloWorld,
-  },
-})
-export default class Home extends Vue {}
+  @Options({
+    components: {
+      Header,
+      RecentVacancies,
+      Facts,
+      HowItWorks,
+      Categories,
+      Newsletter,
+    },
+  })
+  export default class Home extends Vue {}
 </script>
