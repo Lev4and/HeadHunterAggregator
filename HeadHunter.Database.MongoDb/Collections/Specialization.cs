@@ -45,6 +45,10 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonElement("profareaName")]
         public string? ProfareaName { get; set; }
 
+        public Specialization? Parent { get; set; }
+
+        public List<Specialization> Children { get; set; }
+
         public Specialization()
         {
 

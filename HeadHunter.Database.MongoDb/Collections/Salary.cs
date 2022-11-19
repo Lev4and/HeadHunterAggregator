@@ -25,7 +25,6 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonElement("from")]
         public decimal? From { get; set; }
 
-        [BsonIgnore]
         public Currency? Currency { get; set; }
 
         public Salary()

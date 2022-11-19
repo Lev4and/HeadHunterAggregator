@@ -1,19 +1,19 @@
 ﻿using HeadHunter.Database.MongoDb.Common;
 using MongoDB.Driver;
+using System.Linq.Expressions;
 
 namespace HeadHunter.Database.MongoDb.Collections.IndexKeysDefinitions
 {
     public class MetroStationIndexKeysDefinition : IDefiningIndexKeys<MetroStation>
     {
-        public List<CreateIndexModel<MetroStation>> GetIndexKeys()
+        public IEnumerable<CreateIndexModel<MetroStation>> GetIndexKeys()
         {
-            var result = new List<CreateIndexModel<MetroStation>>()
+            var fields = new List<Expression<Func<MetroStation, object>>>()
             {
-                new CreateIndexModel<MetroStation>(Builders<MetroStation>.IndexKeys.Ascending(area => area.HeadHunterId)),
-                new CreateIndexModel<MetroStation>(Builders<MetroStation>.IndexKeys.Ascending(area => area.Name))
+                item => item.MetroLineId, item => item.HeadHunterId, item => item.Name
             };
 
-            return result;
+            return CreatorCreateIndexModel.Create(fields.ToArray());
         }
     }
 }

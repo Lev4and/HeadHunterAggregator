@@ -1,19 +1,19 @@
 ﻿using HeadHunter.Database.MongoDb.Common;
 using MongoDB.Driver;
+using System.Linq.Expressions;
 
 namespace HeadHunter.Database.MongoDb.Collections.IndexKeysDefinitions
 {
     public class WorkingTimeModeIndexKeysDefinition : IDefiningIndexKeys<WorkingTimeMode>
     {
-        public List<CreateIndexModel<WorkingTimeMode>> GetIndexKeys()
+        public IEnumerable<CreateIndexModel<WorkingTimeMode>> GetIndexKeys()
         {
-            var result = new List<CreateIndexModel<WorkingTimeMode>>()
+            var fields = new List<Expression<Func<WorkingTimeMode, object>>>()
             {
-                new CreateIndexModel<WorkingTimeMode>(Builders<WorkingTimeMode>.IndexKeys.Ascending(area => area.HeadHunterId)),
-                new CreateIndexModel<WorkingTimeMode>(Builders<WorkingTimeMode>.IndexKeys.Ascending(area => area.Name))
+                item => item.HeadHunterId, item => item.Name
             };
 
-            return result;
+            return CreatorCreateIndexModel.Create(fields.ToArray());
         }
     }
 }

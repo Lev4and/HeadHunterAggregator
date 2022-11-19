@@ -19,6 +19,11 @@ namespace HeadHunter.Database.MongoDb.Common
             await GetCollection<T>().InsertOneAsync(item);
         }
 
+        public async Task<List<T>> GetAllAsync<T>() where T : ICollection
+        {
+            return await GetCollection<T>().Find(item => true).ToListAsync();
+        }
+
         public async Task<List<T>> FindAsync<T>() where T : ICollection
         {
             return await GetCollection<T>().Find(item => true).ToListAsync();
@@ -54,7 +59,12 @@ namespace HeadHunter.Database.MongoDb.Common
             await GetCollection<T>().Indexes.CreateManyAsync(definingIndexKeys.GetIndexKeys());
         }
 
-        private IMongoCollection<T> GetCollection<T>() => _database.GetCollection<T>((typeof(T)
+        public IAggregateFluent<T> Aggregate<T>() where T : ICollection
+        {
+            return GetCollection<T>().Aggregate();
+        }
+
+        public IMongoCollection<T> GetCollection<T>() => _database.GetCollection<T>((typeof(T)
             .GetCustomAttributes(typeof(MongoDbCollectionNameAttibute), true)[0] as MongoDbCollectionNameAttibute).Name);
     }
 }

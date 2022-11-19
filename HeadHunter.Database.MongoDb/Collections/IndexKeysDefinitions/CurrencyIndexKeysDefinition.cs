@@ -1,18 +1,19 @@
 ﻿using HeadHunter.Database.MongoDb.Common;
 using MongoDB.Driver;
+using System.Linq.Expressions;
 
 namespace HeadHunter.Database.MongoDb.Collections.IndexKeysDefinitions
 {
     public class CurrencyIndexKeysDefinition : IDefiningIndexKeys<Currency>
     {
-        public List<CreateIndexModel<Currency>> GetIndexKeys()
+        public IEnumerable<CreateIndexModel<Currency>> GetIndexKeys()
         {
-            var result = new List<CreateIndexModel<Currency>>()
+            var fields = new List<Expression<Func<Currency, object>>>()
             {
-                new CreateIndexModel<Currency>(Builders<Currency>.IndexKeys.Ascending(area => area.HeadHunterId))
+                item => item.HeadHunterId
             };
 
-            return result;
+            return CreatorCreateIndexModel.Create(fields.ToArray());
         }
     }
 }

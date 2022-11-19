@@ -131,5 +131,85 @@
         public const string VacanciesPath = $"{DefaultAreaPath}/vacancies/";
 
         public const string EmployersPath = $"{DefaultAreaPath}/employers/";
+
+        public const string BillingTypesPath = $"{DefaultAreaPath}/billingTypes/";
+
+        public const string BillingTypesAllQuery = "all";
+
+        public const string CurrenciesPath = $"{DefaultAreaPath}/currencies/";
+
+        public const string CurrenciesAllQuery = "all";
+
+        public const string DepartmentsPath = $"{DefaultAreaPath}/departments/";
+
+        public const string DepartmentsAllQuery = "all";
+
+        public const string DriverLicenseTypesPath = $"{DefaultAreaPath}/driverLicenseType/";
+
+        public const string DriverLicenseTypesAllQuery = "all";
+
+        public const string EmployersCountQuery = "count";
+
+        public const string EmploymentsPath = $"{DefaultAreaPath}/employments/";
+
+        public const string EmploymentsAllQuery = "all";
+
+        public const string ExperiencesPath = $"{DefaultAreaPath}/experiences/";
+
+        public const string ExperiencesAllQuery = "all";
+
+        public const string IndustriesPath = $"{DefaultAreaPath}/industries/";
+
+        public const string IndustriesAllQuery = "all";
+
+        public const string LanguagesPath = $"{DefaultAreaPath}/languages/";
+
+        public const string LanguagesAllQuery = "all";
+
+        public const string MetroLinesPath = $"{DefaultAreaPath}/metroLines/";
+
+        public const string MetroLinesAllQuery = "all";
+
+        public const string MetroStationsPath = $"{DefaultAreaPath}/metroStations/";
+
+        public const string MetroStationsAllQuery = "all";
+
+        public const string ProfessionalRolesPath = $"{DefaultAreaPath}/professionalRoles/";
+
+        public const string ProfessionalRolesAllQuery = "all";
+
+        public const string SchedulesPath = $"{DefaultAreaPath}/schedules/";
+
+        public const string SchedulesAllQuery = "all";
+
+        public const string SpecializationsPath = $"{DefaultAreaPath}/specializations/";
+
+        public const string SpecializationsAllQuery = "all";
+
+        public const string VacanciesCountQuery = "count";
+
+        public const string VacanciesCountActiveQuery = "count/active";
+
+        public const string VacanciesRecentQuery = "recent";
+
+        public const string VacancyTypesPath = $"{DefaultAreaPath}/vacancyTypes/";
+
+        public const string VacancyTypesAllQuery = "all";
+
+        public const string WorkingDaysPath = $"{DefaultAreaPath}/workingDays/";
+
+        public const string WorkingDaysAllQuery = "all";
+
+        public const string WorkingTimeIntervalsPath = $"{DefaultAreaPath}/workingTimeIntervals/";
+
+        public const string WorkingTimeIntervalsAllQuery = "all";
+
+        public const string WorkingTimeModesPath = $"{DefaultAreaPath}/workingTimeModes/";
+
+        public const string WorkingTimeModesAllQuery = "all";
+
+        public const string SuggestsPath = $"{DefaultAreaPath}/suggests/";
+
+        public const string SuggestsMainQuery = "main";
     }
 }

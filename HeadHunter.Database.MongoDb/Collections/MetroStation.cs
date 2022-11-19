@@ -1,5 +1,6 @@
 ﻿using HeadHunter.Database.MongoDb.Common;
 using HeadHunter.Database.MongoDb.Common.Attributes;
+using HeadHunter.Database.MongoDb.Common.BsonSerializers;
 using HeadHunter.Database.MongoDb.Common.JsonConverters;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
@@ -56,6 +57,8 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonIgnoreIfNull]
         [BsonElement("longitude")]
         public double? Longitude { get; set; }
+
+        public MetroLine Line { get; set; }
 
         public MetroStation()
         {

@@ -21,7 +21,7 @@ namespace HeadHunter.Database.MongoDb.Common.JsonConverters
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            serializer.Serialize(writer, value.ToString());
+            serializer.Serialize(writer, (List<ObjectId>)value);
 
         }
     }

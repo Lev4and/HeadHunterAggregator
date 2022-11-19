@@ -1,18 +1,19 @@
 ﻿using HeadHunter.Database.MongoDb.Common;
 using MongoDB.Driver;
+using System.Linq.Expressions;
 
 namespace HeadHunter.Database.MongoDb.Collections.IndexKeysDefinitions
 {
     public class DriverLicenseTypeIndexKeysDefinition : IDefiningIndexKeys<DriverLicenseType>
     {
-        public List<CreateIndexModel<DriverLicenseType>> GetIndexKeys()
+        public IEnumerable<CreateIndexModel<DriverLicenseType>> GetIndexKeys()
         {
-            var result = new List<CreateIndexModel<DriverLicenseType>>()
+            var fields = new List<Expression<Func<DriverLicenseType, object>>>()
             {
-                new CreateIndexModel<DriverLicenseType>(Builders<DriverLicenseType>.IndexKeys.Ascending(area => area.HeadHunterId))
+                item => item.HeadHunterId
             };
 
-            return result;
+            return CreatorCreateIndexModel.Create(fields.ToArray());
         }
     }
 }

@@ -51,12 +51,17 @@ namespace HeadHunter.Importer
 
         private async IAsyncEnumerable<long> GetVacancyIdsByPediodAsync()
         {
+            var oldMaxVacancyId = _maxVacancyId;
+
             _previousMaxVacancyId = _maxVacancyId;
             _maxVacancyId = await GetMaxVacancyIdAsync();
 
-            for (var i = _previousMaxVacancyId + 1; i <= _maxVacancyId && _previousMaxVacancyId != 0; i++)
+            if (_previousMaxVacancyId != 0 && _previousMaxVacancyId != oldMaxVacancyId)
             {
-                yield return i;
+                for (var i = _previousMaxVacancyId + 1; i <= _maxVacancyId; i++)
+                {
+                    yield return i;
+                }
             }
         }
 
@@ -98,7 +103,7 @@ namespace HeadHunter.Importer
 
         private async Task<bool> ContainsVacancyByIdAsync(long vacancyId)
         {
-            var vacancyResponse = await _context.Resource.Vacancies.GetVacancyIdAsync(vacancyId);
+            var vacancyResponse = await _context.Resource.Vacancies.GetVacancyInfoByHeadHunterIdAsync(vacancyId);
 
             return vacancyResponse.Result != null;
         }
@@ -140,12 +145,14 @@ namespace HeadHunter.Importer
 
         private async Task PauseAsync()
         {
-            var delay = DateTime.UtcNow - _timesImportVacancies.Min();
+            var difference = DateTime.UtcNow - _timesImportVacancies.Min();
+
+            var delay = new TimeSpan(1, 0, 0).Subtract(difference);
 
             _logger.LogWarning($"The limit has been exceeded. Import will be paused on " +
                 $"{string.Format("{0:%h} hours {0:%m} minutes {0:%s} seconds {0:%f} milliseconds", delay)}.");
 
-            await Task.Delay(delay);
+            await Task.Delay((int)delay.TotalMilliseconds);
         }
 
         private async Task WaitAsync()

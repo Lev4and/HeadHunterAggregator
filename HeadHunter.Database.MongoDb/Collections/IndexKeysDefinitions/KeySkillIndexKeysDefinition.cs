@@ -1,18 +1,19 @@
 ﻿using HeadHunter.Database.MongoDb.Common;
 using MongoDB.Driver;
+using System.Linq.Expressions;
 
 namespace HeadHunter.Database.MongoDb.Collections.IndexKeysDefinitions
 {
     public class KeySkillIndexKeysDefinition : IDefiningIndexKeys<KeySkill>
     {
-        public List<CreateIndexModel<KeySkill>> GetIndexKeys()
+        public IEnumerable<CreateIndexModel<KeySkill>> GetIndexKeys()
         {
-            var result = new List<CreateIndexModel<KeySkill>>()
+            var fields = new List<Expression<Func<KeySkill, object>>>()
             {
-                new CreateIndexModel<KeySkill>(Builders<KeySkill>.IndexKeys.Ascending(area => area.Name))
+                item => item.Name
             };
 
-            return result;
+            return CreatorCreateIndexModel.Create(fields.ToArray());
         }
     }
 }
