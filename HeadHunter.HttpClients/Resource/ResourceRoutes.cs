@@ -148,6 +148,8 @@
 
         public const string DriverLicenseTypesAllQuery = "all";
 
+        public const string EmployersCountQuery = "count";
+
         public const string EmploymentsPath = $"{DefaultAreaPath}/employments/";
 
         public const string EmploymentsAllQuery = "all";
@@ -183,6 +185,12 @@
         public const string SpecializationsPath = $"{DefaultAreaPath}/specializations/";
 
         public const string SpecializationsAllQuery = "all";
+
+        public const string VacanciesCountQuery = "count";
+
+        public const string VacanciesCountActiveQuery = "count/active";
+
+        public const string VacanciesRecentQuery = "recent";
 
         public const string VacancyTypesPath = $"{DefaultAreaPath}/vacancyTypes/";
 

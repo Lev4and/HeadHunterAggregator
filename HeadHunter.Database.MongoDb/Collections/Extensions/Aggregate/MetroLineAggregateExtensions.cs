@@ -1,4 +1,5 @@
 ﻿using HeadHunter.Database.MongoDb.Common;
+using HeadHunter.Models;
 using MongoDB.Driver;
 
 namespace HeadHunter.Database.MongoDb.Collections.Extensions.Aggregate
@@ -16,7 +17,7 @@ namespace HeadHunter.Database.MongoDb.Collections.Extensions.Aggregate
         {
             return aggregate
                 .Lookup<MetroLine, Area, MetroLine>(_repository.GetCollection<Area>(), metroLine => metroLine.AreaId, area => area.Id, metroLine => metroLine.Area)
-                .Unwind<MetroLine, MetroLine>(metroLine => metroLine.Area);
+                .Unwind<MetroLine, MetroLine>(metroLine => metroLine.Area, new AggregateUnwindOptions<MetroLine>() { PreserveNullAndEmptyArrays = true });
         }
 
         public static IAggregateFluent<MetroLine> WithStations(this IAggregateFluent<MetroLine> aggregate)

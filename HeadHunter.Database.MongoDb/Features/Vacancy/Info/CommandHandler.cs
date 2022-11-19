@@ -19,13 +19,13 @@ namespace HeadHunter.Database.MongoDb.Features.Vacancy.Info
 
         public async Task<Collections.Vacancy> Handle(Command request, CancellationToken cancellationToken)
         {
-            var result = await _repository.Aggregate<Collections.Vacancy>()
-                .WithAll()
-                .Match(vacancy => vacancy.Id == request.Id)
-                .Project<Collections.Vacancy>(Builders<Collections.Vacancy>.Projection.WithoutEmployerDescriptions())
-                .ToListAsync();
+            var filterBuilder = Builders<Collections.Vacancy>.Filter;
 
-            return result.FirstOrDefault();
+            return await _repository.Aggregate<Collections.Vacancy>()
+                .WithAll()
+                .Match(filterBuilder.Eq(vacancy => vacancy.Id, request.Id))
+                .Project<Collections.Vacancy>(Builders<Collections.Vacancy>.Projection.WithoutEmployerDescriptions())
+                .FirstOrDefaultAsync();
         }
     }
 }

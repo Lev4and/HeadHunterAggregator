@@ -1,6 +1,5 @@
 ﻿using HeadHunter.Database.MongoDb.Common;
 using MediatR;
-using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace HeadHunter.Database.MongoDb.Features.Suggests.Main
@@ -16,14 +15,16 @@ namespace HeadHunter.Database.MongoDb.Features.Suggests.Main
 
         public async Task<List<string>> Handle(Command request, CancellationToken cancellationToken)
         {
+            var filterBuilder = Builders<Collections.Vacancy>.Filter;
+
             var suggestsVacancies = await _repository.GetCollection<Collections.Vacancy>()
-                .Find(Builders<Collections.Vacancy>.Filter.Regex("name", new BsonRegularExpression(request.SearchString)))
+                .Find(filterBuilder.Or(filterBuilder.Regex(vacancy => vacancy.Name, request.SearchString)))
                 .SortBy(vacancy => vacancy.Name)
                 .Project(vacancy => vacancy.Name)
                 .Limit(10)
                 .ToListAsync();
 
-            return suggestsVacancies;
+            return suggestsVacancies.Distinct().ToList();
         }
     }
 }

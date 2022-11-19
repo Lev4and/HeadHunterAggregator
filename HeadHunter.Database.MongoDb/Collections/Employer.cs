@@ -75,7 +75,6 @@ namespace HeadHunter.Database.MongoDb.Collections
         [BsonSerializer(typeof(BrotliSerializer))]
         public string? BrandedDescription { get; set; }
 
-        [BsonIgnore]
         public Area? Area { get; set; }
 
         [BsonIgnoreIfNull]
@@ -87,7 +86,6 @@ namespace HeadHunter.Database.MongoDb.Collections
         [JsonConverter(typeof(ObjectIdListConverter))]
         public List<ObjectId> IndustriesIds { get; set; }
 
-        [BsonIgnore]
         public List<Industry> Industries { get; set; }
 
         [BsonIgnoreIfNull]

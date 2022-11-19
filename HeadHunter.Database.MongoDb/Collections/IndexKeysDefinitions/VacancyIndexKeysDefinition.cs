@@ -11,8 +11,9 @@ namespace HeadHunter.Database.MongoDb.Collections.IndexKeysDefinitions
             var fields = new List<Expression<Func<Vacancy, object>>>()
             {
                 item => item.AreaId, item => item.EmployerId, item => item.ScheduleId, item => item.ExperienceId,
-                item => item.EmploymentId, item => item.VacancyTypeId, item => item.BillingTypeId, 
-                item => item.Name, item => item.HeadHunterId, item => item.LanguagesIds, item => item.KeySkillsIds,
+                item => item.EmploymentId, item => item.VacancyTypeId, item => item.BillingTypeId, item => item.Archived,
+                item => item.Name, item => item.HeadHunterId, item => item.InitialCreatedAt, 
+                item => item.LanguagesIds, item => item.KeySkillsIds,
                 item => item.WorkingDaysIds, item => item.SpecializationsIds, item => item.WorkingTimeModesIds,
                 item => item.ProfessionalRolesIds, item => item.DriverLicenseTypesIds, 
                 item => item.WorkingTimeIntervalsIds,

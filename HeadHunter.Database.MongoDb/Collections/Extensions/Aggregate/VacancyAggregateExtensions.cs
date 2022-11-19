@@ -24,63 +24,63 @@ namespace HeadHunter.Database.MongoDb.Collections.Extensions.Aggregate
         {
             return aggregate
                 .Lookup<Vacancy, Area, Vacancy>(_repository.GetCollection<Area>(), vacancy => vacancy.AreaId, area => area.Id, vacancy => vacancy.Area)
-                .Unwind<Vacancy, Vacancy>(vacancy => vacancy.Area);
+                .Unwind<Vacancy, Vacancy>(vacancy => vacancy.Area, new AggregateUnwindOptions<Vacancy>() { PreserveNullAndEmptyArrays = true });
         }
 
         public static IAggregateFluent<Vacancy> WithEmployer(this IAggregateFluent<Vacancy> aggregate)
         {
             return aggregate
                 .Lookup<Vacancy, Employer, Vacancy>(_repository.GetCollection<Employer>(), vacancy => vacancy.EmployerId, employer => employer.Id, vacancy => vacancy.Employer)
-                .Unwind<Vacancy, Vacancy>(vacancy => vacancy.Employer);
+                .Unwind<Vacancy, Vacancy>(vacancy => vacancy.Employer, new AggregateUnwindOptions<Vacancy>() { PreserveNullAndEmptyArrays = true });
         }
 
         public static IAggregateFluent<Vacancy> WithSchedule(this IAggregateFluent<Vacancy> aggregate)
         {
             return aggregate
                 .Lookup<Vacancy, Schedule, Vacancy>(_repository.GetCollection<Schedule>(), vacancy => vacancy.ScheduleId, schedule => schedule.Id, vacancy => vacancy.Schedule)
-                .Unwind<Vacancy, Vacancy>(vacancy => vacancy.Schedule);
+                .Unwind<Vacancy, Vacancy>(vacancy => vacancy.Schedule, new AggregateUnwindOptions<Vacancy>() { PreserveNullAndEmptyArrays = true });
         }
 
         public static IAggregateFluent<Vacancy> WithExperience(this IAggregateFluent<Vacancy> aggregate)
         {
             return aggregate
                 .Lookup<Vacancy, Experience, Vacancy>(_repository.GetCollection<Experience>(), vacancy => vacancy.ExperienceId, experience => experience.Id, vacancy => vacancy.Experience)
-                .Unwind<Vacancy, Vacancy>(vacancy => vacancy.Experience);
+                .Unwind<Vacancy, Vacancy>(vacancy => vacancy.Experience, new AggregateUnwindOptions<Vacancy>() { PreserveNullAndEmptyArrays = true });
         }
 
         public static IAggregateFluent<Vacancy> WithEmployment(this IAggregateFluent<Vacancy> aggregate)
         {
             return aggregate
                 .Lookup<Vacancy, Employment, Vacancy>(_repository.GetCollection<Employment>(), vacancy => vacancy.EmploymentId, employment => employment.Id, vacancy => vacancy.Employment)
-                .Unwind<Vacancy, Vacancy>(vacancy => vacancy.Employment);
+                .Unwind<Vacancy, Vacancy>(vacancy => vacancy.Employment, new AggregateUnwindOptions<Vacancy>() { PreserveNullAndEmptyArrays = true });
         }
 
         public static IAggregateFluent<Vacancy> WithDepartment(this IAggregateFluent<Vacancy> aggregate)
         {
             return aggregate
                 .Lookup<Vacancy, Department, Vacancy>(_repository.GetCollection<Department>(), vacancy => vacancy.DepartmentId, department => department.Id, vacancy => vacancy.Department)
-                .Unwind<Vacancy, Vacancy>(vacancy => vacancy.Department);
+                .Unwind<Vacancy, Vacancy>(vacancy => vacancy.Department, new AggregateUnwindOptions<Vacancy>() { PreserveNullAndEmptyArrays = true });
         }
 
         public static IAggregateFluent<Vacancy> WithVacancyType(this IAggregateFluent<Vacancy> aggregate)
         {
             return aggregate
                 .Lookup<Vacancy, VacancyType, Vacancy>(_repository.GetCollection<VacancyType>(), vacancy => vacancy.VacancyTypeId, vacancyType => vacancyType.Id, vacancy => vacancy.VacancyType)
-                .Unwind<Vacancy, Vacancy>(vacancy => vacancy.VacancyType);
+                .Unwind<Vacancy, Vacancy>(vacancy => vacancy.VacancyType, new AggregateUnwindOptions<Vacancy>() { PreserveNullAndEmptyArrays = true });
         }
 
         public static IAggregateFluent<Vacancy> WithBillingType(this IAggregateFluent<Vacancy> aggregate)
         {
             return aggregate
                 .Lookup<Vacancy, BillingType, Vacancy>(_repository.GetCollection<BillingType>(), vacancy => vacancy.BillingTypeId, billingType => billingType.Id, vacancy => vacancy.BillingType)
-                .Unwind<Vacancy, Vacancy>(vacancy => vacancy.BillingType);
+                .Unwind<Vacancy, Vacancy>(vacancy => vacancy.BillingType, new AggregateUnwindOptions<Vacancy>() { PreserveNullAndEmptyArrays = true });
         }
 
         public static IAggregateFluent<Vacancy> WithCurrency(this IAggregateFluent<Vacancy> aggregate)
         {
             return aggregate
                 .Lookup<Vacancy, Currency, Vacancy>(_repository.GetCollection<Currency>(), vacancy => vacancy.Salary.CurrencyId, currency => currency.Id, vacancy => vacancy.Salary.Currency)
-                .Unwind<Vacancy, Vacancy>(vacancy => vacancy.Salary.Currency);
+                .Unwind<Vacancy, Vacancy>(vacancy => vacancy.Salary.Currency, new AggregateUnwindOptions<Vacancy>() { PreserveNullAndEmptyArrays = true });
         }
 
         public static IAggregateFluent<Vacancy> WithLanguages(this IAggregateFluent<Vacancy> aggregate)

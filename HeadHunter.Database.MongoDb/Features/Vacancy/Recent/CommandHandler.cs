@@ -4,7 +4,7 @@ using HeadHunter.Database.MongoDb.Common;
 using MediatR;
 using MongoDB.Driver;
 
-namespace HeadHunter.Database.MongoDb.Features.Vacancy.Filter
+namespace HeadHunter.Database.MongoDb.Features.Vacancy.Recent
 {
     public class CommandHandler : IRequestHandler<Command, List<Collections.Vacancy>>
     {
@@ -20,10 +20,10 @@ namespace HeadHunter.Database.MongoDb.Features.Vacancy.Filter
         public async Task<List<Collections.Vacancy>> Handle(Command request, CancellationToken cancellationToken)
         {
             return await _repository.Aggregate<Collections.Vacancy>()
+                .SortByDescending(vacancy => vacancy.InitialCreatedAt)
+                .Limit(request.Limit)
                 .WithArea().WithCurrency().WithEmployer()
                 .Project<Collections.Vacancy>(Builders<Collections.Vacancy>.Projection.WithoutDescriptions())
-                .Skip((request.Page - 1) * request.PerPage)
-                .Limit(request.PerPage)
                 .ToListAsync();
         }
     }

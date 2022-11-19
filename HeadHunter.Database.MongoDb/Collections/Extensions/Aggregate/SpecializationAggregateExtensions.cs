@@ -16,7 +16,7 @@ namespace HeadHunter.Database.MongoDb.Collections.Extensions.Aggregate
         {
             return aggregate
                 .Lookup<Specialization, Specialization, Specialization>(_repository.GetCollection<Specialization>(), specialization => specialization.ParentId, specialization => specialization.Id, specialization => specialization.Parent)
-                .Unwind<Specialization, Specialization>(specialization => specialization.Parent);
+                .Unwind<Specialization, Specialization>(specialization => specialization.Parent, new AggregateUnwindOptions<Specialization>() { PreserveNullAndEmptyArrays = true });
         }
 
         public static IAggregateFluent<Specialization> WithChildren(this IAggregateFluent<Specialization> aggregate)

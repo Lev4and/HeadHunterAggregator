@@ -16,14 +16,14 @@ namespace HeadHunter.Database.MongoDb.Collections.Extensions.Aggregate
         {
             return aggregate
                 .Lookup<MetroStation, MetroLine, MetroStation>(_repository.GetCollection<MetroLine>(), metroStation => metroStation.MetroLineId, metroLine => metroLine.Id, metroStation => metroStation.Line)
-                .Unwind<MetroStation, MetroStation>(metroStation => metroStation.Line);
+                .Unwind<MetroStation, MetroStation>(metroStation => metroStation.Line, new AggregateUnwindOptions<MetroStation>() { PreserveNullAndEmptyArrays = true });
         }
 
         public static IAggregateFluent<MetroStation> WithLineArea(this IAggregateFluent<MetroStation> aggregate)
         {
             return aggregate
                 .Lookup<MetroStation, Area, MetroStation>(_repository.GetCollection<Area>(), metroStation => metroStation.Line.AreaId, area => area.Id, metroStation => metroStation.Line.Area)
-                .Unwind<MetroStation, MetroStation>(metroStation => metroStation.Line.Area);
+                .Unwind<MetroStation, MetroStation>(metroStation => metroStation.Line.Area, new AggregateUnwindOptions<MetroStation>() { PreserveNullAndEmptyArrays = true });
         }
     }
 }
