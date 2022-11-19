@@ -38,6 +38,7 @@ namespace HeadHunter.Importer
 
             await foreach (var vacancyId in GetVacancyIdsByPediodAsync())
             {
+                OnVacancyImported();
                 RemoveAllTimesImportVacanciesLaterHour();
 
                 if (IsLimitExceeded()) await PauseAsync();
@@ -74,7 +75,7 @@ namespace HeadHunter.Importer
 
         private async Task<IEnumerable<Vacancy>> GetVacanciesAsync()
         {
-            var response = await _context.HeadHunter.Vacancies.GetVacanciesAsync(1, 1, _dateFrom, _dateTo);
+            var response = await _context.HeadHunter.Vacancies.GetVacanciesAsync(1, 100, _dateFrom, _dateTo);
 
             return response.Result.Items;
         }
@@ -92,8 +93,6 @@ namespace HeadHunter.Importer
                     await SaveVacancyAsync(vacancy);
                 }
                 else _logger.LogWarning($"Vacancy not exists in hh.ru or system blocked the request - VacancyId: {vacancyId}");
-
-                OnVacancyImported();
 
                 return true;
             }
