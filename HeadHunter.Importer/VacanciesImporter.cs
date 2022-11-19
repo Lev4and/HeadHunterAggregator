@@ -51,12 +51,12 @@ namespace HeadHunter.Importer
 
         private async IAsyncEnumerable<long> GetVacancyIdsByPediodAsync()
         {
-            var oldMaxVacancyId = _maxVacancyId;
+            var oldPreviousMaxVacancyId = _previousMaxVacancyId;
 
             _previousMaxVacancyId = _maxVacancyId;
             _maxVacancyId = await GetMaxVacancyIdAsync();
 
-            if (_previousMaxVacancyId != 0 && _previousMaxVacancyId != oldMaxVacancyId)
+            if (_previousMaxVacancyId != 0 && _previousMaxVacancyId != oldPreviousMaxVacancyId)
             {
                 for (var i = _previousMaxVacancyId + 1; i <= _maxVacancyId; i++)
                 {
