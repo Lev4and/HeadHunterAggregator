@@ -145,13 +145,12 @@ namespace HeadHunter.Importer
         private async Task PauseAsync()
         {
             var difference = DateTime.UtcNow - _timesImportVacancies.Min();
-
             var delay = new TimeSpan(1, 0, 0).Subtract(difference);
 
             _logger.LogWarning($"The limit has been exceeded. Import will be paused on " +
                 $"{string.Format("{0:%h} hours {0:%m} minutes {0:%s} seconds {0:%f} milliseconds", delay)}.");
 
-            await Task.Delay((int)delay.TotalMilliseconds);
+            await Task.Delay(delay.TotalMilliseconds > 0 ? (int)delay.TotalMilliseconds: 0);
         }
 
         private async Task WaitAsync()
