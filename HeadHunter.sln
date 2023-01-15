@@ -2,19 +2,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeadHunter.AuthorizationWebApplication", "HeadHunter.AuthorizationWebApplication\HeadHunter.AuthorizationWebApplication.csproj", "{3E6D1B72-7DB2-44C2-B944-942456102D15}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeadHunter.ResourceWebApplication", "HeadHunter.ResourceWebApplication\HeadHunter.ResourceWebApplication.csproj", "{DE2DD4BD-D9CD-4F08-AB57-26E2F4C4F2DA}"
-EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{661F9FBA-56AA-40DC-924B-B03F9A483FB8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeadHunter.Models", "HeadHunter.Models\HeadHunter.Models.csproj", "{EF0E5FDA-9DB9-4118-BADF-B92EAD9D5DBB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeadHunter.HttpClients.Common", "HeadHunter.HttpClients.Common\HeadHunter.HttpClients.Common.csproj", "{AD4E2AA7-CCC5-4A9F-B0A2-61083DF2B9D6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeadHunter.HttpClients", "HeadHunter.HttpClients\HeadHunter.HttpClients.csproj", "{8AC30AF5-D6C0-4033-8D4D-F74D48B4F981}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeadHunter.HttpClients.Common.Tests", "HeadHunter.HttpClients.Common.Tests\HeadHunter.HttpClients.Common.Tests.csproj", "{3333B6D8-1029-4B38-AEE3-7C7B15B65514}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeadHunter.HttpClients.Tests", "HeadHunter.HttpClients.Tests\HeadHunter.HttpClients.Tests.csproj", "{E770E396-B315-4E80-B54A-91CCA332922B}"
 EndProject
@@ -28,9 +22,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeadHunter.Importer", "Head
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeadHunter.Importer.ConsoleApp", "HeadHunter.Importer.ConsoleApp\HeadHunter.Importer.ConsoleApp.csproj", "{274881E6-92AA-4D48-B987-D1D9C8BE6475}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadHunter.Database.PostgreSQL.Common", "HeadHunter.Database.PostgreSQL.Common\HeadHunter.Database.PostgreSQL.Common.csproj", "{304165AA-6A2E-41F9-940D-4820E63ABA3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeadHunter.Database.PostgreSQL.Common", "HeadHunter.Database.PostgreSQL.Common\HeadHunter.Database.PostgreSQL.Common.csproj", "{304165AA-6A2E-41F9-940D-4820E63ABA3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadHunter.Database.PostgreSQL", "HeadHunter.Database.PostgreSQL\HeadHunter.Database.PostgreSQL.csproj", "{77D84F43-ABFE-4141-98E0-83EF598790A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeadHunter.Database.PostgreSQL", "HeadHunter.Database.PostgreSQL\HeadHunter.Database.PostgreSQL.csproj", "{77D84F43-ABFE-4141-98E0-83EF598790A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,18 +32,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3E6D1B72-7DB2-44C2-B944-942456102D15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3E6D1B72-7DB2-44C2-B944-942456102D15}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3E6D1B72-7DB2-44C2-B944-942456102D15}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3E6D1B72-7DB2-44C2-B944-942456102D15}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DE2DD4BD-D9CD-4F08-AB57-26E2F4C4F2DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DE2DD4BD-D9CD-4F08-AB57-26E2F4C4F2DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE2DD4BD-D9CD-4F08-AB57-26E2F4C4F2DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE2DD4BD-D9CD-4F08-AB57-26E2F4C4F2DA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{661F9FBA-56AA-40DC-924B-B03F9A483FB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{661F9FBA-56AA-40DC-924B-B03F9A483FB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{661F9FBA-56AA-40DC-924B-B03F9A483FB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{661F9FBA-56AA-40DC-924B-B03F9A483FB8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EF0E5FDA-9DB9-4118-BADF-B92EAD9D5DBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EF0E5FDA-9DB9-4118-BADF-B92EAD9D5DBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF0E5FDA-9DB9-4118-BADF-B92EAD9D5DBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -62,10 +48,6 @@ Global
 		{8AC30AF5-D6C0-4033-8D4D-F74D48B4F981}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8AC30AF5-D6C0-4033-8D4D-F74D48B4F981}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8AC30AF5-D6C0-4033-8D4D-F74D48B4F981}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3333B6D8-1029-4B38-AEE3-7C7B15B65514}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3333B6D8-1029-4B38-AEE3-7C7B15B65514}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3333B6D8-1029-4B38-AEE3-7C7B15B65514}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3333B6D8-1029-4B38-AEE3-7C7B15B65514}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E770E396-B315-4E80-B54A-91CCA332922B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E770E396-B315-4E80-B54A-91CCA332922B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E770E396-B315-4E80-B54A-91CCA332922B}.Release|Any CPU.ActiveCfg = Release|Any CPU
