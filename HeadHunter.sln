@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadHunter.Core", "HeadHunt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadHunter.HttpClients.Core", "HeadHunter.HttpClients.Core\HeadHunter.HttpClients.Core.csproj", "{FD245C41-A5EA-43A6-8BF8-2A16EFCAFB0B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadHunter.EntityFramework.Core", "HeadHunter.EntityFramework.Core\HeadHunter.EntityFramework.Core.csproj", "{2299E00D-CBB1-4880-8C5D-ABFD905873FB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{FD245C41-A5EA-43A6-8BF8-2A16EFCAFB0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD245C41-A5EA-43A6-8BF8-2A16EFCAFB0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD245C41-A5EA-43A6-8BF8-2A16EFCAFB0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2299E00D-CBB1-4880-8C5D-ABFD905873FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2299E00D-CBB1-4880-8C5D-ABFD905873FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2299E00D-CBB1-4880-8C5D-ABFD905873FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2299E00D-CBB1-4880-8C5D-ABFD905873FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
