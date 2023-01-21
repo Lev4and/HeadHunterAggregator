@@ -1,0 +1,69 @@
+{
+  "profiles": {
+    "http": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "POSTGRES_SERVER": "lev4and.ru",
+        "POSTGRES_PORT": "5432",
+        "POSTGRES_DB_NAME": "HeadHunterTest",
+        "POSTGRES_USER": "postgres",
+        "POSTGRES_PASSWORD": "sa",
+        "SEQ_SERVER": "http://lev4and.ru/headhunter/resorce/test/seq",
+        "BACKEND_URL_PATH": "headhunter/resource/test"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "http://localhost:5204"
+    },
+    "https": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "POSTGRES_SERVER": "lev4and.ru",
+        "POSTGRES_PORT": "5432",
+        "POSTGRES_DB_NAME": "HeadHunterTest",
+        "POSTGRES_USER": "postgres",
+        "POSTGRES_PASSWORD": "sa",
+        "SEQ_SERVER": "http://lev4and.ru/headhunter/resorce/test/seq",
+        "BACKEND_URL_PATH": "headhunter/resource/test"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "https://localhost:7099;http://localhost:5204"
+    },
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "POSTGRES_SERVER": "lev4and.ru",
+        "POSTGRES_PORT": "5432",
+        "POSTGRES_DB_NAME": "HeadHunterTest",
+        "POSTGRES_USER": "postgres",
+        "POSTGRES_PASSWORD": "sa",
+        "SEQ_SERVER": "http://lev4and.ru/headhunter/resorce/test/seq",
+        "BACKEND_URL_PATH": "headhunter/resource/test"
+      }
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
+      "publishAllPorts": true,
+      "useSSL": true
+    }
+  },
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:38284",
+      "sslPort": 44328
+    }
+  }
+}

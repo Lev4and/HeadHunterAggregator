@@ -6,7 +6,7 @@ using MediatR;
 
 namespace HeadHunter.Infrastructure.Queries.HeadHunter
 {
-    internal class GetDictionaries : IQuery<Dictionaries?>
+    public class GetDictionaries : IQuery<Dictionaries?>
     {
         public GetDictionaries()
         {
