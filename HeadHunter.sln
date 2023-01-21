@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadHunter.HttpClients.Core
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadHunter.EntityFramework.Core", "HeadHunter.EntityFramework.Core\HeadHunter.EntityFramework.Core.csproj", "{2299E00D-CBB1-4880-8C5D-ABFD905873FB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadHunter.HttpClients", "HeadHunter.HttpClients\HeadHunter.HttpClients.csproj", "{54406A7A-BD21-4289-9A87-09FA0FD11D5A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{2299E00D-CBB1-4880-8C5D-ABFD905873FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2299E00D-CBB1-4880-8C5D-ABFD905873FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2299E00D-CBB1-4880-8C5D-ABFD905873FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54406A7A-BD21-4289-9A87-09FA0FD11D5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54406A7A-BD21-4289-9A87-09FA0FD11D5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54406A7A-BD21-4289-9A87-09FA0FD11D5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54406A7A-BD21-4289-9A87-09FA0FD11D5A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
