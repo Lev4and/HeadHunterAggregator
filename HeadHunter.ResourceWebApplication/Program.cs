@@ -15,6 +15,7 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 app.UseSerilogLogging();
+app.UseDatabaseMigration();
 app.UseHttpsRedirection();
 app.UseRouting();
 app.UseApiResponseAndExceptionWrapper();

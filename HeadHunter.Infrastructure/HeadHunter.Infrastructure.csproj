@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HeadHunter.EntityFramework\HeadHunter.EntityFramework.csproj" />
     <ProjectReference Include="..\HeadHunter.HttpClients\HeadHunter.HttpClients.csproj" />
   </ItemGroup>
 
