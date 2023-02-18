@@ -1,8 +1,5 @@
 ﻿using HeadHunter.Core.Domain;
 using HeadHunter.Core.Specification;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace HeadHunter.Core.Repository
 {

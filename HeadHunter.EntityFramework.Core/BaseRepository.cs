@@ -1,11 +1,10 @@
 ﻿using HeadHunter.Core.Domain;
-using HeadHunter.Core.Repository;
 using HeadHunter.Core.Specification;
 using Microsoft.EntityFrameworkCore;
 
 namespace HeadHunter.EntityFramework.Core
 {
-    public class BaseRepository : IRepository, IGridRepository
+    public class BaseRepository : IEntityFrameworkRepository
     {
         private readonly DbContext _context;
 

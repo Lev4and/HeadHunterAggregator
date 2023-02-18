@@ -1,4 +1,4 @@
-﻿using HeadHunter.Core.Repository;
+﻿using HeadHunter.EntityFramework.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -8,7 +8,7 @@ namespace HeadHunter.EntityFramework
     {
         public static void AddEntityFramework(this IServiceCollection services)
         {
-            services.AddTransient<IRepository, HeadHunterRepository>();
+            services.AddTransient<IEntityFrameworkRepository, HeadHunterRepository>();
             services.AddDbContext<HeadHunterDbContext>((options) =>
             {
                 options
