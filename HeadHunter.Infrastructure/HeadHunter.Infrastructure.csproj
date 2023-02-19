@@ -17,6 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\HeadHunter.EntityFramework\HeadHunter.EntityFramework.csproj" />
     <ProjectReference Include="..\HeadHunter.HttpClients\HeadHunter.HttpClients.csproj" />
+    <ProjectReference Include="..\HeadHunter.MongoDB\HeadHunter.MongoDB.csproj" />
   </ItemGroup>
 
   <ItemGroup>

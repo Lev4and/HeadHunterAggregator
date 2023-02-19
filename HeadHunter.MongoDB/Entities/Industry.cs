@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace HeadHunter.MongoDB.Entities
 {
-    public class Industry : MongoDBEntityBase, IAggregateRoot, IEqualSpecification<Industry>,
+    public class Industry : MongoDbEntityBase, IAggregateRoot, IEqualSpecification<Industry>,
         IDefiningIndexKeys<Industry>
     {
         [BsonIgnoreIfNull]

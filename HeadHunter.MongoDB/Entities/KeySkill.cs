@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace HeadHunter.MongoDB.Entities
 {
-    public class KeySkill : MongoDBEntityBase, IAggregateRoot, IEqualSpecification<KeySkill>,
+    public class KeySkill : MongoDbEntityBase, IAggregateRoot, IEqualSpecification<KeySkill>,
         IDefiningIndexKeys<KeySkill>
     {
         [BsonRequired]

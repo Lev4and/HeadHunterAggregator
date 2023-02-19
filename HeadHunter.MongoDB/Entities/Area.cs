@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace HeadHunter.MongoDB.Entities
 {
-    public class Area : MongoDBEntityBase, IAggregateRoot, IEqualSpecification<Area>, IDefiningIndexKeys<Area>
+    public class Area : MongoDbEntityBase, IAggregateRoot, IEqualSpecification<Area>, IDefiningIndexKeys<Area>
     {
         [BsonIgnoreIfNull]
         public Guid? ParentId { get; set; }

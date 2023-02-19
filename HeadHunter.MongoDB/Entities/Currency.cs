@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace HeadHunter.MongoDB.Entities
 {
-    public class Currency : MongoDBEntityBase, IAggregateRoot, IEqualSpecification<Currency>, 
+    public class Currency : MongoDbEntityBase, IAggregateRoot, IEqualSpecification<Currency>, 
         IDefiningIndexKeys<Currency>
     {
         [BsonRequired]

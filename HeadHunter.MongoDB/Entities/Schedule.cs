@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace HeadHunter.MongoDB.Entities
 {
-    public class Schedule : MongoDBEntityBase, IAggregateRoot, IEqualSpecification<Schedule>,
+    public class Schedule : MongoDbEntityBase, IAggregateRoot, IEqualSpecification<Schedule>,
         IDefiningIndexKeys<Schedule>
     {
         [BsonRequired]

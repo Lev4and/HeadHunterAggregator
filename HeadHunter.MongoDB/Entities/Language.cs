@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace HeadHunter.MongoDB.Entities
 {
-    public class Language : MongoDBEntityBase, IAggregateRoot, IEqualSpecification<Language>,
+    public class Language : MongoDbEntityBase, IAggregateRoot, IEqualSpecification<Language>,
         IDefiningIndexKeys<Language>
     {
         [BsonRequired]

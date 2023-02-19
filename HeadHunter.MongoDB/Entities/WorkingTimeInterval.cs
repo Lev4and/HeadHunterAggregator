@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace HeadHunter.MongoDB.Entities
 {
-    public class WorkingTimeInterval : MongoDBEntityBase, IAggregateRoot, IEqualSpecification<WorkingTimeInterval>,
+    public class WorkingTimeInterval : MongoDbEntityBase, IAggregateRoot, IEqualSpecification<WorkingTimeInterval>,
         IDefiningIndexKeys<WorkingTimeInterval>
     {
         [BsonRequired]

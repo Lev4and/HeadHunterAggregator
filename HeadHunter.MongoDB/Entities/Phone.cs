@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace HeadHunter.MongoDB.Entities
 {
-    public class Phone : MongoDBEntityBase, IAggregateRoot, IEqualSpecification<Phone>,
+    public class Phone : MongoDbEntityBase, IAggregateRoot, IEqualSpecification<Phone>,
         IDefiningIndexKeys<Phone>
     {
         [BsonIgnoreIfNull]

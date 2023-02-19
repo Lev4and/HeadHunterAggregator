@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace HeadHunter.MongoDB.Entities
 {
-    public class InsiderInterview : MongoDBEntityBase, IAggregateRoot, IEqualSpecification<InsiderInterview>,
+    public class InsiderInterview : MongoDbEntityBase, IAggregateRoot, IEqualSpecification<InsiderInterview>,
         IDefiningIndexKeys<InsiderInterview>
     {
         [BsonRequired]

@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace HeadHunter.MongoDB.Entities
 {
-    public class MetroLine : MongoDBEntityBase, IAggregateRoot, IEqualSpecification<MetroLine>,
+    public class MetroLine : MongoDbEntityBase, IAggregateRoot, IEqualSpecification<MetroLine>,
         IDefiningIndexKeys<MetroLine>
     {
         [BsonRequired]

@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace HeadHunter.MongoDB.Entities
 {
-    public class WorkingDay : MongoDBEntityBase, IAggregateRoot, IEqualSpecification<WorkingDay>,
+    public class WorkingDay : MongoDbEntityBase, IAggregateRoot, IEqualSpecification<WorkingDay>,
         IDefiningIndexKeys<WorkingDay>
     {
         [BsonRequired]

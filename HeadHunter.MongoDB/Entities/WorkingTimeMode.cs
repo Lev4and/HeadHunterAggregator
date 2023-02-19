@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace HeadHunter.MongoDB.Entities
 {
-    public class WorkingTimeMode : MongoDBEntityBase, IAggregateRoot, IEqualSpecification<WorkingTimeMode>,
+    public class WorkingTimeMode : MongoDbEntityBase, IAggregateRoot, IEqualSpecification<WorkingTimeMode>,
         IDefiningIndexKeys<WorkingTimeMode>
     {
         [BsonRequired]

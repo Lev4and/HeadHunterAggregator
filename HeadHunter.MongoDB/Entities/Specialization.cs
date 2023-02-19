@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace HeadHunter.MongoDB.Entities
 {
-    public class Specialization : MongoDBEntityBase, IAggregateRoot, IEqualSpecification<Specialization>,
+    public class Specialization : MongoDbEntityBase, IAggregateRoot, IEqualSpecification<Specialization>,
         IDefiningIndexKeys<Specialization>
     {
         [BsonRequired]

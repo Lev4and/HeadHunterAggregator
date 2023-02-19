@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace HeadHunter.MongoDB.Entities
 {
-    public class ProfessionalRole : MongoDBEntityBase, IAggregateRoot, IEqualSpecification<ProfessionalRole>,
+    public class ProfessionalRole : MongoDbEntityBase, IAggregateRoot, IEqualSpecification<ProfessionalRole>,
         IDefiningIndexKeys<ProfessionalRole>
     {
         [BsonRequired]

@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace HeadHunter.MongoDB.Entities
 {
-    public class Contact : MongoDBEntityBase, IAggregateRoot, IEqualSpecification<Contact>,
+    public class Contact : MongoDbEntityBase, IAggregateRoot, IEqualSpecification<Contact>,
         IDefiningIndexKeys<Contact>
     {
         [BsonIgnoreIfNull]
@@ -17,7 +17,7 @@ namespace HeadHunter.MongoDB.Entities
         public string Email { get; set; }
 
         [BsonIgnoreIfNull]
-        public List<Guid>? PhonesIds { get; set; }
+        public Guid[]? PhonesIds { get; set; }
 
         public Expression<Func<Contact, bool>> IsEqual => (item) => item.Name == Name && item.Email == Email;
 

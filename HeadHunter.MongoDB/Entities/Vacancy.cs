@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace HeadHunter.MongoDB.Entities
 {
-    public class Vacancy : MongoDBEntityBase, IAggregateRoot, IEqualSpecification<Vacancy>,
+    public class Vacancy : MongoDbEntityBase, IAggregateRoot, IEqualSpecification<Vacancy>,
         IDefiningIndexKeys<Vacancy>
     {
         [BsonIgnoreIfNull]
@@ -107,28 +107,28 @@ namespace HeadHunter.MongoDB.Entities
         public Salary? Salary { get; set; }
 
         [BsonIgnoreIfNull]
-        public List<Guid>? LanguagesIds { get; set; }
+        public Guid[]? LanguagesIds { get; set; }
 
         [BsonIgnoreIfNull]
-        public List<Guid>? KeySkillsIds { get; set; }
+        public Guid[]? KeySkillsIds { get; set; }
 
         [BsonIgnoreIfNull]
-        public List<Guid>? WorkingDaysIds { get; set; }
+        public Guid[]? WorkingDaysIds { get; set; }
 
         [BsonIgnoreIfNull]
-        public List<Guid>? SpecializationsIds { get; set; }
+        public Guid[]? SpecializationsIds { get; set; }
 
         [BsonIgnoreIfNull]
-        public List<Guid>? WorkingTimeModesIds { get; set; }
+        public Guid[]? WorkingTimeModesIds { get; set; }
 
         [BsonIgnoreIfNull]
-        public List<Guid>? ProfessionalRolesIds { get; set; }
+        public Guid[]? ProfessionalRolesIds { get; set; }
 
         [BsonIgnoreIfNull]
-        public List<Guid>? DriverLicenseTypesIds { get; set; }
+        public Guid[]? DriverLicenseTypesIds { get; set; }
 
         [BsonIgnoreIfNull]
-        public List<Guid>? WorkingTimeIntervalsIds { get; set; }
+        public Guid[]? WorkingTimeIntervalsIds { get; set; }
 
         public Expression<Func<Vacancy, bool>> IsEqual => (item) => item.HeadHunterId == HeadHunterId;
 

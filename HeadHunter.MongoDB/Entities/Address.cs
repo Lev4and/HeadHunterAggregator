@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace HeadHunter.MongoDB.Entities
 {
-    public class Address : MongoDBEntityBase, IAggregateRoot, IEqualSpecification<Address>, IDefiningIndexKeys<Address>
+    public class Address : MongoDbEntityBase, IAggregateRoot, IEqualSpecification<Address>, IDefiningIndexKeys<Address>
     {
         [BsonRequired]
         public string City { get; set; }

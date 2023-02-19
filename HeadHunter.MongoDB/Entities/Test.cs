@@ -1,12 +1,14 @@
 ﻿using HeadHunter.Core.Domain;
 using HeadHunter.Core.Specification;
+using HeadHunter.MongoDB.Core.Abstracts;
 using HeadHunter.MongoDB.Core.Domain;
 using MongoDB.Bson.Serialization.Attributes;
 using System.Linq.Expressions;
 
 namespace HeadHunter.MongoDB.Entities
 {
-    public class Test : MongoDBEntityBase, IAggregateRoot, IEqualSpecification<Test>
+    public class Test : MongoDbEntityBase, IAggregateRoot, IEqualSpecification<Test>,
+        IDefiningIndexKeys<Test>
     {
         [BsonRequired]
         public string HeadHunterId { get; set; }

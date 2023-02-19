@@ -11,6 +11,11 @@
         "POSTGRES_DB_NAME": "HeadHunterTest",
         "POSTGRES_USER": "postgres",
         "POSTGRES_PASSWORD": "sa",
+        "MONGODB_SERVER": "lev4and.ru",
+        "MONGODB_PORT": "27017",
+        "MONGODB_DB_NAME": "headHunterTestDB",
+        "MONGODB_USER": "sa",
+        "MONGODB_PASSWORD": "sa",
         "SEQ_SERVER": "http://lev4and.ru/headhunter/resorce/test/seq",
         "BACKEND_URL_PATH": "headhunter/resource/test"
       },
@@ -28,6 +33,11 @@
         "POSTGRES_DB_NAME": "HeadHunterTest",
         "POSTGRES_USER": "postgres",
         "POSTGRES_PASSWORD": "sa",
+        "MONGODB_SERVER": "lev4and.ru",
+        "MONGODB_PORT": "27017",
+        "MONGODB_DB_NAME": "headHunterTestDB",
+        "MONGODB_USER": "sa",
+        "MONGODB_PASSWORD": "sa",
         "SEQ_SERVER": "http://lev4and.ru/headhunter/resorce/test/seq",
         "BACKEND_URL_PATH": "headhunter/resource/test"
       },
@@ -45,6 +55,11 @@
         "POSTGRES_DB_NAME": "HeadHunterTest",
         "POSTGRES_USER": "postgres",
         "POSTGRES_PASSWORD": "sa",
+        "MONGODB_SERVER": "lev4and.ru",
+        "MONGODB_PORT": "27017",
+        "MONGODB_DB_NAME": "headHunterTestDB",
+        "MONGODB_USER": "sa",
+        "MONGODB_PASSWORD": "sa",
         "SEQ_SERVER": "http://lev4and.ru/headhunter/resorce/test/seq",
         "BACKEND_URL_PATH": "headhunter/resource/test"
       }

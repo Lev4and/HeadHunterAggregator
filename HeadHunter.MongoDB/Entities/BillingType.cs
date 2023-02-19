@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace HeadHunter.MongoDB.Entities
 {
-    public class BillingType : MongoDBEntityBase, IAggregateRoot, IEqualSpecification<BillingType>, 
+    public class BillingType : MongoDbEntityBase, IAggregateRoot, IEqualSpecification<BillingType>, 
         IDefiningIndexKeys<BillingType>
     {
         [BsonRequired]

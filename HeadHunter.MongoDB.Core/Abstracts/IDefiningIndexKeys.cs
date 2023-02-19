@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace HeadHunter.MongoDB.Core.Abstracts
 {
-    public interface IDefiningIndexKeys<TCollection> where TCollection : MongoDBEntityBase
+    public interface IDefiningIndexKeys<TCollection> where TCollection : MongoDbEntityBase
     {
         IEnumerable<Expression<Func<TCollection, object>>> IndexKeys { get; }
     }

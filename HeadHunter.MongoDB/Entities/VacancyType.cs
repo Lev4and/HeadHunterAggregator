@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace HeadHunter.MongoDB.Entities
 {
-    public class VacancyType : MongoDBEntityBase, IAggregateRoot, IEqualSpecification<VacancyType>,
+    public class VacancyType : MongoDbEntityBase, IAggregateRoot, IEqualSpecification<VacancyType>,
         IDefiningIndexKeys<VacancyType>
     {
         [BsonRequired]

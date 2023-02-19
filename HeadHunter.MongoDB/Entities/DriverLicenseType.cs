@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace HeadHunter.MongoDB.Entities
 {
-    public class DriverLicenseType : MongoDBEntityBase, IAggregateRoot, IEqualSpecification<DriverLicenseType>,
+    public class DriverLicenseType : MongoDbEntityBase, IAggregateRoot, IEqualSpecification<DriverLicenseType>,
         IDefiningIndexKeys<DriverLicenseType>
     {
         [BsonRequired]

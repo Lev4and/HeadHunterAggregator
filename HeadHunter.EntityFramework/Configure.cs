@@ -12,12 +12,9 @@ namespace HeadHunter.EntityFramework
             services.AddDbContext<HeadHunterDbContext>((options) =>
             {
                 options
-                    .UseNpgsql($"Host={Environment.GetEnvironmentVariable("POSTGRES_SERVER")};" +
-                        $"Port={Environment.GetEnvironmentVariable("POSTGRES_PORT")};" +
-                        $"Database={Environment.GetEnvironmentVariable("POSTGRES_DB_NAME")};" +
-                        $"Username={Environment.GetEnvironmentVariable("POSTGRES_USER")};" +
-                        $"Password={Environment.GetEnvironmentVariable("POSTGRES_PASSWORD")};" +
-                        "Integrated Security=true;Pooling=true;")
+                    .UseNpgsql($"Host={PostgresConfiguration.Host};Port={PostgresConfiguration.Port};" +
+                        $"Database={PostgresConfiguration.DatabaseName};Username={PostgresConfiguration.Username};" +
+                        $"Password={PostgresConfiguration.Password};Integrated Security=true;Pooling=true;")
                     .UseSnakeCaseNamingConvention();
             });
         }
