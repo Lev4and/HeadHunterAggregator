@@ -15,5 +15,7 @@ namespace HeadHunter.MongoDB.Entities
 
         [BsonIgnoreIfNull]
         public decimal? From { get; set; }
+
+        public Currency? Currency { get; set; }
     }
 }

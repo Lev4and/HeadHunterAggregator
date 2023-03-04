@@ -11,9 +11,9 @@ namespace HeadHunter.HttpClients.HeadHunter.ResponseModels
         public string? City { get; set; }
 
         [JsonProperty("number")]
-        public string? Number { get; set; }
+        public string Number { get; set; }
 
         [JsonProperty("comment")]
-        public object? Comment { get; set; }
+        public string? Comment { get; set; }
     }
 }

@@ -5,13 +5,13 @@ namespace HeadHunter.HttpClients.HeadHunter.ResponseModels
     public class MetroStation
     {
         [JsonProperty("id")]
-        public string? Id { get; set; }
+        public string Id { get; set; }
 
         [JsonProperty("name")]
-        public string? Name { get; set; }
+        public string Name { get; set; }
 
         [JsonProperty("order")]
-        public int? Order { get; set; }
+        public int Order { get; set; }
 
         [JsonProperty("station_id")]
         public string? StationId { get; set; }
@@ -26,9 +26,9 @@ namespace HeadHunter.HttpClients.HeadHunter.ResponseModels
         public string? LineName { get; set; }
 
         [JsonProperty("lat")]
-        public double? Lat { get; set; }
+        public double Latitude { get; set; }
 
         [JsonProperty("lng")]
-        public double? Lng { get; set; }
+        public double Longitude { get; set; }
     }
 }

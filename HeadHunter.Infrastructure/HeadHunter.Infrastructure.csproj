@@ -23,7 +23,6 @@
   <ItemGroup>
     <Folder Include="Builders\" />
     <Folder Include="Commands\" />
-    <Folder Include="Factories\" />
   </ItemGroup>
 
 </Project>

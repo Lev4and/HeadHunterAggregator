@@ -2,8 +2,8 @@
 {
     public interface ICompressor
     {
-        string Compress(string uncompressedText);
+        string? Compress(string? uncompressedText);
 
-        string Decompress(string compressedText);
+        string? Decompress(string? compressedText);
     }
 }

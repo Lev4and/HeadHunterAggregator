@@ -2,7 +2,7 @@
 
 namespace HeadHunter.MongoDB.Core.Domain
 {
-    public class MongoDbEntityBase : EntityBase
+    public abstract class MongoDbEntityBase : EntityBase
     {
         
     }

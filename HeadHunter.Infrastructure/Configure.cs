@@ -16,6 +16,9 @@ namespace HeadHunter.Infrastructure
             services.AddHttpClients();
             services.AddEntityFramework();
 
+            services.AddCompression();
+            services.AddFactories();
+
             services.AddMediatR(typeof(Configure).Assembly);
             services.AddValidatorsFromAssembly(typeof(Configure).Assembly);
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationPipe<,>));

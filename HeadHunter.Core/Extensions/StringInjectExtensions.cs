@@ -61,9 +61,9 @@ namespace HeadHunter.Core.Extensions
                 var values = new Hashtable();
                 var props = TypeDescriptor.GetProperties(properties);
 
-                foreach (PropertyDescriptor prop in props)
+                foreach (PropertyDescriptor property in props)
                 {
-                    values.Add(prop.Name, prop.GetValue(properties));
+                    values.Add(property.Name, property.GetValue(properties));
                 }
 
                 return values;

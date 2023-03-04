@@ -6,8 +6,10 @@ namespace HeadHunter.Core.Compression
 {
     public class BrotliCompressor : ICompressor
     {
-        public string Compress(string uncompressedText)
+        public string? Compress(string? uncompressedText)
         {
+            if (string.IsNullOrEmpty(uncompressedText)) return uncompressedText;
+
             var uncompressedTextBytes = Encoding.UTF8.GetBytes(uncompressedText);
 
             using (var outputStream = new MemoryStream())
@@ -21,8 +23,10 @@ namespace HeadHunter.Core.Compression
             }
         }
 
-        public string Decompress(string compressedText)
+        public string? Decompress(string? compressedText)
         {
+            if (string.IsNullOrEmpty(compressedText)) return compressedText;
+
             var compressedTextBytes = Convert.FromBase64String(compressedText);
 
             using (var inputStream = new MemoryStream(compressedTextBytes))

@@ -3,7 +3,7 @@ using MediatR;
 
 namespace HeadHunter.Infrastructure.Pipelines
 {
-    public class ValidationPipe<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest :
+    internal class ValidationPipe<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest :
         IRequest<TResponse>
     {
         private readonly IEnumerable<IValidator<TRequest>> _validators;

@@ -1,13 +1,13 @@
 ﻿using HeadHunter.Core.Domain;
 using HeadHunter.Core.Specification;
 using HeadHunter.MongoDB.Core.Abstracts;
-using HeadHunter.MongoDB.Core.Domain;
+using HeadHunter.MongoDB.Domain;
 using MongoDB.Bson.Serialization.Attributes;
 using System.Linq.Expressions;
 
 namespace HeadHunter.MongoDB.Entities
 {
-    public class Employer : MongoDbEntityBase, IAggregateRoot, IEqualSpecification<Employer>,
+    public class Employer : HeadHunterEntityBase, IAggregateRoot, IEqualSpecification<Employer>,
         IDefiningIndexKeys<Employer>
     {
         [BsonIgnoreIfNull]
@@ -56,6 +56,10 @@ namespace HeadHunter.MongoDB.Entities
 
         [BsonIgnoreIfNull]
         public Guid[]? InsiderInterviewsIds { get; set; }
+
+        public Industry[]? Industries { get; set; }
+
+        public InsiderInterview[]? InsiderInterviews { get; set; }
 
         public Expression<Func<Employer, bool>> IsEqual => (item) => item.HeadHunterId == HeadHunterId;
 

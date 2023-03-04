@@ -1,13 +1,13 @@
 ﻿using HeadHunter.Core.Domain;
 using HeadHunter.Core.Specification;
 using HeadHunter.MongoDB.Core.Abstracts;
-using HeadHunter.MongoDB.Core.Domain;
+using HeadHunter.MongoDB.Domain;
 using MongoDB.Bson.Serialization.Attributes;
 using System.Linq.Expressions;
 
 namespace HeadHunter.MongoDB.Entities
 {
-    public class Contact : MongoDbEntityBase, IAggregateRoot, IEqualSpecification<Contact>,
+    public class Contact : HeadHunterEntityBase, IAggregateRoot, IEqualSpecification<Contact>,
         IDefiningIndexKeys<Contact>
     {
         [BsonIgnoreIfNull]
@@ -15,6 +15,8 @@ namespace HeadHunter.MongoDB.Entities
 
         [BsonIgnoreIfNull]
         public string Email { get; set; }
+
+        public Phone[]? Phones { get; set; }
 
         [BsonIgnoreIfNull]
         public Guid[]? PhonesIds { get; set; }

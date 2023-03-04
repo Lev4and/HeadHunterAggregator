@@ -1,13 +1,13 @@
 ﻿using HeadHunter.Core.Domain;
 using HeadHunter.Core.Specification;
 using HeadHunter.MongoDB.Core.Abstracts;
-using HeadHunter.MongoDB.Core.Domain;
+using HeadHunter.MongoDB.Domain;
 using MongoDB.Bson.Serialization.Attributes;
 using System.Linq.Expressions;
 
 namespace HeadHunter.MongoDB.Entities
 {
-    public class Schedule : MongoDbEntityBase, IAggregateRoot, IEqualSpecification<Schedule>,
+    public class Schedule : HeadHunterEntityBase, IAggregateRoot, IEqualSpecification<Schedule>,
         IDefiningIndexKeys<Schedule>
     {
         [BsonRequired]

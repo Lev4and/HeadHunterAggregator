@@ -1,13 +1,13 @@
 ﻿using HeadHunter.Core.Domain;
 using HeadHunter.Core.Specification;
 using HeadHunter.MongoDB.Core.Abstracts;
-using HeadHunter.MongoDB.Core.Domain;
+using HeadHunter.MongoDB.Domain;
 using MongoDB.Bson.Serialization.Attributes;
 using System.Linq.Expressions;
 
 namespace HeadHunter.MongoDB.Entities
 {
-    public class Area : MongoDbEntityBase, IAggregateRoot, IEqualSpecification<Area>, IDefiningIndexKeys<Area>
+    public class Area : HeadHunterEntityBase, IAggregateRoot, IEqualSpecification<Area>, IDefiningIndexKeys<Area>
     {
         [BsonIgnoreIfNull]
         public Guid? ParentId { get; set; }
@@ -17,6 +17,8 @@ namespace HeadHunter.MongoDB.Entities
 
         [BsonRequired]
         public string Name { get; set; }
+
+        public Area[]? Children { get; set; }
 
         public Expression<Func<Area, bool>> IsEqual => (item) => item.HeadHunterId == HeadHunterId;
 

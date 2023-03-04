@@ -1,13 +1,13 @@
 ﻿using HeadHunter.Core.Domain;
 using HeadHunter.Core.Specification;
 using HeadHunter.MongoDB.Core.Abstracts;
-using HeadHunter.MongoDB.Core.Domain;
+using HeadHunter.MongoDB.Domain;
 using MongoDB.Bson.Serialization.Attributes;
 using System.Linq.Expressions;
 
 namespace HeadHunter.MongoDB.Entities
 {
-    public class KeySkill : MongoDbEntityBase, IAggregateRoot, IEqualSpecification<KeySkill>,
+    public class KeySkill : HeadHunterEntityBase, IAggregateRoot, IEqualSpecification<KeySkill>,
         IDefiningIndexKeys<KeySkill>
     {
         [BsonRequired]

@@ -1,13 +1,13 @@
 ﻿using HeadHunter.Core.Domain;
 using HeadHunter.Core.Specification;
 using HeadHunter.MongoDB.Core.Abstracts;
-using HeadHunter.MongoDB.Core.Domain;
+using HeadHunter.MongoDB.Domain;
 using MongoDB.Bson.Serialization.Attributes;
 using System.Linq.Expressions;
 
 namespace HeadHunter.MongoDB.Entities
 {
-    public class Address : MongoDbEntityBase, IAggregateRoot, IEqualSpecification<Address>, IDefiningIndexKeys<Address>
+    public class Address : HeadHunterEntityBase, IAggregateRoot, IEqualSpecification<Address>, IDefiningIndexKeys<Address>
     {
         [BsonRequired]
         public string City { get; set; }
@@ -22,10 +22,10 @@ namespace HeadHunter.MongoDB.Entities
         public string? Description { get; set; }
 
         [BsonRequired]
-        public double Latitude { get; set; }
+        public double? Latitude { get; set; }
 
         [BsonRequired]
-        public double Longitude { get; set; }
+        public double? Longitude { get; set; }
 
         public Expression<Func<Address, bool>> IsEqual => (item) => item.Latitude == Latitude && 
             item.Longitude == Longitude;

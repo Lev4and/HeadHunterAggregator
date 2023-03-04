@@ -1,13 +1,13 @@
 ﻿using HeadHunter.Core.Domain;
 using HeadHunter.Core.Specification;
 using HeadHunter.MongoDB.Core.Abstracts;
-using HeadHunter.MongoDB.Core.Domain;
+using HeadHunter.MongoDB.Domain;
 using MongoDB.Bson.Serialization.Attributes;
 using System.Linq.Expressions;
 
 namespace HeadHunter.MongoDB.Entities
 {
-    public class Language : MongoDbEntityBase, IAggregateRoot, IEqualSpecification<Language>,
+    public class Language : HeadHunterEntityBase, IAggregateRoot, IEqualSpecification<Language>,
         IDefiningIndexKeys<Language>
     {
         [BsonRequired]

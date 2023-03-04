@@ -1,13 +1,13 @@
 ﻿using HeadHunter.Core.Domain;
 using HeadHunter.Core.Specification;
 using HeadHunter.MongoDB.Core.Abstracts;
-using HeadHunter.MongoDB.Core.Domain;
+using HeadHunter.MongoDB.Domain;
 using MongoDB.Bson.Serialization.Attributes;
 using System.Linq.Expressions;
 
 namespace HeadHunter.MongoDB.Entities
 {
-    public class WorkingTimeInterval : MongoDbEntityBase, IAggregateRoot, IEqualSpecification<WorkingTimeInterval>,
+    public class WorkingTimeInterval : HeadHunterEntityBase, IAggregateRoot, IEqualSpecification<WorkingTimeInterval>,
         IDefiningIndexKeys<WorkingTimeInterval>
     {
         [BsonRequired]

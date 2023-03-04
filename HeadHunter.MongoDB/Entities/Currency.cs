@@ -1,13 +1,13 @@
 ﻿using HeadHunter.Core.Domain;
 using HeadHunter.Core.Specification;
 using HeadHunter.MongoDB.Core.Abstracts;
-using HeadHunter.MongoDB.Core.Domain;
+using HeadHunter.MongoDB.Domain;
 using MongoDB.Bson.Serialization.Attributes;
 using System.Linq.Expressions;
 
 namespace HeadHunter.MongoDB.Entities
 {
-    public class Currency : MongoDbEntityBase, IAggregateRoot, IEqualSpecification<Currency>, 
+    public class Currency : HeadHunterEntityBase, IAggregateRoot, IEqualSpecification<Currency>, 
         IDefiningIndexKeys<Currency>
     {
         [BsonRequired]

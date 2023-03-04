@@ -1,13 +1,13 @@
 ﻿using HeadHunter.Core.Domain;
 using HeadHunter.Core.Specification;
 using HeadHunter.MongoDB.Core.Abstracts;
-using HeadHunter.MongoDB.Core.Domain;
+using HeadHunter.MongoDB.Domain;
 using MongoDB.Bson.Serialization.Attributes;
 using System.Linq.Expressions;
 
 namespace HeadHunter.MongoDB.Entities
 {
-    public class Vacancy : MongoDbEntityBase, IAggregateRoot, IEqualSpecification<Vacancy>,
+    public class Vacancy : HeadHunterEntityBase, IAggregateRoot, IEqualSpecification<Vacancy>,
         IDefiningIndexKeys<Vacancy>
     {
         [BsonIgnoreIfNull]
@@ -50,10 +50,10 @@ namespace HeadHunter.MongoDB.Entities
         public bool? HasTest { get; set; }
 
         [BsonIgnoreIfNull]
-        public bool? Archived { get; set; }
+        public bool? Premium { get; set; }
 
         [BsonIgnoreIfNull]
-        public bool? Premium { get; set; }
+        public bool? Archived { get; set; }
 
         [BsonIgnoreIfNull]
         public bool? AcceptKids { get; set; }
@@ -103,8 +103,32 @@ namespace HeadHunter.MongoDB.Entities
         [BsonDateTimeOptions(Kind = DateTimeKind.Utc)]
         public DateTime InitialCreatedAt { get; set; }
 
+        public Area? Area { get; set; }
+
+        public Test? Test { get; set; }
+
         [BsonIgnoreIfNull]
         public Salary? Salary { get; set; }
+
+        public Address? Address { get; set; }
+
+        public Contact? Contact { get; set; }
+
+        public Employer? Employer { get; set; }
+
+        public Schedule? Schedule { get; set; }
+
+        public Experience? Experience { get; set; }
+
+        public Employment? Employment { get; set; }
+
+        public Department? Department { get; set; }
+
+        public VacancyType? VacancyType { get; set; }
+
+        public BillingType? BillingType { get; set; }
+
+        public InsiderInterview? InsiderInterview { get; set; }
 
         [BsonIgnoreIfNull]
         public Guid[]? LanguagesIds { get; set; }
@@ -129,6 +153,22 @@ namespace HeadHunter.MongoDB.Entities
 
         [BsonIgnoreIfNull]
         public Guid[]? WorkingTimeIntervalsIds { get; set; }
+
+        public Language[]? Languages { get; set; }
+
+        public KeySkill[]? KeySkills { get; set; }
+
+        public WorkingDay[]? WorkingDays { get; set; }
+
+        public Specialization[]? Specializations { get; set; }
+
+        public WorkingTimeMode[]? WorkingTimeModes { get; set; }
+
+        public ProfessionalRole[]? ProfessionalRoles { get; set; }
+
+        public DriverLicenseType[]? DriverLicenseTypes { get; set; }
+
+        public WorkingTimeInterval[]? WorkingTimeIntervals { get; set; }
 
         public Expression<Func<Vacancy, bool>> IsEqual => (item) => item.HeadHunterId == HeadHunterId;
 
