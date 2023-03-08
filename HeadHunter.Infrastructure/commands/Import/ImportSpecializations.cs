@@ -1,6 +1,9 @@
 ﻿using FluentValidation;
 using HeadHunter.Core.Domain.Cqrs;
+using HeadHunter.Core.Extensions;
 using HeadHunter.HttpClients.HeadHunter.ResponseModels;
+using HeadHunter.Infrastructure.Factories.HeadHunter;
+using HeadHunter.MongoDB.Abstracts;
 using MediatR;
 
 namespace HeadHunter.Infrastructure.Commands.Import
@@ -27,13 +30,22 @@ namespace HeadHunter.Infrastructure.Commands.Import
 
         internal class Handler : IRequestHandler<ImportSpecializations, bool>
         {
-            public Handler()
-            {
+            private readonly IImportVisitor _visitor;
+            private readonly ISpecializationFactory _factory;
 
+            public Handler(IImportVisitor visitor, ISpecializationFactory factory)
+            {
+                _visitor = visitor;
+                _factory = factory;
             }
 
             public async Task<bool> Handle(ImportSpecializations request, CancellationToken cancellationToken)
             {
+                var specializations = _factory.CreateArray(request.Specializations);
+
+                await Task.WhenAll(specializations.Select(specialization =>
+                    specialization.Accept(_visitor)));
+
                 return true;
             }
         }

@@ -42,6 +42,8 @@ namespace HeadHunter.Infrastructure.Commands.Import
             {
                 var areas = _factory.CreateArray(request.Areas);
 
+                await Task.WhenAll(areas.Select(area => area.Accept(_visitor)));
+
                 return true;
             }
         }

@@ -16,7 +16,7 @@ namespace HeadHunter.Infrastructure.Factories.HeadHunter
 
         public AreaFactory()
         {
-            _areaFactory = new AreaFactory();
+            _areaFactory = this;
         }
 
         public Entities.Area? Create(ResponseModels.Area? input)

@@ -104,71 +104,99 @@ namespace HeadHunter.MongoDB.Entities
         [BsonDateTimeOptions(Kind = DateTimeKind.Utc)]
         public DateTime InitialCreatedAt { get; set; }
 
+        [BsonIgnore]
         public Area? Area { get; set; }
 
+        [BsonIgnore]
         public Test? Test { get; set; }
 
         [BsonIgnoreIfNull]
         public Salary? Salary { get; set; }
 
+        [BsonIgnore]
         public Address? Address { get; set; }
 
+        [BsonIgnore]
         public Contact? Contact { get; set; }
 
+        [BsonIgnore]
         public Employer? Employer { get; set; }
 
+        [BsonIgnore]
         public Schedule? Schedule { get; set; }
 
+        [BsonIgnore]
         public Experience? Experience { get; set; }
 
+        [BsonIgnore]
         public Employment? Employment { get; set; }
 
+        [BsonIgnore]
         public Department? Department { get; set; }
 
+        [BsonIgnore]
         public VacancyType? VacancyType { get; set; }
 
+        [BsonIgnore]
         public BillingType? BillingType { get; set; }
 
+        [BsonIgnore]
         public InsiderInterview? InsiderInterview { get; set; }
 
         [BsonIgnoreIfNull]
+        [BsonIgnoreIfDefault]
         public Guid[]? LanguagesIds { get; set; }
 
         [BsonIgnoreIfNull]
+        [BsonIgnoreIfDefault]
         public Guid[]? KeySkillsIds { get; set; }
 
         [BsonIgnoreIfNull]
+        [BsonIgnoreIfDefault]
         public Guid[]? WorkingDaysIds { get; set; }
 
         [BsonIgnoreIfNull]
+        [BsonIgnoreIfDefault]
         public Guid[]? SpecializationsIds { get; set; }
 
         [BsonIgnoreIfNull]
+        [BsonIgnoreIfDefault]
         public Guid[]? WorkingTimeModesIds { get; set; }
 
         [BsonIgnoreIfNull]
+        [BsonIgnoreIfDefault]
         public Guid[]? ProfessionalRolesIds { get; set; }
 
         [BsonIgnoreIfNull]
+        [BsonIgnoreIfDefault]
         public Guid[]? DriverLicenseTypesIds { get; set; }
 
         [BsonIgnoreIfNull]
+        [BsonIgnoreIfDefault]
         public Guid[]? WorkingTimeIntervalsIds { get; set; }
 
+        [BsonIgnore]
         public Language[]? Languages { get; set; }
 
+        [BsonIgnore]
         public KeySkill[]? KeySkills { get; set; }
 
+        [BsonIgnore]
         public WorkingDay[]? WorkingDays { get; set; }
 
+        [BsonIgnore]
         public Specialization[]? Specializations { get; set; }
 
+        [BsonIgnore]
         public WorkingTimeMode[]? WorkingTimeModes { get; set; }
 
+        [BsonIgnore]
         public ProfessionalRole[]? ProfessionalRoles { get; set; }
 
+        [BsonIgnore]
         public DriverLicenseType[]? DriverLicenseTypes { get; set; }
 
+        [BsonIgnore]
         public WorkingTimeInterval[]? WorkingTimeIntervals { get; set; }
 
         public Expression<Func<Vacancy, bool>> IsEqual => (item) => item.HeadHunterId == HeadHunterId;

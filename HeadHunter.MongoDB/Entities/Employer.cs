@@ -47,19 +47,24 @@ namespace HeadHunter.MongoDB.Entities
         [BsonIgnoreIfNull]
         public string? BrandedDescription { get; set; }
 
+        [BsonIgnore]
         public Area? Area { get; set; }
 
         [BsonIgnoreIfNull]
         public EmployerLogo? Logo { get; set; }
 
         [BsonIgnoreIfNull]
+        [BsonIgnoreIfDefault]
         public Guid[]? IndustriesIds { get; set; }
 
         [BsonIgnoreIfNull]
+        [BsonIgnoreIfDefault]
         public Guid[]? InsiderInterviewsIds { get; set; }
 
+        [BsonIgnore]
         public Industry[]? Industries { get; set; }
 
+        [BsonIgnore]
         public InsiderInterview[]? InsiderInterviews { get; set; }
 
         public Expression<Func<Employer, bool>> IsEqual => (item) => item.HeadHunterId == HeadHunterId;

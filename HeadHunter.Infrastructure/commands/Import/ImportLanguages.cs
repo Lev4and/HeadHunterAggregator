@@ -43,10 +43,7 @@ namespace HeadHunter.Infrastructure.Commands.Import
             {
                 var languages = _factory.CreateArray(request.Languages);
 
-                for (var i = 0; languages != null && i < languages.Length; i++)
-                {
-                    await languages?.ElementAt(i)?.Accept(_visitor);
-                }
+                await Task.WhenAll(languages.Select(language => language.Accept(_visitor)));
 
                 return true;
             }

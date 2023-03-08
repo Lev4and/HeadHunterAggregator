@@ -16,7 +16,7 @@ namespace HeadHunter.Infrastructure.Factories.HeadHunter
 
         public IndustryFactory()
         {
-            _industryFactory = new IndustryFactory();
+            _industryFactory = this;
         }
 
         public Entities.Industry? Create(ResponseModels.Industry? input)

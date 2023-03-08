@@ -20,6 +20,7 @@ namespace HeadHunter.MongoDB.Entities
         [BsonRequired]
         public string Name { get; set; }
 
+        [BsonIgnore]
         public Industry[]? Children { get; set; }
 
         public Expression<Func<Industry, bool>> IsEqual => (item) => item.HeadHunterId == HeadHunterId;

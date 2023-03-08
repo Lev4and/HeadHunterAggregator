@@ -17,10 +17,12 @@ namespace HeadHunter.MongoDB.Entities
         [BsonIgnoreIfNull]
         public string Email { get; set; }
 
-        public Phone[]? Phones { get; set; }
-
         [BsonIgnoreIfNull]
+        [BsonIgnoreIfDefault]
         public Guid[]? PhonesIds { get; set; }
+
+        [BsonIgnore]
+        public Phone[]? Phones { get; set; }
 
         public Expression<Func<Contact, bool>> IsEqual => (item) => item.Name == Name && item.Email == Email;
 

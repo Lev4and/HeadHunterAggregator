@@ -1,5 +1,6 @@
 ﻿using HeadHunter.Core.Abstracts;
 using HeadHunter.Core.Extensions;
+using HeadHunter.HttpClients.HeadHunter.ResponseModels;
 using Entities = HeadHunter.MongoDB.Entities;
 using ResponseModels = HeadHunter.HttpClients.HeadHunter.ResponseModels;
 
@@ -16,7 +17,7 @@ namespace HeadHunter.Infrastructure.Factories.HeadHunter
 
         public SpecializationFactory()
         {
-            _specializationFactory = new SpecializationFactory();
+            _specializationFactory = this;
         }
 
         public Entities.Specialization? Create(ResponseModels.Specialization? input)

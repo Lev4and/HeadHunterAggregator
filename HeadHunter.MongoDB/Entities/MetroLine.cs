@@ -23,8 +23,10 @@ namespace HeadHunter.MongoDB.Entities
         [BsonIgnoreIfNull]
         public string? HexColor { get; set; }
 
+        [BsonIgnore]
         public Area? Area { get; set; }
 
+        [BsonIgnore]
         public MetroStation[]? Stations { get; set; }
 
         public Expression<Func<MetroLine, bool>> IsEqual => (item) => item.HeadHunterId == HeadHunterId;
