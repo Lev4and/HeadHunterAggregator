@@ -1,5 +1,6 @@
 ﻿using HeadHunter.Core.Domain;
 using HeadHunter.Core.Specification;
+using HeadHunter.MongoDB.Abstracts;
 using HeadHunter.MongoDB.Core.Abstracts;
 using HeadHunter.MongoDB.Domain;
 using MongoDB.Bson.Serialization.Attributes;
@@ -10,6 +11,9 @@ namespace HeadHunter.MongoDB.Entities
     public class Specialization : HeadHunterEntityBase, IAggregateRoot, IEqualSpecification<Specialization>,
         IDefiningIndexKeys<Specialization>
     {
+        [BsonIgnoreIfNull]
+        public Guid? ParentId { get; set; }
+
         [BsonRequired]
         public string HeadHunterId { get; set; }
 
@@ -23,7 +27,12 @@ namespace HeadHunter.MongoDB.Entities
         public IEnumerable<Expression<Func<Specialization, object>>> IndexKeys =>
             new List<Expression<Func<Specialization, object>>>
         {
-            item => item.HeadHunterId, item => item.Name
+            item => item.ParentId, item => item.HeadHunterId, item => item.Name
         };
+
+        public override async Task Accept(IImportVisitor visitor)
+        {
+            await visitor.Visit(this);
+        }
     }
 }

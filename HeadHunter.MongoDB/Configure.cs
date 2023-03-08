@@ -1,7 +1,9 @@
-﻿using HeadHunter.MongoDB.Core;
+﻿using HeadHunter.MongoDB.Abstracts;
+using HeadHunter.MongoDB.Core;
 using HeadHunter.MongoDB.Core.Abstracts;
 using HeadHunter.MongoDB.Core.Services;
 using HeadHunter.MongoDB.HostedServices;
+using HeadHunter.MongoDB.Visitors;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace HeadHunter.MongoDB
@@ -11,8 +13,11 @@ namespace HeadHunter.MongoDB
         public static void AddMongoDb(this IServiceCollection services)
         {
             services.AddDatabase();
-            services.AddTransient<IMongoDbRepository, HeadHunterRepository>();
-            services.AddTransient<ICreatorIndexKeys, CreatorIndexKeys>();
+
+            services.AddSingleton<IMongoDbRepository, HeadHunterRepository>();
+            services.AddSingleton<ICreatorIndexKeys, CreatorIndexKeys>();
+            services.AddSingleton<IImportVisitor, ImportVisitor>();
+
             services.AddHostedService<ConfigureIndexes>();
         }
     }

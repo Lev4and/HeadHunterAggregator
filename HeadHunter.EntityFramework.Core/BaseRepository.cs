@@ -59,7 +59,7 @@ namespace HeadHunter.EntityFramework.Core
             return entity;
         }
 
-        public async Task<TEntity> TryImportAsync<TEntity>(TEntity entity) where TEntity : EntityBase, IAggregateRoot,
+        public async Task<TEntity> ImportAsync<TEntity>(TEntity entity) where TEntity : EntityBase, IAggregateRoot,
             IEqualSpecification<TEntity>
         {
             return (await FindByExpressionAsync(entity)) ?? await AddAsync(entity);

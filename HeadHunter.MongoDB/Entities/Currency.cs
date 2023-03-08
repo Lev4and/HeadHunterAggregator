@@ -1,5 +1,6 @@
 ﻿using HeadHunter.Core.Domain;
 using HeadHunter.Core.Specification;
+using HeadHunter.MongoDB.Abstracts;
 using HeadHunter.MongoDB.Core.Abstracts;
 using HeadHunter.MongoDB.Domain;
 using MongoDB.Bson.Serialization.Attributes;
@@ -19,5 +20,10 @@ namespace HeadHunter.MongoDB.Entities
         {
             item => item.HeadHunterId
         };
+
+        public override async Task Accept(IImportVisitor visitor)
+        {
+            await visitor.Visit(this);
+        }
     }
 }

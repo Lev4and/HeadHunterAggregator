@@ -7,17 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Resource\RequestModels\**" />
+    <Compile Remove="Resource\ResponseModels\**" />
+    <EmbeddedResource Remove="Resource\RequestModels\**" />
+    <EmbeddedResource Remove="Resource\ResponseModels\**" />
+    <None Remove="Resource\RequestModels\**" />
+    <None Remove="Resource\ResponseModels\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\HeadHunter.Core\HeadHunter.Core.csproj" />
     <ProjectReference Include="..\HeadHunter.HttpClients.Core\HeadHunter.HttpClients.Core.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Resource\RequestModels\" />
-    <Folder Include="Resource\ResponseModels\" />
   </ItemGroup>
 
 </Project>

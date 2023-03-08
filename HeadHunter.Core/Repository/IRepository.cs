@@ -20,7 +20,7 @@ namespace HeadHunter.Core.Repository
         Task<TEntity> AddAsync<TEntity>(TEntity entity) where TEntity : EntityBase, IAggregateRoot, 
             IEqualSpecification<TEntity>;
 
-        Task<TEntity> TryImportAsync<TEntity>(TEntity entity) where TEntity : EntityBase, IAggregateRoot, 
+        Task<TEntity> ImportAsync<TEntity>(TEntity entity) where TEntity : EntityBase, IAggregateRoot, 
             IEqualSpecification<TEntity>;
 
         Task RemoveAsync<TEntity>(TEntity entity) where TEntity : EntityBase, IAggregateRoot, 
