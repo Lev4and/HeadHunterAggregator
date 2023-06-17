@@ -1,18 +1,18 @@
 ﻿using FluentValidation;
 using HeadHunter.Core.Domain.Cqrs;
 using HeadHunter.Core.Extensions;
-using HeadHunter.HttpClients.HeadHunter.ResponseModels;
 using HeadHunter.Infrastructure.Factories.HeadHunter;
 using HeadHunter.MongoDB.Abstracts;
 using MediatR;
+using ResponseModels = HeadHunter.HttpClients.HeadHunter.ResponseModels;
 
 namespace HeadHunter.Infrastructure.Commands.Import
 {
     public class ImportAreas : ICommand<bool>
     {
-        public Area[] Areas { get; }
+        public ResponseModels.Area[] Areas { get; }
 
-        public ImportAreas(Area[] areas)
+        public ImportAreas(ResponseModels.Area[] areas)
         {
             if (areas == null) throw new ArgumentNullException(nameof(areas));
 
@@ -42,7 +42,10 @@ namespace HeadHunter.Infrastructure.Commands.Import
             {
                 var areas = _factory.CreateArray(request.Areas);
 
-                await Task.WhenAll(areas.Select(area => area.Accept(_visitor)));
+                foreach (var area in areas)
+                {
+                    await area.Accept(_visitor);
+                }
 
                 return true;
             }

@@ -26,7 +26,7 @@ namespace HeadHunter.MongoDB.Visitors
 
             var result = await _repository.ImportAsync(area);
 
-            result.Children
+            result.Children = result.Children
                 ?.Select(childrenArea =>
                 {
                     childrenArea.ParentId = result.Id;
@@ -51,13 +51,9 @@ namespace HeadHunter.MongoDB.Visitors
         {
             if (contact == null) throw new ArgumentNullException(nameof(contact));
 
-            contact.Phones
-                ?.Select(async phone => await Visit(phone))
-                ?.Select(task => task.Result)
-                ?.ToArray();
-
             contact.PhonesIds = contact.Phones
-                ?.Select(phone => phone.Id)
+                ?.Select(async phone => await Visit(phone))
+                ?.Select(phone => phone.Result.Id)
                 ?.ToArray();
 
             return _repository.ImportAsync(contact); 
@@ -87,28 +83,21 @@ namespace HeadHunter.MongoDB.Visitors
         public async Task<Employer> Visit(Employer employer)
         {
             if (employer == null) throw new ArgumentNullException(nameof(employer));
+
             if (employer.Area != null)
             {
                 employer.Area = await Visit(employer.Area);
                 employer.AreaId = employer.Area.Id;
             }
 
-            employer.Industries
-                ?.Select(async industry => await Visit(industry))
-                ?.Select(task => task.Result)
-                ?.ToArray();
-
             employer.IndustriesIds = employer.Industries
-                ?.Select(industry => industry.Id)
-                ?.ToArray();
-
-            employer.InsiderInterviews
-                ?.Select(async insiderInterview => await Visit(insiderInterview))
-                ?.Select(task => task.Result)
+                ?.Select(async industry => await Visit(industry))
+                ?.Select(industry => industry.Result.Id)
                 ?.ToArray();
 
             employer.InsiderInterviewsIds = employer.InsiderInterviews
-                ?.Select(insiderInterview => insiderInterview.Id)
+                ?.Select(async insiderInterview => await Visit(insiderInterview))
+                ?.Select(insiderInterview => insiderInterview.Result.Id)
                 ?.ToArray();
 
             return await _repository.ImportAsync(employer);
@@ -329,76 +318,44 @@ namespace HeadHunter.MongoDB.Visitors
                 vacancy.InsiderInterviewId = vacancy.InsiderInterview.Id;
             }
 
-            vacancy.Languages
-                ?.Select(async language => await Visit(language))
-                ?.Select(task => task.Result)
-                ?.ToArray();
-
             vacancy.LanguagesIds = vacancy.Languages
-                ?.Select(language => language.Id)
-                ?.ToArray();
-
-            vacancy.KeySkills
-                ?.Select(async keySkill => await Visit(keySkill))
-                ?.Select(task => task.Result)
+                ?.Select(async language => await Visit(language))
+                ?.Select(language => language.Result.Id)
                 ?.ToArray();
 
             vacancy.KeySkillsIds = vacancy.KeySkills
-                ?.Select(keySkill => keySkill.Id)
-                ?.ToArray();
-
-            vacancy.WorkingDays
-                ?.Select(async workingDay => await Visit(workingDay))
-                ?.Select(task => task.Result)
+                ?.Select(async keySkill => await Visit(keySkill))
+                ?.Select(keySkill => keySkill.Result.Id)
                 ?.ToArray();
 
             vacancy.WorkingDaysIds = vacancy.WorkingDays
-                ?.Select(workingDay => workingDay.Id)
-                ?.ToArray();
-
-            vacancy.Specializations
-                ?.Select(async specialization => await Visit(specialization))
-                ?.Select(task => task.Result)
+                ?.Select(async workingDay => await Visit(workingDay))
+                ?.Select(workingDay => workingDay.Result.Id)
                 ?.ToArray();
 
             vacancy.SpecializationsIds = vacancy.Specializations
-                ?.Select(specialization => specialization.Id)
-                ?.ToArray();
-
-            vacancy.WorkingTimeModes
-                ?.Select(async workingTimeModes => await Visit(workingTimeModes))
-                ?.Select(task => task.Result)
+                ?.Select(async specialization => await Visit(specialization))
+                ?.Select(specialization => specialization.Result.Id)
                 ?.ToArray();
 
             vacancy.WorkingTimeModesIds = vacancy.WorkingTimeModes
-                ?.Select(workingTimeModes => workingTimeModes.Id)
-                ?.ToArray();
-
-            vacancy.ProfessionalRoles
-                ?.Select(async professionalRoles => await Visit(professionalRoles))
-                ?.Select(task => task.Result)
+                ?.Select(async workingTimeModes => await Visit(workingTimeModes))
+                ?.Select(workingTimeModes => workingTimeModes.Result.Id)
                 ?.ToArray();
 
             vacancy.ProfessionalRolesIds = vacancy.ProfessionalRoles
-                ?.Select(professionalRoles => professionalRoles.Id)
-                ?.ToArray();
-
-            vacancy.DriverLicenseTypes
-                ?.Select(async driverLicenseTypes => await Visit(driverLicenseTypes))
-                ?.Select(task => task.Result)
+                ?.Select(async professionalRoles => await Visit(professionalRoles))
+                ?.Select(professionalRoles => professionalRoles.Result.Id)
                 ?.ToArray();
 
             vacancy.DriverLicenseTypesIds = vacancy.DriverLicenseTypes
-                ?.Select(driverLicenseTypes => driverLicenseTypes.Id)
-                ?.ToArray();
-
-            vacancy.WorkingTimeIntervals
-                ?.Select(async workingTimeInterval => await Visit(workingTimeInterval))
-                ?.Select(task => task.Result)
+                ?.Select(async driverLicenseTypes => await Visit(driverLicenseTypes))
+                ?.Select(driverLicenseTypes => driverLicenseTypes.Result.Id)
                 ?.ToArray();
 
             vacancy.WorkingTimeIntervalsIds = vacancy.WorkingTimeIntervals
-                ?.Select(workingTimeInterval => workingTimeInterval.Id)
+                ?.Select(async workingTimeInterval => await Visit(workingTimeInterval))
+                ?.Select(workingTimeInterval => workingTimeInterval.Result.Id)
                 ?.ToArray();
 
             return await _repository.ImportAsync(vacancy);

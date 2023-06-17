@@ -1,4 +1,4 @@
-using AutoWrapper;
+//using AutoWrapper;
 using HeadHunter.Infrastructure;
 using HeadHunter.ResourceWebApplication.Extensions;
 
@@ -9,6 +9,7 @@ builder.Services.AddInfrastructure();
 builder.Services.AddApiControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwagger();
+builder.Services.AddCompression();
 
 var app = builder.Build();
 
@@ -18,7 +19,8 @@ app.UseSerilogLogging();
 app.UseDatabaseMigration();
 app.UseHttpsRedirection();
 app.UseRouting();
-app.UseApiResponseAndExceptionWrapper();
+app.UseCompression();
+//app.UseApiResponseAndExceptionWrapper();
 app.UseAuthorization();
 app.UseCorsPolicy();
 app.MapRoutes();

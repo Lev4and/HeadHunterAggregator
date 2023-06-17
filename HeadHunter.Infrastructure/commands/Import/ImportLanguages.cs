@@ -1,18 +1,18 @@
 ﻿using FluentValidation;
 using HeadHunter.Core.Domain.Cqrs;
 using HeadHunter.Core.Extensions;
-using HeadHunter.HttpClients.HeadHunter.ResponseModels;
 using HeadHunter.Infrastructure.Factories.HeadHunter;
 using HeadHunter.MongoDB.Abstracts;
 using MediatR;
+using ResponseModels = HeadHunter.HttpClients.HeadHunter.ResponseModels;
 
 namespace HeadHunter.Infrastructure.Commands.Import
 {
     public class ImportLanguages : ICommand<bool>
     {
-        public Language[] Languages { get; }
+        public ResponseModels.Language[] Languages { get; }
 
-        public ImportLanguages(Language[] languages)
+        public ImportLanguages(ResponseModels.Language[] languages)
         {
             if (languages == null) throw new ArgumentNullException(nameof(languages));
 
@@ -39,11 +39,15 @@ namespace HeadHunter.Infrastructure.Commands.Import
                 _factory = factory;
             }
 
-            public async Task<bool> Handle(ImportLanguages request, CancellationToken cancellationToken)
+            public async Task<bool> Handle(ImportLanguages request, 
+                CancellationToken cancellationToken)
             {
                 var languages = _factory.CreateArray(request.Languages);
 
-                await Task.WhenAll(languages.Select(language => language.Accept(_visitor)));
+                foreach (var language in languages)
+                {
+                    await language.Accept(_visitor);
+                }
 
                 return true;
             }
