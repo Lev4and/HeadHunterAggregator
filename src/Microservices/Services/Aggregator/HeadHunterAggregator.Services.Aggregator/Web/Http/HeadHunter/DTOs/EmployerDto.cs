@@ -7,6 +7,7 @@ namespace HeadHunterAggregator.Services.Aggregator.Web.Http.HeadHunter.DTOs
         [JsonProperty("logo_urls")]
         public LogoUrlsDto? LogoUrls { get; set; }
 
+        [JsonRequired]
         [JsonProperty("name")]
         public string Name { get; set; }
 
@@ -16,6 +17,7 @@ namespace HeadHunterAggregator.Services.Aggregator.Web.Http.HeadHunter.DTOs
         [JsonProperty("alternate_url")]
         public string? AlternateUrl { get; set; }
 
+        [JsonRequired]
         [JsonProperty("id")]
         public string Id { get; set; }
 

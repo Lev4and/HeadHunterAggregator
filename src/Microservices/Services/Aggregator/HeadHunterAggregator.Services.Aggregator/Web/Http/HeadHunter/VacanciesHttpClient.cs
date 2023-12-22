@@ -18,12 +18,11 @@ namespace HeadHunterAggregator.Services.Aggregator.Web.Http.HeadHunter
             if (page < 1 || page * perPage > 1999) throw new ArgumentOutOfRangeException(nameof(page));
             if (perPage < 1 || perPage > 100) throw new ArgumentOutOfRangeException(nameof(perPage));
             if (dateFrom > dateTo) throw new ArgumentOutOfRangeException(nameof(dateFrom));
-            if (dateTo < dateFrom) throw new ArgumentOutOfRangeException(nameof(dateTo));
 
             return await GetAsync<PagedResponseModelDto<VacancyDto>>(string.Format("?page={0}&per_page={1}&date_from={2}&" +
-            "date_to={3}&order_by={4}", page, perPage, TimeZoneInfo.ConvertTimeFromUtc(dateFrom, _moscowTimeZone)
-                .ToString("yyyy-MM-ddTHH:mm:ss"), TimeZoneInfo.ConvertTimeFromUtc(dateTo, _moscowTimeZone)
-                    .ToString("yyyy-MM-ddTHH:mm:ss"), "publication_time"));
+                "date_to={3}&order_by={4}", page, perPage, TimeZoneInfo.ConvertTimeFromUtc(dateFrom, _moscowTimeZone)
+                    .ToString("yyyy-MM-ddTHH:mm:ss"), TimeZoneInfo.ConvertTimeFromUtc(dateTo, _moscowTimeZone)
+                        .ToString("yyyy-MM-ddTHH:mm:ss"), "publication_time"), cancellationToken);
         }
 
         public async Task<ResponseModel<VacancyDto>> GetVacancyAsync(long id, 

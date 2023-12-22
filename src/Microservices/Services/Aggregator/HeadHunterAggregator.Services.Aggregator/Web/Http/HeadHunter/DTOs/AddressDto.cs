@@ -4,12 +4,15 @@ namespace HeadHunterAggregator.Services.Aggregator.Web.Http.HeadHunter.DTOs
 {
     public class AddressDto
     {
+        [JsonRequired]
         [JsonProperty("city")]
         public string City { get; set; }
 
+        [JsonRequired]
         [JsonProperty("street")]
         public string Street { get; set; }
 
+        [JsonRequired]
         [JsonProperty("building")]
         public string Building { get; set; }
 

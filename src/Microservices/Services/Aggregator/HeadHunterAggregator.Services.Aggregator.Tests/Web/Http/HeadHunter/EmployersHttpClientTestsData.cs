@@ -2,12 +2,28 @@
 {
     public class EmployersHttpClientTestsData
     {
-        public class OutOfRangeIdParams : TheoryData<long>
+        public class GetEmployerOutOfRangeIdParams : TheoryData<long>
         {
-            public OutOfRangeIdParams()
+            public GetEmployerOutOfRangeIdParams()
             {
                 Add(0);
                 Add(-1);
+            }
+        }
+
+        public class GetEmployerNonExistentIdParams : TheoryData<long> 
+        {
+            public GetEmployerNonExistentIdParams() 
+            {
+                Add(long.MaxValue);
+            }
+        }
+
+        public class GetEmployerExistentIdParams : TheoryData<long>
+        {
+            public GetEmployerExistentIdParams() 
+            {
+                Add(1);
             }
         }
     }

@@ -4,6 +4,7 @@ namespace HeadHunterAggregator.Services.Aggregator.Web.Http.HeadHunter.DTOs
 {
     public class VacancyDto
     {
+        [JsonRequired]
         [JsonProperty("id")]
         public string Id { get; set; }
 
@@ -52,6 +53,7 @@ namespace HeadHunterAggregator.Services.Aggregator.Web.Http.HeadHunter.DTOs
         [JsonProperty("archived")]
         public bool? Archived { get; set; }
 
+        [JsonRequired]
         [JsonProperty("name")]
         public string Name { get; set; }
 
@@ -62,14 +64,17 @@ namespace HeadHunterAggregator.Services.Aggregator.Web.Http.HeadHunter.DTOs
         public AreaDto? Area { get; set; }
 
         [JsonProperty("initial_created_at")]
-        public DateTime InitialCreatedAt { get; set; }
+        public DateTime? InitialCreatedAt { get; set; }
 
+        [JsonRequired]
         [JsonProperty("created_at")]
         public DateTime CreatedAt { get; set; }
 
+        [JsonRequired]
         [JsonProperty("published_at")]
         public DateTime PublishedAt { get; set; }
 
+        [JsonRequired]
         [JsonProperty("employer")]
         public EmployerDto Employer { get; set; }
 
