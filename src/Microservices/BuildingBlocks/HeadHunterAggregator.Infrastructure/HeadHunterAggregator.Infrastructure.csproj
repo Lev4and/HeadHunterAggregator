@@ -19,4 +19,8 @@
     <ProjectReference Include="..\HeadHunterAggregator.Domain\HeadHunterAggregator.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Databases\MongoDB\Repositories\" />
+  </ItemGroup>
+
 </Project>
