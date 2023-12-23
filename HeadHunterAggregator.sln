@@ -29,7 +29,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeadHunterAggregator.Servic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeadHunterAggregator.Services.Vacancy.Api", "src\Microservices\Services\Vacancy\HeadHunterAggregator.Services.Vacancy.Api\HeadHunterAggregator.Services.Vacancy.Api.csproj", "{C889AD43-CD58-4494-9E42-094EFA5237DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadHunterAggregator.Services.Vacancy.Tests", "src\Microservices\Services\Vacancy\HeadHunterAggregator.Services.Vacancy.Tests\HeadHunterAggregator.Services.Vacancy.Tests.csproj", "{5FD360B9-14BD-4B48-AA3D-9E0E315B3BDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeadHunterAggregator.Services.Vacancy.Tests", "src\Microservices\Services\Vacancy\HeadHunterAggregator.Services.Vacancy.Tests\HeadHunterAggregator.Services.Vacancy.Tests.csproj", "{5FD360B9-14BD-4B48-AA3D-9E0E315B3BDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadHunterAggregator.Services.Vacancy.Background", "src\Microservices\Services\Vacancy\HeadHunterAggregator.Services.Vacancy.Background\HeadHunterAggregator.Services.Vacancy.Background.csproj", "{3AB9E73E-4427-4366-8D5E-F07E071C0597}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,6 +67,10 @@ Global
 		{5FD360B9-14BD-4B48-AA3D-9E0E315B3BDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FD360B9-14BD-4B48-AA3D-9E0E315B3BDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FD360B9-14BD-4B48-AA3D-9E0E315B3BDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AB9E73E-4427-4366-8D5E-F07E071C0597}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AB9E73E-4427-4366-8D5E-F07E071C0597}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AB9E73E-4427-4366-8D5E-F07E071C0597}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AB9E73E-4427-4366-8D5E-F07E071C0597}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -83,6 +89,7 @@ Global
 		{B43DB994-CA56-43DD-98A3-01CB8700896E} = {970A0E80-9699-4FBA-8274-7C8450DA54AC}
 		{C889AD43-CD58-4494-9E42-094EFA5237DB} = {970A0E80-9699-4FBA-8274-7C8450DA54AC}
 		{5FD360B9-14BD-4B48-AA3D-9E0E315B3BDD} = {970A0E80-9699-4FBA-8274-7C8450DA54AC}
+		{3AB9E73E-4427-4366-8D5E-F07E071C0597} = {970A0E80-9699-4FBA-8274-7C8450DA54AC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C65DD8D2-A51C-4BF5-AC76-6C9D9E3BDE6C}
