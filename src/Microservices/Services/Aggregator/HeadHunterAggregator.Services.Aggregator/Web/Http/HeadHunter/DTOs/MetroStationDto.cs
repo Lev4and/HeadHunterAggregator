@@ -4,15 +4,12 @@ namespace HeadHunterAggregator.Services.Aggregator.Web.Http.HeadHunter.DTOs
 {
     public class MetroStationDto
     {
-        [JsonRequired]
         [JsonProperty("id")]
         public string Id { get; set; }
 
-        [JsonRequired]
         [JsonProperty("name")]
         public string Name { get; set; }
 
-        [JsonRequired]
         [JsonProperty("order")]
         public int Order { get; set; }
 
@@ -28,11 +25,9 @@ namespace HeadHunterAggregator.Services.Aggregator.Web.Http.HeadHunter.DTOs
         [JsonProperty("line_name")]
         public string? LineName { get; set; }
 
-        [JsonRequired]
         [JsonProperty("lat")]
         public double Latitude { get; set; }
 
-        [JsonRequired]
         [JsonProperty("lng")]
         public double Longitude { get; set; }
     }

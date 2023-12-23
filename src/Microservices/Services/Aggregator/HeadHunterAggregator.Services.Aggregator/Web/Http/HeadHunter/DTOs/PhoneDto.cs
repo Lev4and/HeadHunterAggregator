@@ -10,7 +10,6 @@ namespace HeadHunterAggregator.Services.Aggregator.Web.Http.HeadHunter.DTOs
         [JsonProperty("city")]
         public string? City { get; set; }
 
-        [JsonRequired]
         [JsonProperty("number")]
         public string Number { get; set; }
 
