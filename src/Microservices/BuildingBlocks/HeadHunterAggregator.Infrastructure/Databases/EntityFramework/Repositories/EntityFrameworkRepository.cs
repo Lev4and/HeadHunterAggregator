@@ -21,23 +21,24 @@ namespace HeadHunterAggregator.Infrastructure.Databases.EntityFramework.Reposito
             return await Task.FromResult(_dbContext.Set<TEntity>().Add(entity).Entity);
         }
 
-        public async Task<TEntity?> FindByIdAsync(Guid id, CancellationToken cancellationToken = default)
+        public async Task<TEntity?> FindOneByIdAsync(Guid id, CancellationToken cancellationToken = default)
         {
             return await _dbContext.Set<TEntity>().AsNoTracking()
                 .SingleOrDefaultAsync(item => item.Id == id, cancellationToken);
         }
 
-        public async Task<TEntity?> FindByExpressionAsync(Expression<Func<TEntity, bool>> expression, 
+        public async Task<TEntity?> FindOneByExpressionAsync(Expression<Func<TEntity, bool>> expression, 
             CancellationToken cancellationToken = default)
         {
             return await _dbContext.Set<TEntity>().AsNoTracking()
                 .SingleOrDefaultAsync(expression, cancellationToken);
         }
 
-        public async Task<TEntity> FindByExpressionOrCreateAsync(TEntity entity, 
+        public async Task<TEntity> FindOneByExpressionOrCreateAsync(TEntity entity, 
             Expression<Func<TEntity, bool>> expression, CancellationToken cancellationToken = default)
         {
-            return await FindByExpressionAsync(expression, cancellationToken) ?? await CreateAsync(entity, cancellationToken);
+            return await FindOneByExpressionAsync(expression, cancellationToken) 
+                ?? await CreateAsync(entity, cancellationToken);
         }
 
         public async Task RemoveAsync(TEntity entity, CancellationToken cancellationToken = default)

@@ -17,10 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\HeadHunterAggregator.Services.Vacancy\HeadHunterAggregator.Services.Vacancy.csproj" />
   </ItemGroup>
 

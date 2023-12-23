@@ -27,7 +27,17 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
+
+app.UseRouting();
+
 app.UseAuthorization();
+
 app.MapControllers();
+
+app.UseEndpoints(builder =>
+{
+    _ = builder.MapAreaControllerRoute("aggregatorArea", "aggregator", 
+        "api/vacancies/aggregator/{controller=Home}/{action=Index}/{id?}");
+});
 
 app.Run();
