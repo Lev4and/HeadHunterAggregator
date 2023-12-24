@@ -2,7 +2,7 @@ using HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.
 
 namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Repositories
 {
-    public class EmployerRepository : VacanciesDbRepository<Employer>
+    public class EmployerRepository : VacanciesDbRepository<Employer>, IEmployerRepository
     {
         public EmployerRepository(VacanciesDbContext dbContext) : base(dbContext)
         {

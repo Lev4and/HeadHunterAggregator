@@ -1,4 +1,5 @@
-﻿using HeadHunterAggregator.Domain.Infrastructure.MessageBrokers;
+﻿using HeadHunterAggregator.Domain.Infrastructure.Databases;
+using HeadHunterAggregator.Domain.Infrastructure.MessageBrokers;
 using HeadHunterAggregator.Infrastructure.MessageBrokers.RabbitMQ;
 using HeadHunterAggregator.Services.Vacancy.ConfigurationOptions;
 using HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies;
@@ -40,6 +41,8 @@ namespace HeadHunterAggregator.Services.Vacancy
                 options.UseNpgsql(settings.ConnectionStrings.VacanciesDbPostgreSQL)
                     .UseSnakeCaseNamingConvention();
             });
+
+            services.AddTransient<IUnitOfWork, VacanciesDbContext>();
 
             services.AddMediatR(config => config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 

@@ -2,7 +2,7 @@ using HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.
 
 namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Repositories
 {
-    public class MetroLineRepository : VacanciesDbRepository<MetroLine>
+    public class MetroLineRepository : VacanciesDbRepository<MetroLine>, IMetroLineRepository
     {
         public MetroLineRepository(VacanciesDbContext dbContext) : base(dbContext)
         {

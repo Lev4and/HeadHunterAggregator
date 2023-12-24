@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
 
 namespace HeadHunterAggregator.Services.Vacancy.Api.Controllers
 {
@@ -6,9 +7,11 @@ namespace HeadHunterAggregator.Services.Vacancy.Api.Controllers
     [Route("api/vacancies")]
     public class VacanciesController : ControllerBase
     {
-        public VacanciesController()
+        private readonly IMediator _mediator;
+
+        public VacanciesController(IMediator mediator)
         {
-            
+            _mediator = mediator;
         }
     }
 }

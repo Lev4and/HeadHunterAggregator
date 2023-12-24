@@ -2,7 +2,7 @@ using HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.
 
 namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Repositories
 {
-    public class ScheduleRepository : VacanciesDbRepository<Schedule>
+    public class ScheduleRepository : VacanciesDbRepository<Schedule>, IScheduleRepository
     {
         public ScheduleRepository(VacanciesDbContext dbContext) : base(dbContext)
         {
