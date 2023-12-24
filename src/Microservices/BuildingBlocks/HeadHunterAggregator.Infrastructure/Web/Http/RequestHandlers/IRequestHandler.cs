@@ -9,6 +9,6 @@ namespace HeadHunterAggregator.Infrastructure.Web.Http.RequestHandlers
 
         IResponseReader Reader { get; }
 
-        Task<ResponseModel<TResult>> HandleAsync<TResult>(Func<Task<HttpResponseMessage>> request);
+        Task<ApiResponse<TResult>> HandleAsync<TResult>(Func<Task<HttpResponseMessage>> request);
     }
 }

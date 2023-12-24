@@ -10,7 +10,7 @@ namespace HeadHunterAggregator.Services.Vacancy.Web.Http.HeadHunter
 
         }
 
-        public async Task<ResponseModel<IReadOnlyCollection<IndustryDto>>> GetIndustriesAsync(
+        public async Task<ApiResponse<IReadOnlyCollection<IndustryDto>>> GetIndustriesAsync(
             CancellationToken cancellationToken = default)
         {
             return await GetAsync<IReadOnlyCollection<IndustryDto>>("", cancellationToken);

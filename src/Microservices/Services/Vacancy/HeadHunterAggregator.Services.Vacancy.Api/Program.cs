@@ -1,3 +1,4 @@
+using HeadHunterAggregator.Infrastructure.Web.Middlewares;
 using HeadHunterAggregator.Services.Vacancy;
 using HeadHunterAggregator.Services.Vacancy.ConfigurationOptions;
 
@@ -27,17 +28,19 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
-
 app.UseRouting();
-
 app.UseAuthorization();
-
 app.MapControllers();
+
+app.UseMiddleware<AutoWrapJsonResponse>();
 
 app.UseEndpoints(builder =>
 {
-    _ = builder.MapAreaControllerRoute("aggregatorArea", "aggregator", 
-        "api/vacancies/aggregator/{controller=Home}/{action=Index}/{id?}");
+    _ = builder.MapAreaControllerRoute("importArea", "import", 
+        "api/vacancies/import/{controller=Home}/{action=Index}/{id?}");
+
+    _ = builder.MapAreaControllerRoute("headHunterArea", "headHunter",
+        "api/vacancies/headHunter/{controller=Home}/{action=Index}/{id?}");
 });
 
 app.Run();

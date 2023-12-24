@@ -28,7 +28,7 @@ namespace HeadHunterAggregator.Infrastructure.Web.Http
             BaseAddress = uri;
         }
 
-        public virtual async Task<ResponseModel<TResult>> GetAsync<TResult>(string uri,
+        public virtual async Task<ApiResponse<TResult>> GetAsync<TResult>(string uri,
             CancellationToken cancellationToken = default)
         {
             if (uri == null) throw new ArgumentNullException(nameof(uri));
@@ -36,13 +36,13 @@ namespace HeadHunterAggregator.Infrastructure.Web.Http
             return await GetAsync<TResult>(new Uri(uri, UriKind.Relative), cancellationToken);
         }
 
-        public virtual async Task<ResponseModel<TResult>> GetAsync<TResult>(Uri relativeUri,
+        public virtual async Task<ApiResponse<TResult>> GetAsync<TResult>(Uri relativeUri,
             CancellationToken cancellationToken = default)
         {
             return await RequestHandler.HandleAsync<TResult>(() => GetAsync(relativeUri, cancellationToken));
         }
 
-        public virtual async Task<ResponseModel<TResult>> PostAsync<TResult>(string uri, object content,
+        public virtual async Task<ApiResponse<TResult>> PostAsync<TResult>(string uri, object content,
             CancellationToken cancellationToken = default)
         {
             if (uri == null) throw new ArgumentNullException(nameof(uri));
@@ -50,14 +50,14 @@ namespace HeadHunterAggregator.Infrastructure.Web.Http
             return await PostAsync<TResult>(new Uri(uri, UriKind.Relative), content, cancellationToken);
         }
 
-        public virtual async Task<ResponseModel<TResult>> PostAsync<TResult>(Uri relativeUri, object content,
+        public virtual async Task<ApiResponse<TResult>> PostAsync<TResult>(Uri relativeUri, object content,
             CancellationToken cancellationToken = default)
         {
             return await RequestHandler.HandleAsync<TResult>(() => PostAsync(relativeUri, 
                 content.ToStringContent(), cancellationToken));
         }
 
-        public virtual async Task<ResponseModel<TResult>> PutAsync<TResult>(string uri, object content,
+        public virtual async Task<ApiResponse<TResult>> PutAsync<TResult>(string uri, object content,
             CancellationToken cancellationToken = default)
         {
             if (uri == null) throw new ArgumentNullException(nameof(uri));
@@ -65,14 +65,14 @@ namespace HeadHunterAggregator.Infrastructure.Web.Http
             return await PutAsync<TResult>(new Uri(uri, UriKind.Relative), content, cancellationToken);
         }
 
-        public virtual async Task<ResponseModel<TResult>> PutAsync<TResult>(Uri relativeUri, object content,
+        public virtual async Task<ApiResponse<TResult>> PutAsync<TResult>(Uri relativeUri, object content,
             CancellationToken cancellationToken = default)
         {
             return await RequestHandler.HandleAsync<TResult>(() => PutAsync(relativeUri, 
                 content.ToStringContent(), cancellationToken));
         }
 
-        public virtual async Task<ResponseModel<TResult>> DeleteAsync<TResult>(string uri,
+        public virtual async Task<ApiResponse<TResult>> DeleteAsync<TResult>(string uri,
             CancellationToken cancellationToken = default)
         {
             if (uri == null) throw new ArgumentNullException(nameof(uri));
@@ -80,7 +80,7 @@ namespace HeadHunterAggregator.Infrastructure.Web.Http
             return await DeleteAsync<TResult>(uri, cancellationToken);
         }
 
-        public virtual async Task<ResponseModel<TResult>> DeleteAsync<TResult>(Uri relativeUri,
+        public virtual async Task<ApiResponse<TResult>> DeleteAsync<TResult>(Uri relativeUri,
             CancellationToken cancellationToken = default)
         {
             return await RequestHandler.HandleAsync<TResult>(() => DeleteAsync(relativeUri, cancellationToken));

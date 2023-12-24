@@ -12,7 +12,7 @@ namespace HeadHunterAggregator.Services.Vacancy.Web.Http.HeadHunter
 
         }
 
-        public async Task<ResponseModel<PagedResponseModelDto<VacancyDto>>> GetVacanciesAsync(int page, int perPage,
+        public async Task<ApiResponse<PagedResponseModelDto<VacancyDto>>> GetVacanciesAsync(int page, int perPage,
             DateTime dateFrom, DateTime dateTo, CancellationToken cancellationToken = default)
         {
             if (page < 1 || page * perPage > 1999) throw new ArgumentOutOfRangeException(nameof(page));
@@ -25,7 +25,7 @@ namespace HeadHunterAggregator.Services.Vacancy.Web.Http.HeadHunter
                         .ToString("yyyy-MM-ddTHH:mm:ss"), "publication_time"), cancellationToken);
         }
 
-        public async Task<ResponseModel<VacancyDto>> GetVacancyAsync(long id,
+        public async Task<ApiResponse<VacancyDto>> GetVacancyAsync(long id,
             CancellationToken cancellationToken = default)
         {
             if (id < 1) throw new ArgumentOutOfRangeException(nameof(id));

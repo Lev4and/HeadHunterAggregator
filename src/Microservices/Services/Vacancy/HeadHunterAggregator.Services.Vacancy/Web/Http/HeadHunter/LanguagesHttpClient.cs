@@ -10,7 +10,7 @@ namespace HeadHunterAggregator.Services.Vacancy.Web.Http.HeadHunter
 
         }
 
-        public async Task<ResponseModel<IReadOnlyCollection<LanguageDto>>> GetLanguagesAsync(
+        public async Task<ApiResponse<IReadOnlyCollection<LanguageDto>>> GetLanguagesAsync(
             CancellationToken cancellationToken = default)
         {
             return await GetAsync<IReadOnlyCollection<LanguageDto>>("", cancellationToken);

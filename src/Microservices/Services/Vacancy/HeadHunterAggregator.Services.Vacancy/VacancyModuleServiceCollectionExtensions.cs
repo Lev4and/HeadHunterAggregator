@@ -2,10 +2,12 @@
 using HeadHunterAggregator.Infrastructure.MessageBrokers.RabbitMQ;
 using HeadHunterAggregator.Services.Vacancy.ConfigurationOptions;
 using HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies;
+using HeadHunterAggregator.Services.Vacancy.Web.Http.HeadHunter;
 using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace HeadHunterAggregator.Services.Vacancy
 {
@@ -38,6 +40,10 @@ namespace HeadHunterAggregator.Services.Vacancy
                 options.UseNpgsql(settings.ConnectionStrings.VacanciesDbPostgreSQL)
                     .UseSnakeCaseNamingConvention();
             });
+
+            services.AddMediatR(config => config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+
+            services.AddSingleton<HeadHunterApi>();
 
             return services;
         }

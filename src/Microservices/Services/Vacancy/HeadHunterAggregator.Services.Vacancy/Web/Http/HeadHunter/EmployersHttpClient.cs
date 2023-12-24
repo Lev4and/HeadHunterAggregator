@@ -10,7 +10,7 @@ namespace HeadHunterAggregator.Services.Vacancy.Web.Http.HeadHunter
 
         }
 
-        public async Task<ResponseModel<EmployerDto>> GetEmployerAsync(long id,
+        public async Task<ApiResponse<EmployerDto>> GetEmployerAsync(long id,
             CancellationToken cancellationToken = default)
         {
             if (id <= 0) throw new ArgumentOutOfRangeException(nameof(id));

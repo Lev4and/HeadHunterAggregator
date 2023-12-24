@@ -9,7 +9,7 @@ namespace HeadHunterAggregator.Infrastructure.Web.Http.RequestHandlers
 
         public virtual IResponseReader Reader => new ResponseReader();
 
-        public async Task<ResponseModel<TResult>> HandleAsync<TResult>(Func<Task<HttpResponseMessage>> request)
+        public async Task<ApiResponse<TResult>> HandleAsync<TResult>(Func<Task<HttpResponseMessage>> request)
         {
             if (request == null) throw new ArgumentNullException(nameof(request));
 
@@ -23,7 +23,7 @@ namespace HeadHunterAggregator.Infrastructure.Web.Http.RequestHandlers
             }
             catch (Exception ex)
             {
-                return new ResponseModel<TResult>(default, null, ex.Message, ex);
+                return new ApiResponse<TResult>(default, null, ex.Message, ex);
             }
         }
     }

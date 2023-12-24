@@ -10,7 +10,7 @@ namespace HeadHunterAggregator.Services.Vacancy.Web.Http.HeadHunter
 
         }
 
-        public async Task<ResponseModel<DictionariesDto>> GetDictionariesAsync(
+        public async Task<ApiResponse<DictionariesDto>> GetDictionariesAsync(
             CancellationToken cancellationToken = default)
         {
             return await GetAsync<DictionariesDto>("", cancellationToken);

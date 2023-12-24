@@ -1,23 +1,28 @@
 ﻿using HeadHunterAggregator.Infrastructure.Web.Http.Extensions;
+using Newtonsoft.Json;
 using System.Net;
-using System.Text.Json.Serialization;
 
 namespace HeadHunterAggregator.Infrastructure.Web.Http
 {
-    public class ResponseModel<TResult>
+    public class ApiResponse<TResult>
     {
+        [JsonProperty("isError")]
         public bool IsError => Code.IsErrorStatusCode() || Exception != null;
 
+        [JsonProperty("message")]
         public string? Message { get; }
 
+        [JsonProperty("result")]
         public TResult? Result { get; }
 
+        [JsonProperty("code")]
         public HttpStatusCode? Code { get; }
 
+        [JsonProperty("exception")]
         public Exception? Exception { get; }
 
         [JsonConstructor]
-        public ResponseModel()
+        public ApiResponse()
         {
             Message = null;
             Result = default(TResult);
@@ -25,7 +30,7 @@ namespace HeadHunterAggregator.Infrastructure.Web.Http
             Exception = null;
         }
 
-        public ResponseModel(TResult? result, HttpStatusCode? code, string? message,
+        public ApiResponse(TResult? result, HttpStatusCode? code, string? message,
             Exception? exception = null)
         {
             Message = message;
@@ -34,7 +39,7 @@ namespace HeadHunterAggregator.Infrastructure.Web.Http
             Exception = exception;
         }
 
-        public ResponseModel(TResult? result, HttpStatusCode? code, Exception? exception = null) : 
+        public ApiResponse(TResult? result, HttpStatusCode? code, Exception? exception = null) : 
             this(result, code, code?.ToString(), exception)
         {
 
