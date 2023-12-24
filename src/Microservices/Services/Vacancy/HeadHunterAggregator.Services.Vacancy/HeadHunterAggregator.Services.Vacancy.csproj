@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <Folder Include="Databases\EntityFramework\Vacancies\Migrations\" />
-    <Folder Include="Databases\EntityFramework\Vacancies\Repositories\" />
     <Folder Include="MessageConsumers\" />
     <Folder Include="Messages\" />
   </ItemGroup>
