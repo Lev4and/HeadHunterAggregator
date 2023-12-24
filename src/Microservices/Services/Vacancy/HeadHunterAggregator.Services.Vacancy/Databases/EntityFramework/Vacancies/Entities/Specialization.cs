@@ -1,20 +1,19 @@
 ﻿using HeadHunterAggregator.Domain.Entities;
-using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 
 namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Entities
 {
+    [Index(nameof(Name), nameof(HeadHunterId), nameof(HeadHunterParentId))]
     public class Specialization : EntityBase
     {
         public Guid? ParentId { get; set; }
 
         public bool? Laboring { get; set; }
 
-        [Required]
         public string Name { get; set; }
 
         public string? ProfareaId { get; set; }
 
-        [Required]
         public string HeadHunterId { get; set; }
 
         public string? HeadHunterParentId { get; set; }

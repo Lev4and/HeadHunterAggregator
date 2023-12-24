@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Migrations
 {
     [DbContext(typeof(VacanciesDbContext))]
-    [Migration("20231223123400_InitDatabase")]
+    [Migration("20231224055030_InitDatabase")]
     partial class InitDatabase
     {
         /// <inheritdoc />
@@ -93,6 +93,9 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                     b.HasIndex("ParentId")
                         .HasDatabaseName("ix_areas_parent_id");
 
+                    b.HasIndex("HeadHunterId", "HeadHunterParentId", "Name")
+                        .HasDatabaseName("ix_areas_head_hunter_id_head_hunter_parent_id_name");
+
                     b.ToTable("areas", (string)null);
                 });
 
@@ -116,6 +119,9 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                     b.HasKey("Id")
                         .HasName("pk_billing_types");
 
+                    b.HasIndex("HeadHunterId", "Name")
+                        .HasDatabaseName("ix_billing_types_head_hunter_id_name");
+
                     b.ToTable("billing_types", (string)null);
                 });
 
@@ -133,6 +139,9 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
 
                     b.HasKey("Id")
                         .HasName("pk_currencies");
+
+                    b.HasIndex("HeadHunterId")
+                        .HasDatabaseName("ix_currencies_head_hunter_id");
 
                     b.ToTable("currencies", (string)null);
                 });
@@ -157,6 +166,9 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                     b.HasKey("Id")
                         .HasName("pk_departments");
 
+                    b.HasIndex("HeadHunterId", "Name")
+                        .HasDatabaseName("ix_departments_head_hunter_id_name");
+
                     b.ToTable("departments", (string)null);
                 });
 
@@ -174,6 +186,9 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
 
                     b.HasKey("Id")
                         .HasName("pk_driver_license_types");
+
+                    b.HasIndex("HeadHunterId")
+                        .HasDatabaseName("ix_driver_license_types_head_hunter_id");
 
                     b.ToTable("driver_license_types", (string)null);
                 });
@@ -234,6 +249,9 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
 
                     b.HasIndex("TypeId")
                         .HasDatabaseName("ix_employers_type_id");
+
+                    b.HasIndex("Trusted", "Blacklisted", "HeadHunterId", "Name")
+                        .HasDatabaseName("ix_employers_trusted_blacklisted_head_hunter_id_name");
 
                     b.ToTable("employers", (string)null);
                 });
@@ -392,6 +410,9 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                     b.HasKey("Id")
                         .HasName("pk_employer_types");
 
+                    b.HasIndex("Name")
+                        .HasDatabaseName("ix_employer_types_name");
+
                     b.ToTable("employer_types", (string)null);
                 });
 
@@ -415,6 +436,9 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                     b.HasKey("Id")
                         .HasName("pk_employments");
 
+                    b.HasIndex("HeadHunterId", "Name")
+                        .HasDatabaseName("ix_employments_head_hunter_id_name");
+
                     b.ToTable("employments", (string)null);
                 });
 
@@ -437,6 +461,9 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
 
                     b.HasKey("Id")
                         .HasName("pk_experiences");
+
+                    b.HasIndex("HeadHunterId", "Name")
+                        .HasDatabaseName("ix_experiences_head_hunter_id_name");
 
                     b.ToTable("experiences", (string)null);
                 });
@@ -471,6 +498,9 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
 
                     b.HasIndex("ParentId")
                         .HasDatabaseName("ix_industries_parent_id");
+
+                    b.HasIndex("HeadHunterId", "HeadHunterParentId", "Name")
+                        .HasDatabaseName("ix_industries_head_hunter_id_head_hunter_parent_id_name");
 
                     b.ToTable("industries", (string)null);
                 });
@@ -517,6 +547,9 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                     b.HasKey("Id")
                         .HasName("pk_key_skills");
 
+                    b.HasIndex("Name")
+                        .HasDatabaseName("ix_key_skills_name");
+
                     b.ToTable("key_skills", (string)null);
                 });
 
@@ -539,6 +572,9 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
 
                     b.HasKey("Id")
                         .HasName("pk_languages");
+
+                    b.HasIndex("HeadHunterId", "Name")
+                        .HasDatabaseName("ix_languages_head_hunter_id_name");
 
                     b.ToTable("languages", (string)null);
                 });
@@ -578,6 +614,9 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                     b.HasIndex("AreaId")
                         .HasDatabaseName("ix_metro_lines_area_id");
 
+                    b.HasIndex("HeadHunterId", "Name")
+                        .HasDatabaseName("ix_metro_lines_head_hunter_id_name");
+
                     b.ToTable("metro_lines", (string)null);
                 });
 
@@ -600,10 +639,6 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                     b.Property<string>("LineId")
                         .HasColumnType("text")
                         .HasColumnName("line_id");
-
-                    b.Property<Guid?>("LineId1")
-                        .HasColumnType("uuid")
-                        .HasColumnName("line_id1");
 
                     b.Property<string>("LineName")
                         .HasColumnType("text")
@@ -639,8 +674,11 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                     b.HasKey("Id")
                         .HasName("pk_metro_stations");
 
-                    b.HasIndex("LineId1")
-                        .HasDatabaseName("ix_metro_stations_line_id1");
+                    b.HasIndex("MetroLineId")
+                        .HasDatabaseName("ix_metro_stations_metro_line_id");
+
+                    b.HasIndex("HeadHunterId", "Name")
+                        .HasDatabaseName("ix_metro_stations_head_hunter_id_name");
 
                     b.ToTable("metro_stations", (string)null);
                 });
@@ -694,6 +732,9 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                     b.HasKey("Id")
                         .HasName("pk_professional_roles");
 
+                    b.HasIndex("HeadHunterId", "Name")
+                        .HasDatabaseName("ix_professional_roles_head_hunter_id_name");
+
                     b.ToTable("professional_roles", (string)null);
                 });
 
@@ -716,6 +757,9 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
 
                     b.HasKey("Id")
                         .HasName("pk_schedules");
+
+                    b.HasIndex("HeadHunterId", "Name")
+                        .HasDatabaseName("ix_schedules_head_hunter_id_name");
 
                     b.ToTable("schedules", (string)null);
                 });
@@ -763,6 +807,9 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                     b.HasIndex("ParentId")
                         .HasDatabaseName("ix_specializations_parent_id");
 
+                    b.HasIndex("Name", "HeadHunterId", "HeadHunterParentId")
+                        .HasDatabaseName("ix_specializations_name_head_hunter_id_head_hunter_parent_id");
+
                     b.ToTable("specializations", (string)null);
                 });
 
@@ -790,6 +837,7 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                         .HasColumnName("accept_temporary");
 
                     b.Property<Guid?>("AddressId")
+                        .IsRequired()
                         .HasColumnType("uuid")
                         .HasColumnName("address_id");
 
@@ -916,6 +964,9 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
 
                     b.HasIndex("TypeId")
                         .HasDatabaseName("ix_vacancies_type_id");
+
+                    b.HasIndex("HasTest", "Premium", "Archived", "AcceptKids", "AllowMessages", "AcceptTemporary", "AcceptHandicapped", "ResponseLetterRequired", "AcceptIncompleteResumes", "HeadHunterId", "Name", "CreatedAt", "PublishedAt", "InitialCreatedAt")
+                        .HasDatabaseName("ix_vacancies_has_test_premium_archived_accept_kids_allow_messa");
 
                     b.ToTable("vacancies", (string)null);
                 });
@@ -1173,6 +1224,9 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                         .IsUnique()
                         .HasDatabaseName("ix_vacancy_salaries_vacancy_id");
 
+                    b.HasIndex("Gross", "To", "From")
+                        .HasDatabaseName("ix_vacancy_salaries_gross_to_from");
+
                     b.ToTable("vacancy_salaries", (string)null);
                 });
 
@@ -1222,6 +1276,9 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
 
                     b.HasKey("Id")
                         .HasName("pk_vacancy_types");
+
+                    b.HasIndex("HeadHunterId", "Name")
+                        .HasDatabaseName("ix_vacancy_types_head_hunter_id_name");
 
                     b.ToTable("vacancy_types", (string)null);
                 });
@@ -1327,6 +1384,9 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                     b.HasKey("Id")
                         .HasName("pk_working_days");
 
+                    b.HasIndex("HeadHunterId", "Name")
+                        .HasDatabaseName("ix_working_days_head_hunter_id_name");
+
                     b.ToTable("working_days", (string)null);
                 });
 
@@ -1350,6 +1410,9 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                     b.HasKey("Id")
                         .HasName("pk_working_time_intervals");
 
+                    b.HasIndex("HeadHunterId", "Name")
+                        .HasDatabaseName("ix_working_time_intervals_head_hunter_id_name");
+
                     b.ToTable("working_time_intervals", (string)null);
                 });
 
@@ -1372,6 +1435,9 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
 
                     b.HasKey("Id")
                         .HasName("pk_working_time_modes");
+
+                    b.HasIndex("HeadHunterId", "Name")
+                        .HasDatabaseName("ix_working_time_modes_head_hunter_id_name");
 
                     b.ToTable("working_time_modes", (string)null);
                 });
@@ -1509,7 +1575,9 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                 {
                     b.HasOne("HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Entities.MetroLine", "Line")
                         .WithMany("Stations")
-                        .HasForeignKey("LineId1")
+                        .HasForeignKey("MetroLineId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
                         .HasConstraintName("fk_metro_stations_metro_lines_line_id1");
 
                     b.Navigation("Line");
@@ -1530,6 +1598,8 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                     b.HasOne("HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Entities.Address", "Address")
                         .WithMany("Vacancies")
                         .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
                         .HasConstraintName("fk_vacancies_addresses_address_id");
 
                     b.HasOne("HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Entities.Area", "Area")

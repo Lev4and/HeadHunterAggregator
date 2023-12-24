@@ -7,10 +7,8 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
     {
         public long HeadHunterId { get; set; }
 
-        [Required]
         public string Title { get; set; }
 
-        [Required]
         public string Url { get; set; }
 
         public virtual IReadOnlyCollection<Vacancy>? Vacancies { get; set; }

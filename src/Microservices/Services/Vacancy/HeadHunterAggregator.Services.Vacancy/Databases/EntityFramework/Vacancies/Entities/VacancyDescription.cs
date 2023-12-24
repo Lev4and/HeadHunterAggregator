@@ -1,5 +1,4 @@
 ﻿using HeadHunterAggregator.Domain.Entities;
-using System.ComponentModel.DataAnnotations;
 
 namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Entities
 {
@@ -7,7 +6,6 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
     {
         public Guid VacancyId { get; set; }
 
-        [Required]
         public string Description { get; set; }
 
         public virtual Vacancy? Vacancy { get; set; }

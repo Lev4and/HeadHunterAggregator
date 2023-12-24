@@ -7,7 +7,6 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
     {
         public Guid EmployerId { get; set; }
 
-        [Required]
         public string Description { get; set; }
 
         public virtual Employer? Employer { get; set; }

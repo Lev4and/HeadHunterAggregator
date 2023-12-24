@@ -1,8 +1,11 @@
 ﻿using HeadHunterAggregator.Domain.Entities;
-using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 
 namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Entities
 {
+    [Index(nameof(HasTest), nameof(Premium), nameof(Archived), nameof(AcceptKids), nameof(AllowMessages), nameof(AcceptTemporary),
+        nameof(AcceptHandicapped), nameof(ResponseLetterRequired), nameof(AcceptIncompleteResumes), nameof(HeadHunterId),
+            nameof(Name), nameof(CreatedAt), nameof(PublishedAt), nameof(InitialCreatedAt))]
     public class Vacancy : EntityBase
     {
         public Guid AreaId { get; set; }
@@ -45,15 +48,12 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
 
         public long HeadHunterId { get; set; }
 
-        [Required]
         public string Name { get; set; }
 
         public string? Code { get; set; }
 
-        [Required]
         public string AlternateUrl { get; set; }
 
-        [Required]
         public string ApplyAlternateUrl { get; set; }
 
         public DateTime CreatedAt { get; set; }

@@ -1,8 +1,9 @@
 ﻿using HeadHunterAggregator.Domain.Entities;
-using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 
 namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Entities
 {
+    [Index(nameof(HeadHunterId), nameof(HeadHunterParentId), nameof(Name))]
     public class Area : EntityBase
     {
         public Guid? ParentId { get; set; }
@@ -11,7 +12,6 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
 
         public string? HeadHunterParentId { get; set; }
 
-        [Required]
         public string Name { get; set; }
 
         public virtual Area? Parent { get; set; }

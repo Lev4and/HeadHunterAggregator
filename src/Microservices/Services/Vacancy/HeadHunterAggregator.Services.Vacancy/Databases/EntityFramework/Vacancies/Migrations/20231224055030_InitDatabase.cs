@@ -379,17 +379,17 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                     station_id = table.Column<string>(type: "text", nullable: false),
                     station_name = table.Column<string>(type: "text", nullable: false),
                     latitude = table.Column<double>(type: "double precision", nullable: true),
-                    longitude = table.Column<double>(type: "double precision", nullable: true),
-                    line_id1 = table.Column<Guid>(type: "uuid", nullable: true)
+                    longitude = table.Column<double>(type: "double precision", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("pk_metro_stations", x => x.id);
                     table.ForeignKey(
                         name: "fk_metro_stations_metro_lines_line_id1",
-                        column: x => x.line_id1,
+                        column: x => x.metro_line_id,
                         principalTable: "metro_lines",
-                        principalColumn: "id");
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -508,7 +508,7 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                     id = table.Column<Guid>(type: "uuid", nullable: false),
                     area_id = table.Column<Guid>(type: "uuid", nullable: false),
                     type_id = table.Column<Guid>(type: "uuid", nullable: true),
-                    address_id = table.Column<Guid>(type: "uuid", nullable: true),
+                    address_id = table.Column<Guid>(type: "uuid", nullable: false),
                     employer_id = table.Column<Guid>(type: "uuid", nullable: false),
                     schedule_id = table.Column<Guid>(type: "uuid", nullable: false),
                     experience_id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -541,7 +541,8 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                         name: "fk_vacancies_addresses_address_id",
                         column: x => x.address_id,
                         principalTable: "addresses",
-                        principalColumn: "id");
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "fk_vacancies_areas_area_id",
                         column: x => x.area_id,
@@ -907,9 +908,34 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                 });
 
             migrationBuilder.CreateIndex(
+                name: "ix_areas_head_hunter_id_head_hunter_parent_id_name",
+                table: "areas",
+                columns: new[] { "head_hunter_id", "head_hunter_parent_id", "name" });
+
+            migrationBuilder.CreateIndex(
                 name: "ix_areas_parent_id",
                 table: "areas",
                 column: "parent_id");
+
+            migrationBuilder.CreateIndex(
+                name: "ix_billing_types_head_hunter_id_name",
+                table: "billing_types",
+                columns: new[] { "head_hunter_id", "name" });
+
+            migrationBuilder.CreateIndex(
+                name: "ix_currencies_head_hunter_id",
+                table: "currencies",
+                column: "head_hunter_id");
+
+            migrationBuilder.CreateIndex(
+                name: "ix_departments_head_hunter_id_name",
+                table: "departments",
+                columns: new[] { "head_hunter_id", "name" });
+
+            migrationBuilder.CreateIndex(
+                name: "ix_driver_license_types_head_hunter_id",
+                table: "driver_license_types",
+                column: "head_hunter_id");
 
             migrationBuilder.CreateIndex(
                 name: "ix_employer_branded_descriptions_employer_id",
@@ -950,9 +976,19 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "ix_employer_types_name",
+                table: "employer_types",
+                column: "name");
+
+            migrationBuilder.CreateIndex(
                 name: "ix_employers_area_id",
                 table: "employers",
                 column: "area_id");
+
+            migrationBuilder.CreateIndex(
+                name: "ix_employers_trusted_blacklisted_head_hunter_id_name",
+                table: "employers",
+                columns: new[] { "trusted", "blacklisted", "head_hunter_id", "name" });
 
             migrationBuilder.CreateIndex(
                 name: "ix_employers_type_id",
@@ -960,9 +996,34 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                 column: "type_id");
 
             migrationBuilder.CreateIndex(
+                name: "ix_employments_head_hunter_id_name",
+                table: "employments",
+                columns: new[] { "head_hunter_id", "name" });
+
+            migrationBuilder.CreateIndex(
+                name: "ix_experiences_head_hunter_id_name",
+                table: "experiences",
+                columns: new[] { "head_hunter_id", "name" });
+
+            migrationBuilder.CreateIndex(
+                name: "ix_industries_head_hunter_id_head_hunter_parent_id_name",
+                table: "industries",
+                columns: new[] { "head_hunter_id", "head_hunter_parent_id", "name" });
+
+            migrationBuilder.CreateIndex(
                 name: "ix_industries_parent_id",
                 table: "industries",
                 column: "parent_id");
+
+            migrationBuilder.CreateIndex(
+                name: "ix_key_skills_name",
+                table: "key_skills",
+                column: "name");
+
+            migrationBuilder.CreateIndex(
+                name: "ix_languages_head_hunter_id_name",
+                table: "languages",
+                columns: new[] { "head_hunter_id", "name" });
 
             migrationBuilder.CreateIndex(
                 name: "ix_metro_lines_area_id",
@@ -970,9 +1031,34 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                 column: "area_id");
 
             migrationBuilder.CreateIndex(
-                name: "ix_metro_stations_line_id1",
+                name: "ix_metro_lines_head_hunter_id_name",
+                table: "metro_lines",
+                columns: new[] { "head_hunter_id", "name" });
+
+            migrationBuilder.CreateIndex(
+                name: "ix_metro_stations_head_hunter_id_name",
                 table: "metro_stations",
-                column: "line_id1");
+                columns: new[] { "head_hunter_id", "name" });
+
+            migrationBuilder.CreateIndex(
+                name: "ix_metro_stations_metro_line_id",
+                table: "metro_stations",
+                column: "metro_line_id");
+
+            migrationBuilder.CreateIndex(
+                name: "ix_professional_roles_head_hunter_id_name",
+                table: "professional_roles",
+                columns: new[] { "head_hunter_id", "name" });
+
+            migrationBuilder.CreateIndex(
+                name: "ix_schedules_head_hunter_id_name",
+                table: "schedules",
+                columns: new[] { "head_hunter_id", "name" });
+
+            migrationBuilder.CreateIndex(
+                name: "ix_specializations_name_head_hunter_id_head_hunter_parent_id",
+                table: "specializations",
+                columns: new[] { "name", "head_hunter_id", "head_hunter_parent_id" });
 
             migrationBuilder.CreateIndex(
                 name: "ix_specializations_parent_id",
@@ -1013,6 +1099,11 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                 name: "ix_vacancies_experience_id",
                 table: "vacancies",
                 column: "experience_id");
+
+            migrationBuilder.CreateIndex(
+                name: "ix_vacancies_has_test_premium_archived_accept_kids_allow_messa",
+                table: "vacancies",
+                columns: new[] { "has_test", "premium", "archived", "accept_kids", "allow_messages", "accept_temporary", "accept_handicapped", "response_letter_required", "accept_incomplete_resumes", "head_hunter_id", "name", "created_at", "published_at", "initial_created_at" });
 
             migrationBuilder.CreateIndex(
                 name: "ix_vacancies_insider_interview_id",
@@ -1103,6 +1194,11 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                 column: "currency_id");
 
             migrationBuilder.CreateIndex(
+                name: "ix_vacancy_salaries_gross_to_from",
+                table: "vacancy_salaries",
+                columns: new[] { "gross", "to", "from" });
+
+            migrationBuilder.CreateIndex(
                 name: "ix_vacancy_salaries_vacancy_id",
                 table: "vacancy_salaries",
                 column: "vacancy_id",
@@ -1117,6 +1213,11 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                 name: "ix_vacancy_specializations_vacancy_id",
                 table: "vacancy_specializations",
                 column: "vacancy_id");
+
+            migrationBuilder.CreateIndex(
+                name: "ix_vacancy_types_head_hunter_id_name",
+                table: "vacancy_types",
+                columns: new[] { "head_hunter_id", "name" });
 
             migrationBuilder.CreateIndex(
                 name: "ix_vacancy_working_days_vacancy_id",
@@ -1147,6 +1248,21 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                 name: "ix_vacancy_working_time_modes_working_time_mode_id",
                 table: "vacancy_working_time_modes",
                 column: "working_time_mode_id");
+
+            migrationBuilder.CreateIndex(
+                name: "ix_working_days_head_hunter_id_name",
+                table: "working_days",
+                columns: new[] { "head_hunter_id", "name" });
+
+            migrationBuilder.CreateIndex(
+                name: "ix_working_time_intervals_head_hunter_id_name",
+                table: "working_time_intervals",
+                columns: new[] { "head_hunter_id", "name" });
+
+            migrationBuilder.CreateIndex(
+                name: "ix_working_time_modes_head_hunter_id_name",
+                table: "working_time_modes",
+                columns: new[] { "head_hunter_id", "name" });
         }
 
         /// <inheritdoc />

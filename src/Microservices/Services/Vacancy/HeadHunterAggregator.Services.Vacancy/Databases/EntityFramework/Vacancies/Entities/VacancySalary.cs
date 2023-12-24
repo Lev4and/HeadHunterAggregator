@@ -1,8 +1,10 @@
 ﻿using HeadHunterAggregator.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Entities
 {
+    [Index(nameof(Gross), nameof(To), nameof(From))]
     public class VacancySalary : EntityBase
     {
         public Guid VacancyId { get; set; }

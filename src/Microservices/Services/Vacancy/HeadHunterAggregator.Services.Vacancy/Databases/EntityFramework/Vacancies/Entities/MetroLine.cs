@@ -1,16 +1,15 @@
 ﻿using HeadHunterAggregator.Domain.Entities;
-using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 
 namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Entities
 {
+    [Index(nameof(HeadHunterId), nameof(Name))]
     public class MetroLine : EntityBase
     {
         public Guid? AreaId { get; set; }
 
-        [Required]
         public string HeadHunterId { get; set; }
 
-        [Required]
         public string Name { get; set; }
 
         public string? CityId { get; set; }
