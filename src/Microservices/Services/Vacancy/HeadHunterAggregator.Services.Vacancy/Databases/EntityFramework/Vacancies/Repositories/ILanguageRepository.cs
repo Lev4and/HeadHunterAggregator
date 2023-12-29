@@ -5,6 +5,7 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
 {
     public interface ILanguageRepository : IRepository<Language>
     {
-        
+        Task<Language> FindOneByHeadHunterIdOrAddAsync(Language entity, string headHunterId,
+            CancellationToken cancellationToken = default);
     }
 }

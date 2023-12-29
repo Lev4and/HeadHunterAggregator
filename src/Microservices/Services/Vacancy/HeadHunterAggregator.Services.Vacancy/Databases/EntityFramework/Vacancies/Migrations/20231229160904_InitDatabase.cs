@@ -35,7 +35,6 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                     id = table.Column<Guid>(type: "uuid", nullable: false),
                     parent_id = table.Column<Guid>(type: "uuid", nullable: true),
                     head_hunter_id = table.Column<string>(type: "text", nullable: false),
-                    head_hunter_parent_id = table.Column<string>(type: "text", nullable: true),
                     name = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
@@ -143,7 +142,6 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                     id = table.Column<Guid>(type: "uuid", nullable: false),
                     parent_id = table.Column<Guid>(type: "uuid", nullable: true),
                     head_hunter_id = table.Column<string>(type: "text", nullable: false),
-                    head_hunter_parent_id = table.Column<string>(type: "text", nullable: true),
                     name = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
@@ -244,10 +242,7 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                     parent_id = table.Column<Guid>(type: "uuid", nullable: true),
                     laboring = table.Column<bool>(type: "boolean", nullable: true),
                     name = table.Column<string>(type: "text", nullable: false),
-                    profarea_id = table.Column<string>(type: "text", nullable: true),
-                    head_hunter_id = table.Column<string>(type: "text", nullable: false),
-                    head_hunter_parent_id = table.Column<string>(type: "text", nullable: true),
-                    profarea_name = table.Column<string>(type: "text", nullable: true)
+                    head_hunter_id = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -316,10 +311,9 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false),
-                    area_id = table.Column<Guid>(type: "uuid", nullable: true),
+                    area_id = table.Column<Guid>(type: "uuid", nullable: false),
                     head_hunter_id = table.Column<string>(type: "text", nullable: false),
                     name = table.Column<string>(type: "text", nullable: false),
-                    city_id = table.Column<string>(type: "text", nullable: true),
                     hex_color = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
@@ -371,21 +365,17 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false),
                     metro_line_id = table.Column<Guid>(type: "uuid", nullable: false),
-                    head_hunter_id = table.Column<string>(type: "text", nullable: false),
                     order = table.Column<int>(type: "integer", nullable: true),
+                    head_hunter_id = table.Column<string>(type: "text", nullable: false),
                     name = table.Column<string>(type: "text", nullable: false),
-                    line_id = table.Column<string>(type: "text", nullable: true),
-                    line_name = table.Column<string>(type: "text", nullable: true),
-                    station_id = table.Column<string>(type: "text", nullable: false),
-                    station_name = table.Column<string>(type: "text", nullable: false),
-                    latitude = table.Column<double>(type: "double precision", nullable: true),
-                    longitude = table.Column<double>(type: "double precision", nullable: true)
+                    latitude = table.Column<double>(type: "double precision", nullable: false),
+                    longitude = table.Column<double>(type: "double precision", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("pk_metro_stations", x => x.id);
                     table.ForeignKey(
-                        name: "fk_metro_stations_metro_lines_line_id1",
+                        name: "fk_metro_stations_metro_lines_metro_line_id",
                         column: x => x.metro_line_id,
                         principalTable: "metro_lines",
                         principalColumn: "id",
@@ -908,9 +898,9 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                 });
 
             migrationBuilder.CreateIndex(
-                name: "ix_areas_head_hunter_id_head_hunter_parent_id_name",
+                name: "ix_areas_head_hunter_id_name",
                 table: "areas",
-                columns: new[] { "head_hunter_id", "head_hunter_parent_id", "name" });
+                columns: new[] { "head_hunter_id", "name" });
 
             migrationBuilder.CreateIndex(
                 name: "ix_areas_parent_id",
@@ -1006,9 +996,9 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                 columns: new[] { "head_hunter_id", "name" });
 
             migrationBuilder.CreateIndex(
-                name: "ix_industries_head_hunter_id_head_hunter_parent_id_name",
+                name: "ix_industries_head_hunter_id_name",
                 table: "industries",
-                columns: new[] { "head_hunter_id", "head_hunter_parent_id", "name" });
+                columns: new[] { "head_hunter_id", "name" });
 
             migrationBuilder.CreateIndex(
                 name: "ix_industries_parent_id",
@@ -1056,9 +1046,9 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                 columns: new[] { "head_hunter_id", "name" });
 
             migrationBuilder.CreateIndex(
-                name: "ix_specializations_name_head_hunter_id_head_hunter_parent_id",
+                name: "ix_specializations_name_head_hunter_id",
                 table: "specializations",
-                columns: new[] { "name", "head_hunter_id", "head_hunter_parent_id" });
+                columns: new[] { "name", "head_hunter_id" });
 
             migrationBuilder.CreateIndex(
                 name: "ix_specializations_parent_id",

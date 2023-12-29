@@ -5,6 +5,7 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
 {
     public interface IIndustryRepository : IRepository<Industry>
     {
-        
+        Task<Industry> FindOneByHeadHunterIdOrAddAsync(Industry entity, string headHunterId,
+            CancellationToken cancellationToken = default);
     }
 }

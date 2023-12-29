@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Entities
 {
-    [Index(nameof(Name), nameof(HeadHunterId), nameof(HeadHunterParentId))]
+    [Index(nameof(Name), nameof(HeadHunterId))]
     public class Specialization : EntityBase
     {
         public Guid? ParentId { get; set; }
@@ -12,13 +12,7 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
 
         public string Name { get; set; }
 
-        public string? ProfareaId { get; set; }
-
         public string HeadHunterId { get; set; }
-
-        public string? HeadHunterParentId { get; set; }
-
-        public string? ProfareaName { get; set; }
 
         public virtual Specialization? Parent { get; set; }
 

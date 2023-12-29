@@ -1,10 +1,12 @@
 ﻿using HeadHunterAggregator.Domain.Infrastructure.Databases;
+using HeadHunterAggregator.Domain.Infrastructure.Databases.Repositories;
 using HeadHunterAggregator.Domain.Infrastructure.MessageBrokers;
 using HeadHunterAggregator.Infrastructure.MessageBrokers.RabbitMQ;
 using HeadHunterAggregator.Services.Vacancy.ConfigurationOptions;
 using HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies;
 using HeadHunterAggregator.Services.Vacancy.Web.Http.HeadHunter;
 using MassTransit;
+using MassTransit.Internals;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -42,7 +44,17 @@ namespace HeadHunterAggregator.Services.Vacancy
                     .UseSnakeCaseNamingConvention();
             });
 
-            services.AddTransient<IUnitOfWork, VacanciesDbContext>();
+            services.AddScoped<IUnitOfWork>(serviceProvider => serviceProvider.GetRequiredService<VacanciesDbContext>());
+
+            foreach (var repositoryInterface in typeof(VacancyModuleServiceCollectionExtensions).Assembly.GetTypes()
+                .Where(type => type.IsInterface && type.HasInterface(typeof(IRepository<>))))
+            {
+                foreach (var repository in typeof(VacancyModuleServiceCollectionExtensions).Assembly.GetTypes()
+                    .Where(type => type.IsClass && type.HasInterface(repositoryInterface)))
+                {
+                    services.AddTransient(repositoryInterface, repository);
+                }
+            }
 
             services.AddMediatR(config => config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 

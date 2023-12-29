@@ -6,13 +6,11 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
     [Index(nameof(HeadHunterId), nameof(Name))]
     public class MetroLine : EntityBase
     {
-        public Guid? AreaId { get; set; }
+        public Guid AreaId { get; set; }
 
         public string HeadHunterId { get; set; }
 
         public string Name { get; set; }
-
-        public string? CityId { get; set; }
 
         public string? HexColor { get; set; }
 

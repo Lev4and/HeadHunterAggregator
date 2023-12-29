@@ -1,5 +1,7 @@
 ﻿using HeadHunterAggregator.Domain.Infrastructure.Databases;
+using HeadHunterAggregator.Domain.Infrastructure.Databases.Transactions;
 using HeadHunterAggregator.Infrastructure.Databases.EntityFramework.Extensions;
+using HeadHunterAggregator.Infrastructure.Databases.EntityFramework.Transactions;
 using HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Data.Common;
@@ -99,16 +101,16 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
             
         }
 
-        public async Task<DbTransaction> BeginTransactionAsync(CancellationToken cancellationToken = default)
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
         {
-            var dbContextTransaction = await Database.BeginTransactionAsync(cancellationToken);
-
-            return dbContextTransaction.MapToDbTransaction();
+            return await base.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task CommitTransactionAsync(CancellationToken cancellationToken = default)
+        public async Task<IDatabaseTransaction> BeginTransactionAsync(CancellationToken cancellationToken = default)
         {
-            await Database.CommitTransactionAsync(cancellationToken);
+            await Task.CompletedTask;
+
+            return new EntityFrameworkDatabaseTransaction(this);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

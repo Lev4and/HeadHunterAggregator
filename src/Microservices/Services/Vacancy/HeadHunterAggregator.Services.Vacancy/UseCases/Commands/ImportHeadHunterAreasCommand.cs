@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using HeadHunterAggregator.Domain.Infrastructure.Databases;
+using HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Entities;
 using HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Repositories;
 using HeadHunterAggregator.Services.Vacancy.Web.Http.HeadHunter.DTOs;
 using MediatR;
@@ -37,29 +38,15 @@ namespace HeadHunterAggregator.Services.Vacancy.UseCases.Commands
             public async Task<bool> Handle(ImportHeadHunterAreasCommand request, 
                 CancellationToken cancellationToken)
             {
-                return await SaveAreasAsync(request.Areas, null, cancellationToken);
-            }
-
-            private async Task<bool> SaveAreasAsync(IReadOnlyCollection<AreaDto> areas, Guid? parentAreaId, 
-                CancellationToken cancellationToken = default)
-            {
                 using (var transaction = await _unitOfWork.BeginTransactionAsync(cancellationToken))
                 {
                     try
                     {
-                        foreach (var area in areas)
-                        {
-                            
-                        }
+                        await SaveAreas(request.Areas, null, cancellationToken);
 
                         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
                         await transaction.CommitAsync(cancellationToken);
-
-                        foreach (var area in areas)
-                        {
-
-                        }
 
                         return true;
                     }
@@ -68,6 +55,22 @@ namespace HeadHunterAggregator.Services.Vacancy.UseCases.Commands
                         await transaction.RollbackAsync(cancellationToken);
 
                         return false;
+                    }
+                }
+            }
+
+            private async Task SaveAreas(IReadOnlyCollection<AreaDto> areas, Guid? parentId,
+                CancellationToken cancellationToken = default)
+            {
+                foreach (var area in areas)
+                {
+                    var item = await _repository.FindOneByHeadHunterIdOrAddAsync(
+                        new Area() { ParentId = parentId, Name = area.Name, HeadHunterId = area.Id }, 
+                            area.Id, cancellationToken);
+
+                    if (area.Areas?.Count > 0)
+                    {
+                        await SaveAreas(area.Areas, item.Id, cancellationToken);
                     }
                 }
             }

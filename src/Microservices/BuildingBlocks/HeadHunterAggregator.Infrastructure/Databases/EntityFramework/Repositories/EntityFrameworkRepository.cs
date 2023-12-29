@@ -16,9 +16,9 @@ namespace HeadHunterAggregator.Infrastructure.Databases.EntityFramework.Reposito
             _dbContext = dbContext;
         }
 
-        public async Task<TEntity> CreateAsync(TEntity entity, CancellationToken cancellationToken = default)
+        public TEntity Add(TEntity entity, CancellationToken cancellationToken = default)
         {
-            return await Task.FromResult(_dbContext.Set<TEntity>().Add(entity).Entity);
+            return _dbContext.Set<TEntity>().Add(entity).Entity;
         }
 
         public async Task<TEntity?> FindOneByIdAsync(Guid id, CancellationToken cancellationToken = default)
@@ -34,16 +34,16 @@ namespace HeadHunterAggregator.Infrastructure.Databases.EntityFramework.Reposito
                 .SingleOrDefaultAsync(expression, cancellationToken);
         }
 
-        public async Task<TEntity> FindOneByExpressionOrCreateAsync(TEntity entity, 
+        public async Task<TEntity> FindOneByExpressionOrAddAsync(TEntity entity, 
             Expression<Func<TEntity, bool>> expression, CancellationToken cancellationToken = default)
         {
             return await FindOneByExpressionAsync(expression, cancellationToken) 
-                ?? await CreateAsync(entity, cancellationToken);
+                ?? Add(entity, cancellationToken);
         }
 
-        public async Task RemoveAsync(TEntity entity, CancellationToken cancellationToken = default)
+        public void Remove(TEntity entity, CancellationToken cancellationToken = default)
         {
-            await Task.FromResult(_dbContext.Set<TEntity>().Remove(entity));
+            _dbContext.Set<TEntity>().Remove(entity);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Data.Common;
+﻿using HeadHunterAggregator.Domain.Infrastructure.Databases.Transactions;
 
 namespace HeadHunterAggregator.Domain.Infrastructure.Databases
 {
@@ -6,8 +6,6 @@ namespace HeadHunterAggregator.Domain.Infrastructure.Databases
     {
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 
-        Task<DbTransaction> BeginTransactionAsync(CancellationToken cancellationToken = default);
-
-        Task CommitTransactionAsync(CancellationToken cancellationToken = default);
+        Task<IDatabaseTransaction> BeginTransactionAsync(CancellationToken cancellationToken = default);
     }
 }

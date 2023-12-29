@@ -1,7 +1,11 @@
 ﻿using FluentValidation;
 using HeadHunterAggregator.Domain.Infrastructure.Databases;
+using HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies;
+using HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Entities;
+using HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Repositories;
 using HeadHunterAggregator.Services.Vacancy.Web.Http.HeadHunter.DTOs;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace HeadHunterAggregator.Services.Vacancy.UseCases.Commands
 {
@@ -25,16 +29,41 @@ namespace HeadHunterAggregator.Services.Vacancy.UseCases.Commands
         internal class Handler : IRequestHandler<ImportHeadHunterLanguagesCommand, bool>
         {
             private readonly IUnitOfWork _unitOfWork;
+            private readonly ILanguageRepository _repository;
 
-            public Handler(IUnitOfWork unitOfWork)
+            public Handler(IUnitOfWork unitOfWork, ILanguageRepository repository)
             {
                 _unitOfWork = unitOfWork;
+                _repository = repository;
             }
 
-            public Task<bool> Handle(ImportHeadHunterLanguagesCommand request,
+            public async Task<bool> Handle(ImportHeadHunterLanguagesCommand request,
                 CancellationToken cancellationToken)
             {
-                throw new NotImplementedException();
+                using (var transaction = await _unitOfWork.BeginTransactionAsync(cancellationToken))
+                {
+                    try
+                    {
+                        foreach (var language in request.Languages)
+                        {
+                            await _repository.FindOneByHeadHunterIdOrAddAsync(
+                                new Language { HeadHunterId = language.Id, Name = language.Name }, language.Id, 
+                                    cancellationToken);
+                        }
+
+                        await _unitOfWork.SaveChangesAsync(cancellationToken);
+
+                        await transaction.CommitAsync(cancellationToken);
+
+                        return true;
+                    }
+                    catch
+                    {
+                        await transaction.RollbackAsync(cancellationToken);
+
+                        return false;
+                    }
+                }
             }
         }
     }

@@ -5,6 +5,7 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
 {
     public interface ISpecializationRepository : IRepository<Specialization>
     {
-        
+        Task<Specialization> FindOneByHeadHunterIdOrAddAsync(Specialization entity, string headHunterId,
+            CancellationToken cancellationToken = default);
     }
 }

@@ -8,5 +8,12 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
         {
             
         }
+
+        public async Task<Industry> FindOneByHeadHunterIdOrAddAsync(Industry entity, string headHunterId, 
+            CancellationToken cancellationToken = default)
+        {
+            return await FindOneByExpressionOrAddAsync(entity, industry => industry.HeadHunterId == headHunterId,
+                cancellationToken);
+        }
     }
 }

@@ -31,10 +31,28 @@ namespace HeadHunterAggregator.Services.Vacancy.UseCases.Commands
                 _unitOfWork = unitOfWork;
             }
 
-            public Task<bool> Handle(ImportHeadHunterDictionariesCommand request, 
+            public async Task<bool> Handle(ImportHeadHunterDictionariesCommand request, 
                 CancellationToken cancellationToken)
             {
-                throw new NotImplementedException();
+                using (var transaction = await _unitOfWork.BeginTransactionAsync(cancellationToken))
+                {
+                    try
+                    {
+
+
+                        await _unitOfWork.SaveChangesAsync(cancellationToken);
+
+                        await transaction.CommitAsync(cancellationToken);
+
+                        return true;
+                    }
+                    catch
+                    {
+                        await transaction.RollbackAsync(cancellationToken);
+
+                        return false;
+                    }
+                }
             }
         }
     }

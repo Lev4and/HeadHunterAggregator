@@ -5,6 +5,7 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
 {
     public interface IMetroStationRepository : IRepository<MetroStation>
     {
-        
+        Task<MetroStation> FindOneByHeadHunterIdOrAddAsync(MetroStation entity, string headHunterId,
+            CancellationToken cancellationToken = default);
     }
 }

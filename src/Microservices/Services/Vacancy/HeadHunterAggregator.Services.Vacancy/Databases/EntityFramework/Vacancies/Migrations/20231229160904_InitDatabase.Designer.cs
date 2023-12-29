@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Migrations
 {
     [DbContext(typeof(VacanciesDbContext))]
-    [Migration("20231224055030_InitDatabase")]
+    [Migration("20231229160904_InitDatabase")]
     partial class InitDatabase
     {
         /// <inheritdoc />
@@ -74,10 +74,6 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                         .HasColumnType("text")
                         .HasColumnName("head_hunter_id");
 
-                    b.Property<string>("HeadHunterParentId")
-                        .HasColumnType("text")
-                        .HasColumnName("head_hunter_parent_id");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text")
@@ -93,8 +89,8 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                     b.HasIndex("ParentId")
                         .HasDatabaseName("ix_areas_parent_id");
 
-                    b.HasIndex("HeadHunterId", "HeadHunterParentId", "Name")
-                        .HasDatabaseName("ix_areas_head_hunter_id_head_hunter_parent_id_name");
+                    b.HasIndex("HeadHunterId", "Name")
+                        .HasDatabaseName("ix_areas_head_hunter_id_name");
 
                     b.ToTable("areas", (string)null);
                 });
@@ -480,10 +476,6 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                         .HasColumnType("text")
                         .HasColumnName("head_hunter_id");
 
-                    b.Property<string>("HeadHunterParentId")
-                        .HasColumnType("text")
-                        .HasColumnName("head_hunter_parent_id");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text")
@@ -499,8 +491,8 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                     b.HasIndex("ParentId")
                         .HasDatabaseName("ix_industries_parent_id");
 
-                    b.HasIndex("HeadHunterId", "HeadHunterParentId", "Name")
-                        .HasDatabaseName("ix_industries_head_hunter_id_head_hunter_parent_id_name");
+                    b.HasIndex("HeadHunterId", "Name")
+                        .HasDatabaseName("ix_industries_head_hunter_id_name");
 
                     b.ToTable("industries", (string)null);
                 });
@@ -586,13 +578,9 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                         .HasColumnType("uuid")
                         .HasColumnName("id");
 
-                    b.Property<Guid?>("AreaId")
+                    b.Property<Guid>("AreaId")
                         .HasColumnType("uuid")
                         .HasColumnName("area_id");
-
-                    b.Property<string>("CityId")
-                        .HasColumnType("text")
-                        .HasColumnName("city_id");
 
                     b.Property<string>("HeadHunterId")
                         .IsRequired()
@@ -632,19 +620,11 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                         .HasColumnType("text")
                         .HasColumnName("head_hunter_id");
 
-                    b.Property<double?>("Latitude")
+                    b.Property<double>("Latitude")
                         .HasColumnType("double precision")
                         .HasColumnName("latitude");
 
-                    b.Property<string>("LineId")
-                        .HasColumnType("text")
-                        .HasColumnName("line_id");
-
-                    b.Property<string>("LineName")
-                        .HasColumnType("text")
-                        .HasColumnName("line_name");
-
-                    b.Property<double?>("Longitude")
+                    b.Property<double>("Longitude")
                         .HasColumnType("double precision")
                         .HasColumnName("longitude");
 
@@ -660,16 +640,6 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                     b.Property<int?>("Order")
                         .HasColumnType("integer")
                         .HasColumnName("order");
-
-                    b.Property<string>("StationId")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("station_id");
-
-                    b.Property<string>("StationName")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("station_name");
 
                     b.HasKey("Id")
                         .HasName("pk_metro_stations");
@@ -776,10 +746,6 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                         .HasColumnType("text")
                         .HasColumnName("head_hunter_id");
 
-                    b.Property<string>("HeadHunterParentId")
-                        .HasColumnType("text")
-                        .HasColumnName("head_hunter_parent_id");
-
                     b.Property<bool?>("Laboring")
                         .HasColumnType("boolean")
                         .HasColumnName("laboring");
@@ -793,22 +759,14 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                         .HasColumnType("uuid")
                         .HasColumnName("parent_id");
 
-                    b.Property<string>("ProfareaId")
-                        .HasColumnType("text")
-                        .HasColumnName("profarea_id");
-
-                    b.Property<string>("ProfareaName")
-                        .HasColumnType("text")
-                        .HasColumnName("profarea_name");
-
                     b.HasKey("Id")
                         .HasName("pk_specializations");
 
                     b.HasIndex("ParentId")
                         .HasDatabaseName("ix_specializations_parent_id");
 
-                    b.HasIndex("Name", "HeadHunterId", "HeadHunterParentId")
-                        .HasDatabaseName("ix_specializations_name_head_hunter_id_head_hunter_parent_id");
+                    b.HasIndex("Name", "HeadHunterId")
+                        .HasDatabaseName("ix_specializations_name_head_hunter_id");
 
                     b.ToTable("specializations", (string)null);
                 });
@@ -1578,7 +1536,7 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                         .HasForeignKey("MetroLineId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
-                        .HasConstraintName("fk_metro_stations_metro_lines_line_id1");
+                        .HasConstraintName("fk_metro_stations_metro_lines_metro_line_id");
 
                     b.Navigation("Line");
                 });
