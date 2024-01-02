@@ -3,8 +3,8 @@ using HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.
 
 namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Repositories
 {
-    public interface IInsiderInterviewRepository : IRepository<InsiderInterview>
+    public interface IInsiderInterviewRepository : IRepository<InsiderInterview>, IFromHeadHunterRepository<InsiderInterview>
     {
-        
+
     }
 }

@@ -4,6 +4,7 @@ using HeadHunterAggregator.Domain.Infrastructure.MessageBrokers;
 using HeadHunterAggregator.Infrastructure.MessageBrokers.RabbitMQ;
 using HeadHunterAggregator.Services.Vacancy.ConfigurationOptions;
 using HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies;
+using HeadHunterAggregator.Services.Vacancy.Extensions;
 using HeadHunterAggregator.Services.Vacancy.Web.Http.HeadHunter;
 using MassTransit;
 using MassTransit.Internals;
@@ -46,15 +47,8 @@ namespace HeadHunterAggregator.Services.Vacancy
 
             services.AddScoped<IUnitOfWork>(serviceProvider => serviceProvider.GetRequiredService<VacanciesDbContext>());
 
-            foreach (var repositoryInterface in typeof(VacancyModuleServiceCollectionExtensions).Assembly.GetTypes()
-                .Where(type => type.IsInterface && type.HasInterface(typeof(IRepository<>))))
-            {
-                foreach (var repository in typeof(VacancyModuleServiceCollectionExtensions).Assembly.GetTypes()
-                    .Where(type => type.IsClass && type.HasInterface(repositoryInterface)))
-                {
-                    services.AddTransient(repositoryInterface, repository);
-                }
-            }
+            services.AddMappers();
+            services.AddRepositories();
 
             services.AddMediatR(config => config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 

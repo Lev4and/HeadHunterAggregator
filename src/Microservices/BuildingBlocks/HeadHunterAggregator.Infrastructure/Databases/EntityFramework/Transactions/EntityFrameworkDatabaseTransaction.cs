@@ -1,5 +1,4 @@
 ﻿using HeadHunterAggregator.Domain.Infrastructure.Databases.Transactions;
-using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 

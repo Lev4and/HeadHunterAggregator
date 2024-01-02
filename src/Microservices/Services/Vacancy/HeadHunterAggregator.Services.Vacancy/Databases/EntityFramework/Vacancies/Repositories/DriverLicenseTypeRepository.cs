@@ -8,5 +8,12 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
         {
             
         }
+
+        public Task<DriverLicenseType> FindOneByHeadHunterIdOrAddAsync(DriverLicenseType entity, string headHunterId, 
+            CancellationToken cancellationToken = default)
+        {
+            return FindOneByExpressionOrAddAsync(entity, driverLicenseType => driverLicenseType.HeadHunterId == headHunterId,
+                cancellationToken);
+        }
     }
 }

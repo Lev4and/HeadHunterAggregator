@@ -20,8 +20,8 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                     street = table.Column<string>(type: "text", nullable: true),
                     building = table.Column<string>(type: "text", nullable: true),
                     description = table.Column<string>(type: "text", nullable: true),
-                    latitude = table.Column<double>(type: "double precision", nullable: true),
-                    longitude = table.Column<double>(type: "double precision", nullable: true)
+                    latitude = table.Column<double>(type: "double precision", nullable: false),
+                    longitude = table.Column<double>(type: "double precision", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -102,6 +102,7 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false),
+                    head_hunter_id = table.Column<string>(type: "text", nullable: false),
                     name = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
@@ -159,7 +160,7 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false),
-                    head_hunter_id = table.Column<long>(type: "bigint", nullable: false),
+                    head_hunter_id = table.Column<string>(type: "text", nullable: false),
                     title = table.Column<string>(type: "text", nullable: false),
                     url = table.Column<string>(type: "text", nullable: false)
                 },
@@ -173,6 +174,7 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false),
+                    head_hunter_id = table.Column<string>(type: "text", nullable: false),
                     name = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
@@ -335,7 +337,7 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                     area_id = table.Column<Guid>(type: "uuid", nullable: false),
                     trusted = table.Column<bool>(type: "boolean", nullable: true),
                     blacklisted = table.Column<bool>(type: "boolean", nullable: true),
-                    head_hunter_id = table.Column<long>(type: "bigint", nullable: false),
+                    head_hunter_id = table.Column<string>(type: "text", nullable: false),
                     name = table.Column<string>(type: "text", nullable: false),
                     url = table.Column<string>(type: "text", nullable: true),
                     site_url = table.Column<string>(type: "text", nullable: true),
@@ -515,7 +517,7 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                     accept_handicapped = table.Column<bool>(type: "boolean", nullable: false),
                     response_letter_required = table.Column<bool>(type: "boolean", nullable: false),
                     accept_incomplete_resumes = table.Column<bool>(type: "boolean", nullable: false),
-                    head_hunter_id = table.Column<long>(type: "bigint", nullable: false),
+                    head_hunter_id = table.Column<string>(type: "text", nullable: false),
                     name = table.Column<string>(type: "text", nullable: false),
                     code = table.Column<string>(type: "text", nullable: true),
                     alternate_url = table.Column<string>(type: "text", nullable: false),
@@ -966,9 +968,9 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "ix_employer_types_name",
+                name: "ix_employer_types_head_hunter_id_name",
                 table: "employer_types",
-                column: "name");
+                columns: new[] { "head_hunter_id", "name" });
 
             migrationBuilder.CreateIndex(
                 name: "ix_employers_area_id",
@@ -1006,9 +1008,14 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                 column: "parent_id");
 
             migrationBuilder.CreateIndex(
-                name: "ix_key_skills_name",
+                name: "ix_insider_interviews_head_hunter_id_title",
+                table: "insider_interviews",
+                columns: new[] { "head_hunter_id", "title" });
+
+            migrationBuilder.CreateIndex(
+                name: "ix_key_skills_head_hunter_id_name",
                 table: "key_skills",
-                column: "name");
+                columns: new[] { "head_hunter_id", "name" });
 
             migrationBuilder.CreateIndex(
                 name: "ix_languages_head_hunter_id_name",

@@ -1,11 +1,9 @@
 ﻿using FluentValidation;
 using HeadHunterAggregator.Domain.Infrastructure.Databases;
-using HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies;
-using HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Entities;
+using HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Mappers;
 using HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Repositories;
 using HeadHunterAggregator.Services.Vacancy.Web.Http.HeadHunter.DTOs;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace HeadHunterAggregator.Services.Vacancy.UseCases.Commands
 {
@@ -29,12 +27,14 @@ namespace HeadHunterAggregator.Services.Vacancy.UseCases.Commands
         internal class Handler : IRequestHandler<ImportHeadHunterLanguagesCommand, bool>
         {
             private readonly IUnitOfWork _unitOfWork;
-            private readonly ILanguageRepository _repository;
+            private readonly ILanguageMapper _languageMapper;
+            private readonly ILanguageRepository _languageRepository;
 
-            public Handler(IUnitOfWork unitOfWork, ILanguageRepository repository)
+            public Handler(IUnitOfWork unitOfWork, ILanguageMapper languageMapper, ILanguageRepository languageRepository)
             {
                 _unitOfWork = unitOfWork;
-                _repository = repository;
+                _languageMapper = languageMapper;
+                _languageRepository = languageRepository;
             }
 
             public async Task<bool> Handle(ImportHeadHunterLanguagesCommand request,
@@ -46,9 +46,8 @@ namespace HeadHunterAggregator.Services.Vacancy.UseCases.Commands
                     {
                         foreach (var language in request.Languages)
                         {
-                            await _repository.FindOneByHeadHunterIdOrAddAsync(
-                                new Language { HeadHunterId = language.Id, Name = language.Name }, language.Id, 
-                                    cancellationToken);
+                            await _languageRepository.FindOneByHeadHunterIdOrAddAsync(_languageMapper.Map(language), 
+                                language.Id, cancellationToken);
                         }
 
                         await _unitOfWork.SaveChangesAsync(cancellationToken);

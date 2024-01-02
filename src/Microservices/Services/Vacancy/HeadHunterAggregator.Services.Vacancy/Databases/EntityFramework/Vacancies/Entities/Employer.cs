@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Entities
 {
     [Index(nameof(Trusted), nameof(Blacklisted), nameof(HeadHunterId), nameof(Name))]
-    public class Employer : EntityBase
+    public class Employer : EntityBase, IFromHeadHunter
     {
         public Guid TypeId { get; set; }
 
@@ -14,7 +14,7 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
 
         public bool? Blacklisted { get; set; }
 
-        public long HeadHunterId { get; set; }
+        public string HeadHunterId { get; set; }
 
         public string Name { get; set; }
 

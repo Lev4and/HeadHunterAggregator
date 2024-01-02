@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Entities
 {
     [Index(nameof(HeadHunterId), nameof(Name))]
-    public class MetroLine : EntityBase
+    public class MetroLine : EntityBase, IFromHeadHunter
     {
         public Guid AreaId { get; set; }
 

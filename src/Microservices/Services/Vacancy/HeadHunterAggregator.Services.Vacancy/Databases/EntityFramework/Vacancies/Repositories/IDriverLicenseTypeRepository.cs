@@ -3,8 +3,9 @@ using HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.
 
 namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Repositories
 {
-    public interface IDriverLicenseTypeRepository : IRepository<DriverLicenseType>
+    public interface IDriverLicenseTypeRepository : IRepository<DriverLicenseType>, 
+        IFromHeadHunterRepository<DriverLicenseType>
     {
-        
+
     }
 }

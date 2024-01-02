@@ -41,11 +41,11 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                         .HasColumnType("text")
                         .HasColumnName("description");
 
-                    b.Property<double?>("Latitude")
+                    b.Property<double>("Latitude")
                         .HasColumnType("double precision")
                         .HasColumnName("latitude");
 
-                    b.Property<double?>("Longitude")
+                    b.Property<double>("Longitude")
                         .HasColumnType("double precision")
                         .HasColumnName("longitude");
 
@@ -205,8 +205,9 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                         .HasColumnType("boolean")
                         .HasColumnName("blacklisted");
 
-                    b.Property<long>("HeadHunterId")
-                        .HasColumnType("bigint")
+                    b.Property<string>("HeadHunterId")
+                        .IsRequired()
+                        .HasColumnType("text")
                         .HasColumnName("head_hunter_id");
 
                     b.Property<string>("Name")
@@ -395,6 +396,11 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                         .HasColumnType("uuid")
                         .HasColumnName("id");
 
+                    b.Property<string>("HeadHunterId")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("head_hunter_id");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text")
@@ -403,8 +409,8 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                     b.HasKey("Id")
                         .HasName("pk_employer_types");
 
-                    b.HasIndex("Name")
-                        .HasDatabaseName("ix_employer_types_name");
+                    b.HasIndex("HeadHunterId", "Name")
+                        .HasDatabaseName("ix_employer_types_head_hunter_id_name");
 
                     b.ToTable("employer_types", (string)null);
                 });
@@ -501,8 +507,9 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                         .HasColumnType("uuid")
                         .HasColumnName("id");
 
-                    b.Property<long>("HeadHunterId")
-                        .HasColumnType("bigint")
+                    b.Property<string>("HeadHunterId")
+                        .IsRequired()
+                        .HasColumnType("text")
                         .HasColumnName("head_hunter_id");
 
                     b.Property<string>("Title")
@@ -518,6 +525,9 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                     b.HasKey("Id")
                         .HasName("pk_insider_interviews");
 
+                    b.HasIndex("HeadHunterId", "Title")
+                        .HasDatabaseName("ix_insider_interviews_head_hunter_id_title");
+
                     b.ToTable("insider_interviews", (string)null);
                 });
 
@@ -528,6 +538,11 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                         .HasColumnType("uuid")
                         .HasColumnName("id");
 
+                    b.Property<string>("HeadHunterId")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("head_hunter_id");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text")
@@ -536,8 +551,8 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                     b.HasKey("Id")
                         .HasName("pk_key_skills");
 
-                    b.HasIndex("Name")
-                        .HasDatabaseName("ix_key_skills_name");
+                    b.HasIndex("HeadHunterId", "Name")
+                        .HasDatabaseName("ix_key_skills_head_hunter_id_name");
 
                     b.ToTable("key_skills", (string)null);
                 });
@@ -850,8 +865,9 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                         .HasColumnType("boolean")
                         .HasColumnName("has_test");
 
-                    b.Property<long>("HeadHunterId")
-                        .HasColumnType("bigint")
+                    b.Property<string>("HeadHunterId")
+                        .IsRequired()
+                        .HasColumnType("text")
                         .HasColumnName("head_hunter_id");
 
                     b.Property<DateTime>("InitialCreatedAt")

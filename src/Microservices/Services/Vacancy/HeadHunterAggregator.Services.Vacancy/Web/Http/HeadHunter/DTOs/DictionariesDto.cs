@@ -35,7 +35,7 @@ namespace HeadHunterAggregator.Services.Vacancy.Web.Http.HeadHunter.DTOs
         public IReadOnlyCollection<ResumeContactsSiteTypeDto>? ResumeContactsSiteTypes { get; set; }
 
         [JsonProperty("employer_type")]
-        public IReadOnlyCollection<EmployerTypeDto>? EmployerTypes { get; set; }
+        public IReadOnlyCollection<EmployerTypeDto> EmployerTypes { get; set; }
 
         [JsonProperty("employer_relation")]
         public IReadOnlyCollection<EmployerRelationDto>? EmployerRelationes { get; set; }
@@ -92,22 +92,22 @@ namespace HeadHunterAggregator.Services.Vacancy.Web.Http.HeadHunter.DTOs
         public IReadOnlyCollection<PhoneCallStatusDto>? PhoneCallStatuses { get; set; }
 
         [JsonProperty("experience")]
-        public IReadOnlyCollection<ExperienceDto>? Experiences { get; set; }
+        public IReadOnlyCollection<ExperienceDto> Experiences { get; set; }
 
         [JsonProperty("employment")]
-        public IReadOnlyCollection<EmploymentDto>? Employments { get; set; }
+        public IReadOnlyCollection<EmploymentDto> Employments { get; set; }
 
         [JsonProperty("schedule")]
-        public IReadOnlyCollection<ScheduleDto>? Schedules { get; set; }
+        public IReadOnlyCollection<ScheduleDto> Schedules { get; set; }
 
         [JsonProperty("education_level")]
         public IReadOnlyCollection<EducationLevelDto>? EducationLevels { get; set; }
 
         [JsonProperty("currency")]
-        public IReadOnlyCollection<CurrencyDto>? Currencies { get; set; }
+        public IReadOnlyCollection<CurrencyDto> Currencies { get; set; }
 
         [JsonProperty("vacancy_billing_type")]
-        public IReadOnlyCollection<BillingTypeDto>? VacancyBillingTypes { get; set; }
+        public IReadOnlyCollection<BillingTypeDto> VacancyBillingTypes { get; set; }
 
         [JsonProperty("applicant_comment_access_type")]
         public IReadOnlyCollection<ApplicantCommentAccessTypeDto>? ApplicantCommentAccessType { get; set; }
@@ -116,22 +116,22 @@ namespace HeadHunterAggregator.Services.Vacancy.Web.Http.HeadHunter.DTOs
         public IReadOnlyCollection<VacancyClusterDto>? VacancyClusters { get; set; }
 
         [JsonProperty("driver_license_types")]
-        public IReadOnlyCollection<DriverLicenseTypeDto>? DriverLicenseTypes { get; set; }
+        public IReadOnlyCollection<DriverLicenseTypeDto> DriverLicenseTypes { get; set; }
 
         [JsonProperty("language_level")]
         public IReadOnlyCollection<LanguageLevelDto>? LanguageLevels { get; set; }
 
         [JsonProperty("working_days")]
-        public IReadOnlyCollection<WorkingDayDto>? WorkingDays { get; set; }
+        public IReadOnlyCollection<WorkingDayDto> WorkingDays { get; set; }
 
         [JsonProperty("working_time_intervals")]
-        public IReadOnlyCollection<WorkingTimeIntervalDto>? WorkingTimeIntervals { get; set; }
+        public IReadOnlyCollection<WorkingTimeIntervalDto> WorkingTimeIntervals { get; set; }
 
         [JsonProperty("working_time_modes")]
-        public IReadOnlyCollection<WorkingTimeModeDto>? WorkingTimeModes { get; set; }
+        public IReadOnlyCollection<WorkingTimeModeDto> WorkingTimeModes { get; set; }
 
         [JsonProperty("vacancy_type")]
-        public IReadOnlyCollection<VacancyTypeDto>? VacancyTypes { get; set; }
+        public IReadOnlyCollection<VacancyTypeDto> VacancyTypes { get; set; }
 
         [JsonProperty("resume_search_label")]
         public IReadOnlyCollection<ResumeSearchLabelDto>? ResumeSearchLabels { get; set; }

@@ -3,9 +3,8 @@ using HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.
 
 namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Repositories
 {
-    public interface ISpecializationRepository : IRepository<Specialization>
+    public interface ISpecializationRepository : IRepository<Specialization>, IFromHeadHunterRepository<Specialization>
     {
-        Task<Specialization> FindOneByHeadHunterIdOrAddAsync(Specialization entity, string headHunterId,
-            CancellationToken cancellationToken = default);
+
     }
 }

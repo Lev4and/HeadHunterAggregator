@@ -3,9 +3,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Entities
 {
-    [Index(nameof(Name))]
-    public class KeySkill : EntityBase
+    [Index(nameof(HeadHunterId), nameof(Name))]
+    public class KeySkill : EntityBase, IFromHeadHunter
     {
+        public string HeadHunterId { get; set; }
+
         public string Name { get; set; }
 
         public virtual IReadOnlyCollection<VacancyKeySkill>? Vacancies { get; set; }

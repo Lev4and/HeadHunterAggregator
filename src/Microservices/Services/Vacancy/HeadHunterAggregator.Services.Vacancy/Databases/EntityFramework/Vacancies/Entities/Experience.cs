@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Entities
 {
     [Index(nameof(HeadHunterId), nameof(Name))]
-    public class Experience : EntityBase
+    public class Experience : EntityBase, IFromHeadHunter
     {
         public string HeadHunterId { get; set; }
 

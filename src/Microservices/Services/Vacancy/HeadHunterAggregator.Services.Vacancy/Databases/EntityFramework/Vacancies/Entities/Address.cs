@@ -2,7 +2,7 @@
 
 namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Entities
 {
-    public class Address : EntityBase
+    public class Address : EntityBase, IGeoLocation
     {
         public string? City { get; set; }
 
@@ -12,9 +12,9 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
 
         public string? Description { get; set; }
 
-        public double? Latitude { get; set; }
+        public double Latitude { get; set; }
 
-        public double? Longitude { get; set; }
+        public double Longitude { get; set; }
 
         public virtual IReadOnlyCollection<Vacancy>? Vacancies { get; set; }
     }

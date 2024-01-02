@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Entities
 {
     [Index(nameof(Name), nameof(HeadHunterId))]
-    public class Specialization : EntityBase
+    public class Specialization : EntityBase, ITreeStructure, IFromHeadHunter
     {
         public Guid? ParentId { get; set; }
 

@@ -3,8 +3,8 @@ using HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.
 
 namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Repositories
 {
-    public interface IExperienceRepository : IRepository<Experience>
+    public interface IExperienceRepository : IRepository<Experience>, IFromHeadHunterRepository<Experience>
     {
-        
+
     }
 }

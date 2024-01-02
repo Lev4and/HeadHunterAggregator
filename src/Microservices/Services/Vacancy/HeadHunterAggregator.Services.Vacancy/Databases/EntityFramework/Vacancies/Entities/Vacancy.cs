@@ -6,7 +6,7 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
     [Index(nameof(HasTest), nameof(Premium), nameof(Archived), nameof(AcceptKids), nameof(AllowMessages), nameof(AcceptTemporary),
         nameof(AcceptHandicapped), nameof(ResponseLetterRequired), nameof(AcceptIncompleteResumes), nameof(HeadHunterId),
             nameof(Name), nameof(CreatedAt), nameof(PublishedAt), nameof(InitialCreatedAt))]
-    public class Vacancy : EntityBase
+    public class Vacancy : EntityBase, IFromHeadHunter
     {
         public Guid AreaId { get; set; }
 
@@ -46,7 +46,7 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
 
         public bool AcceptIncompleteResumes { get; set; }
 
-        public long HeadHunterId { get; set; }
+        public string HeadHunterId { get; set; }
 
         public string Name { get; set; }
 

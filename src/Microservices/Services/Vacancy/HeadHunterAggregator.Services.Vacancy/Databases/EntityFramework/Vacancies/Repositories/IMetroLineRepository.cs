@@ -3,9 +3,8 @@ using HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.
 
 namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Repositories
 {
-    public interface IMetroLineRepository : IRepository<MetroLine>
+    public interface IMetroLineRepository : IRepository<MetroLine>, IFromHeadHunterRepository<MetroLine>
     {
-        Task<MetroLine> FindOneByHeadHunterIdOrAddAsync(MetroLine entity, string headHunterId,
-            CancellationToken cancellationToken = default);
+
     }
 }

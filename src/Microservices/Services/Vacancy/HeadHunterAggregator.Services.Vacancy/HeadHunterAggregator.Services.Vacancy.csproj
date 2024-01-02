@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <Folder Include="Databases\EntityFramework\Vacancies\Migrations\" />
-    <Folder Include="Databases\EntityFramework\Vacancies\Repositories\" />
+    <Folder Include="Databases\EntityFramework\Vacancies\Relationships\" />
     <Folder Include="Exceptions\" />
     <Folder Include="MessageConsumers\" />
     <Folder Include="Messages\" />

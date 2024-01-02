@@ -3,8 +3,9 @@ using HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.
 
 namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Repositories
 {
-    public interface IWorkingTimeIntervalRepository : IRepository<WorkingTimeInterval>
+    public interface IWorkingTimeIntervalRepository : IRepository<WorkingTimeInterval>,
+        IFromHeadHunterRepository<WorkingTimeInterval>
     {
-        
+
     }
 }

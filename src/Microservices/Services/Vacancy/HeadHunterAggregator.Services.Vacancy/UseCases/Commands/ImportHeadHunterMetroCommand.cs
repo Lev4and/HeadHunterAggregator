@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using HeadHunterAggregator.Domain.Infrastructure.Databases;
 using HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Entities;
+using HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Mappers;
 using HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Repositories;
 using HeadHunterAggregator.Services.Vacancy.Web.Http.HeadHunter.DTOs;
 using MediatR;
@@ -27,14 +28,22 @@ namespace HeadHunterAggregator.Services.Vacancy.UseCases.Commands
         internal class Handler : IRequestHandler<ImportHeadHunterMetroCommand, bool>
         {
             private readonly IUnitOfWork _unitOfWork;
+
+            private readonly IMetroLineMapper _metroLineMapper;
+            private readonly IMetroStationMapper _metroStationMapper;
+
             private readonly IAreaRepository _areaRepository;
             private readonly IMetroLineRepository _metroLineRepository;
             private readonly IMetroStationRepository _metroStationRepository;
 
-            public Handler(IUnitOfWork unitOfWork, IAreaRepository areaRepository, IMetroLineRepository metroLineRepository, 
-                IMetroStationRepository metroStationRepository)
+            public Handler(IUnitOfWork unitOfWork, IMetroLineMapper metroLineMapper, IMetroStationMapper metroStationMapper, 
+                IAreaRepository areaRepository, IMetroLineRepository metroLineRepository, IMetroStationRepository metroStationRepository)
             {
                 _unitOfWork = unitOfWork;
+
+                _metroLineMapper = metroLineMapper;
+                _metroStationMapper = metroStationMapper;
+
                 _areaRepository = areaRepository;
                 _metroLineRepository = metroLineRepository;
                 _metroStationRepository = metroStationRepository;
@@ -53,7 +62,7 @@ namespace HeadHunterAggregator.Services.Vacancy.UseCases.Commands
                             {
                                 var area = await _areaRepository.FindOneByHeadHunterIdAsync(city.Id);
 
-                                await SaveMetroLines(city.Lines, area.Id, cancellationToken);
+                                await ImportMetroLinesAsync(city.Lines, area.Id, cancellationToken);
                             }
                         }
 
@@ -72,31 +81,36 @@ namespace HeadHunterAggregator.Services.Vacancy.UseCases.Commands
                 }
             }
 
-            private async Task SaveMetroLines(IReadOnlyCollection<MetroLineDto> metroLines, Guid areaId, 
+            private async Task ImportMetroLinesAsync(IReadOnlyCollection<MetroLineDto> metroLines, Guid areaId, 
                 CancellationToken cancellationToken = default)
             {
                 foreach (var metroLine in metroLines)
                 {
-                    var item = await _metroLineRepository.FindOneByHeadHunterIdOrAddAsync(new MetroLine()
-                    { AreaId = areaId, HeadHunterId = metroLine.Id, Name = metroLine.Name, HexColor = metroLine.HexColor },
-                        metroLine.Id, cancellationToken);
+                    var entity = _metroLineMapper.Map(metroLine);
+
+                    entity.AreaId = areaId;
+
+                    var item = await _metroLineRepository.FindOneByHeadHunterIdOrAddAsync(entity, metroLine.Id, 
+                        cancellationToken);
 
                     if (metroLine.Stations?.Count > 0)
                     {
-                        await SaveMetroStations(metroLine.Stations, item.Id, cancellationToken);
+                        await ImportMetroStationsAsync(metroLine.Stations, item.Id, cancellationToken);
                     }
                 }
             }
 
-            private async Task SaveMetroStations(IReadOnlyCollection<MetroStationDto> metroStations, Guid metroLineId,
+            private async Task ImportMetroStationsAsync(IReadOnlyCollection<MetroStationDto> metroStations, Guid metroLineId,
                 CancellationToken cancellationToken = default)
             {
                 foreach (var metroStation in metroStations)
                 {
-                    await _metroStationRepository.FindOneByHeadHunterIdOrAddAsync(new MetroStation()
-                        { MetroLineId = metroLineId, Order = metroStation.Order, HeadHunterId = metroStation.Id, 
-                            Name = metroStation.Name, Latitude = metroStation.Latitude, Longitude = metroStation.Longitude }, 
-                                metroStation.Id, cancellationToken);
+                    var enriry = _metroStationMapper.Map(metroStation);
+
+                    enriry.MetroLineId = metroLineId;
+
+                    await _metroStationRepository.FindOneByHeadHunterIdOrAddAsync(enriry, metroStation.Id, 
+                        cancellationToken);
                 }
             }
         }

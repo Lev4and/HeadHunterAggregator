@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 using HeadHunterAggregator.Domain.Infrastructure.Databases;
-using HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Entities;
+using HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Mappers;
 using HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Repositories;
 using HeadHunterAggregator.Services.Vacancy.Web.Http.HeadHunter.DTOs;
 using MediatR;
@@ -27,12 +27,14 @@ namespace HeadHunterAggregator.Services.Vacancy.UseCases.Commands
         internal class Handler : IRequestHandler<ImportHeadHunterIndustriesCommand, bool>
         {
             private readonly IUnitOfWork _unitOfWork;
-            private readonly IIndustryRepository _repository;
+            private readonly IIndustryMapper _industryMapper;
+            private readonly IIndustryRepository _industryRepository;
 
-            public Handler(IUnitOfWork unitOfWork, IIndustryRepository repository)
+            public Handler(IUnitOfWork unitOfWork, IIndustryMapper industryMapper, IIndustryRepository industryRepository)
             {
                 _unitOfWork = unitOfWork;
-                _repository = repository;
+                _industryMapper = industryMapper;
+                _industryRepository = industryRepository;
             }
 
             public async Task<bool> Handle(ImportHeadHunterIndustriesCommand request, 
@@ -42,7 +44,7 @@ namespace HeadHunterAggregator.Services.Vacancy.UseCases.Commands
                 {
                     try
                     {
-                        await SaveIndustries(request.Industries, null, cancellationToken);
+                        await ImportIndustriesAsync(request.Industries, null, cancellationToken);
 
                         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
@@ -59,18 +61,21 @@ namespace HeadHunterAggregator.Services.Vacancy.UseCases.Commands
                 }
             }
 
-            private async Task SaveIndustries(IReadOnlyCollection<IndustryDto> industries, Guid? parentId,
+            private async Task ImportIndustriesAsync(IReadOnlyCollection<IndustryDto> industries, Guid? parentId,
                 CancellationToken cancellationToken = default)
             {
                 foreach (var industry in industries)
                 {
-                    var item = await _repository.FindOneByHeadHunterIdOrAddAsync(
-                        new Industry() { ParentId = parentId, Name = industry.Name, HeadHunterId = industry.Id },
-                            industry.Id, cancellationToken);
+                    var entity = _industryMapper.Map(industry);
+
+                    entity.ParentId = parentId;
+
+                    var item = await _industryRepository.FindOneByHeadHunterIdOrAddAsync(entity, industry.Id, 
+                        cancellationToken);
 
                     if (industry.Industries?.Count > 0)
                     {
-                        await SaveIndustries(industry.Industries, item.Id, cancellationToken);
+                        await ImportIndustriesAsync(industry.Industries, item.Id, cancellationToken);
                     }
                 }
             }
