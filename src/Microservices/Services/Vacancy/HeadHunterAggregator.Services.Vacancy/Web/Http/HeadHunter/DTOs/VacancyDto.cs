@@ -85,7 +85,7 @@ namespace HeadHunterAggregator.Services.Vacancy.Web.Http.HeadHunter.DTOs
         public VacancyTypeDto? Type { get; set; }
 
         [JsonProperty("has_test")]
-        public bool? HasTest { get; set; }
+        public bool HasTest { get; set; }
 
         [JsonProperty("response_url")]
         public object? ResponseUrl { get; set; }

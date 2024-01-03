@@ -790,15 +790,15 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                         .HasColumnType("uuid")
                         .HasColumnName("id");
 
-                    b.Property<bool>("AcceptHandicapped")
+                    b.Property<bool?>("AcceptHandicapped")
                         .HasColumnType("boolean")
                         .HasColumnName("accept_handicapped");
 
-                    b.Property<bool>("AcceptIncompleteResumes")
+                    b.Property<bool?>("AcceptIncompleteResumes")
                         .HasColumnType("boolean")
                         .HasColumnName("accept_incomplete_resumes");
 
-                    b.Property<bool>("AcceptKids")
+                    b.Property<bool?>("AcceptKids")
                         .HasColumnType("boolean")
                         .HasColumnName("accept_kids");
 
@@ -811,21 +811,19 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                         .HasColumnType("uuid")
                         .HasColumnName("address_id");
 
-                    b.Property<bool>("AllowMessages")
+                    b.Property<bool?>("AllowMessages")
                         .HasColumnType("boolean")
                         .HasColumnName("allow_messages");
 
                     b.Property<string>("AlternateUrl")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("alternate_url");
 
                     b.Property<string>("ApplyAlternateUrl")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("apply_alternate_url");
 
-                    b.Property<bool>("Archived")
+                    b.Property<bool?>("Archived")
                         .HasColumnType("boolean")
                         .HasColumnName("archived");
 
@@ -883,7 +881,7 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                         .HasColumnType("text")
                         .HasColumnName("name");
 
-                    b.Property<bool>("Premium")
+                    b.Property<bool?>("Premium")
                         .HasColumnType("boolean")
                         .HasColumnName("premium");
 
@@ -891,7 +889,7 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("published_at");
 
-                    b.Property<bool>("ResponseLetterRequired")
+                    b.Property<bool?>("ResponseLetterRequired")
                         .HasColumnType("boolean")
                         .HasColumnName("response_letter_required");
 

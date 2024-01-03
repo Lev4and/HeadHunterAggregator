@@ -4,7 +4,7 @@ using HeadHunterAggregator.Services.Vacancy.Web.Http.HeadHunter.DTOs;
 
 namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Mappers
 {
-    public interface IWorkingDayMapper : IMapper<WorkingDayDto, WorkingDay>
+    public interface IWorkingDayMapper : IDbMapper<WorkingDayDto, WorkingDay>
     {
 
     }

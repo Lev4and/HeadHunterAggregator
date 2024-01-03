@@ -17,10 +17,10 @@ namespace HeadHunterAggregator.Services.Vacancy.Web.Http.HeadHunter.DTOs
         public string? Description { get; set; }
 
         [JsonProperty("lat")]
-        public double? Latitude { get; set; }
+        public double Latitude { get; set; }
 
         [JsonProperty("lng")]
-        public double? Longitude { get; set; }
+        public double Longitude { get; set; }
 
         [JsonProperty("metro_stations")]
         public IReadOnlyCollection<MetroStationDto>? MetroStations { get; set; }

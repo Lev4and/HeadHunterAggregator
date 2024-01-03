@@ -39,15 +39,6 @@ namespace HeadHunterAggregator.Services.Vacancy.Api.Areas.Import.Controllers
         }
 
         [HttpPost]
-        [Route("employer")]
-        [ProducesResponseType(typeof(ApiResponse<bool>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> ImportEmployerAsync([Required][FromBody] EmployerDto employer,
-            CancellationToken cancellationToken = default)
-        {
-            return Ok(await _mediator.Send(new ImportHeadHunterEmployerCommand(employer), cancellationToken));
-        }
-
-        [HttpPost]
         [Route("industries")]
         [ProducesResponseType(typeof(ApiResponse<bool>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> ImportIndustriesAsync([Required][FromBody] IReadOnlyCollection<IndustryDto> industries,

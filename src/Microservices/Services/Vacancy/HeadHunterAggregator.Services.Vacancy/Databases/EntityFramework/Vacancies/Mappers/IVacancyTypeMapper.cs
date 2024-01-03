@@ -4,7 +4,7 @@ using HeadHunterAggregator.Services.Vacancy.Web.Http.HeadHunter.DTOs;
 
 namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Mappers
 {
-    public interface IVacancyTypeMapper : IMapper<VacancyTypeDto, VacancyType>
+    public interface IVacancyTypeMapper : IDbMapper<VacancyTypeDto, VacancyType>
     {
 
     }

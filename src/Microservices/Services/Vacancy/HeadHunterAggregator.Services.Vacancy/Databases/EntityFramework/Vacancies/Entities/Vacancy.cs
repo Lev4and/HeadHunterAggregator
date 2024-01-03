@@ -30,21 +30,21 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
 
         public bool HasTest { get; set; }
 
-        public bool Premium { get; set; }
+        public bool? Premium { get; set; }
 
-        public bool Archived { get; set; }
+        public bool? Archived { get; set; }
 
-        public bool AcceptKids { get; set; }
+        public bool? AcceptKids { get; set; }
 
-        public bool AllowMessages { get; set; }
+        public bool? AllowMessages { get; set; }
 
         public bool? AcceptTemporary { get; set; }
 
-        public bool AcceptHandicapped { get; set; }
+        public bool? AcceptHandicapped { get; set; }
 
-        public bool ResponseLetterRequired { get; set; }
+        public bool? ResponseLetterRequired { get; set; }
 
-        public bool AcceptIncompleteResumes { get; set; }
+        public bool? AcceptIncompleteResumes { get; set; }
 
         public string HeadHunterId { get; set; }
 
@@ -52,9 +52,9 @@ namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacanc
 
         public string? Code { get; set; }
 
-        public string AlternateUrl { get; set; }
+        public string? AlternateUrl { get; set; }
 
-        public string ApplyAlternateUrl { get; set; }
+        public string? ApplyAlternateUrl { get; set; }
 
         public DateTime CreatedAt { get; set; }
 

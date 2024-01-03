@@ -4,7 +4,7 @@ using HeadHunterAggregator.Services.Vacancy.Web.Http.HeadHunter.DTOs;
 
 namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Mappers
 {
-    public interface IScheduleMapper : IMapper<ScheduleDto, Schedule>
+    public interface IScheduleMapper : IDbMapper<ScheduleDto, Schedule>
     {
 
     }

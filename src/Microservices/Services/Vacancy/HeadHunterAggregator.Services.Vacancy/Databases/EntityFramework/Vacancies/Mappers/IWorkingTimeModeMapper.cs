@@ -4,7 +4,7 @@ using HeadHunterAggregator.Services.Vacancy.Web.Http.HeadHunter.DTOs;
 
 namespace HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Mappers
 {
-    public interface IWorkingTimeModeMapper : IMapper<WorkingTimeModeDto, WorkingTimeMode>
+    public interface IWorkingTimeModeMapper : IDbMapper<WorkingTimeModeDto, WorkingTimeMode>
     {
 
     }

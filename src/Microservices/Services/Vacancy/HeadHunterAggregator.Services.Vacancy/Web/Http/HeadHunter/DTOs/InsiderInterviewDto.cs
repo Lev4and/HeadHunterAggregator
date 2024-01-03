@@ -8,7 +8,7 @@ namespace HeadHunterAggregator.Services.Vacancy.Web.Http.HeadHunter.DTOs
         public string Id { get; set; }
 
         [JsonProperty("title")]
-        public string? Title { get; set; }
+        public string Title { get; set; }
 
         [JsonProperty("url")]
         public string Url { get; set; }

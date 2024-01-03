@@ -1,5 +1,7 @@
 ﻿using HeadHunterAggregator.Domain.Infrastructure.Databases.Mappers;
 using HeadHunterAggregator.Domain.Infrastructure.Databases.Repositories;
+using HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Mappers;
+using HeadHunterAggregator.Services.Vacancy.Databases.EntityFramework.Vacancies.Repositories;
 using MassTransit.Internals;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,14 +12,16 @@ namespace HeadHunterAggregator.Services.Vacancy.Extensions
         public static IServiceCollection AddMappers(this IServiceCollection services)
         {
             foreach (var mapperInterface in typeof(ServiceCollectionExtensions).Assembly.GetTypes()
-                .Where(type => type.IsInterface && type.HasInterface(typeof(IMapper<,>))))
+                .Where(type => type.IsInterface && type.HasInterface(typeof(IDbMapper<,>))))
             {
                 foreach (var mapper in typeof(ServiceCollectionExtensions).Assembly.GetTypes()
                     .Where(type => type.IsClass && type.HasInterface(mapperInterface)))
                 {
-                    services.AddTransient(mapperInterface, mapper);
+                    services.AddSingleton(mapperInterface, mapper);
                 }
             }
+
+            services.AddSingleton<IDbMappers, VacanciesDbMappers>();
 
             return services;
         }
@@ -33,6 +37,9 @@ namespace HeadHunterAggregator.Services.Vacancy.Extensions
                     services.AddTransient(repositoryInterface, repository);
                 }
             }
+
+            services.AddTransient<IRepository, VacanciesDbRepository>();
+            services.AddTransient<IFromHeadHunterRepository, VacanciesDbFromHeadHunterRepository>();
 
             return services;
         }
